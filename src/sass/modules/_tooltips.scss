@@ -1,0 +1,10 @@
+.tooltip-inner {
+	color:				$dark-grey-2;
+	background-color:	$yellow;
+}
+
+.tooltip {
+	&.top .tooltip-arrow {
+		border-top-color: $yellow;
+	}
+}

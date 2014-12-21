@@ -14,6 +14,7 @@ angular.module "DirectAsia"
 			ownership: undefined
 			financed: null
 			kmsperyear: "> 15,000"
+			lowmileageoption: false
 			usage: undefined
 
 		$scope.years = [
@@ -57,6 +58,7 @@ angular.module "DirectAsia"
 			# 	ownership: @scope.car.ownership
 			# 	financed: @scope.car.financed
 			# 	kmsperyear: @scope.car.kmsperyear
+			# 	lowmileageoption: @scope.car.lowmileageoption
 			# 	usage: @scope.car.usage
 
 			# car.$save (response) ->

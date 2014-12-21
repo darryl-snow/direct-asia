@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon Dec 22 2014 00:18:42 GMT+0800 (CST) */require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/* direct-asia : 0.0.0 : Mon Dec 22 2014 02:19:30 GMT+0800 (CST) */require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 angular.module("DirectAsia").controller("CarCtrl", [
   "$scope", "Cars", function($scope, Cars) {
     $scope.car = {
@@ -15,6 +15,7 @@ angular.module("DirectAsia").controller("CarCtrl", [
       ownership: void 0,
       financed: null,
       kmsperyear: "> 15,000",
+      lowmileageoption: false,
       usage: void 0
     };
     $scope.years = ["2014", "2013", "2012"];
@@ -121,6 +122,18 @@ angular.module("DirectAsia").directive("toggleButtons", function() {
 
 
 },{}],6:[function(require,module,exports){
+angular.module("DirectAsia").directive("showTooltip", function() {
+  return {
+    restrict: "C",
+    link: function(scope, element, attrs) {
+      return element.tooltip();
+    }
+  };
+});
+
+
+
+},{}],7:[function(require,module,exports){
 var angular, bootstrap, iCheck, jQuery, ngResource, selecter, stepper;
 
 console.log("%c Welcome to Direct Asia Car Insurance ", "background: #3498db;\ncolor: #ffffff;\nfont-size: 18px;\nfont-family: 'Helvetica Neue';\nfont-weight: 300;\nline-height: 30px;\nheight: 30px;\npadding: 5px;");
@@ -153,9 +166,11 @@ require("./directives/selecter.directive.coffee");
 
 require("./directives/toggle-buttons.directive.coffee");
 
+require("./directives/tooltip.directive.coffee");
 
 
-},{"./controllers/Car.controller.coffee":1,"./directives/input-group.directive.coffee":2,"./directives/popover.directive.coffee":3,"./directives/selecter.directive.coffee":4,"./directives/toggle-buttons.directive.coffee":5,"./services/Car.factory.coffee":7,"angular":"1yPh8u","bootstrap":"mL3T4+","iCheck":"zb0ges","jQuery":"kwOQZ5","ngResource":"gjvoMc","selecter":"1hZPYZ","stepper":"MFjP00"}],7:[function(require,module,exports){
+
+},{"./controllers/Car.controller.coffee":1,"./directives/input-group.directive.coffee":2,"./directives/popover.directive.coffee":3,"./directives/selecter.directive.coffee":4,"./directives/toggle-buttons.directive.coffee":5,"./directives/tooltip.directive.coffee":6,"./services/Car.factory.coffee":8,"angular":"1yPh8u","bootstrap":"mL3T4+","iCheck":"zb0ges","jQuery":"kwOQZ5","ngResource":"gjvoMc","selecter":"1hZPYZ","stepper":"MFjP00"}],8:[function(require,module,exports){
 angular.module("DirectAsia").factory("Cars", [
   "$resource", function($resource) {
     return $resource("api/car/:carId", {
@@ -37845,4 +37860,4 @@ function ResourceRun() {
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[6])
+},{}]},{},[7])

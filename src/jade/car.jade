@@ -36,7 +36,7 @@ block content
 			.panel-footer
 				.row
 					.col-md-3
-						label(for="year") Year
+						label.show-tooltip(for="year", data-toggle="tooltip" data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document.") Year
 							img(src="images/question-icon.png")
 						select#year(name="year")
 							option(selecter, label="Enter year", value="{{year}}", data-ng-repeat="year in years", selecter-target="#year", selecter-callback="select", property="year", ng-selected="year == selectedItem") {{year}}
@@ -73,7 +73,7 @@ block content
 
 						h2 Select the modifications done on your car.
 							.subtitle Please note that these need to be 
-								a(href="#") LTA compliant
+								a(href="http://www.onemotoring.com.sg/publish/onemotoring/en/lta_information_guidelines/modifications_and_vehoffences/modification_guide.html", target="_blank") LTA compliant
 
 						.container.margin--top
 							.container
@@ -122,6 +122,8 @@ block content
 				button.btn.btn-default(type="button", ng-click="select(false, 0, 'financed')", ng-class="{'active':car.financed==false}") No
 					span.glyphicon.glyphicon-ok
 
+				p.margin--top(ng-show="car.financed") Please check your cover requirements. If your car is financed, your bank/finance company<br>may require you to have comprehensive cover for your car.
+
 		.container.margin--bottom.margin--top
 			.container.margin--bottom
 				h2.margin--bottom Roughly how many kilometres do you drive per year?
@@ -139,6 +141,15 @@ block content
 				button.btn.btn-default(type="button", ng-click="select('not sure', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='not sure'}") Not<br>sure
 					span.glyphicon.glyphicon-ok
 
+				.margin--top(ng-show="car.kmsperyear=='< 8,000'")
+					p If you drive less than 8,000 km, you can get a discount with our Low-Mileage option!
+					p Please note that you'll be required to pay an additional $5,000 (before GST) if you make a claim and you drove more than 8,000 km.
+					label.label-checkbox(for="checkbox5")
+						input#checkbox5(type="checkbox", ng-model="car.lowmileageoption")
+						.fake-checkbox
+							span.glyphicon.glyphicon-ok
+						span Sign me up for the Low-Mileage option!
+
 		.row
 			.col-md-8
 				.panel.margin--top
@@ -148,19 +159,19 @@ block content
 
 						.row.margin--top
 							.col-md-3.centred
-								img.margin--bottom(src="images/moon-icon.png")
+								img.margin--bottom.show-tooltip(src="images/moon-icon.png", data-toggle="tooltip" data-placement="top" title="If you drive a car with a red plate registration in Singapore.")
 								button.btn.btn-default.btn-block(type="button", ng-click="select('off peak', 0, 'usage')", ng-class="{'active':car.usage=='off peak'}") Off-peak<br>car
 									span.glyphicon.glyphicon-ok
 							.col-md-3.centred
-								img.margin--bottom(src="images/trolley-icon.png")
+								img.margin--bottom.show-tooltip(src="images/trolley-icon.png", data-toggle="tooltip" data-placement="top" title="If you are only using your car in the course of your private life and for leisure.")
 								button.btn.btn-default.btn-block(type="button", ng-click="select('personal use', 0, 'usage')", ng-class="{'active':car.usage=='personal use'}") Personal<br>use
 									span.glyphicon.glyphicon-ok
 							.col-md-3.centred
-								img.margin--bottom(src="images/cityscape-icon.png")
+								img.margin--bottom.show-tooltip(src="images/cityscape-icon.png", data-toggle="tooltip" data-placement="top" title="If you are using your car in the course of your private life and to go to and from your workplace.")
 								button.btn.btn-default.btn-block(type="button", ng-click="select('personal use + commute', 0, 'usage')", ng-class="{'active':car.usage=='personal use + commute'}") Personal use<br>+ Commute
 									span.glyphicon.glyphicon-ok
 							.col-md-3.centred
-								img.margin--bottom(src="images/lanyard-icon.png")
+								img.margin--bottom.show-tooltip(src="images/lanyard-icon.png", data-toggle="tooltip" data-placement="top" title="If you are using your car to go to and from your workplace and for or during the course of your work.")
 								button.btn.btn-default.btn-block(type="button", ng-click="select('commute + during work', 0, 'usage')", ng-class="{'active':car.usage=='commute + during work'}") Commute +<br>During work
 									span.glyphicon.glyphicon-ok
 

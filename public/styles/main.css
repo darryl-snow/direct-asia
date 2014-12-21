@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon Dec 22 2014 00:23:46 GMT+0800 (CST) */@import url(../lib/Bootflat/bootflat/css/bootflat.css);
+/* direct-asia : 0.0.0 : Mon Dec 22 2014 02:12:11 GMT+0800 (CST) */@import url(../lib/Bootflat/bootflat/css/bootflat.css);
 .centred {
   text-align: center; }
 
@@ -473,3 +473,10 @@ input[type="checkbox"]:disabled ~ span, input[type="radio"]:disabled ~ span {
   padding: 1em; }
   .section--blue {
     background: #25a8e0; }
+
+.tooltip-inner {
+  color: #333333;
+  background-color: #fcd900; }
+
+.tooltip.top .tooltip-arrow {
+  border-top-color: #fcd900; }
