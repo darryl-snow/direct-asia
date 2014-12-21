@@ -1,0 +1,53 @@
+.panel {
+	position:					relative;
+
+	&-header,
+	&-body,
+	&-footer {
+		padding:				2em;
+	}
+
+	&-footer {
+		background:				$light-grey-2;
+		border-top:				none;
+	}
+
+	h1,
+	h2 {
+		margin-bottom:			0;
+		margin-top:				0;
+	}
+
+	.arrow {
+		height:					13px;
+		position:				absolute;
+		top:					-13px;
+		width:					26px;
+
+		&:after {
+			border-bottom: 		11px solid $white;
+			border-left: 		11px solid transparent;
+			border-right: 		11px solid transparent;
+			content: 			"";
+			height: 			0;
+			position: 			absolute;
+			top: 				1px;
+			width: 				0;
+			z-index: 			2;
+		}
+
+		&:before {
+			border-bottom: 		13px solid rgba($black, 0.02);
+			border-left: 		13px solid transparent;
+			border-right: 		13px solid transparent;
+			content: 			"";
+			height: 			0;
+			left:				-2px;
+			position: 			absolute;
+			right:				1px;
+			top: 				-1px;
+			width: 				0;
+			z-index: 			1;			
+		}
+	}
+}

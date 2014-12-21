@@ -1,0 +1,29 @@
+body,
+html {
+	background:			$light-grey-3;
+	color:				$black;
+}
+
+.random-margin {
+	margin-right:		1.5em;
+}
+
+.margin {
+
+	&--bottom {
+		margin-bottom:	1em;
+	}
+
+	&--left {
+		margin-left:	1em;
+	}
+
+	&--right {
+		margin-right:	1em;
+	}
+
+	&--top {
+		margin-top:		1em;
+	}
+
+}

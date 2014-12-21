@@ -1,0 +1,185 @@
+extends templates/master
+
+block title
+	| Direct Asia Car Insurance - Car Insurance
+
+block styles
+
+block content
+
+	.container(ng-controller="CarCtrl")
+
+		.navbar.navbar-default
+			.navbar-header
+				a.navbar-brand(href="/")
+					img(src="images/direct-asia-logo.png")
+
+			.navbar-title Car Insurance
+
+			ol.breadcrumb.breadcrumb-arrow
+				li.active
+					a(href="#") Your Car &amp; Drivers
+				li
+					span Your Quote
+				li
+					span Purchase
+
+			.navbar-telephone.pull-right Call our Singapore Team on
+				span.navbar-telephone-number 9854 4345
+
+		.panel
+			.panel-body
+				h1
+					img.pull-left(src="images/car-icon.png")
+					| Tell us about the car
+					.subtitle Please note that we do not cover cars used for commercial<br>purposes or for hire/reward
+			.panel-footer
+				.row
+					.col-md-3
+						label(for="year") Year
+							img(src="images/question-icon.png")
+						select#year(name="year")
+							option(selecter, label="Enter year", value="{{year}}", data-ng-repeat="year in years", selecter-target="#year", selecter-callback="select", property="year", ng-selected="year == selectedItem") {{year}}
+
+					.col-md-3
+						label(for="make") Car Make
+							img(src="images/question-icon.png")
+						select#make(name="make")
+							option(selecter, label="Enter make", value="{{make}}", data-ng-repeat="make in makes", selecter-target="#make", selecter-callback="select", property="make", ng-selected="make == selectedItem") {{make}}
+
+					.col-md-3
+						label(for="model") Car Model
+							img(src="images/question-icon.png")
+						select#model(name="model")
+							option(selecter, label="Enter model", value="{{model}}", data-ng-repeat="model in models", selecter-target="#model", selecter-callback="select", property="model", ng-selected="model == selectedItem") {{model}}
+
+		.container
+			.container
+				h2.margin--bottom Has the car been modified?
+					.subtitle e.g. Allow wheels, exhaust upgrade?
+
+				button.btn.btn-default.random-margin(type="button", ng-click="select(true, 0, 'modified')", ng-class="{'active':car.modified}") Yes
+					span.glyphicon.glyphicon-ok
+
+				button.btn.btn-default(type="button", ng-click="select(false, 0, 'modified')", ng-class="{'active':car.modified==false}") No
+					span.glyphicon.glyphicon-ok
+
+		.row.margin--top(ng-show="car.modified")
+			.col-md-8.margin--top
+				.panel.margin--top
+					.arrow(style="left:62px;")
+
+					.panel-body
+
+						h2 Select the modifications done on your car.
+							.subtitle Please note that these need to be 
+								a(href="#") LTA compliant
+
+						.container.margin--top
+							.container
+
+								label.label-checkbox(for="checkbox1")
+									input#checkbox1(type="checkbox", ng-model="car.modifications.bodykit")
+									.fake-checkbox
+										span.glyphicon.glyphicon-ok
+									span Body Kit
+
+								label.label-checkbox(for="checkbox2")
+									input#checkbox2(type="checkbox", ng-model="car.modifications.rimstires")
+									.fake-checkbox
+										span.glyphicon.glyphicon-ok
+									span Rims / Tires
+
+								label.label-checkbox(for="checkbox3")
+									input#checkbox3(type="checkbox", ng-model="car.modifications.suspensionstabiliser")
+									.fake-checkbox
+										span.glyphicon.glyphicon-ok
+									span Suspension / Stabiliser System
+
+								label.label-checkbox(for="checkbox4")
+									input#checkbox4(type="checkbox", ng-model="car.modifications.airintakeexhaust")
+									.fake-checkbox
+										span.glyphicon.glyphicon-ok
+									span Air Intake / Exhaust System
+
+		.container.margin--bottom
+			.container
+				h2.margin--bottom Is the vehicle privately owned or corporate owned?
+
+				button.btn.btn-default.random-margin(type="button", ng-click="select('private', 0, 'ownership')", ng-class="{'active':car.ownership=='private'}") Private
+					span.glyphicon.glyphicon-ok
+				button.btn.btn-default(type="button", ng-click="select('corporate', 0, 'ownership')", ng-class="{'active':car.ownership=='corporate'}") Corporate
+					span.glyphicon.glyphicon-ok
+
+		.container.margin--bottom.margin--top
+			.container
+				h2.margin--bottom Is the car financed?
+					.subtitle e.g. Allow wheels, exhaust upgrade?
+
+				button.btn.btn-default.random-margin(type="button", ng-click="select(true, 0, 'financed')", ng-class="{'active':car.financed}") Yes
+					span.glyphicon.glyphicon-ok
+
+				button.btn.btn-default(type="button", ng-click="select(false, 0, 'financed')", ng-class="{'active':car.financed==false}") No
+					span.glyphicon.glyphicon-ok
+
+		.container.margin--bottom.margin--top
+			.container.margin--bottom
+				h2.margin--bottom Roughly how many kilometres do you drive per year?
+					img(src="images/question-icon.png")
+
+				button.btn.btn-default.random-margin(type="button", ng-click="select('< 8,000', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='< 8,000'}") Less than<br>8,000 km
+					span.glyphicon.glyphicon-ok
+
+				button.btn.btn-default.random-margin(type="button", ng-click="select('8,000 - 15,000', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='8,000 - 15,000'}") 8,000 km -<br>15,000 km
+					span.glyphicon.glyphicon-ok
+
+				button.btn.btn-default.random-margin(type="button", ng-click="select('> 15,000', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='> 15,000'}") Over<br>15,000 km
+					span.glyphicon.glyphicon-ok
+
+				button.btn.btn-default(type="button", ng-click="select('not sure', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='not sure'}") Not<br>sure
+					span.glyphicon.glyphicon-ok
+
+		.row
+			.col-md-8
+				.panel.margin--top
+					.arrow(style="left:407px;")
+					.panel-body
+						h2.margin--bottom What do you use the car for?
+
+						.row.margin--top
+							.col-md-3.centred
+								img.margin--bottom(src="images/moon-icon.png")
+								button.btn.btn-default.btn-block(type="button", ng-click="select('off peak', 0, 'usage')", ng-class="{'active':car.usage=='off peak'}") Off-peak<br>car
+									span.glyphicon.glyphicon-ok
+							.col-md-3.centred
+								img.margin--bottom(src="images/trolley-icon.png")
+								button.btn.btn-default.btn-block(type="button", ng-click="select('personal use', 0, 'usage')", ng-class="{'active':car.usage=='personal use'}") Personal<br>use
+									span.glyphicon.glyphicon-ok
+							.col-md-3.centred
+								img.margin--bottom(src="images/cityscape-icon.png")
+								button.btn.btn-default.btn-block(type="button", ng-click="select('personal use + commute', 0, 'usage')", ng-class="{'active':car.usage=='personal use + commute'}") Personal use<br>+ Commute
+									span.glyphicon.glyphicon-ok
+							.col-md-3.centred
+								img.margin--bottom(src="images/lanyard-icon.png")
+								button.btn.btn-default.btn-block(type="button", ng-click="select('commute + during work', 0, 'usage')", ng-class="{'active':car.usage=='commute + during work'}") Commute +<br>During work
+									span.glyphicon.glyphicon-ok
+
+						p.margin--top(style="color:#777777") Do you sometimes use your car for commute or work? You can use your car up to 5 times per year outside the usage you declare. Simply email us at 
+							a(href="mailto:carusage@directasia.com") CarUsage@DirectAsia.com 
+							| before you drive, and you'll be covered in case something happens.
+
+		.container
+			.container
+
+				.row(style="margin-top:3em;")
+					.col-md-12
+						button.btn.btn-forward.btn-lg(type="button", ng-click="proceed()") Proceed
+							span.glyphicon.glyphicon-arrow-right
+
+				.row(style="margin-top:1em;margin-bottom:12em;")
+					.col-md-12
+						button.btn.btn-backward(type="button")
+							span.glyphicon.glyphicon-arrow-left
+							| Back
+
+block scripts

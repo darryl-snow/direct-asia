@@ -1,0 +1,70 @@
+// ACTIONS
+
+@mixin ActiveFocusHover {
+
+	&:active,
+	&:focus,
+	&:hover,
+	&.active,
+	&.selected {
+		@content
+	}
+}
+
+// GRADIENTS
+
+// @mixin linear-gradient($fromColor, $toColor) {
+// 	background-color: $toColor; /* Fallback Color */
+// 	background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+// 	background-image: -webkit-linear-gradient(top, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+// 	background-image:    -moz-linear-gradient(top, $fromColor, $toColor); /* FF3.6 */
+// 	background-image:     -ms-linear-gradient(top, $fromColor, $toColor); /* IE10 */
+// 	background-image:      -o-linear-gradient(top, $fromColor, $toColor); /* Opera 11.10+ */
+// 	background-image:         linear-gradient(top, $fromColor, $toColor);
+// 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+// }
+
+@mixin linear-gradient($direction, $color-stops...) {
+	@if is-direction($direction) == false {
+		$color-stops: $direction, $color-stops;
+		$direction: 180deg;
+	}
+
+	background: nth(nth($color-stops, 1), 1);
+	background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+	background: linear-gradient($direction, $color-stops);
+}
+
+// LAYOUT
+
+.centred {
+	text-align: center;
+}
+
+@mixin left {
+	float: 		left;
+}
+
+@mixin right {
+	float: 		right;
+}
+
+// TYPOGRAPHY
+
+@mixin inline-list {
+	li {
+		display: 		inline-block;
+		margin-left: 	-4px !important;
+		vertical-align: middle;
+	}
+}
+
+@mixin unstyled-list {
+	list-style:	none;
+	padding:	0;
+
+	li {
+		margin:		0;
+		padding:	0;
+	}
+}

@@ -1,0 +1,418 @@
+extends templates/master
+
+block title
+	| Direct Asia Car Insurance - STYLEGUIDE
+
+block styles
+
+	style.
+		.colour {
+			border-radius: 	0.25em;
+			height: 		3em;
+			margin-bottom: 	1em;
+		}
+
+		.colour--yellow {
+			background: 	#fcd900;
+		}
+
+		.colour--blue {
+			background: 	#25a8e0;
+		}
+
+		.colour--green {
+			background: 	#75bb49;
+		}
+
+		.colour--red {
+			background: 	#d52b1e;
+		}
+
+		.colour--black {
+			background: 	#000000;
+		}
+
+		.colour--dark-grey-1 {
+			background:		#252525;
+		}
+
+		.colour--dark-grey-2 {
+			background:		#333333;
+		}
+
+		.colour--medium-grey {
+			background:		#707070;
+		}
+
+		.colour--light-grey-1 {
+			background:		#e5e5e5;
+		}
+
+		.colour--light-grey-2 {
+			background:		#f2f2f2;
+		}
+
+		.colour-name,
+		.colour-code {
+			display: 		block;
+			font-family: 	Consolas, Menlo;
+			text-transform:	uppercase;
+		}
+
+		.colour-code {
+			margin-bottom:	1em;
+		}
+
+block content
+
+	include includes/header
+
+	.container(ng-controller="CarCtrl")
+
+		.row
+
+			.col-md-12
+
+				h1
+					a.logo(href="/")
+						img(src="/images/direct-asia-logo.png", alt="Direct Asia Logo")
+
+					| BOW UI Kits
+
+		.row
+
+			.col-md-12
+
+				h2 Colours
+
+		.row
+
+			.col-md-2
+				.colour.colour--yellow
+				span.colour-name Yellow
+				span.colour-code #fco900
+
+			.col-md-2
+				.colour.colour--blue
+				span.colour-name Blue
+				span.colour-code #25a8e0
+
+			.col-md-2
+				.colour.colour--green
+				span.colour-name Green
+				span.colour-code #75bb49
+
+			.col-md-2
+				.colour.colour--red
+				span.colour-name Red
+				span.colour-code #d52b1e
+
+			.col-md-4
+
+		.row
+
+			.col-md-2
+				.colour.colour--black
+				span.colour-name Black
+				span.colour-code #0000000
+
+			.col-md-2
+				.colour.colour--dark-grey-1
+				span.colour-name Dark Grey 1
+				span.colour-code #252525
+
+			.col-md-2
+				.colour.colour--dark-grey-2
+				span.colour-name Dark Grey 2
+				span.colour-code #333333
+
+			.col-md-2
+				.colour.colour--medium-grey
+				span.colour-name Medium Grey
+				span.colour-code #707070
+
+			.col-md-2
+				.colour.colour--light-grey-1
+				span.colour-name Light Grey 1
+				span.colour-code #e5e5e5
+
+			.col-md-2
+				.colour.colour--light-grey-2
+				span.colour-name Light Grey 2
+				span.colour-code #f2f2f2
+
+		.row
+			.col-md-12
+				h2 Buttons
+
+		.row
+			.col-md-2
+				button.btn.btn-default.btn-block(type="button") Yes
+					span.glyphicon.glyphicon-ok
+
+			.col-md-2
+				button.btn.btn-default.btn-block.active(type="button") No
+					span.glyphicon.glyphicon-ok
+
+			.col-md-2
+				button.btn.btn-default.btn-block(type="button") 24-35 Months
+					span.glyphicon.glyphicon-ok
+
+			.col-md-2(style="margin-bottom:1em;")
+				button.btn.btn-default.btn-block(type="button") Over<br>15,000 KM
+					span.glyphicon.glyphicon-ok
+
+		.row
+			.col-md-2
+				button.btn.btn-primary.btn-action.btn-block.btn-sm(type="button")
+					span.btn-action-default Save for later
+					span.btn-action-alt Saved!
+					span.glyphicon.glyphicon-ok
+
+			.col-md-2
+				button.btn.btn-primary.btn-action.done.btn-block.btn-sm(type="button")
+					span.btn-action-default Save for later
+					span.btn-action-alt Saved!
+					span.glyphicon.glyphicon-ok
+
+			.col-md-4
+				button.btn.btn-forward.btn-block.btn-lg(type="button") Proceed
+					span.glyphicon.glyphicon-arrow-right
+
+			.col-md-2
+				button.btn.btn-backward(type="button")
+					span.glyphicon.glyphicon-arrow-left
+					| Back
+
+			.col-md-1
+				button.btn.btn-default.btn-sm(type="button") Edit
+
+			.col-md-1
+				button.btn.btn-danger.btn-sm(type="button") Remove
+
+		.row
+			.col-md-12
+				h2 Form
+
+			.col-md-4
+
+				select#year(name="year")
+					option(selecter, label="Enter year", value="{{year}}", data-ng-repeat="year in years", selecter-target="#year", selecter-callback="select", property="year", ng-selected="year == selectedItem") {{year}}
+
+			.col-md-4
+				
+				.input-group
+					input.form-control(readonly, value="Select")
+					.input-group-btn
+						button.btn.btn-default.dropdown-toggle(data-toggle="dropdown", tabindex="-1", type="button")
+							span.caret
+						ul.dropdown-menu
+							li
+								a(href="#") 2014
+							li
+								a(href="#") 2013
+							li
+								a(href="#") 2012
+
+		.row
+			.col-md-3
+				h3 Checkboxes
+
+				label.label-checkbox(for="checkbox1")
+					input#checkbox1(type="checkbox")
+					.fake-checkbox
+						span.glyphicon.glyphicon-ok
+					span Rims / Tires
+
+				label.label-checkbox(for="checkbox2")
+					input#checkbox2(type="checkbox", checked)
+					.fake-checkbox
+						span.glyphicon.glyphicon-ok
+					span Suspension / Stabiliser System
+
+				label.label-checkbox(for="checkbox3")
+					input#checkbox3(type="checkbox", disabled)
+					.fake-checkbox
+						span.glyphicon.glyphicon-ok
+					span Air Intake / Exhaust System
+
+			.col-md-3
+				h3 Radios
+
+				label.label-radio(for="radio1")
+					input#radio1(type="radio", name="radios")
+					.fake-radio
+					span Default item
+
+				label.label-radio(for="radio2")
+					input#radio2(type="radio", name="radios", checked)
+					.fake-radio
+					span Selected item
+
+				label.label-radio(for="radio3")
+					input#radio3(type="radio", name="radios", disabled)
+					.fake-radio
+					span Disabled item
+
+			.col-md-6
+
+		.row
+			.col-md-12
+				h2 Tooltips
+
+		.row
+
+			.col-md-4.centred
+
+				button.btn.btn-primary.btn-action.btn-sm(type="button", data-toggle="popover", data-placement="bottom", popover="#popover1", popover-type="")
+					span.btn-action-default Save for later
+					span.btn-action-alt Saved!
+					span.glyphicon.glyphicon-ok
+
+				.popover.bottom#popover1
+					button.popover-close-button(type="button")
+						span.glyphicon.glyphicon-remove
+					p Please provide your email address so we can send you a copy of your quotation.
+					p The quotation will be valid for 90 days. We'll never email you again without your consent.
+					input.form-control(type="email", placeholder="Enter email address")
+					button.btn.btn-forward(type="button") Send
+
+			.col-md-4.centred
+				button.btn.btn-primary.btn-action.done.btn-sm.active(type="button", data-toggle="popover", data-placement="bottom", popover="#popover2", popover-type="")
+					span.btn-action-default Save for later
+					span.btn-action-alt Saved!
+					span.glyphicon.glyphicon-ok
+
+				.popover.bottom#popover2
+					button.popover-close-button(type="button")
+						span.glyphicon.glyphicon-remove
+					.success-icon
+						span.glyphicon.glyphicon-ok
+					p.centred Your quote has been successfully stored. An email has been sent to you with a link to your saved quote.
+
+			.col-md-4
+				span.glyphicon.glyphicon-ok(href="", data-toggle="popover", data-placement="right", popover="#popover3", popover-type="popover--yellow")
+
+				.popover.right#popover3
+					p This refers to the car's original year of registration in Singapore. You'll find this on your vehicle registration document,
+
+		.row
+			.col-md-12
+				h2 Navbars
+
+		.row
+			.col-md-5
+				ol.breadcrum.breadcrumb-arrow
+					li.active
+						a(href="#") Your Car &amp; Drivers
+					li
+						a(href="#") Your Quote
+					li
+						span Purchase
+
+		.row
+			.col-md-5
+				ol.breadcrum.breadcrumb-arrow
+					li
+						a(href="#")
+							span.glyphicon.glyphicon-ok
+							| Your Car &amp; Drivers
+					li.active
+						a(href="#") Your Quote
+					li
+						span Purchase
+
+	.navbar-da
+		.container
+			nav
+				li.active
+					a(href="#")
+						span.navbar-item Comprehensive
+						span.navbar-price S$ 732 /yr
+						span.navbar-smallprint S$61 /mo
+				li
+					a(href="#")
+						span.navbar-item Third-Party Fire &amp; Theft
+						span.navbar-price S$ 594 /yr
+						span.navbar-smallprint S$50 /mo
+				li
+					a(href="#")
+						span.navbar-item Third-Party
+						span.navbar-price S$ 540 /yr
+						span.navbar-smallprint S$45 /mo
+
+			.save-for-later
+				button.btn.btn-primary.btn-sm.btn-block Save for Later
+				p Your details will be saved for 90 days so you can finish later
+
+	.navbar-da
+		.container
+			nav
+				li.active
+					a(href="#")
+						span.navbar-item Comprehensive
+						span.navbar-price S$ 732 /yr
+						span.navbar-smallprint S$61 /mo
+				li
+					.navbar-info
+						span.navbar-item Additional Drivers
+						span.navbar-price 2
+				li
+					.navbar-info
+						span.navbar-item Optional Cover
+						span.navbar-price 3
+				li
+					.navbar-info
+						span.navbar-item Excess Policy
+						span.navbar-price S$500
+				li
+					.navbar-info.strong
+						span.navbar-item You saved
+						span.navbar-price S$500
+
+			.save-for-later
+				button.btn.btn-primary.btn-sm.btn-block Save for Later
+				p Your details will be saved for 90 days so you can finish later
+
+	.container
+
+		.row
+			.col-md-12
+				h2 Dropdowns
+
+	section.section--blue
+
+		.container
+			.row
+				.col-md-4
+					.panel
+						.panel-body
+							h3 24 hr breakdown assistance
+						.panel-footer so shit
+				.col-md-4
+					.panel
+						.panel-body
+							h3 24 months new for old replacement car
+						.panel-footer
+							button.btn.btn-default Select
+				.col-md-4
+					.panel
+						.panel-body
+							h3 Car modifications
+						.panel-footer
+							button.btn.btn-default.active Edit
+			.row
+				.col-md-12
+			.row
+				.col-md-4
+				.col-md-4
+				.col-md-4
+			.row
+				.col-md-12
+			.row
+				.col-md-4
+				.col-md-4
+
+
+
+block scripts

@@ -1,0 +1,114 @@
+.navbar-item,
+.navbar-price,
+.navbar-smallprint {
+	display:			block;
+}
+
+.navbar-item {
+	font-size:			0.85em;
+}
+
+.navbar-price {
+	font-size:			1.5em;
+}
+
+.navbar-smallprint {
+	color:				lighten($medium-grey, 10%);
+	font-size:			0.85em;
+	display:			none;
+}
+
+.navbar-da {
+	@include linear-gradient(to bottom, $yellow 0%, $yellow 83%, rgba($black, 0.1) 83%, rgba($black, 0.1) 85%, transparent 85%, transparent 100%);
+	// background:			$yellow;
+	margin:				2em 0;
+	width:				100%;
+
+	nav {
+		@include inline-list();
+		@include unstyled-list();
+
+		float:			left;
+
+		li {
+			vertical-align: top;
+		}
+	}
+
+	a {
+		background: 	$white;
+		border-radius:	0.3em;
+		box-shadow: 	0 2px 0 rgba($black, 0.1);
+		display:		block;
+		color:			$dark-grey-2;
+		font-weight:	300;
+		margin:			0.5em 0.2em;
+		padding:		0.5em 0.75em;
+		position:		relative;
+	}
+
+	.active a {
+		background:		$dark-grey-2;
+		color:			$white;
+		height:			150%;
+		// transform:		translateY(20px);
+		
+		.navbar-smallprint {
+			display:	block;
+		}
+
+		&:after {
+			border-left: 	10px solid transparent;
+			border-right: 	10px solid transparent;
+			border-top: 	10px solid $dark-grey-2;
+			bottom:			-10px;
+			content:		"";
+			display:		block;
+			height: 		0;
+			left:			50%;
+			margin-left:	-10px;
+			position:		absolute;
+			width: 			0;
+		}
+
+	}
+}
+
+.navbar-info {
+	border-left:			1px solid rgba($white, 0.7);
+	border-right:			1px solid $medium-grey;
+	margin:					0.5em 0;
+	padding:				0.5em 0.85em;
+	text-align:				center;
+
+	&.strong {
+		font-weight:		500;
+	}
+}
+
+.navbar-da li:last-of-type {
+	.navbar-info {
+		border-right:		none;
+	}
+}
+
+.navbar-da li.active + li {
+	.navbar-info {
+		border-left:		none;
+	}
+}
+
+.save-for-later {
+	float:					right;
+	padding-top:			0.5em;
+	width: 					12em;
+
+	.btn {
+		box-shadow:			none;
+	}
+
+	p {
+		font-size:			0.85em;
+		margin-top:			0.3em;
+	}
+}

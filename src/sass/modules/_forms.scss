@@ -1,0 +1,100 @@
+.input-group {
+
+	&-btn {
+		vertical-align:		top;
+	}
+
+	.form-control {
+		box-shadow:			0 3px 0 $light-grey-1;
+	}
+
+	.btn-default {
+		border:				1px solid $blue;
+		height:				34px;
+		padding:			7px 10px;
+	}
+
+	.form-control[disabled],
+	.form-control[readonly] {
+		background-color:	$white;
+		border-color: 		#aab2bd;
+		cursor: 			default;
+	}
+
+}
+
+.selecter .selecter-selected {
+	border:					1px solid #ccc;
+}
+
+.selecter .selecter-options {
+	border: 				1px solid $blue;
+	border-top:				none;
+	box-shadow:				0 3px 0 $light-grey-1;
+
+	.placeholder {
+		display:			none;
+	}
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	display:				none;
+}
+
+.label-checkbox,
+.label-radio {
+	display:				block;
+	margin-bottom:			0.5em;
+}
+
+.fake-checkbox,
+.fake-radio {
+	background:				transparent;
+	border:					1px solid $blue;
+	border-radius:			50%;
+	cursor:					pointer;
+	display:				inline-block;
+	height:					1.5em;
+	line-height:			1.5em;
+	margin-right:			0.7em;
+	text-align:				center;
+	transition:				0.1s all ease-in-out;
+	vertical-align:			text-top;
+	width:					1.5em;
+
+	.glyphicon {
+		opacity:			0;
+		transition:			0.1s all ease-in-out;
+	}
+
+	+ span {
+		cursor:				pointer;
+		vertical-align: 	text-top;
+	}
+}
+
+input[type="checkbox"]:checked + .fake-checkbox {
+	background:				$yellow;
+	border:					1px solid $yellow;
+
+	.glyphicon {
+		opacity:			1;
+	}
+}
+
+input[type="radio"]:checked + .fake-radio {
+	background:				$yellow;
+}
+
+input[type="checkbox"]:disabled + .fake-checkbox,
+input[type="radio"]:disabled + .fake-radio {
+	border:					1px solid #a5a5a5;
+	cursor:					not-allowed;
+}
+
+input[type="checkbox"]:disabled ~ span,
+input[type="radio"]:disabled ~ span {
+	color:					#a5a5a5;
+	cursor:					not-allowed;
+}

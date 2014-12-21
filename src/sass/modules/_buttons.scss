@@ -1,0 +1,145 @@
+.btn {
+	border:				none;
+	border-radius:		$border-radius;
+	box-shadow:			0 3px 0 rgba($black, 0.1);
+	display: 			inline-block;
+	font-family:		$monospace-font;
+	font-size:			12px;
+	font-weight:		200;
+	letter-spacing:		1px;
+	padding:			5px 2.5em;
+	position:			relative;
+	text-transform:		uppercase;
+	transition:			0.2s background-color ease-in-out;
+
+	.glyphicon {
+		margin-top:		-7px;
+		position:		absolute;
+		right:			12px;
+		top:			50%;
+		visibility:		hidden;
+	}
+
+	// @include ActiveFocusHover {
+	// 	border:			none;
+	// 	box-shadow:		0 3px 0 rgba($black, 0.1);
+
+	// 	.glyphicon {
+	// 		visibility:	visible;
+	// 	}
+	// }
+
+	&.active {
+		background:		$yellow;
+		border:			none;
+		box-shadow:		0 3px 0 rgba($black, 0.1);
+		color:			$black;
+
+		.glyphicon {
+			visibility:	visible;
+		}
+	}
+
+	&-default {
+		background:			$blue;
+		color:				$white;
+
+		// @include ActiveFocusHover {
+		// 	background:		$yellow;
+		// 	color:			$black;
+		// }
+	}
+
+	&-primary {
+		background:			$black;
+		transition:			0.2s color ease-in-out;
+
+		@include ActiveFocusHover {
+			background:		$black;
+			color:			$green;
+		}
+	}
+
+	&-action {
+
+		&-default {
+			display:		inline;
+		}
+
+		&-alt {
+			display:		none;
+		}
+
+		&.done {
+			background:		$black;
+			color:			$green;
+
+			.glyphicon {
+				visibility:	visible;
+			}
+
+			.btn-action-default {
+				display:	none;
+			}
+
+			.btn-action-alt {
+				display:	inline;
+			}
+		}
+
+	}
+
+	&-forward {
+		background:			$green;
+
+		.glyphicon {
+			margin:			0 0 0 1em;
+			position: 		relative;
+			right:			auto;
+			top:			auto;
+			visibility: 	visible;
+		}
+
+		@include ActiveFocusHover {
+			background:		darken($green, 10%);
+		}
+	}
+
+	&-backward {
+		background:			$white;
+		border:				2px solid $black;
+		border-radius:		0.9 * $border-radius;
+		color:				$black;
+
+		.glyphicon {
+			margin:			0 1em 0 0;
+			position: 		relative;
+			right:			auto;
+			top:			auto;
+			visibility: 	visible;
+		}
+
+		@include ActiveFocusHover {
+			background:		$black;
+			border:			2px solid $black;
+		}
+	}
+
+	&-lg {
+		font-size:			14px;
+		padding:			1em 6em;
+	}
+
+}
+
+.btn-group {
+	.btn {
+		&:first-child {
+			background:		$white;
+		}
+	}
+}
+
+.open .dropdown-toggle.btn-default {
+	background-color:		$yellow;
+}

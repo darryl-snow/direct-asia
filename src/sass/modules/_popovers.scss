@@ -1,0 +1,64 @@
+.popover {
+	background-color: 		$dark-grey-2;
+	border-color: 			$dark-grey-2;
+	box-shadow:				none;
+	padding:				1em;
+
+	&.bottom {
+		margin-top:			20px;
+	}
+
+	&.right {
+		margin-left:		20px;
+	}
+
+	&.bottom .arrow,
+	&.bottom .arrow:after {
+		border-bottom-color: $dark-grey-2;
+	}
+
+	&.right .arrow,
+	&.right .arrow:after {
+		border-right-color: $dark-grey-2;
+	}
+
+	.btn {
+		box-shadow: 		none;
+		margin-top:			1em;
+	}
+
+	.success-icon {
+		background:			$green;
+		border-radius:		50%;
+		height:				4em;
+		line-height:		5;
+		margin:				1em auto;
+		text-align: 		center;
+		width:				4em;
+
+		.glyphicon {
+			font-size:		2em;
+		}
+	}
+
+	&--yellow {
+		background-color: 	$yellow;
+		border-color: 		$yellow;
+		color:				$dark-grey-2;
+		padding:			0.5em;
+
+		&.right .arrow,
+		&.right .arrow:after {
+			border-right-color: $yellow;
+		}
+	}
+}
+
+.popover-close-button {
+	background:				transparent;
+	border:					none;
+	color:					$white;
+	position:				absolute;
+	right:					0.5em;
+	top:					0.5em;
+}

@@ -1,0 +1,45 @@
+.navbar {
+	background:			transparent !important;
+	border:				none !important;
+	margin-bottom:		0 !important;
+}
+
+.navbar-brand {
+	height:				100px;
+	margin-right:		2em;
+
+	img {
+		height:			100%;
+		width:			auto;
+	}
+}
+
+.navbar-title {
+	float:				left;
+	line-height:		100px;
+	font-size:			1.5em;
+	font-weight:		500;
+	margin-right:		2em;
+}
+
+.navbar {
+
+	.breadcrumb {
+		float:			left;
+		margin-bottom:	0;
+		margin-top:		30px;
+	}
+
+}
+
+.navbar-telephone {
+	margin-top:			25px;
+	text-align:			right;
+
+	&-number {
+		display:		block;
+		font-size:		1.8em;
+		font-weight:	600;
+		margin-top:		-0.3em;
+	}
+}

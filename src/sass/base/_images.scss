@@ -1,0 +1,15 @@
+.logo {
+	// @include left();
+	display: 			inline-block;
+	margin-right:		1em;
+	vertical-align: 	middle;
+}
+
+h1 img,
+h2 img {
+	margin-right:		0.5em;
+}
+
+[src="images/question-icon.png"] {
+	margin-left:		1em;
+}
