@@ -129,6 +129,15 @@ gulp.task "jade", ->
 			keywords: pkg.keywords
 	.pipe gulp.dest Config.build
 
+	gulp.src Config.src + "jade/includes/*.jade"
+	.pipe plugins.plumber()
+	.pipe plugins.jade
+		pretty: true
+		data:
+			description: pkg.description
+			keywords: pkg.keywords
+	.pipe gulp.dest Config.build + "partials"
+
 # Optimise images
 
 gulp.task "images", ->
