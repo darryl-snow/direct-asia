@@ -1,0 +1,157 @@
+
+<script src="../../scripts/controllers/car/car1.controller.js"></script>
+<section ng-controller="CarCtrl" class="section section-car">
+  <div class="panel">
+    <div class="panel-body">
+      <h1><img src="../../images/car-icon.png" class="pull-left"/>Tell us about the car
+        <div class="subtitle">Please note that we do not cover cars used for commercial<br>purposes or for hire/reward</div>
+      </h1>
+    </div>
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-md-3">
+          <label for="year" data-toggle="tooltip" data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document." class="show-tooltip">Year<img src="../../images/question-icon.png"/></label>
+          <select id="year" name="year">
+            <option selecter="selecter" label="Enter year" value="{{year}}" data-ng-repeat="year in years" selecter-target="#year" selecter-callback="select" property="year" ng-selected="year == selectedItem">{{year}}</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="make">Car Make<img src="../../images/question-icon.png"/></label>
+          <select id="make" name="make">
+            <option selecter="selecter" label="Enter make" value="{{make}}" data-ng-repeat="make in makes" selecter-target="#make" selecter-callback="select" property="make" ng-selected="make == selectedItem">{{make}}</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="model">Car Model<img src="../../images/question-icon.png"/></label>
+          <select id="model" name="model">
+            <option selecter="selecter" label="Enter model" value="{{model}}" data-ng-repeat="model in models" selecter-target="#model" selecter-callback="select" property="model" ng-selected="model == selectedItem">{{model}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="container-fluid">
+      <h2 class="margin--bottom">Has the car been modified?
+        <div class="subtitle">e.g. Allow wheels, exhaust upgrade?</div>
+      </h2>
+      <button type="button" ng-click="select(true, 0, 'modified')" ng-class="{'active':car.modified}" class="btn btn-default random-margin">Yes<span class="glyphicon glyphicon-ok"></span></button>
+      <button type="button" ng-click="select(false, 0, 'modified')" ng-class="{'active':car.modified==false}" class="btn btn-default">No<span class="glyphicon glyphicon-ok"></span></button>
+    </div>
+  </div>
+  <div ng-show="car.modified" class="row margin--top">
+    <div class="col-md-8 margin--top">
+      <div class="panel margin--top">
+        <div style="left:62px;" class="arrow"></div>
+        <div class="panel-body">
+          <h2>Select the modifications done on your car.
+            <div class="subtitle">Please note that these need to be <a href="http://www.onemotoring.com.sg/publish/onemotoring/en/lta_information_guidelines/modifications_and_vehoffences/modification_guide.html" target="_blank">LTA compliant</a></div>
+          </h2>
+          <div class="container-fluid margin--top">
+            <div class="container-fluid">
+              <label for="checkbox1" class="label-checkbox">
+                <input id="checkbox1" type="checkbox" ng-model="car.modifications.bodykit"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span>Body Kit</span>
+              </label>
+              <label for="checkbox2" class="label-checkbox">
+                <input id="checkbox2" type="checkbox" ng-model="car.modifications.rimstires"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span>Rims / Tires</span>
+              </label>
+              <label for="checkbox3" class="label-checkbox">
+                <input id="checkbox3" type="checkbox" ng-model="car.modifications.suspensionstabiliser"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span>Suspension / Stabiliser System</span>
+              </label>
+              <label for="checkbox4" class="label-checkbox">
+                <input id="checkbox4" type="checkbox" ng-model="car.modifications.airintakeexhaust"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span>Air Intake / Exhaust System</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid margin--bottom">
+    <div class="container-fluid">
+      <h2 class="margin--bottom">Is the vehicle privately owned or corporate owned?</h2>
+      <button type="button" ng-click="select('private', 0, 'ownership')" ng-class="{'active':car.ownership=='private'}" class="btn btn-default random-margin">Private<span class="glyphicon glyphicon-ok"></span></button>
+      <button type="button" ng-click="select('corporate', 0, 'ownership')" ng-class="{'active':car.ownership=='corporate'}" class="btn btn-default">Corporate<span class="glyphicon glyphicon-ok"></span></button>
+    </div>
+  </div>
+  <div class="container-fluid margin--bottom margin--top">
+    <div class="container-fluid">
+      <h2 class="margin--bottom">Is the car financed?
+        <div class="subtitle">e.g. Allow wheels, exhaust upgrade?</div>
+      </h2>
+      <button type="button" ng-click="select(true, 0, 'financed')" ng-class="{'active':car.financed}" class="btn btn-default random-margin">Yes<span class="glyphicon glyphicon-ok"></span></button>
+      <button type="button" ng-click="select(false, 0, 'financed')" ng-class="{'active':car.financed==false}" class="btn btn-default">No<span class="glyphicon glyphicon-ok"></span></button>
+      <p ng-show="car.financed" class="margin--top">Please check your cover requirements. If your car is financed, your bank/finance company<br>may require you to have comprehensive cover for your car.</p>
+    </div>
+  </div>
+  <div class="container-fluid margin--bottom margin--top">
+    <div class="container-fluid margin--bottom">
+      <h2 class="margin--bottom">Roughly how many kilometres do you drive per year?<img src="../../images/question-icon.png"/></h2>
+      <div class="row">
+        <div class="col-md-2">
+          <button type="button" ng-click="select('&lt; 8,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='&lt; 8,000'}" class="btn btn-default margin--bottom">Less than<br>8,000 km<span class="glyphicon glyphicon-ok"></span></button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" ng-click="select('8,000 - 15,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='8,000 - 15,000'}" class="btn btn-default margin--bottom">8,000 km -<br>15,000 km<span class="glyphicon glyphicon-ok"></span></button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" ng-click="select('&gt; 15,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='&gt; 15,000'}" class="btn btn-default margin--bottom">Over<br>15,000 km<span class="glyphicon glyphicon-ok"></span></button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" ng-click="select('not sure', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='not sure'}" class="btn btn-default margin--bottom">Not<br>sure<span class="glyphicon glyphicon-ok"></span></button>
+        </div>
+      </div>
+      <div ng-show="car.kmsperyear=='&lt; 8,000'" class="margin--top">
+        <p>If you drive less than 8,000 km, you can get a discount with our Low-Mileage option!</p>
+        <p>Please note that you'll be required to pay an additional $5,000 (before GST) if you make a claim and you drove more than 8,000 km.</p>
+        <label for="checkbox5" class="label-checkbox">
+          <input id="checkbox5" type="checkbox" ng-model="car.lowmileageoption"/>
+          <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span>Sign me up for the Low-Mileage option!</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel margin--top">
+        <div style="left:407px;" class="arrow"></div>
+        <div class="panel-body">
+          <h2 class="margin--bottom">What do you use the car for?</h2>
+          <div class="row margin--top">
+            <div class="col-md-3 centred"><img src="../../images/moon-icon.png" data-toggle="tooltip" data-placement="top" title="If you drive a car with a red plate registration in Singapore." class="margin--bottom show-tooltip"/>
+              <button type="button" ng-click="select('off peak', 0, 'usage')" ng-class="{'active':car.usage=='off peak'}" class="btn btn-default btn-block">Off-peak<br>car<span class="glyphicon glyphicon-ok"></span></button>
+            </div>
+            <div class="col-md-3 centred"><img src="../../images/trolley-icon.png" data-toggle="tooltip" data-placement="top" title="If you are only using your car in the course of your private life and for leisure." class="margin--bottom show-tooltip"/>
+              <button type="button" ng-click="select('personal use', 0, 'usage')" ng-class="{'active':car.usage=='personal use'}" class="btn btn-default btn-block">Personal<br>use<span class="glyphicon glyphicon-ok"></span></button>
+            </div>
+            <div class="col-md-3 centred"><img src="../../images/cityscape-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car in the course of your private life and to go to and from your workplace." class="margin--bottom show-tooltip"/>
+              <button type="button" ng-click="select('personal use + commute', 0, 'usage')" ng-class="{'active':car.usage=='personal use + commute'}" class="btn btn-default btn-block">Personal use<br>+ Commute<span class="glyphicon glyphicon-ok"></span></button>
+            </div>
+            <div class="col-md-3 centred"><img src="../../images/lanyard-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car to go to and from your workplace and for or during the course of your work." class="margin--bottom show-tooltip"/>
+              <button type="button" ng-click="select('commute + during work', 0, 'usage')" ng-class="{'active':car.usage=='commute + during work'}" class="btn btn-default btn-block">Commute +<br>During work<span class="glyphicon glyphicon-ok"></span></button>
+            </div>
+          </div>
+          <p style="color:#777777" class="margin--top">Do you sometimes use your car for commute or work? You can use your car up to 5 times per year outside the usage you declare. Simply email us at <a href="mailto:carusage@directasia.com">CarUsage@DirectAsia.com </a>before you drive, and you'll be covered in case something happens.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="container-fluid">
+      <div style="margin-top:3em;" class="row">
+        <div class="col-md-12">
+          <button type="button" ng-click="proceed()" class="btn btn-forward btn-lg">Proceed<span class="glyphicon glyphicon-arrow-right"></span></button>
+        </div>
+      </div>
+      <div style="margin-top:1em;margin-bottom:12em;" class="row">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span>Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

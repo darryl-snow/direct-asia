@@ -1,3 +1,5 @@
+// Styles for forms and form inputs
+
 .input-group {
 
 	&-btn {
@@ -37,6 +39,11 @@
 	}
 }
 
+input[type="text"],
+input[type="number"]{
+	padding:				6px 10px;
+}
+
 input[type="checkbox"],
 input[type="radio"] {
 	display:				none;
@@ -45,6 +52,7 @@ input[type="radio"] {
 .label-checkbox,
 .label-radio {
 	display:				block;
+	color:					$dark-grey-1;
 	margin-bottom:			0.5em;
 }
 
@@ -97,4 +105,13 @@ input[type="checkbox"]:disabled ~ span,
 input[type="radio"]:disabled ~ span {
 	color:					#a5a5a5;
 	cursor:					not-allowed;
+}
+
+.day,
+.month {
+	width:					60px;
+}
+
+.year {
+	width:					120px;
 }

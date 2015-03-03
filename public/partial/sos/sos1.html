@@ -1,0 +1,104 @@
+
+<script src="../../scripts/controllers/sos/sos1.controller.js"></script>
+<section ng-controller="SOSCtrl" class="section section-sos">
+  <div class="jumbotron jumbotron--black">
+    <h1>You Need SOS Car Insurance:<br>Comprehensive Cover for Up to 4 Drivers</h1>
+    <p>Based on your details, you can get cover through our SOS Car Insurance. This cover provides comprehensive cover for a main driver and up to 2 additional drivers.</p>
+  </div>
+  <div class="panel">
+    <div class="panel-body">
+      <h1><img src="../../images/person-icon.png" class="pull-left"/>Tell us more about the main driver
+        <div class="subtitle">Please provide your drivers' details below or give us a call at <strong>666 55555 </strong>to finish your quote.</div>
+      </h1>
+    </div>
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="margin--bottom">Insurance Coverage</h3>
+          <p>You said the main driver has had a valid driving license for <strong ng-bind="maindriver.yearslicensed"></strong> years.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="margin--bottom">How many of those years included cover from a car insurance policy?</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <select id="years" name="years">
+            <option selecter="selecter" label="Select" value="{{year}}" data-ng-repeat="year in years" selecter-target="#years" selecter-callback="select" property="yearscovered" ng-selected="maindriver.yearscovered == selectedItem">{{year}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="margin--bottom">Roughly how many kilometers do you drive per year?</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <button type="button" ng-click="select('0 - 10', 0, 'kmsperyear')" ng-class="{'active':maindriver.kmsperyear=='0 - 10'}" class="btn btn-default margin--bottom">0-10 months<span class="glyphicon glyphicon-ok"></span></button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" ng-click="select('11 - 23', 0, 'kmsperyear')" ng-class="{'active':maindriver.kmsperyear=='11 - 23'}" class="btn btn-default margin--bottom">11-23 months<span class="glyphicon glyphicon-ok"></span></button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" ng-click="select('24 - 35', 0, 'kmsperyear')" ng-class="{'active':maindriver.kmsperyear=='24 - 35'}" class="btn btn-default margin--bottom">24-35 months<span class="glyphicon glyphicon-ok"></span></button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" ng-click="select('&gt; 36', 0, 'kmsperyear')" ng-class="{'active':maindriver.kmsperyear=='&gt; 36'}" class="btn btn-default margin--bottom">36 months<span class="glyphicon glyphicon-ok"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="container-fluid">
+      <h2 class="margin--bottom"><img src="../../images/car-icon2.png" class="inline-image"/>Claims History</h2>
+      <p>You indicated ["How many accidents and/or claims were made in the past 36 months (3 years)?"<br>on 3.0 Driver] accidents and/or claimes were made in the past 36 months (3 years).</p>
+      <h4>Please share the details of the claims you declared.</h4>
+    </div>
+  </div>
+  <div ng-repeat="claim in maindriver.claims" class="panel">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-2">
+          <h2>Claim <span data-ng-bind="claim.number"></span></h2>
+        </div>
+        <div class="col-md-10"><span data-ng-bind="claim.day"> </span><span data-ng-bind="claim.month"></span><span data-ng-bind="claim.year"></span><span data-ng-bind="claim.nature"></span>
+          <div class="buttons pull-right">
+            <button type="button" class="btn btn-default btn-sm">Edit</button>
+            <button type="button" class="btn btn-danger btn-sm">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-body">
+      <h2 class="margin--bottom">Claim 2</h2>
+      <div class="row margin--bottom">
+        <div class="col-md-6">
+          <label for="day2">Date of Accident</label>
+          <div class="form-inline">
+            <input id="day2" ng-model="maindriver.claims[1].day" placeholder="DD" type="number" min="1" max="31" class="day"/>
+            <input ng-model="maindriver.claims[1].month" placeholder="MM" type="number" min="1" max="12" class="month"/>
+            <input ng-model="maindriver.claims[1].year" placeholder="YYYY" type="number" min="1900" max="2015" class="year"/>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="natureofclaim">Nature of Claim</label>
+          <select id="natureofclaim" name="natureofclaim">
+            <option selecter="selecter" label="Select" value="{{nature}}" data-ng-repeat="nature in natures" selecter-target="#natureofclaim" selecter-callback="select" property="maindriver.claims[1].nature" ng-selected="maindriver.claims[1].nature == selectedItem">{{nature}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label class="block">Was the vehicle you wish to insure involved in the accident?</label>
+          <button type="button" ng-click="select(true, 0, 'maindriver.claims[1].vehicleInvoled')" ng-class="{'active':car.maindriver.claims[1].vehicleInvoled}" class="btn btn-default random-margin">Yes<span class="glyphicon glyphicon-ok"></span></button>
+          <button type="button" ng-click="select(false, 0, 'maindriver.claims[1].vehicleInvoled')" ng-class="{'active':car.maindriver.claims[1].vehicleInvoled==false}" class="btn btn-default">No<span class="glyphicon glyphicon-ok"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

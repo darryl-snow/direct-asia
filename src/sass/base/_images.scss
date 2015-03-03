@@ -1,3 +1,5 @@
+// Styles specific to images throughout the site
+
 .logo {
 	// @include left();
 	display: 			inline-block;
@@ -12,4 +14,9 @@ h2 img {
 
 [src="images/question-icon.png"] {
 	margin-left:		1em;
+}
+
+.inline-image {
+	display: 			inline-block;
+	vertical-align:		middle;
 }

@@ -1,5 +1,15 @@
+// Divider section styles
+
 .section {
-	padding:			1em;
+
+	&--rounded {
+		border-radius:	4px;
+	}
+
+	&--black {
+		background:		$dark-grey-1;
+		color:			$white;
+	}
 
 	&--blue {
 		background:		$blue;

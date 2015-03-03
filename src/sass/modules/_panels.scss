@@ -1,3 +1,5 @@
+// Panel styles
+
 .panel {
 	position:					relative;
 
@@ -9,7 +11,14 @@
 
 	&-footer {
 		background:				$light-grey-2;
+		color:					$medium-grey;
 		border-top:				none;
+
+		h3 {
+			color:				$dark-grey-1;
+			font-size:			24px;
+			font-weight:		600;
+		}
 	}
 
 	h1,

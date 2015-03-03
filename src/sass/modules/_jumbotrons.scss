@@ -1,0 +1,21 @@
+.jumbotron {
+	box-shadow:		none;
+	padding: 		$base-spacing-unit;
+
+	.container & {
+		padding:	$base-spacing-unit;
+	}
+
+	h1 {
+		margin-top:	0;
+	}
+
+	p {
+		max-width:	66%;
+	}
+
+	&--black {
+		background: $dark-grey-1;
+		color: 		$white;
+	}
+}

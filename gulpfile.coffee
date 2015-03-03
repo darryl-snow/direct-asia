@@ -17,7 +17,7 @@ Config =
 	build: "./public/"
 	name: pkg.name
 	port: 9000
-	publish: true
+	publish: false
 	src: "./src/"
 	version: pkg.version
 
@@ -28,6 +28,38 @@ gulp.task "reset", ->
 		.pipe plugins.clean
 			force: true
 
+# Concatonate 3rd party library files
+
+gulp.task "lib", ->
+
+	# JavaScript
+
+	gulp.src [
+		Config.src + "lib/jquery/dist/jquery.js",
+		Config.src + "lib/angular/angular.js",
+		Config.src + "lib/bootstrap/dist/js/bootstrap.js",
+		Config.src + "lib/Selecter/jquery.fs.selecter.js"
+	]
+	.pipe plugins.plumber()
+	.pipe plugins.concat "lib.js"
+	.pipe plugins.uglify()
+	.pipe plugins.size
+		showFiles: true
+	.pipe gulp.dest Config.build + "lib"
+
+	# CSS
+
+	gulp.src [
+		Config.src + "lib/bootstrap/dist/css/bootstrap.css",
+		Config.src + "lib/Bootflat/bootflat/css/bootflat.css"
+	]
+	.pipe plugins.plumber()
+	.pipe plugins.concat "lib.css"
+	.pipe plugins.minifyCss()
+	.pipe plugins.size
+		showFiles: true
+	.pipe gulp.dest Config.build + "lib"
+
 # Compile coffeescript
 
 gulp.task "coffeescript", ->
@@ -36,107 +68,152 @@ gulp.task "coffeescript", ->
 	.pipe plugins.coffeelint()
 	.pipe plugins.coffeelint.reporter()
 
-	gulp.src Config.src + "coffeescript/main.coffee", read: false
+	# Controllers
+
+	gulp.src Config.src + "coffeescript/controllers/**/*.coffee"
 	.pipe plugins.plumber()
-	.pipe plugins.browserify
-		transform: ["coffeeify"]
-		shim:
-			jQuery:
-				path: Config.src + "lib/jquery/dist/jquery.js"
-				exports: "$"
-			bootstrap:
-				path: Config.src + "lib/bootstrap/dist/js/bootstrap.js"
-				exports: "bootstrap"
-				depends: 
-					jQuery: "$"
-			iCheck:
-				path: Config.src + "lib/Bootflat/bootflat/js/icheck.min.js"
-				exports: "iCheck"
-				depends:
-					jQuery: "$"
-					bootstrap: "bootstrap"
-			selecter:
-				path: Config.src + "lib/Selecter/jquery.fs.selecter.min.js"
-				exports: "selecter"
-				depends:
-					jQuery: "$"
-					bootstrap: "bootstrap"
-			stepper:
-				path: Config.src + "lib/Bootflat/bootflat/js/jquery.fs.stepper.min.js"
-				exports: "stepper"
-				depends:
-					jQuery: "$"
-					bootstrap: "bootstrap"
-			angular:
-				path: Config.src + "lib/angular/angular.js"
-				exports: "angular"
-			ngResource:
-				path: Config.src + "lib/ng-resource/dist/ng-resource.js"
-				exports: "ngResource"
-	.pipe plugins.if Config.publish, plugins.uglify()
-	.pipe plugins.rename "main.js"
-	.pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */"
+	# .pipe plugins.sourcemaps.init()
+	.pipe plugins.coffee
+		bare: true
+	# .pipe plugins.sourcemaps.write "./sourcemaps"
+	.pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */\n"
+	.pipe plugins.size
+		showFiles: true
+	.pipe gulp.dest Config.build + "scripts/controllers"
+
+	# Directives
+
+	gulp.src Config.src + "coffeescript/directives/*.coffee"
+	.pipe plugins.plumber()
+	# .pipe plugins.sourcemaps.init()
+	.pipe plugins.coffee
+		bare: true
+	# .pipe plugins.sourcemaps.write "./sourcemaps"
+	.pipe plugins.concat "directives.js"
+	.pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */\n"
 	.pipe plugins.size
 		showFiles: true
 	.pipe gulp.dest Config.build + "scripts"
+
+	# Main module
+
+	gulp.src Config.src + "coffeescript/main.coffee"
+	.pipe plugins.plumber()
+	# .pipe plugins.sourcemaps.init()
+	.pipe plugins.coffee
+		bare: true
+	# .pipe plugins.sourcemaps.write "./sourcemaps"
+	.pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */\n"
+	.pipe plugins.size
+		showFiles: true
+	.pipe gulp.dest Config.build + "scripts"
+
+	# gulp.src Config.src + "coffeescript/main.coffee", read: false
+	# .pipe plugins.plumber()
+	# .pipe plugins.browserify
+	# 	transform: ["coffeeify"]
+	# 	shim:
+	# 		jQuery:
+	# 			path: Config.src + "lib/jquery/dist/jquery.js"
+	# 			exports: "$"
+	# 		bootstrap:
+	# 			path: Config.src + "lib/bootstrap/dist/js/bootstrap.js"
+	# 			exports: "bootstrap"
+	# 			depends: 
+	# 				jQuery: "$"
+	# 		iCheck:
+	# 			path: Config.src + "lib/Bootflat/bootflat/js/icheck.min.js"
+	# 			exports: "iCheck"
+	# 			depends:
+	# 				jQuery: "$"
+	# 				bootstrap: "bootstrap"
+	# 		selecter:
+	# 			path: Config.src + "lib/Selecter/jquery.fs.selecter.min.js"
+	# 			exports: "selecter"
+	# 			depends:
+	# 				jQuery: "$"
+	# 				bootstrap: "bootstrap"
+	# 		stepper:
+	# 			path: Config.src + "lib/Bootflat/bootflat/js/jquery.fs.stepper.min.js"
+	# 			exports: "stepper"
+	# 			depends:
+	# 				jQuery: "$"
+	# 				bootstrap: "bootstrap"
+	# 		angular:
+	# 			path: Config.src + "lib/angular/angular.js"
+	# 			exports: "angular"
+	# 		ngResource:
+	# 			path: Config.src + "lib/ng-resource/dist/ng-resource.js"
+	# 			exports: "ngResource"
+	# .pipe plugins.if Config.publish, plugins.uglify()
+	# .pipe plugins.rename "main.js"
+	# .pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */"
+	# .pipe plugins.size
+	# 	showFiles: true
+	# .pipe gulp.dest Config.build + "scripts"
 
 # Compile Stylus
 
 gulp.task "sass", ->
 	gulp.src Config.src + "sass/main.scss"
 	.pipe plugins.plumber()
+	# .pipe plugins.sourcemaps.init()
 	.pipe plugins.sass()
+	# .pipe plugins.sourcemaps.write "./sourcemaps"
 	.pipe plugins.autoprefixer "last 1 version", "> 1%"
-	.pipe plugins.if Config.publish, plugins.minifyCss()
+	# .pipe plugins.if Config.publish, plugins.minifyCss()
 	.pipe plugins.rename "main.css"
-	.pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */"
+	.pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */\n"
 	.pipe plugins.size
 		showFiles: true
 	.pipe gulp.dest Config.build + "styles"
 
 # Inline the "above the fold" CSS
 
-gulp.task "critical", ->
+# gulp.task "critical", ->
 
-	critical.generate
-		base: Config.build
-		src: "index.html"
-		dest: Config.build + "styles/main.css"
-		width: 320
-		height: 480
-		minify: true
-		extract: true
-	, (err, output) ->
-		critical.inline
-			base: Config.build
-			src: "index.html"
-			dest: "index.html"
-			minify: true
+# 	critical.generate
+# 		base: Config.build
+# 		src: "index.html"
+# 		dest: Config.build + "styles/main.css"
+# 		width: 320
+# 		height: 480
+# 		minify: true
+# 		extract: true
+# 	, (err, output) ->
+# 		critical.inline
+# 			base: Config.build
+# 			src: "index.html"
+# 			dest: "index.html"
+# 			minify: true
 
-		gulp.src Config.build + "/*.css", read: false
-		.pipe plugins.clean
-			force: true
+# 		gulp.src Config.build + "/*.css", read: false
+# 		.pipe plugins.clean
+# 			force: true
 
 # Compile Jade
 
 gulp.task "jade", ->
-	gulp.src Config.src + "jade/*.jade"
-	.pipe plugins.plumber()
-	.pipe plugins.jade
-		pretty: true
-		data:
-			description: pkg.description
-			keywords: pkg.keywords
-	.pipe gulp.dest Config.build
 
-	gulp.src Config.src + "jade/includes/*.jade"
+	# compile demo pages
+	gulp.src Config.src + "jade/pages/**/*.jade"
 	.pipe plugins.plumber()
 	.pipe plugins.jade
 		pretty: true
 		data:
 			description: pkg.description
 			keywords: pkg.keywords
-	.pipe gulp.dest Config.build + "partials"
+	.pipe gulp.dest Config.build + "pages"
+
+	# # compile partials
+	gulp.src Config.src + "jade/partial/**/*.jade"
+	.pipe plugins.plumber()
+	.pipe plugins.jade
+		pretty: true
+		data:
+			description: pkg.description
+			keywords: pkg.keywords
+	.pipe gulp.dest Config.build + "partial"
 
 # Optimise images
 
@@ -160,11 +237,11 @@ gulp.task "images", ->
 
 gulp.task "copy-files", ->
 	
-	gulp.src Config.src + "lib/**/*"
-	.pipe gulp.dest Config.build + "lib"
+	# gulp.src Config.src + "lib/**/*"
+	# .pipe gulp.dest Config.build + "lib"
 
-	gulp.src Config.src + "fonts/*"
-	.pipe gulp.dest Config.build + "styles"
+	gulp.src Config.src + "lib/bootstrap/fonts/*"
+	.pipe gulp.dest Config.build + "fonts"
 
 	gulp.src Config.src + "images/*.xml"
 	.pipe gulp.dest Config.build + "images"
@@ -198,7 +275,7 @@ gulp.task "server", ->
 	app.listen Config.port
 	lr.listen 35729
 	setTimeout ->
-		open "http://localhost:" + Config.port + "/styleguide.html"
+		open "http://localhost:" + Config.port + "/pages/car/car1.html"
 	, 3000
 
 # Update the livereload server
@@ -213,13 +290,13 @@ notifyLivereload = (event) ->
 
 gulp.task "default", ->
 	Config.publish = false
-	run ["coffeescript", "sass", "jade", "images", "copy-files"], "critical", "watch", "server"
+	run ["coffeescript", "lib", "sass", "jade", "images", "copy-files"], "watch", "server"
 
 gulp.task "deploy", ->
 	Config.publish = true
 	run "coffeescript"
+	run "lib"
 	run "sass"
 	run "jade"
 	run "images"
 	run "copy-files"
-	run "critical"

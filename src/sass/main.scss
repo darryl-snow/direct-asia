@@ -1,7 +1,3 @@
-// Bootflat
-@import		"../lib/Bootflat/bootflat/css/bootflat.css";
-
-
 // Base styles
 @import		"./base/_variables.scss";
 @import		"./base/_mixins.scss";
@@ -14,6 +10,7 @@
 @import		"./modules/_buttons.scss";
 @import		"./modules/_forms.scss";
 @import		"./modules/_headers.scss";
+@import		"./modules/_jumbotrons.scss";
 @import		"./modules/_navbars.scss";
 @import		"./modules/_panels.scss";
 @import		"./modules/_popovers.scss";

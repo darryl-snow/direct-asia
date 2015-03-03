@@ -1,9 +1,12 @@
+// Styles for typography throughout the site & typography helper classes
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+	color:				$dark-grey-1;
 	font-weight: 		200;
 }
 
@@ -16,8 +19,18 @@ h2 {
 	font-weight:		500;
 }
 
+h4 {
+	color:				$medium-grey;
+	font-size:			1em;
+	font-weight:		600;
+}
+
 a {
 	color:				$red;
+}
+
+label {
+	color:				$dark-grey-1;
 }
 
 .centred {
