@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="DirectAsia">
+    <head>
+        <title>Car Insurance - Direct Asia Car Insurance</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Front-End templates for Direct Asia Car Insurance">
+        <meta name="keywords" content="bootstrap angularJS bootflat">
+        <meta name="author" content="Darryl Snow">
+        <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="../../images/mstile-144x144.png" />
+        <meta name="msapplication-config" content="../../images/browserconfig.xml" />
+
+        <link rel="stylesheet" href="../../lib/lib.css">
+        <link rel="stylesheet" href="../../styles/main.css">
+        <!--if lt IE 9
+        script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
+        
+        -->
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" href="../../images/favicon-16x16.png" sizes="16x16">
+        <link rel="icon" type="image/png" href="../../images/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="../../images/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="../../images/favicon-160x160.png" sizes="160x160">
+        <link rel="icon" type="image/png" href="../../images/favicon-192x192.png" sizes="192x192">
+
+        <link rel="shortcut icon" href="../../images/favicon.ico">
+        <script src="../../lib/lib.js"></script>
+        <script src="../../scripts/main.js"></script>
+        <script src="../../scripts/directives.js"></script>
+    </head>
+    <body id="yourDriver" ng-controller="aboutYourDriverController">
+            <section class="section section-plan">
+                <div class="container">
+                    <div class="navbar navbar-default" data-resource-id="GS 0.0">
+                        <div class="navbar-header"><a href="/" class="navbar-brand"><img src="../../images/direct-asia-logo.png"></a></div>
+                        <div class="navbar-title">Car Insurance</div>
+                        <ol class="breadcrumb breadcrumb-arrow" data-resource-id="GC 0.1">
+                            <li class="active"><a href="#">Your Car &amp; Drivers</a></li>
+                            <li><a href="#">Your Quote</a></li>
+                            <li><span>Purchase</span></li>
+                        </ol>
+                        <div class="navbar-telephone pull-right">Need help? Speak with Our Hong Kong Team<span class="navbar-telephone-number">2884 8888</span>Mon - Fri 8am - 8pm | Sat 9am - 6pm</div>
+                    </div> 
+                </div>
+                <div class="container">
+                    <div class="panel" data-resource-id="PS 3.0">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h1 data-resource-id="PS 3.0a">
+                                        <img src="../../images/person-icon.png" class="pull-left" style="padding-bottom: 30px;">
+                                        Tell Us About the Main Driver
+                                        <div class="subtitle" style="margin-left:75px;" data-resource-id="PS 3.0b">it's important that you're honest about who the main driver is so you're covered if you ever have a claim.</div>
+                                    </h1>
+                                </div>
+                                <div class="col-md-6">
+									<div style="text-align:right;">
+									  <div class="col-md-12 col-xs-10">
+										  <h2 style="margin: 5px 0px;" data-resource-id="GS 0.2a">Existing Customer?<div class="subtitle" data-resource-id="GS 0.2b">Save time and retrieve your renewal quote</div></h2>
+									  </div>
+									  <div class="col-md-12 col-xs-2">
+										  <button style="margin: 10px 0;" type="button" class="btn btn-default" data-resource-id="GS 0.2c">Login Now<span class="glyphicon glyphicon-ok"></span></button>
+									  </div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="panel1">
+                                <div class="container-fluid" data-resource-id="PS 3.0">
+                                    <h2 data-toggle="tooltip" data-placement="top" title="The main driver is the person who uses the car most frequently. They do not need to be the car owner (policyholder)." class="show-tooltip" style="margin-top:30px;" data-resource-id="PS 3.0c">Does the main driver own the car? <img src="../../images/question-icon.png"></h2>
+                                    <button type="button" class="btn btn-default random-margin" ng-class="{active: driver.own_car == 'yes'}" ng-click="select('yes', 'own_car')" data-resource-id="PS 3.0d">Yes<span class="glyphicon glyphicon-ok"></span></button>
+                                    <button type="button" class="btn btn-default"  ng-class="{active: driver.own_car == 'no'}" ng-click="select('no', 'own_car')" data-resource-id="PS 3.0e">No<span class="glyphicon glyphicon-ok"></span></button>
+                                    <h2 data-resource-id="PS 3.0f">Date of Birth</h2>
+                                    <div class="form-inline">
+                                        <input id="day2" placeholder="DD" type="number" min="1" max="31" class="day">
+                                        <input placeholder="MM" type="number" min="1" max="12" class="month">
+                                        <input placeholder="YYYY" type="number" min="1900" max="2015" class="year">
+                                    </div>  
+                                    <div class="row" data-resource-id="PS 3.0g">
+                                        <div class="col-md-6">
+                                            <h2>Gender</h2>
+                                            <button type="button" class="btn btn-default random-margin" ng-class="{active: driver.gender == 'male'}" ng-click="select('male', 'gender')">Male<span class="glyphicon glyphicon-ok"></span></button>
+                                            <button type="button" class="btn btn-default" ng-class="{active: driver.gender == 'female'}" ng-click="select('female', 'gender')">Female<span class="glyphicon glyphicon-ok"></span></button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h2 data-resource-id="PS 3.0h">Marital Status</h2>
+                                            <button type="button" class="btn btn-default random-margin " ng-class="{active: driver.status == 'single'}" ng-click="select('single', 'status')" data-resource-id="PS 3.0i">Single<span class="glyphicon glyphicon-ok"></span></button>
+                                            <button type="button" class="btn btn-default" ng-class="{active: driver.status == 'married'}" ng-click="select('married', 'status')" data-resource-id="PS 3.0j">Married<span class="glyphicon glyphicon-ok"></span></button>
+                                        </div>
+                                    </div>
+                                    <h2 data-resource-id="PS 3.0k">Occupation</h2>
+                                    <div style="width:300px">
+                                        <select id="occupation" name="occupation">
+                                            <option selecter label="Enter Occupation" value="{{occupation}}" data-ng-repeat="occupation in occupations" selecter-target="#occupation" selecter-callback="select" property="occupation" ng-selected="occupation == selectedItem">{{occupation}}</option>
+                                        </select>
+                                    </div>
+                                    <h2 data-resource-id="PS 3.0l">Residential District</h2>
+                                    <div style="width:300px">
+                                    <select id="residential" name="residential">
+                                        <option selecter label="Enter Residential District" value="{{residential}}" data-ng-repeat="residential in residentials" selecter-target="#residential" selecter-callback="select" property="residential" ng-selected="residential == selectedItem">{{residential}}</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div data-resource-id="PS 3.1">
+                                <div class="container-fluid" data-resource-id="PC 3.1.1">
+                                    <h2 data-resource-id="PS 3.1.1a">Years of valid driving license
+                                        <div class="subtitle" data-resource-id="PS 3.1.1b">We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.</div>
+                                    </h2>
+                                    <div style="width:300px">
+                                    <select id="drivingLicense" name="drivingLicense">
+                                        <option selecter label="Enter Driving License" value="{{drivingLicense}}" data-ng-repeat="drivingLicense in drivingLicenses" selecter-target="#drivingLicense" selecter-callback="select" property="drivingLicense" ng-selected="drivingLicense == selectedItem">{{drivingLicense}}</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="container-fluid" data-resource-id="PC 3.1.2">
+                                    <h2 data-resource-id="PS 3.1.2a">No Claims Discount
+                                        <div class="subtitle" data-resource-id="PS 3.1.2b">You will find on the renewal notice you recieved from your insurer</div>
+                                    </h2>
+                                    <div style="width:300px">
+                                    <select id="discount" name="discount" ng-model="driver.discount">
+                                        <option selecter label="Enter Claims Discount" value="{{discount}}" data-ng-repeat="discount in discounts" selecter-target="#discount" selecter-callback="select" property="discount" ng-selected="discount == selectedItem">{{discount}}</option>
+                                    </select>
+                                    </div>
+                                    <div ng-show="driver.discount == '0%'">
+                                        <h2 data-resource-id="PS 3.1.2-1a">Why does the main driver have 0% NCD?</h2>
+                                        <label for="checkbox1" class="label-checkbox">
+                                          <input id="checkbox1" type="checkbox"  class="ng-pristine ng-untouched ng-valid">
+                                          <div class="fake-checkbox" data-resource-id="PS 3.1.2-1b"><span class="glyphicon glyphicon-ok"></span></div><span>Never been insured</span>
+                                        </label>
+                                        <label for="checkbox2" class="label-checkbox">
+                                          <input id="checkbox2" type="checkbox"  class="ng-pristine ng-untouched ng-valid">
+                                          <div class="fake-checkbox" data-resource-id="PS 3.1.2-1c"><span class="glyphicon glyphicon-ok"></span></div><span>Insured in the past, but not in the last 12 months</span>
+                                        </label>
+                                        <label for="checkbox3" class="label-checkbox">
+                                          <input id="checkbox3" type="checkbox"  class="ng-pristine ng-untouched ng-valid">
+                                          <div class="fake-checkbox" data-resource-id="PS 3.1.2-1d"><span class="glyphicon glyphicon-ok"></span></div><span>Claims have been made in the last 12 months</span>
+                                        </label>
+                                        <label for="checkbox4" class="label-checkbox">
+                                          <input id="checkbox4" type="checkbox"  class="ng-pristine ng-untouched ng-valid">
+                                          <div class="fake-checkbox" data-resource-id="PS 3.1.2-1e"><span class="glyphicon glyphicon-ok"></span></div><span>Insured as a named driver on another policy</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="container-fluid" data-resource-id="PC 3.1.3">
+                                    <h2 data-resource-id="PC 3.1.3a">Did the main driver have any driving offence points in the last 2 years?
+                                        <div class="subtitle" data-resource-id="PC 3.1.3b">If you're unsure, <a href="http://www.police.gov.hk/ppp_en/05_traffic_matters/tcr.html">click here</a> to get this information. Please note that drivers must have less than 12 offence points.</div>
+                                    </h2>
+                                    <button type="button" class="btn btn-default random-margin" ng-class="{active: driver.demerit_points == 'yes'}" ng-click="select('yes', 'demerit_points')" class="subtitle" data-resource-id="PC 3.1.3c">Yes<span class="glyphicon glyphicon-ok"></span></button>
+                                    <button type="button" class="btn btn-default" ng-class="{active: driver.demerit_points == 'no'}" ng-click="select('no', 'demerit_points')" class="subtitle" data-resource-id="PC 3.1.3d">No<span class="glyphicon glyphicon-ok"></span></button>
+                                </div>
+                                <div class="container-fluid">
+                                    <h2 data-resource-id="PC 3.1.5a">Has insurance been refused or cancelled in the past 3 years?</h2>
+                                    <button type="button" class="btn btn-default random-margin" ng-class="{active: driver.refused_insurance == 'yes'}" ng-click="select('yes', 'refused_insurance')" data-resource-id="PC 3.1.5b">Yes<span class="glyphicon glyphicon-ok"></span></button>
+                                    <button type="button" class="btn btn-default" ng-class="{active: driver.refused_insurance == 'no'}" ng-click="select('no', 'refused_insurance')" data-resource-id="PC 3.1.5c">No<span class="glyphicon glyphicon-ok"></span></button>
+                                </div>
+                                <div class="container-fluid" data-resource-id="PC 3.1.4">
+                                    <h2  data-resource-id="PC 3.1.4a">In the past 3 years (36 months), how many accidents and/or claims where made?
+                                        <div class="subtitle"  data-resource-id="PC 3.1.4b">You should include all accidents and/or claims, but you can exclude windscreen claims.</div>
+                                    </h2>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div style="width:300px">
+                                            <select id="fault" name="fault">
+                                                <option selecter label="at Fault" value="{{fault}}" data-ng-repeat="fault in faults" selecter-target="#fault" selecter-callback="select" property="fault" ng-selected="fault == selectedItem">{{fault}}</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div style="width:300px">
+                                            <select id="notFault" name="notFault">
+                                                <option selecter label="Not at Fault" value="{{notFault}}" data-ng-repeat="notFault in notFaults" selecter-target="#notFault" selecter-callback="select" property="notFault" ng-selected="notFault == selectedItem">{{notFault}}</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                </div>
+                            </div>
+                            <div class="additional-driver" data-resource-id="PC 3.2.1" >
+                                <h2 style="margin-left: 15px;" data-resource-id="PC 3.2a">Do you want to cover additional drivers?
+                                    <div class="subtitle"  data-resource-id="PC 3.2b">If other people drive the car, you may want to cover them in case they get into an accident.</div>
+                                    <div style="margin-top:20px;"></div>
+                                    <button type="button" class="btn btn-default random-margin" ng-class="{active:yes_no === true}" ng-click="yes_no = true" data-resource-id="PC 3.2c">Yes<span class="glyphicon glyphicon-ok"></span></button>
+                                    <button type="button" class="btn btn-default" ng-class="{active:yes_no === false}" ng-click="yes_no = false" data-resource-id="PC 3.2d">No<span class="glyphicon glyphicon-ok"></span></button>
+                                </h2>
+                                <div ng-show="yes_no" class="container-fluid">
+                                    <h2 data-resource-id="PC 3.1.5a">Has insurance been refused or cancelled in the past 3 years?</h2>
+                                    <button type="button" class="btn btn-default random-margin" ng-class="{active: driver.refused_insurance == 'yes'}" ng-click="select('yes', 'refused_insurance')" data-resource-id="PC 3.1.5b">Yes<span class="glyphicon glyphicon-ok"></span></button>
+                                    <button type="button" class="btn btn-default" ng-class="{active: driver.refused_insurance == 'no'}" ng-click="select('no', 'refused_insurance')" data-resource-id="PC 3.1.5c">No<span class="glyphicon glyphicon-ok"></span></button>                                    
+                                </div>
+
+                            </div>
+
+                            <div data-resource-id="PS 3.3" style="margin-top:3em;" class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-backward" style="float:left;"><span class="glyphicon glyphicon-arrow-left"></span>Back</button>
+                                    <button type="button" ng-click="proceed()" class="btn btn-forward btn-lg" style="float:right;">Proceed<span class="glyphicon glyphicon-arrow-right"></span></button>
+                                </div>
+                            </div>
+                            <div style="margin-top: 1em;margin-bottom: 1em;" class="row">
+                                <div class="col-md-12">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+    </body>
+</html>

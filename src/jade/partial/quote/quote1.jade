@@ -1,0 +1,48 @@
+//- SCRIPTS FOR CAR COMPONENT
+
+//- Angular Controllers
+script(src="../../scripts/controllers/quote/quote1.controller.js")
+
+section.section.section-quote(ng-controller="QuoteCtrl")
+
+	ul.onepage-pagination(role="tablist")
+		li
+			a(href="#quote1", title="")
+		li
+			a(href="#quote2", title="")
+		li
+			a(href="#quote3", title="")
+		li
+			a(href="#quote4", title="")
+		li
+			a(href="#quote5", title="")
+
+	.navbar-da(fsm-sticky-header, scroll-body="'.section-quote'", scroll-stop="0")
+		.container
+			nav
+				li(data-ng-repeat="plan in plans", data-ng-class="{active:plan==selectedPlan}")
+					a(data-ng-click="selectPlan(plan)")
+						span.navbar-item(data-ng-bind="plan.name")
+						span.navbar-price S$ 
+							span(data-ng-bind="plan.baseCost") 732
+							|  /yr
+						span.navbar-smallprint S$
+							span(data-ng-bind="plan.baseCost / 12") 61
+							|  /mo
+
+			.save-for-later
+				button.btn.btn-primary.btn-sm.btn-block(data-ng-click="saveData()") Save for Later
+				p Your details will be saved for 90 days so you can finish later
+
+	include quote2
+	include quote3
+	include quote4
+	include quote5
+	include quote6
+	include quote7
+
+	script.
+		$(".onepage-pagination a").on("click", function(e) {
+			e.preventDefault();
+			$("html, body").animate({scrollTop: $($(e.target).attr("href")).offset().top - 100});
+		});

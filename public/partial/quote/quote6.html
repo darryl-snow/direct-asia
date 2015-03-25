@@ -1,0 +1,141 @@
+
+<section id="quote5" class="section section--padded">
+  <div class="container">
+    <div class="panel margin--top">
+      <div data-ng-class="{'compare':compare}" class="panel-header">
+        <h2 class="pull-left">Your Car Insurance Summary</h2>
+        <div class="price-summary clearfix">
+          <h2 class="align-right">Total S$1,356 /yr</h2>
+          <div class="subtitle align-right">S$113 /mo</div>
+          <div class="subtitle subtitle-secondary align-right">Savings S$167 /yr</div>
+          <label data-ng-show="compare" class="label-checkbox">
+            <input id="selectCurrent" type="checkbox"/>
+            <div class="fake-checkbox"><i class="glyphicon glyphicon-ok"></i></div>
+          </label>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div style="margin-bottom:2em;" class="row">
+          <div class="col-xs-2"><img src="../../images/car-icon2.png"/></div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-3"><strong>Car</strong></div>
+              <div class="col-md-8">2010 Honda Civic, Low Mileage
+                <p data-ng-hide="!fulldetails">Modifications: Body Kit, Rims / Tires Air Intake/Exhaust Financed, Privately Owned, Low Mileage</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-default">Edit</button>
+              </div>
+              <div class="col-md-6 align-right"></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-bottom:2em;" class="row">
+          <div class="col-xs-2"><img src="../../images/driver-icon.png"/></div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-3"><strong>Driver</strong></div>
+              <div class="col-md-8">Female, 37 years old, 30% NCD, Certificate of Merit, 1 at fault claim
+                <p data-ng-hide="!fulldetails">Certificate of Merit, 1 at fault claim</p>
+                <p data-ng-hide="!fulldetails">[Occupation],[Postal Code],[4] years valid driving license,</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-default">Edit</button>
+              </div>
+              <div class="col-md-6 align-right">S$45 /yr</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-bottom:2em;" class="row">
+          <div class="col-xs-2"><img src="../../images/policy-icon2.png"/></div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-3"><strong>Policy</strong></div>
+              <div class="col-md-8">Comprehensive Premium, S$500 policy excess
+                <ul data-ng-hide="!fulldetails">
+                  <li>Third Party - Death or Bodily Injury</li>
+                  <li>Third Party - Property Damage</li>
+                  <li>24 hour accident towing</li>
+                  <li>Own damage - Fire</li>
+                  <li>Own damage - Theft</li>
+                  <li>Own damage - Act of God</li>
+                  <li>Own damage - All Accidents</li>
+                  <li>Windscreen / Window Breakage</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-default">Edit</button>
+              </div>
+              <div class="col-md-6 align-right">S$732 /yr</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2"><img src="../../images/cover-icon2.png"/></div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-3"><strong>Cover</strong></div>
+              <div class="col-md-8">Loss of use, My Workshop, Experienced Drivers
+                <p data-ng-hide="!fulldetails">S$50 to help you with transport costs while your car is being repaired</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-default">Edit</button>
+              </div>
+              <div class="col-md-6 align-right">S$235 /yr
+                <div><span class="strikethrough">S$261 /yr</span><span class="highlight"> (10% discount)</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-md-7">
+            <button type="button" data-ng-click="fulldetails=!fulldetails" class="btn btn-plain btn-large btn-block"><span data-ng-hide="fulldetails">Review Full Details</span><img src="../../images/down-arrow.png" data-ng-hide="fulldetails"/><span data-ng-hide="!fulldetails">See Summary</span><img src="../../images/up-arrow.png" data-ng-hide="!fulldetails"/></button>
+          </div>
+          <div class="col-md-5">
+            <button type="button" data-ng-click="compare=!compare" class="btn btn-plain btn-large btn-block">Compare Recommended Plan<img src="../../images/down-arrow.png"/></button>
+          </div>
+        </div>
+      </div>
+      <div data-ng-class="{active:compare}" class="panel-comparison">
+        <div class="panel-body">
+          <button type="button" data-ng-click="compare=!compare" class="btn btn-plain btn-medium btn-block">Compare Recommended Plan<img src="../../images/down-arrow.png"/></button>
+          <h2>Total S$1,356 /yr
+            <div class="subtitle">S$113 /mo</div>
+            <div class="subtitle subtitle-secondary">Savings S$167 /yr</div>
+          </h2>
+          <button type="button" class="btn btn-primary btn-sm pull-right">Select Plan</button>
+          <ul>
+            <li>Comprehensive Premium
+              <div class="subtitle">S$113 /yr</div>
+            </li>
+            <li>Loss of use, My Workshop, Experienced Drivers
+              <div class="subtitle">S$113 /yr</div>
+              <div class="subtitle">S$500 /yr</div>
+            </li>
+            <li>Use In-Car Camera, Go Paperless
+              <div class="subtitle">S$113 /yr</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

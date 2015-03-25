@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="DirectAsia">
+    <head>
+        <title>Car Insurance - Direct Asia Car Insurance</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Front-End templates for Direct Asia Car Insurance">
+        <meta name="keywords" content="bootstrap angularJS bootflat">
+        <meta name="author" content="Darryl Snow">
+        <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
+        <!-- <meta name="viewport" content="width=1366,initial-scale=0"> -->
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="../../images/mstile-144x144.png" />
+        <meta name="msapplication-config" content="../../images/browserconfig.xml" />
+
+        <link rel="stylesheet" href="../../lib/lib.css">
+        <link rel="stylesheet" href="../../styles/main.css">
+        <!--if lt IE 9
+        script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
+        
+        -->
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" href="../../images/favicon-16x16.png" sizes="16x16">
+        <link rel="icon" type="image/png" href="../../images/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="../../images/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="../../images/favicon-160x160.png" sizes="160x160">
+        <link rel="icon" type="image/png" href="../../images/favicon-192x192.png" sizes="192x192">
+
+        <link rel="shortcut icon" href="../../images/favicon.ico">
+        <script src="../../lib/lib.js"></script>
+        <script src="../../scripts/main.js"></script>
+        <script src="../../scripts/directives.js"></script>
+
+    </head> 
+    <body ng-controller="qouteController" style="position: absolute; height: 100%; width: 100%;">
+        <div class="container">
+            <div style="width:100%; margin-top:50px; text-align:center;">
+                <img src="../../images/loading.gif" style="width: 100px;">
+            </div>
+            <h1 style="text-align:center;">We're working on your quote</h1>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Why our customers choose DirectAsia.com's<br/>Car Insurance:</h2>
+                    <ul>
+                        <li>Award Winning Insurer - People's Choice Awards</li>
+                        <li>Award Winning Customer Service - Call Center Association of Singapore</li>
+                        <li>Favourite Online Insurance - Service Lifestyle Awards</li>
+                        <li>Gold Award in Mystery Caller Assessment - Hong Kong Corporate Counsel Association</li>
+                        <li>100% Owned by Hiscox Group</li>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel" style="margin-top: 30px;">
+                       <div class="panel-body">
+                            <h2 style="margin-bottom: 20px;">Where did you hear about<br/>DirectAsia.com?</h2>
+                            <div style="width:300px">
+                                <select id="heardAboutUs" name="heardAboutUs">
+                                    <option selecter label="Enter Driving License" value="{{heardAboutUs}}" data-ng-repeat="heardAboutUs in heardAboutUs" selecter-target="#heardAboutUs" selecter-callback="select" property="heardAboutUs" ng-selected="heardAboutUs == selectedItem">{{heardAboutUs}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

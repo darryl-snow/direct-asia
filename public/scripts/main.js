@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Tue Feb 03 2015 12:50:27 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Wed Mar 25 2015 22:42:52 GMT+0800 (CST) */
 
 /*
 Lovely welcome message
@@ -10,4 +10,4 @@ console.log("%c Welcome to Direct Asia Car Insurance ", "background: #3498db;\nc
 Define main module
  */
 
-angular.module("DirectAsia", []);
+angular.module("DirectAsia", ["fsm"]);

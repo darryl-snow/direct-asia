@@ -17,4 +17,4 @@ padding: 5px;
 Define main module
 ###
 
-angular.module "DirectAsia", []
+angular.module "DirectAsia", ["fsm"]

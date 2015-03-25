@@ -26,6 +26,8 @@
     "Bootflat": "~2.0.4",
     "bootstrap": "3.2.*",
     "Selecter": "~3.2.3",
-    "ng-resource": "~0.0.2"
+    "ng-resource": "~0.0.2",
+    "fsm-sticky-header": "*",
+    "jquery": "~2.1.3"
   }
 }

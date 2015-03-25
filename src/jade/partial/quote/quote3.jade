@@ -1,0 +1,107 @@
+section#quote2.section.section--blue.section--padded.section--centred.margin--top
+
+	.container
+		img(src="../../images/cover-icon.png")
+		h2 Add Additional Driver
+
+		.panel.align-left
+			.panel-body
+				h3 Driver 1 -
+
+				.row(style="margin-bottom:30px;")
+
+					.col-md-4
+						label.label--large(for="driver1-firstname") First Name
+						input#driver1-firstname.form-control(name="driver1-firstname", type="text", placeholder="enter first name")
+
+					.col-md-4
+						label.label--large(for="driver1-lastname") Last Name
+						input#driver1-lastname.form-control(name="driver1-lastname", type="text", placeholder="enter last name")
+
+				.row(style="margin-bottom:30px;")
+
+					.col-md-4
+						label.label--large(for="driver1-dob-day") Date of Birth
+						.form-inline
+							input#driver1-dob-day.day(min="1", max="31", name="driver1-dob-day", placeholder="DD", type="number")
+							input#driver1-dob-month.month(min="1", max="12", name="driver1-dob-month", placeholder="MM", type="number")
+							input#driver1-dob-year.year(min="1900", max="2015", name="driver1-dob-year", placeholder="YYYY", type="number")
+
+					.col-md-4
+						label.label--large Gender
+						button.btn.btn-default.random-margin(type="button", ng-click="select('male', 0, 'gender')", ng-class="{'active':driver1.gender=='male'}") Male
+							span.glyphicon.glyphicon-ok
+
+						button.btn.btn-default(type="button", ng-click="select('female', 0, 'gender')", ng-class="{'active':driver1.gender=='female'}") Female
+							span.glyphicon.glyphicon-ok
+
+				.row(style="margin-bottom:30px;")
+
+					.col-md-4
+						label.label--large Marital Status
+						button.btn.btn-default.random-margin(type="button", ng-click="select('single', 0, 'maritalstatus')", ng-class="{'active':driver1.maritalstatus=='single'}") Single
+							span.glyphicon.glyphicon-ok
+
+						button.btn.btn-default(type="button", ng-click="select('married', 0, 'maritalstatus')", ng-class="{'active':driver1.maritalstatus=='married'}") Married
+							span.glyphicon.glyphicon-ok
+
+					.col-md-4
+						label.label--large(for="driver1-occupation") Occupation
+						input#driver1-occupation.form-control(name="driver1-occupation", type="text", placeholder="enter occupation")
+
+				.row(style="margin-bottom:30px;")
+
+					.col-md-7
+						label.label--large(for="experience") Years of valid driving
+
+						.row
+							.col-md-9
+								p We are unable to insure drivers who've had their license suspended or cancelled in the last 5 years.
+
+						.row
+							.col-md-6
+								select#experience(name="experience")
+									option(selecter, label="Select number of years", value="{{n}}", data-ng-repeat="n in [] | range:100", selecter-target="#experience", selecter-callback="select", property="experience", ng-selected="experience == selectedItem") {{n}}
+
+				.row(style="margin-bottom:30px;")
+
+					.col-md-7
+						label.label--large Did the main driver have any driving offence points in the last 2 years?
+							img(src="../../images/question-icon.png")
+						p If you're unsure, 
+							a(href="", title="") click here
+							|  to get this information. Please note that drivers must have less than 12 offence points.
+
+						.row
+							.col-md-12
+								button.btn.btn-default.random-margin(type="button", ng-click="select(true, 0, 'offences')", ng-class="{'active':driver1.offences}") Yes
+									span.glyphicon.glyphicon-ok
+
+								button.btn.btn-default(type="button", ng-click="select(false, 0, 'offences')", ng-class="{'active':driver1.offences==false}") No
+									span.glyphicon.glyphicon-ok
+
+				.row(style="margin-bottom:30px;")
+
+					.col-md-12
+						label.label--large(for="driver1-claims-at-fault") In the past 3 years (36 months), how many accidents and/or claims were made?
+							img(src="../../images/question-icon.png")
+						p Please include all accidents, but you can exclude windscreen claims.
+
+						.row
+
+							.col-md-3
+								input#driver1-claims-at-fault.claim(min="0", name="driver1-claims-at-fault", placeholder="0", type="number")
+								| at fault
+
+							.col-md-3
+								input#driver1-claims-not-at-fault.claim(min="0", name="driver1-claims-not-at-fault", placeholder="0", type="number")
+								| not at fault
+
+		.panel.align-left
+			.panel-body
+				button.btn.btn-continue(type="button") &plus; Add another driver
+
+
+		button.btn.btn-continue(type="button")
+			i.glyphicon.glyphicon-arrow-down
+			| Continue

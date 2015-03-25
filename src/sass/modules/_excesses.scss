@@ -1,0 +1,25 @@
+.excesses {
+	margin:				4em 0;
+}
+
+.excess {
+
+	.label-radio {
+		color:			$white;
+		text-align:		center;
+	}
+
+	.fake-radio {
+		background:		$white;
+		display:		block;
+		height: 		3.5em;
+		line-height: 	3.8em;
+		margin:			0.5em auto;
+		width: 			3.5em;
+	}
+	
+	.glyphicon {
+		color:			$black;
+	}
+
+}

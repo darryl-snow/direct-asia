@@ -49,6 +49,19 @@ input[type="radio"] {
 	display:				none;
 }
 
+label {
+
+	&.label--large {
+		display:			block;
+		font-size: 			1.6em;
+		font-weight: 		500;
+	}
+
+	img {
+		margin-left:		10px;
+	}
+}
+
 .label-checkbox,
 .label-radio {
 	display:				block;
@@ -93,6 +106,10 @@ input[type="checkbox"]:checked + .fake-checkbox {
 
 input[type="radio"]:checked + .fake-radio {
 	background:				$yellow;
+
+	.glyphicon {
+		opacity:			1;
+	}
 }
 
 input[type="checkbox"]:disabled + .fake-checkbox,
@@ -114,4 +131,9 @@ input[type="radio"]:disabled ~ span {
 
 .year {
 	width:					120px;
+}
+
+.claim {
+	margin:					0 5px 0 0;
+	width:					80px;
 }

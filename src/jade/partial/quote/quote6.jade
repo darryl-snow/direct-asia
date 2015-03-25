@@ -1,0 +1,152 @@
+section#quote5.section.section--padded
+
+	.container
+
+		.panel.margin--top
+
+			.panel-header(data-ng-class="{'compare':compare}")
+
+				h2.pull-left Your Car Insurance Summary
+				.price-summary.clearfix
+					h2.align-right Total S$1,356 /yr
+					.subtitle.align-right S$113 /mo
+					.subtitle.subtitle-secondary.align-right Savings S$167 /yr
+
+					label.label-checkbox(data-ng-show="compare")
+						input#selectCurrent(type="checkbox")
+						.fake-checkbox
+							i.glyphicon.glyphicon-ok
+
+			.panel-body
+
+				.row(style="margin-bottom:2em;")
+					.col-xs-2
+						img(src="../../images/car-icon2.png")
+
+					.col-xs-5
+
+						.row
+							.col-md-3
+								strong Car
+
+							.col-md-8 2010 Honda Civic, Low Mileage
+								p(data-ng-hide="!fulldetails") Modifications: Body Kit, Rims / Tires Air Intake/Exhaust Financed, Privately Owned, Low Mileage
+
+					.col-xs-5
+
+						.row
+							.col-md-6
+								button.btn.btn-default(type="button") Edit
+
+							.col-md-6.align-right
+
+				.row(style="margin-bottom:2em;")
+					.col-xs-2
+						img(src="../../images/driver-icon.png")
+
+					.col-xs-5
+
+						.row
+							.col-md-3
+								strong Driver
+
+							.col-md-8 Female, 37 years old, 30% NCD, Certificate of Merit, 1 at fault claim
+								p(data-ng-hide="!fulldetails") Certificate of Merit, 1 at fault claim
+								p(data-ng-hide="!fulldetails") [Occupation],[Postal Code],[4] years valid driving license,
+
+					.col-xs-5
+
+						.row
+							.col-md-6
+								button.btn.btn-default(type="button") Edit
+
+							.col-md-6.align-right S$45 /yr
+
+				.row(style="margin-bottom:2em;")
+					.col-xs-2
+						img(src="../../images/policy-icon2.png")
+
+					.col-xs-5
+
+						.row
+							.col-md-3
+								strong Policy
+
+							.col-md-8 Comprehensive Premium, S$500 policy excess
+								ul(data-ng-hide="!fulldetails")
+									li Third Party - Death or Bodily Injury
+									li Third Party - Property Damage
+									li 24 hour accident towing
+									li Own damage - Fire
+									li Own damage - Theft
+									li Own damage - Act of God
+									li Own damage - All Accidents
+									li Windscreen / Window Breakage
+
+					.col-xs-5
+
+						.row
+							.col-md-6
+								button.btn.btn-default(type="button") Edit
+
+							.col-md-6.align-right S$732 /yr
+
+				.row
+					.col-xs-2
+						img(src="../../images/cover-icon2.png")
+
+					.col-xs-5
+
+						.row
+							.col-md-3
+								strong Cover
+
+							.col-md-8 Loss of use, My Workshop, Experienced Drivers
+								p(data-ng-hide="!fulldetails") S$50 to help you with transport costs while your car is being repaired
+
+					.col-xs-5
+
+						.row
+							.col-md-6
+								button.btn.btn-default(type="button") Edit
+
+							.col-md-6.align-right S$235 /yr
+								div
+									span.strikethrough S$261 /yr
+									span.highlight  (10% discount)
+
+			.panel-footer
+
+				.row
+
+					.col-md-7
+						button.btn.btn-plain.btn-large.btn-block(type="button", data-ng-click="fulldetails=!fulldetails")
+							span(data-ng-hide="fulldetails") Review Full Details
+							img(src="../../images/down-arrow.png", data-ng-hide="fulldetails")
+							span(data-ng-hide="!fulldetails") See Summary
+							img(src="../../images/up-arrow.png", data-ng-hide="!fulldetails")
+
+					.col-md-5
+						button.btn.btn-plain.btn-large.btn-block(type="button", data-ng-click="compare=!compare") Compare Recommended Plan
+							img(src="../../images/down-arrow.png")
+
+			.panel-comparison(data-ng-class="{active:compare}")
+				.panel-body
+
+					button.btn.btn-plain.btn-medium.btn-block(type="button", data-ng-click="compare=!compare") Compare Recommended Plan
+						img(src="../../images/down-arrow.png")
+
+					h2 Total S$1,356 /yr
+						.subtitle S$113 /mo
+						.subtitle.subtitle-secondary Savings S$167 /yr
+
+					button.btn.btn-primary.btn-sm.pull-right(type="button") Select Plan
+
+					ul
+						li Comprehensive Premium
+							.subtitle S$113 /yr
+						li Loss of use, My Workshop, Experienced Drivers
+							.subtitle S$113 /yr
+							.subtitle S$500 /yr
+						li Use In-Car Camera, Go Paperless
+							.subtitle S$113 /yr

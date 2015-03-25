@@ -1,5 +1,30 @@
 // Styles for typography throughout the site & typography helper classes
 
+@font-face {
+    font-family: 		Proxima;
+    src: 				url("../fonts/ProximaNova/ProximaNova-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 		ProximaSemiBold;
+    src: 				url("../fonts/ProximaNova/ProximaNova-Semibold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 		ProximaBold;
+    src: 				url("../fonts/ProximaNova/ProximaNova-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 		ProximaLight;
+    src: 				url("../fonts/ProximaNova/ProximaNova-Light.otf") format("opentype");
+}
+
+html,
+body {
+	font-family:		"Proxima", sans-serif;
+}
+
 h1,
 h2,
 h3,
@@ -15,8 +40,13 @@ h1 {
 }
 
 h2 {
+	font-family:		"ProximaSemiBold";
 	font-size:			1.6em;
-	font-weight:		500;
+}
+
+h3 {
+	font-family:		"ProximaLight";
+	font-size:			1.6em;
 }
 
 h4 {
@@ -37,10 +67,48 @@ label {
 	text-align:			center;
 }
 
+.align-left {
+	text-align:			left;
+}
+
+.align-right {
+	text-align:			right;
+}
+
 .subtitle {
+	font-family:		"Proxima", sans-serif;
 	font-size:			1.5rem;
-	font-weight:		200;
+	font-weight:		300;
 	line-height:		1.3;
 	margin-top:			0.3em;
 	opacity:			0.7;
+
+	&-secondary {
+		color:			$yellow;
+	}
+
+}
+
+.highlight {
+	color:				$red;
+}
+
+strong {
+	color:				$black;
+	font-family:		"ProximaSemiBold";
+	font-weight:		600;
+}
+
+.strikethrough {
+	text-decoration:	line-through;
+}
+
+.total {
+	color:				$blue;
+	font-family:		"ProximaSemiBold";
+	font-size:			2em;
+
+	.subtitle {
+		color:			$dark-grey-1;
+	}
 }

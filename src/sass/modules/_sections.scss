@@ -3,15 +3,28 @@
 .section {
 
 	&--rounded {
-		border-radius:	4px;
+		border-radius:		4px;
 	}
 
 	&--black {
-		background:		$dark-grey-1;
-		color:			$white;
+		background:			$dark-grey-1;
+		color:				$white;
 	}
 
 	&--blue {
-		background:		$blue;
+		background:			$blue;
+
+		h2 {
+			color:			$white;
+			font-family: 	"ProximaLight";
+		}
+	}
+
+	&--padded {
+		padding: 			$base-spacing-unit;
+	}
+
+	&--centred {
+		text-align: 		center;
 	}
 }

@@ -1,0 +1,70 @@
+.options {
+	margin:				3em 0;
+}
+
+.option {
+	position:			relative;
+	
+	.panel-heading {
+		height:			75px;
+		padding: 		1em;
+	}
+
+	.panel-footer {
+		height:			140px;
+		line-height: 	108px;
+		padding:		1em;
+		position:		relative;
+		text-align: 	right;
+	}
+
+	h3 {
+		font-family:	"ProximaSemiBold";
+		margin: 		0;
+		text-align: 	left;
+	}
+
+	.option-icon {
+		bottom:			1em;
+		left:			1em;
+		position:		absolute;
+	}
+
+	strong {
+		color:			$black;
+		display:		inline-block;
+		font-size:		24px;
+		font-weight:	600;
+	}
+
+	.btn {
+		bottom:			1em;
+		position:		absolute;
+		right:			1em;
+	}
+
+	.recommended {
+		background: 	$red;
+		color: 			$white;
+		left: 			-5px;
+		margin-top: 	-12px;
+		padding: 		0px 19px;
+		position: 		absolute;
+		z-index:		2;
+
+		&:before {
+			border-color:	$red transparent;
+			border-style:	solid;
+			border-width:	5px 0px 0px 5px;
+			bottom:			-5px;
+			content:		"";
+			left:			0px;
+			position:		absolute;
+		}
+
+		img {
+			margin:		0 5px 0 0;
+		}
+	}
+
+}

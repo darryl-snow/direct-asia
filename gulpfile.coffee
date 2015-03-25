@@ -35,10 +35,11 @@ gulp.task "lib", ->
 	# JavaScript
 
 	gulp.src [
-		Config.src + "lib/jquery/dist/jquery.js",
+		Config.src + "lib/jquery/jquery.js",
 		Config.src + "lib/angular/angular.js",
 		Config.src + "lib/bootstrap/dist/js/bootstrap.js",
-		Config.src + "lib/Selecter/jquery.fs.selecter.js"
+		Config.src + "lib/Selecter/jquery.fs.selecter.js",
+		Config.src + "lib/fsm-sticky-header/src/fsm-sticky-header.js"
 	]
 	.pipe plugins.plumber()
 	.pipe plugins.concat "lib.js"
@@ -90,6 +91,20 @@ gulp.task "coffeescript", ->
 		bare: true
 	# .pipe plugins.sourcemaps.write "./sourcemaps"
 	.pipe plugins.concat "directives.js"
+	.pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */\n"
+	.pipe plugins.size
+		showFiles: true
+	.pipe gulp.dest Config.build + "scripts"
+
+	# Services
+
+	gulp.src Config.src + "coffeescript/services/*.coffee"
+	.pipe plugins.plumber()
+	# .pipe plugins.sourcemaps.init()
+	.pipe plugins.coffee
+		bare: true
+	# .pipe plugins.sourcemaps.write "./sourcemaps"
+	.pipe plugins.concat "services.js"
 	.pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */\n"
 	.pipe plugins.size
 		showFiles: true
@@ -155,8 +170,9 @@ gulp.task "coffeescript", ->
 # Compile Stylus
 
 gulp.task "sass", ->
-	gulp.src Config.src + "sass/main.scss"
+	gulp.src [Config.src + "sass/main.scss", Config.src + "other-developers-stuff/styles/custom.css"]
 	.pipe plugins.plumber()
+	.pipe plugins.concat "main.css"
 	# .pipe plugins.sourcemaps.init()
 	.pipe plugins.sass()
 	# .pipe plugins.sourcemaps.write "./sourcemaps"
@@ -215,6 +231,12 @@ gulp.task "jade", ->
 			keywords: pkg.keywords
 	.pipe gulp.dest Config.build + "partial"
 
+	# copy other developers' stuff
+	gulp.src Config.src + "other-developers-stuff/pages/**/*"
+	.pipe gulp.dest Config.build + "pages"
+	gulp.src Config.src + "other-developers-stuff/partials/**/*"
+	.pipe gulp.dest Config.build + "partials"
+
 # Optimise images
 
 gulp.task "images", ->
@@ -241,6 +263,9 @@ gulp.task "copy-files", ->
 	# .pipe gulp.dest Config.build + "lib"
 
 	gulp.src Config.src + "lib/bootstrap/fonts/*"
+	.pipe gulp.dest Config.build + "fonts"
+
+	gulp.src Config.src + "fonts/**/*"
 	.pipe gulp.dest Config.build + "fonts"
 
 	gulp.src Config.src + "images/*.xml"
@@ -275,7 +300,7 @@ gulp.task "server", ->
 	app.listen Config.port
 	lr.listen 35729
 	setTimeout ->
-		open "http://localhost:" + Config.port + "/pages/car/car1.html"
+		open "http://localhost:" + Config.port + "/pages/quote/quote.html"
 	, 3000
 
 # Update the livereload server

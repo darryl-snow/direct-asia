@@ -1,0 +1,28 @@
+.benefit {
+
+	&-icon {
+		float:				left;
+		margin-right:		15px;
+	}
+
+	&-details {
+		float:				left;
+		width:				65%;
+	}
+
+	a {
+		color:				$dark-grey-1;
+		cursor:				pointer;
+		display:			block;
+		font-family: 		"ProximaSemiBold";
+	}
+
+	h4 {
+		margin:				0;
+
+		img {
+			margin-left:	10px;
+		}
+	}
+
+}

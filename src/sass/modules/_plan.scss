@@ -1,0 +1,28 @@
+.plan {
+
+	&-left,
+	&-right {
+		display:			inline-block;
+		vertical-align: 	middle;
+	}
+
+	&-left {
+		margin-right:		$base-spacing-unit;
+	}
+
+	&-item {
+		margin-bottom:		10px;
+
+		strong {
+			color:			$black;
+			display:		inline-block;
+			font-family: 	"ProximaBold";
+			width:			80px;
+		}
+
+		button {
+			margin-left:	$base-spacing-unit;
+		}
+	}
+
+}

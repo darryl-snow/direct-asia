@@ -1,0 +1,96 @@
+
+<section id="quote2" class="section section--blue section--padded section--centred margin--top">
+  <div class="container"><img src="../../images/cover-icon.png"/>
+    <h2>Add Additional Driver</h2>
+    <div class="panel align-left">
+      <div class="panel-body">
+        <h3>Driver 1 -</h3>
+        <div style="margin-bottom:30px;" class="row">
+          <div class="col-md-4">
+            <label for="driver1-firstname" class="label--large">First Name</label>
+            <input id="driver1-firstname" name="driver1-firstname" type="text" placeholder="enter first name" class="form-control"/>
+          </div>
+          <div class="col-md-4">
+            <label for="driver1-lastname" class="label--large">Last Name</label>
+            <input id="driver1-lastname" name="driver1-lastname" type="text" placeholder="enter last name" class="form-control"/>
+          </div>
+        </div>
+        <div style="margin-bottom:30px;" class="row">
+          <div class="col-md-4">
+            <label for="driver1-dob-day" class="label--large">Date of Birth</label>
+            <div class="form-inline">
+              <input id="driver1-dob-day" min="1" max="31" name="driver1-dob-day" placeholder="DD" type="number" class="day"/>
+              <input id="driver1-dob-month" min="1" max="12" name="driver1-dob-month" placeholder="MM" type="number" class="month"/>
+              <input id="driver1-dob-year" min="1900" max="2015" name="driver1-dob-year" placeholder="YYYY" type="number" class="year"/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label class="label--large">Gender</label>
+            <button type="button" ng-click="select('male', 0, 'gender')" ng-class="{'active':driver1.gender=='male'}" class="btn btn-default random-margin">Male<span class="glyphicon glyphicon-ok"></span></button>
+            <button type="button" ng-click="select('female', 0, 'gender')" ng-class="{'active':driver1.gender=='female'}" class="btn btn-default">Female<span class="glyphicon glyphicon-ok"></span></button>
+          </div>
+        </div>
+        <div style="margin-bottom:30px;" class="row">
+          <div class="col-md-4">
+            <label class="label--large">Marital Status</label>
+            <button type="button" ng-click="select('single', 0, 'maritalstatus')" ng-class="{'active':driver1.maritalstatus=='single'}" class="btn btn-default random-margin">Single<span class="glyphicon glyphicon-ok"></span></button>
+            <button type="button" ng-click="select('married', 0, 'maritalstatus')" ng-class="{'active':driver1.maritalstatus=='married'}" class="btn btn-default">Married<span class="glyphicon glyphicon-ok"></span></button>
+          </div>
+          <div class="col-md-4">
+            <label for="driver1-occupation" class="label--large">Occupation</label>
+            <input id="driver1-occupation" name="driver1-occupation" type="text" placeholder="enter occupation" class="form-control"/>
+          </div>
+        </div>
+        <div style="margin-bottom:30px;" class="row">
+          <div class="col-md-7">
+            <label for="experience" class="label--large">Years of valid driving</label>
+            <div class="row">
+              <div class="col-md-9">
+                <p>We are unable to insure drivers who've had their license suspended or cancelled in the last 5 years.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <select id="experience" name="experience">
+                  <option selecter="selecter" label="Select number of years" value="{{n}}" data-ng-repeat="n in [] | range:100" selecter-target="#experience" selecter-callback="select" property="experience" ng-selected="experience == selectedItem">{{n}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-bottom:30px;" class="row">
+          <div class="col-md-7">
+            <label class="label--large">Did the main driver have any driving offence points in the last 2 years?<img src="../../images/question-icon.png"/></label>
+            <p>If you're unsure, <a href="" title="">click here</a> to get this information. Please note that drivers must have less than 12 offence points.</p>
+            <div class="row">
+              <div class="col-md-12">
+                <button type="button" ng-click="select(true, 0, 'offences')" ng-class="{'active':driver1.offences}" class="btn btn-default random-margin">Yes<span class="glyphicon glyphicon-ok"></span></button>
+                <button type="button" ng-click="select(false, 0, 'offences')" ng-class="{'active':driver1.offences==false}" class="btn btn-default">No<span class="glyphicon glyphicon-ok"></span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-bottom:30px;" class="row">
+          <div class="col-md-12">
+            <label for="driver1-claims-at-fault" class="label--large">In the past 3 years (36 months), how many accidents and/or claims were made?<img src="../../images/question-icon.png"/></label>
+            <p>Please include all accidents, but you can exclude windscreen claims.</p>
+            <div class="row">
+              <div class="col-md-3">
+                <input id="driver1-claims-at-fault" min="0" name="driver1-claims-at-fault" placeholder="0" type="number" class="claim"/>at fault
+              </div>
+              <div class="col-md-3">
+                <input id="driver1-claims-not-at-fault" min="0" name="driver1-claims-not-at-fault" placeholder="0" type="number" class="claim"/>not at fault
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel align-left">
+      <div class="panel-body">
+        <button type="button" class="btn btn-continue">&plus; Add another driver</button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-continue"><i class="glyphicon glyphicon-arrow-down"></i>Continue</button>
+  </div>
+</section>
