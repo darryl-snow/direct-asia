@@ -1,0 +1,23 @@
+.navbar-da {
+
+	.notchosen {
+		display:			block;
+	}
+
+	.chosen {
+		display:			none;
+	}
+
+	&.fsm-sticky-header {
+
+		.notchosen {
+			display:		none;
+		}
+
+		.chosen {
+			display:		block;
+		}
+
+	}
+
+}

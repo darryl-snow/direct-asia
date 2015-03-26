@@ -5,33 +5,53 @@ script(src="../../scripts/controllers/quote/quote1.controller.js")
 
 section.section.section-quote(ng-controller="QuoteCtrl")
 
-	ul.onepage-pagination(role="tablist")
-		li
-			a(href="#quote1", title="")
-		li
-			a(href="#quote2", title="")
-		li
-			a(href="#quote3", title="")
-		li
-			a(href="#quote4", title="")
-		li
-			a(href="#quote5", title="")
+	ul.side-pagination(role="tablist")
+		li(data-ng-class="{'active':currentStep>=1}")
+			a(href="#quote1", data-toggle="tooltip", data-placement="left", title="Select Car Insurance Plan")
+		li(data-ng-class="{'active':currentStep>=2}")
+			a(href="#quote2", data-toggle="tooltip", data-placement="left", title="Add Additional Drivers")
+		li(data-ng-class="{'active':currentStep>=3}")
+			a(href="#quote3", data-toggle="tooltip", data-placement="left", title="Customise Optional Coverage")
+		li(data-ng-class="{'active':currentStep>=4}")
+			a(href="#quote4", data-toggle="tooltip", data-placement="left", title="Select Policy Excess")
+		li(data-ng-class="{'active':currentStep>=5}")
+			a(href="#quote5", data-toggle="tooltip", data-placement="left", title="See Your Car Insurance Summary")
 
 	.navbar-da(fsm-sticky-header, scroll-body="'.section-quote'", scroll-stop="0")
 		.container
-			nav
-				li(data-ng-repeat="plan in plans", data-ng-class="{active:plan==selectedPlan}")
-					a(data-ng-click="selectPlan(plan)")
-						span.navbar-item(data-ng-bind="plan.name")
+
+			nav(data-ng-class="{'notchosen':currentStep>1}")
+				li(data-ng-repeat="cover in options.coverPlans", data-ng-class="{active:cover.name==plan.cover.name}")
+					a(data-ng-click="selectPlan(cover)", data-ng-cloak)
+						span.navbar-item(data-ng-bind="cover.name")
 						span.navbar-price S$ 
-							span(data-ng-bind="plan.baseCost") 732
+							span(data-ng-bind="cover.baseCost")
 							|  /yr
 						span.navbar-smallprint S$
-							span(data-ng-bind="plan.baseCost / 12") 61
+							span(data-ng-bind="cover.baseCost / 12")
 							|  /mo
 
+			nav(data-ng-show="currentStep>1", data-ng-class="{'chosen':currentStep>1}")
+				li.active
+					a(href="#")
+						span.navbar-item(data-ng-cloak) {{plan.cover.name}}
+						span.navbar-price(data-ng-cloak) S${{plan.cover.baseCost}} /yr
+						span.navbar-smallprint(data-ng-cloak) S${{plan.cover.baseCost / 12}} /mo
+				li
+					.navbar-info
+						span.navbar-item Additional Drivers
+						span.navbar-price(data-ng-cloak) {{plan.additionalDrivers[0].firstName ? plan.additionalDrivers.length : "0"}}
+				li
+					.navbar-info
+						span.navbar-item Optional Cover
+						span.navbar-price(data-ng-cloak) {{plan.options.length}}
+				li
+					.navbar-info
+						span.navbar-item Excess Policy
+						span.navbar-price(data-ng-cloak) {{plan.excess}}
+
 			.save-for-later
-				button.btn.btn-primary.btn-sm.btn-block(data-ng-click="saveData()") Save for Later
+				button.btn.btn-primary.btn-sm.btn-block(data-ng-click="saveForLater()") Save for Later
 				p Your details will be saved for 90 days so you can finish later
 
 	include quote2
@@ -42,7 +62,8 @@ section.section.section-quote(ng-controller="QuoteCtrl")
 	include quote7
 
 	script.
-		$(".onepage-pagination a").on("click", function(e) {
+		$(".side-pagination a").on("click", function(e) {
 			e.preventDefault();
 			$("html, body").animate({scrollTop: $($(e.target).attr("href")).offset().top - 100});
 		});
+		$('[data-toggle="tooltip"]').tooltip();

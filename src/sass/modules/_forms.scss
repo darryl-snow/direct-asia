@@ -27,12 +27,16 @@
 
 .selecter .selecter-selected {
 	border:					1px solid #ccc;
+	color:					$medium-grey;
+	text-align:				left;
 }
 
 .selecter .selecter-options {
 	border: 				1px solid $blue;
 	border-top:				none;
 	box-shadow:				0 3px 0 $light-grey-1;
+	color:					$medium-grey;
+	text-align:				left;
 
 	.placeholder {
 		display:			none;

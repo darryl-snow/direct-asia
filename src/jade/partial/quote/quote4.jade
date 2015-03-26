@@ -1,4 +1,4 @@
-section#quote3.section.section--blue.section--padded.section--centred
+section#quote3.section.section--blue.section--padded.section--centred(data-ng-show="currentStep>=3")
 
 	.container
 
@@ -9,103 +9,26 @@ section#quote3.section.section--blue.section--padded.section--centred
 
 		.options.clearfix
 
-			.col-md-4
+			.col-md-4(data-ng-repeat="option in options.optionalCover")
 				.option
-					.recommended
+					.recommended(data-ng-if="recommended")
 						img(src="../../images/star-icon.png")
 						| recommended
 					.panel
 						.panel-heading
-							h3 24 hr breakdown assistance
+							h3 {{option.name}}
 						.panel-footer
-							img.option-icon(src="../../images/break-icon.png")
+							img.option-icon(data-ng-src="../../images/{{option.name | slugify}}-icon.png")
 							strong S$ 
-								span 156
-							button.btn.btn-default(type="button") Select
-
-			.col-md-4
-				.option
-					.recommended
-						img(src="../../images/star-icon.png")
-						| recommended
-					.panel
-						.panel-heading
-							h3 24 months new for old replacement car
-						.panel-footer
-							img.option-icon(src="../../images/car-icon4.png")
-							strong S$ 
-								span 156
-							button.btn.btn-default(type="button") Select
-
-			.col-md-4
-				.option
-					.panel
-						.panel-heading
-							h3 Car modifications
-						.panel-footer
-							img.option-icon(src="../../images/clock-icon.png")
-							strong S$ 
-								span 156
-							button.btn.btn-default(type="button") Select
-
-			.col-md-4
-				.option
-					.panel
-						.panel-heading
-							h3 My workshop/ garage
-						.panel-footer
-							img.option-icon(src="../../images/garage-icon.png")
-							strong S$ 
-								span 156
-							button.btn.btn-default(type="button") Select
-
-			.col-md-4
-				.option
-					.panel
-						.panel-heading
-							h3 Medical expenses
-						.panel-footer
-							img.option-icon(src="../../images/medical-icon.png")
-							strong S$ 
-								span 156
-							button.btn.btn-default(type="button") Select
-
-			.col-md-4
-				.option
-					.panel
-						.panel-heading
-							h3 Personal accident
-						.panel-footer
-							img.option-icon(src="../../images/accident-icon.png")
-							strong S$ 
-								span 156
-							button.btn.btn-default(type="button") Select
-
-			.col-md-4
-				.option
-					.panel
-						.panel-heading
-							h3 Loss of use
-						.panel-footer
-							img.option-icon(src="../../images/lost-of-use-icon2.png")
-							strong S$ 
-								span 156
-							button.btn.btn-default(type="button") Select
-
-			.col-md-4
-				.option
-					.panel
-						.panel-heading
-							h3 Repatriation costs
-						.panel-footer
-							img.option-icon(src="../../images/plane-icon.png")
-							strong S$ 
-								span 156
-							button.btn.btn-default(type="button") Select
+								span {{option.cost}}
+							button.btn.btn-default.btn-action(type="button", data-ng-click="selectOption(option)", ng-class="{'active':option.selected, 'done':option.selected}")
+								span.btn-action-default Select
+								span.btn-action-alt Selected
+								i.glyphicon.glyphicon-ok
 
 		.row
 			.col-md-12
 
-				button.btn.btn-continue(type="button")
+				button.btn.btn-continue(type="button", data-ng-click="continue()")
 					i.glyphicon.glyphicon-arrow-down
 					| No Thanks, Continue

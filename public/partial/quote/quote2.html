@@ -1,5 +1,5 @@
 
-<section id="quote1" class="container">
+<section id="quote1" data-ng-show="currentStep&gt;=1" class="container">
   <h1>Choose Your Car Insurance Plan</h1>
   <div class="panel">
     <div class="panel-header">
@@ -11,11 +11,9 @@
       <div class="plan">
         <div class="plan-left"><img src="../../images/car-icon3.png"/></div>
         <div class="plan-right">
-          <div class="plan-item"><strong>Car</strong><span data-ng-bind="data.car"></span>
-            <button type="button" class="btn btn-default btn-sm">Edit</button>
-          </div>
-          <div class="plan-item"><strong>Driver</strong><span data-ng-bind="data.driver"></span>
-            <button type="button" class="btn btn-default btn-sm">Edit</button>
+          <div class="plan-item"><strong>Car</strong><span data-ng-cloak="data-ng-cloak">{{plan.car.year}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.make}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.model}}</span><span data-ng-cloak="data-ng-cloak">{{plan.car.lowmileageoption ? ", Low Mileage" : "" }}</span><a href="../car/car.html" title="Edit car details" class="btn btn-default btn-sm margin--left">Edit</a></div>
+          <div class="plan-item"><strong>Driver</strong><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.gender}}, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.age}} years old, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.noClaimsDiscount}} NCD, </span>
+            <ng-pluralize data-ng-cloak="data-ng-cloak" count="plan.mainDriver.accidents.atFault" when="{'0':'0 at fault claims', '1': '1 at fault claim', 'other': '{} at fault claims'}"></ng-pluralize><a href="../about-your-driver/your-driver.html" title="Edit driver information" class="btn btn-default btn-sm margin--left">Edit</a>
           </div>
         </div>
       </div>
@@ -23,41 +21,27 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-10">
-          <h2><span data-ng-bind="selectedPlan.name"></span><img src="../../images/down-arrow.png"/></h2>
-          <h3>Recommended Optional Cover</h3>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="benefit"><img src="../../images/lost-of-use-icon.png" class="benefit-icon"/>
-                <div class="benefit-details">
-                  <h4><a data-ng-click="benefit1=!benefit1">Loss of use<img src="../../images/down-arrow.png" data-ng-show="!benefit1"/><img src="../../images/up-arrow.png" data-ng-show="benefit1"/></a></h4>
-                  <p data-ng-show="benefit1">S$50 to help you with transport costs while your car is being repaired</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="benefit"><img src="../../images/my-workshop-icon.png" class="benefit-icon"/>
-                <div class="benefit-details">
-                  <h4><a data-ng-click="benefit2=!benefit2">My Workshop<img src="../../images/down-arrow.png" data-ng-show="!benefit2"/><img src="../../images/up-arrow.png" data-ng-show="benefit2"/></a></h4>
-                  <p data-ng-show="benefit2">Gives you the freedom to select your own preferred workshop for an optional benefit</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="benefit"><img src="../../images/experienced-drivers-icon.png" class="benefit-icon"/>
-                <div class="benefit-details">
-                  <h4><a data-ng-click="benefit3=!benefit3">Experienced Drivers<img src="../../images/down-arrow.png" data-ng-show="!benefit3"/><img src="../../images/up-arrow.png" data-ng-show="benefit3"/></a></h4>
-                  <p data-ng-show="benefit3">Cover anyone over 30 with more than 2 years driving experience</p>
+          <h2><span data-ng-bind="plan.cover.name"></span><img src="../../images/down-arrow.png"/></h2>
+          <div data-ng-if="recommendedOptionalCover.length != 0">
+            <h3>Recommended Optional Cover</h3>
+            <div class="row">
+              <div data-ng-repeat="option in recommendedOptionalCover" class="col-md-4">
+                <div class="benefit"><img data-ng-src="../../images/{{option.name | slugify}}-icon.png" class="benefit-icon"/>
+                  <div class="benefit-details">
+                    <h4><a data-ng-click="showDescription=!showDescription" data-ng-cloak="data-ng-cloak">{{option.name}}<img src="../../images/down-arrow.png" data-ng-show="!showDescription"/><img src="../../images/up-arrow.png" data-ng-show="showDescription"/></a></h4>
+                    <p data-ng-show="showDescription" data-ng-cloak="data-ng-cloak">{{option.description}}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="col-md-2 align-right">
-          <h2>S$<span data-ng-bind="selectedPlan.baseCost"></span> /yr
-            <div class="subtitle">S$<span data-ng-bind="selectedPlan.baseCost / 12"></span> /mo</div>
+          <h2>S$<span data-ng-bind="plan.cover.baseCost"></span> /yr
+            <div class="subtitle">S$<span data-ng-bind="plan.cover.baseCost / 12"></span> /mo</div>
           </h2>
-          <h2 style="margin-top:10px;">S$<span>624</span> /yr
-            <div class="subtitle">S$<span>900</span> /yr</div>
+          <h2 style="margin-top:10px;">S$<span data-ng-bind="plan.totalCost"></span> /yr
+            <div class="subtitle">S$<span data-ng-bind="plan.totalCost / 12"></span> /mo</div>
             <div class="subtitle highlight">(10% off)</div>
           </h2>
         </div>
@@ -66,12 +50,12 @@
     <div class="panel-footer">
       <div class="row">
         <div class="col-md-5">
-          <button data-ng-click="" type="button" class="btn btn-default btn-lg btn-block btn-select-plan">Select Plan &amp; Modify<i class="glyphicon glyphicon-ok"></i></button>
-          <button data-ng-click="" type="button" class="btn btn-white btn-lg btn-block">or Build Plan Starting at S$<span data-ng-bind="selectedPlan.baseCost"></span><i class="glyphicon glyphicon-ok"></i></button>
+          <button data-ng-click="continue()" type="button" class="btn btn-default btn-lg btn-block btn-select-plan">Select Plan &amp; Modify<i class="glyphicon glyphicon-ok"></i></button>
+          <button data-ng-click="continue()" type="button" class="btn btn-white btn-lg btn-block">or Build Plan Starting at S$<span data-ng-bind="plan.cover.baseCost"></span><i class="glyphicon glyphicon-ok"></i></button>
         </div>
         <div class="col-md-7 align-right">
-          <div class="total">Total S$<span>1,356</span> /yr
-            <div class="subtitle">S$<span>113</span> /mo</div>
+          <div class="total">Total S$<span data-ng-bind="plan.totalCost"></span> /yr
+            <div class="subtitle">S$<span data-ng-bind="plan.totalCost / 12"></span> /mo</div>
           </div>
         </div>
       </div>

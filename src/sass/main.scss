@@ -14,12 +14,15 @@
 @import		"./modules/_headers.scss";
 @import		"./modules/_jumbotrons.scss";
 @import		"./modules/_navbars.scss";
-@import		"./modules/_onepage-pagination.scss";
 @import		"./modules/_options.scss";
 @import		"./modules/_panels.scss";
 @import		"./modules/_plan.scss";
 @import		"./modules/_popovers.scss";
 @import		"./modules/_sections.scss";
+@import		"./modules/_side-pagination.scss";
 @import		"./modules/_tooltips.scss";
+
+// Templates
+@import		"./templates/_quote.scss";
 
 // No styles here please :)

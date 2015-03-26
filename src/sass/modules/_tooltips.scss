@@ -1,12 +1,19 @@
 // Tooltip styles
 
 .tooltip-inner {
-	color:				$dark-grey-2;
-	background-color:	$yellow;
+	color:					$dark-grey-2;
+	background-color:		$yellow;
+	font-size:				1.2em;
 }
 
 .tooltip {
-	&.top .tooltip-arrow {
-		border-top-color: $yellow;
+
+	&.left .tooltip-arrow {
+		border-left-color: 	$yellow;
 	}
+
+	&.top .tooltip-arrow {
+		border-top-color: 	$yellow;
+	}
+
 }

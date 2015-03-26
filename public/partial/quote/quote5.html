@@ -1,5 +1,5 @@
 
-<section id="quote4" class="section section--blue section--padded section--centred">
+<section id="quote4" data-ng-show="currentStep&gt;=4" class="section section--blue section--padded section--centred">
   <div class="container"><img src="../../images/policy-icon.png"/>
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
@@ -8,61 +8,24 @@
         </h2>
       </div>
     </div>
-    <div class="excesses">
-      <div class="row">
-        <div class="col-md-2">
-          <div class="excess">
-            <label for="radio1" class="label-radio label--large">
-              <input id="radio1" type="radio" name="excess"/>
-              <div class="fake-radio"><span class="glyphicon glyphicon-ok"></span></div><span>S$ 500</span>
-            </label>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="excess">
-            <label for="radio2" class="label-radio label--large">
-              <input id="radio2" type="radio" name="excess"/>
-              <div class="fake-radio"><span class="glyphicon glyphicon-ok"></span></div><span>S$ 1,000</span>
-            </label>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="excess">
-            <label for="radio3" class="label-radio label--large">
-              <input id="radio3" type="radio" name="excess"/>
-              <div class="fake-radio"><span class="glyphicon glyphicon-ok"></span></div><span>S$ 2,000</span>
-            </label>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="excess">
-            <label for="radio4" class="label-radio label--large">
-              <input id="radio4" type="radio" name="excess"/>
-              <div class="fake-radio"><span class="glyphicon glyphicon-ok"></span></div><span>S$ 3,000</span>
-            </label>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="excess">
-            <label for="radio5" class="label-radio label--large">
-              <input id="radio5" type="radio" name="excess"/>
-              <div class="fake-radio"><span class="glyphicon glyphicon-ok"></span></div><span>S$ 4,000</span>
-            </label>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="excess">
-            <label for="radio6" class="label-radio label--large">
-              <input id="radio6" type="radio" name="excess"/>
-              <div class="fake-radio"><span class="glyphicon glyphicon-ok"></span></div><span>S$ 5,000</span>
-            </label>
-          </div>
-        </div>
+    <div style="margin-bottom:30px;" class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h3 class="recommended-excess">Recommended Excess:
+          <div data-ng-cloak="data-ng-cloak" class="price">S${{options.recommendedExcess | number: 0}}</div>
+        </h3>
       </div>
     </div>
-    <div class="row">
+    <div style="margin-bottom:30px;" class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <p>or</p>
+        <select id="excess" name="excess">
+          <option selecter="selecter" label="Choose your excess" value="{{excess}}" data-ng-repeat="excess in options.excesses" selecter-target="#excess" selecter-callback="select" property="plan.excess" ng-selected="plan.excess === selectedItem">{{excess}}</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin-bottom:30px;" class="row margin--top">
       <div class="col-md-12">
-        <button type="button" class="btn btn-continue"><i class="glyphicon glyphicon-arrow-down"></i>Continue</button>
+        <button type="button" data-ng-click="continue()" class="btn btn-continue"><i class="glyphicon glyphicon-arrow-down"></i>Continue</button>
       </div>
     </div>
   </div>

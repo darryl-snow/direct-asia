@@ -23,3 +23,16 @@
 	}
 
 }
+
+.recommended-excess {
+	color:				$white;
+	font-family:		"ProximaLight";
+	font-size:			1.8em;
+	font-weight:		300;
+
+	.price {
+		color:			$yellow;
+		font-size:		1.2em;
+		margin-top:		0.3em;
+	}
+}

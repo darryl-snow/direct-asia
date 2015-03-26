@@ -1,58 +1,58 @@
-section#quote2.section.section--blue.section--padded.section--centred.margin--top
+section#quote2.section.section--blue.section--padded.section--centred.margin--top(data-ng-show="currentStep>=2")
 
-	.container
+	.container.margin--top
 		img(src="../../images/cover-icon.png")
 		h2 Add Additional Driver
 
-		.panel.align-left
+		.panel.align-left(data-ng-repeat="driver in plan.additionalDrivers")
 			.panel-body
-				h3 Driver 1 -
+				h3(data-ng-cloak) Driver {{$index + 1}} -
 
-				.row(style="margin-bottom:30px;")
+				.row
 
-					.col-md-4
-						label.label--large(for="driver1-firstname") First Name
-						input#driver1-firstname.form-control(name="driver1-firstname", type="text", placeholder="enter first name")
+					.col-md-4.margin--top.margin--bottom
+						label.label--large(for="driver{{$index}}-firstname") First Name
+						input.form-control(id="driver{{$index}}-firstname", name="driver{{$index}}-firstname", type="text", placeholder="enter first name", data-ng-model="driver.firstName")
 
-					.col-md-4
-						label.label--large(for="driver1-lastname") Last Name
-						input#driver1-lastname.form-control(name="driver1-lastname", type="text", placeholder="enter last name")
+					.col-md-4.margin--top.margin--bottom
+						label.label--large(for="driver{{$index}}-lastname") Last Name
+						input.form-control(id="driver{{$index}}-lastname", name="driver{{$index}}-lastname", type="text", placeholder="enter last name", data-ng-model="driver.lastName")
 
-				.row(style="margin-bottom:30px;")
+				.row
 
-					.col-md-4
-						label.label--large(for="driver1-dob-day") Date of Birth
+					.col-md-4.margin--top.margin--bottom
+						label.label--large(for="driver{{$index}}-dob-day") Date of Birth
 						.form-inline
-							input#driver1-dob-day.day(min="1", max="31", name="driver1-dob-day", placeholder="DD", type="number")
-							input#driver1-dob-month.month(min="1", max="12", name="driver1-dob-month", placeholder="MM", type="number")
-							input#driver1-dob-year.year(min="1900", max="2015", name="driver1-dob-year", placeholder="YYYY", type="number")
+							input.day(id="driver{{$index}}-dob-day", min="1", max="31", name="driver{{$index}}-dob-day", placeholder="DD", type="number", data-ng-model="driver.dob.day")
+							input.month(id="driver{{$index}}-dob-month", min="1", max="12", name="driver{{$index}}-dob-month", placeholder="MM", type="number", data-ng-model="driver.dob.month")
+							input.year(id="driver{{$index}}-dob-year", min="1900", max="2015", name="driver{{$index}}-dob-year", placeholder="YYYY", type="number", data-ng-model="driver.dob.year")
 
-					.col-md-4
+					.col-md-4.margin--top.margin--bottom
 						label.label--large Gender
-						button.btn.btn-default.random-margin(type="button", ng-click="select('male', 0, 'gender')", ng-class="{'active':driver1.gender=='male'}") Male
+						button.btn.btn-default.random-margin(type="button", ng-click="driver.gender='Male'", ng-class="{'active':driver.gender=='Male'}") Male
 							span.glyphicon.glyphicon-ok
 
-						button.btn.btn-default(type="button", ng-click="select('female', 0, 'gender')", ng-class="{'active':driver1.gender=='female'}") Female
+						button.btn.btn-default(type="button", ng-click="driver.gender='Female'", ng-class="{'active':driver.gender=='Female'}") Female
 							span.glyphicon.glyphicon-ok
 
-				.row(style="margin-bottom:30px;")
+				.row
 
-					.col-md-4
+					.col-md-4.margin--top.margin--bottom
 						label.label--large Marital Status
-						button.btn.btn-default.random-margin(type="button", ng-click="select('single', 0, 'maritalstatus')", ng-class="{'active':driver1.maritalstatus=='single'}") Single
+						button.btn.btn-default.random-margin(type="button", ng-click="driver.maritalStatus = 'single'", ng-class="{'active':driver.maritalStatus=='single'}") Single
 							span.glyphicon.glyphicon-ok
 
-						button.btn.btn-default(type="button", ng-click="select('married', 0, 'maritalstatus')", ng-class="{'active':driver1.maritalstatus=='married'}") Married
+						button.btn.btn-default(type="button", ng-click="driver.maritalStatus = 'married'", ng-class="{'active':driver.maritalStatus=='married'}") Married
 							span.glyphicon.glyphicon-ok
 
-					.col-md-4
-						label.label--large(for="driver1-occupation") Occupation
-						input#driver1-occupation.form-control(name="driver1-occupation", type="text", placeholder="enter occupation")
+					.col-md-4.margin--top.margin--bottom
+						label.label--large(for="driver{{$index}}-occupation") Occupation
+						input.form-control(id="driver{{$index}}-occupation", name="driver{{$index}}-occupation", type="text", placeholder="enter occupation", data-ng-model="driver.occupation")
 
-				.row(style="margin-bottom:30px;")
+				.row
 
-					.col-md-7
-						label.label--large(for="experience") Years of valid driving
+					.col-md-7.margin--top.margin--bottom
+						label.label--large(for="driver{{$index}}-experience") Years of valid driving
 
 						.row
 							.col-md-9
@@ -60,12 +60,12 @@ section#quote2.section.section--blue.section--padded.section--centred.margin--to
 
 						.row
 							.col-md-6
-								select#experience(name="experience")
-									option(selecter, label="Select number of years", value="{{n}}", data-ng-repeat="n in [] | range:100", selecter-target="#experience", selecter-callback="select", property="experience", ng-selected="experience == selectedItem") {{n}}
+								select(id="driver{{$index}}-experience", name="driver{{$index}}-experience", data-ng-model="driver.drivingExperience")
+									option(selecter, label="Select number of years", value="{{n}}", data-ng-repeat="n in [] | range:100", selecter-target="#driver{{$parent.$index}}-experience", selecter-callback="select", property="experience", ng-selected="driver.drivingExperience == selectedItem") {{n}}
 
-				.row(style="margin-bottom:30px;")
+				.row
 
-					.col-md-7
+					.col-md-7.margin--top.margin--bottom
 						label.label--large Did the main driver have any driving offence points in the last 2 years?
 							img(src="../../images/question-icon.png")
 						p If you're unsure, 
@@ -74,34 +74,34 @@ section#quote2.section.section--blue.section--padded.section--centred.margin--to
 
 						.row
 							.col-md-12
-								button.btn.btn-default.random-margin(type="button", ng-click="select(true, 0, 'offences')", ng-class="{'active':driver1.offences}") Yes
+								button.btn.btn-default.random-margin(type="button", ng-click="driver.offences = true", ng-class="{'active':driver.offences}") Yes
 									span.glyphicon.glyphicon-ok
 
-								button.btn.btn-default(type="button", ng-click="select(false, 0, 'offences')", ng-class="{'active':driver1.offences==false}") No
+								button.btn.btn-default(type="button", ng-click="driver.offences = false", ng-class="{'active':driver.offences==false}") No
 									span.glyphicon.glyphicon-ok
 
-				.row(style="margin-bottom:30px;")
+				.row
 
-					.col-md-12
-						label.label--large(for="driver1-claims-at-fault") In the past 3 years (36 months), how many accidents and/or claims were made?
+					.col-md-12.margin--top.margin--bottom
+						label.label--large(for="driver{{$index}}-claims-at-fault") In the past 3 years (36 months), how many accidents and/or claims were made?
 							img(src="../../images/question-icon.png")
 						p Please include all accidents, but you can exclude windscreen claims.
 
 						.row
 
 							.col-md-3
-								input#driver1-claims-at-fault.claim(min="0", name="driver1-claims-at-fault", placeholder="0", type="number")
+								input.claim(id="driver{{$index}}-claims-at-fault", min="0", name="driver{{$index}}-claims-at-fault", placeholder="0", type="number", data-ng-model="driver.accidents.atFault")
 								| at fault
 
 							.col-md-3
-								input#driver1-claims-not-at-fault.claim(min="0", name="driver1-claims-not-at-fault", placeholder="0", type="number")
+								input.claim(id="driver{{$index}}-claims-not-at-fault", min="0", name="driver{{$index}}-claims-not-at-fault", placeholder="0", type="number", data-ng-model="driver.accidents.notAtFault")
 								| not at fault
 
-		.panel.align-left
+		.panel.align-left(style="margin-bottom:40px;")
 			.panel-body
-				button.btn.btn-continue(type="button") &plus; Add another driver
+				button.btn.btn-continue(type="button", data-ng-click="addAdditionalDriver()") &plus; Add another driver
 
 
-		button.btn.btn-continue(type="button")
+		button.btn.btn-continue(type="button", data-ng-click="continue()")
 			i.glyphicon.glyphicon-arrow-down
 			| Continue

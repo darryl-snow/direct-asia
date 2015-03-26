@@ -1,6 +1,6 @@
 //- Choose Your Car Insurance Plan
 
-section#quote1.container
+section#quote1.container(data-ng-show="currentStep>=1")
 
 	h1 Choose Your Car Insurance Plan
 
@@ -22,13 +22,19 @@ section#quote1.container
 
 					.plan-item
 						strong Car
-						span(data-ng-bind="data.car")
-						button.btn.btn-default.btn-sm(type="button") Edit
+						span(data-ng-cloak) {{plan.car.year}} 
+						span(data-ng-cloak) {{plan.car.make}} 
+						span(data-ng-cloak) {{plan.car.model}}
+						span(data-ng-cloak) {{plan.car.lowmileageoption ? ", Low Mileage" : "" }}
+						a.btn.btn-default.btn-sm.margin--left(href="../car/car.html", title="Edit car details") Edit
 
 					.plan-item
 						strong Driver
-						span(data-ng-bind="data.driver")
-						button.btn.btn-default.btn-sm(type="button") Edit
+						span(data-ng-cloak) {{plan.mainDriver.gender}}, 
+						span(data-ng-cloak) {{plan.mainDriver.age}} years old, 
+						span(data-ng-cloak) {{plan.mainDriver.noClaimsDiscount}} NCD, 
+						ng-pluralize(data-ng-cloak, count="plan.mainDriver.accidents.atFault", when="{'0':'0 at fault claims', '1': '1 at fault claim', 'other': '{} at fault claims'}")
+						a.btn.btn-default.btn-sm.margin--left(href="../about-your-driver/your-driver.html", title="Edit driver information") Edit
 
 		.panel-body
 
@@ -37,75 +43,57 @@ section#quote1.container
 				.col-md-10
 
 					h2
-						span(data-ng-bind="selectedPlan.name")
+						span(data-ng-bind="plan.cover.name")
 						img(src="../../images/down-arrow.png")
 
-					h3 Recommended Optional Cover
+					div(data-ng-if="recommendedOptionalCover.length != 0")
 
-					.row
-						.col-md-4
-							.benefit
-								img.benefit-icon(src="../../images/lost-of-use-icon.png")
-								.benefit-details
-									h4
-										a(data-ng-click="benefit1=!benefit1") Loss of use
-											img(src="../../images/down-arrow.png", data-ng-show="!benefit1")
-											img(src="../../images/up-arrow.png", data-ng-show="benefit1")
-									p(data-ng-show="benefit1") S$50 to help you with transport costs while your car is being repaired
+						h3 Recommended Optional Cover
 
-						.col-md-4
-							.benefit
-								img.benefit-icon(src="../../images/my-workshop-icon.png")
-								.benefit-details
-									h4
-										a(data-ng-click="benefit2=!benefit2") My Workshop
-											img(src="../../images/down-arrow.png", data-ng-show="!benefit2")
-											img(src="../../images/up-arrow.png", data-ng-show="benefit2")
-									p(data-ng-show="benefit2") Gives you the freedom to select your own preferred workshop for an optional benefit
-
-						.col-md-4
-							.benefit
-								img.benefit-icon(src="../../images/experienced-drivers-icon.png")
-								.benefit-details
-									h4
-										a(data-ng-click="benefit3=!benefit3") Experienced Drivers
-											img(src="../../images/down-arrow.png", data-ng-show="!benefit3")
-											img(src="../../images/up-arrow.png", data-ng-show="benefit3")
-									p(data-ng-show="benefit3") Cover anyone over 30 with more than 2 years driving experience
+						.row
+							.col-md-4(data-ng-repeat="option in recommendedOptionalCover")
+								.benefit
+									img.benefit-icon(data-ng-src="../../images/{{option.name | slugify}}-icon.png")
+									.benefit-details
+										h4
+											a(data-ng-click="showDescription=!showDescription", data-ng-cloak) {{option.name}}
+												img(src="../../images/down-arrow.png", data-ng-show="!showDescription")
+												img(src="../../images/up-arrow.png", data-ng-show="showDescription")
+										p(data-ng-show="showDescription", data-ng-cloak) {{option.description}}
 
 				.col-md-2.align-right
 
 					h2 S$
-						span(data-ng-bind="selectedPlan.baseCost")
+						span(data-ng-bind="plan.cover.baseCost")
 						|  /yr
 
 						.subtitle S$
-							span(data-ng-bind="selectedPlan.baseCost / 12")
+							span(data-ng-bind="plan.cover.baseCost / 12")
 							|  /mo
 
 					h2(style="margin-top:10px;") S$
-						span 624
+						span(data-ng-bind="plan.totalCost")
 						|  /yr
 
 						.subtitle S$
-							span 900
-							|  /yr
+							span(data-ng-bind="plan.totalCost / 12")
+							|  /mo
 						.subtitle.highlight (10% off)
 
 		.panel-footer
 
 			.row
 				.col-md-5
-					button.btn.btn-default.btn-lg.btn-block.btn-select-plan(data-ng-click="", type="button") Select Plan &amp; Modify
+					button.btn.btn-default.btn-lg.btn-block.btn-select-plan(data-ng-click="continue()", type="button") Select Plan &amp; Modify
 						i.glyphicon.glyphicon-ok
-					button.btn.btn-white.btn-lg.btn-block(data-ng-click="", type="button") or Build Plan Starting at S$
-						span(data-ng-bind="selectedPlan.baseCost")
+					button.btn.btn-white.btn-lg.btn-block(data-ng-click="continue()", type="button") or Build Plan Starting at S$
+						span(data-ng-bind="plan.cover.baseCost")
 						i.glyphicon.glyphicon-ok
 
 				.col-md-7.align-right
 					.total Total S$
-						span 1,356
+						span(data-ng-bind="plan.totalCost")
 						|  /yr
 						.subtitle S$
-							span 113
+							span(data-ng-bind="plan.totalCost / 12")
 							|  /mo

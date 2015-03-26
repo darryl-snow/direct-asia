@@ -1,0 +1,40 @@
+.side-pagination {
+	background:				$dark-grey-1;
+	list-style:				none;
+	position:				fixed;
+	padding:				0px;
+	right:					0;
+	top:					43%;
+	z-index:				10;
+
+	a {
+		border: 			2px solid #aaa;
+		border-radius: 		100%;
+		cursor: 			pointer;
+		display: 			block;
+		height: 			16px;
+		margin: 			8px;
+		width: 				16px;
+	}
+
+	li {
+		position: 			relative;
+	}
+
+	.active a {
+  		background: 		#aaa;
+		border: 			none;
+	}
+
+	.tooltip {
+		left:				auto !important;
+		margin-right:		25px;
+		right:				0;
+		min-width:			200px;
+	}
+
+	.tooltip-inner {
+		max-width: 			none;
+		width:				100%;
+	}
+}

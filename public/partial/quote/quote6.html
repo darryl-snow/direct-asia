@@ -1,13 +1,14 @@
 
-<section id="quote5" class="section section--padded">
+<section id="quote5" data-ng-show="currentStep&gt;=5" class="section section--padded">
   <div class="container">
-    <div class="panel margin--top">
+    <div class="panel panel-comparable margin--top">
       <div data-ng-class="{'compare':compare}" class="panel-header">
-        <h2 class="pull-left">Your Car Insurance Summary</h2>
+        <h2 class="pull-left margin--bottom">Your Car Insurance Summary</h2>
         <div class="price-summary clearfix">
-          <h2 class="align-right">Total S$1,356 /yr</h2>
-          <div class="subtitle align-right">S$113 /mo</div>
-          <div class="subtitle subtitle-secondary align-right">Savings S$167 /yr</div>
+          <h2 data-ng-cloak="data-ng-cloak" class="align-right">Total S${{plan.totalCost}} /yr
+            <div class="subtitle align-right">S${{plan.totalCost / 12}} /mo</div>
+            <div class="subtitle subtitle-secondary align-right">Savings S$167 /yr</div>
+          </h2>
           <label data-ng-show="compare" class="label-checkbox">
             <input id="selectCurrent" type="checkbox"/>
             <div class="fake-checkbox"><i class="glyphicon glyphicon-ok"></i></div>
@@ -20,16 +21,21 @@
           <div class="col-xs-5">
             <div class="row">
               <div class="col-md-3"><strong>Car</strong></div>
-              <div class="col-md-8">2010 Honda Civic, Low Mileage
-                <p data-ng-hide="!fulldetails">Modifications: Body Kit, Rims / Tires Air Intake/Exhaust Financed, Privately Owned, Low Mileage</p>
+              <div class="col-md-8"><span data-ng-cloak="data-ng-cloak">{{plan.car.year}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.make}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.model}}</span><span data-ng-cloak="data-ng-cloak">{{plan.car.lowmileageoption ? ", Low Mileage" : "" }}</span>
+                <div data-ng-hide="!fulldetails"><span data-ng-if="plan.car.modifications.bodykit || plan.car.modifications.rimstires || plan.car.modifications.airintakeexhaust || plan.car.modifications.suspensionstabiliser">Modifications:</span>
+                  <ul data-ng-if="plan.car.modifications.bodykit || plan.car.modifications.rimstires || plan.car.modifications.airintakeexhaust || plan.car.modifications.suspensionstabiliser">
+                    <li data-ng-cloak="data-ng-cloak" data-ng-if="plan.car.modifications.bodykit">Body Kit</li>
+                    <li data-ng-cloak="data-ng-cloak" data-ng-if="plan.car.modifications.rimstires">Rims/Tires</li>
+                    <li data-ng-cloak="data-ng-cloak" data-ng-if="plan.car.modifications.airintakeexhaust">Air Intake/Exhaust</li>
+                    <li data-ng-cloak="data-ng-cloak" data-ng-if="plan.car.modifications.suspensionstabiliser">Suspension Stabiliser</li>
+                  </ul><span data-ng-if="plan.car.financed">Financed </span><span data-ng-cloak="data-ng-cloak">{{plan.car.ownership == "private" ? "Privately Owned " : "" }}</span><span data-ng-cloak="data-ng-cloak">{{plan.car.lowmileageoption ? "Low Mileage " : "" }}</span>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-6">
-                <button type="button" class="btn btn-default">Edit</button>
-              </div>
+              <div class="col-md-6"><a href="../car/car.html" title="Edit car details" class="btn btn-default">Edit</a></div>
               <div class="col-md-6 align-right"></div>
             </div>
           </div>
@@ -39,17 +45,19 @@
           <div class="col-xs-5">
             <div class="row">
               <div class="col-md-3"><strong>Driver</strong></div>
-              <div class="col-md-8">Female, 37 years old, 30% NCD, Certificate of Merit, 1 at fault claim
-                <p data-ng-hide="!fulldetails">Certificate of Merit, 1 at fault claim</p>
-                <p data-ng-hide="!fulldetails">[Occupation],[Postal Code],[4] years valid driving license,</p>
+              <div class="col-md-8"><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.gender}}, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.age}} years old, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.noClaimsDiscount}} NCD, </span>
+                <p data-ng-hide="!fulldetails">
+                  <ng-pluralize data-ng-cloak="data-ng-cloak" count="plan.mainDriver.accidents.atFault" when="{'0':'0 at fault claims', '1': '1 at fault claim', 'other': '{} at fault claims'}"></ng-pluralize>
+                </p>
+                <p data-ng-hide="!fulldetails"><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.occupation}} </span>
+                  <ng-pluralize data-ng-cloak="data-ng-cloak" count="plan.mainDriver.drivingExperience" when="{'0':'0 years', '1': '1 year', 'other': '{} years'}"></ng-pluralize>
+                </p>
               </div>
             </div>
           </div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-6">
-                <button type="button" class="btn btn-default">Edit</button>
-              </div>
+              <div class="col-md-6"><a href="../about-your-driver/your-driver.html" title="Edit driver information" class="btn btn-default">Edit</a></div>
               <div class="col-md-6 align-right">S$45 /yr</div>
             </div>
           </div>
@@ -59,7 +67,7 @@
           <div class="col-xs-5">
             <div class="row">
               <div class="col-md-3"><strong>Policy</strong></div>
-              <div class="col-md-8">Comprehensive Premium, S$500 policy excess
+              <div class="col-md-8"><span data-ng-cloak="data-ng-cloak">{{plan.cover.name}}</span><span data-ng-cloak="data-ng-cloak" data-ng-show="plan.excess">, {{plan.excess}} policy excess</span>
                 <ul data-ng-hide="!fulldetails">
                   <li>Third Party - Death or Bodily Injury</li>
                   <li>Third Party - Property Damage</li>
@@ -75,9 +83,7 @@
           </div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-6">
-                <button type="button" class="btn btn-default">Edit</button>
-              </div>
+              <div class="col-md-6"><a href="" title="" class="btn btn-default">Edit</a></div>
               <div class="col-md-6 align-right">S$732 /yr</div>
             </div>
           </div>
@@ -87,16 +93,16 @@
           <div class="col-xs-5">
             <div class="row">
               <div class="col-md-3"><strong>Cover</strong></div>
-              <div class="col-md-8">Loss of use, My Workshop, Experienced Drivers
-                <p data-ng-hide="!fulldetails">S$50 to help you with transport costs while your car is being repaired</p>
+              <div class="col-md-8">
+                <ul>
+                  <li data-ng-repeat="option in plan.options" data-ng-cloak="data-ng-cloak">{{option.name}}<small data-ng-hide="!fulldetails" data-ng-cloak="data-ng-cloak">{{option.description}}</small></li>
+                </ul>
               </div>
             </div>
           </div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-6">
-                <button type="button" class="btn btn-default">Edit</button>
-              </div>
+              <div class="col-md-6"><a href="" title="" class="btn btn-default">Edit</a></div>
               <div class="col-md-6 align-right">S$235 /yr
                 <div><span class="strikethrough">S$261 /yr</span><span class="highlight"> (10% discount)</span></div>
               </div>
@@ -117,8 +123,8 @@
       <div data-ng-class="{active:compare}" class="panel-comparison">
         <div class="panel-body">
           <button type="button" data-ng-click="compare=!compare" class="btn btn-plain btn-medium btn-block">Compare Recommended Plan<img src="../../images/down-arrow.png"/></button>
-          <h2>Total S$1,356 /yr
-            <div class="subtitle">S$113 /mo</div>
+          <h2 data-ng-cloak="data-ng-cloak">Total S${{plan.totalCost}} /yr
+            <div class="subtitle">S${{plan.totalCost / 12}} /mo</div>
             <div class="subtitle subtitle-secondary">Savings S$167 /yr</div>
           </h2>
           <button type="button" class="btn btn-primary btn-sm pull-right">Select Plan</button>

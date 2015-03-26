@@ -1,4 +1,4 @@
-section.section.section--padded
+section.section.section--padded(data-ng-show="currentStep>=5")
 
 	.container
 
@@ -6,20 +6,20 @@ section.section.section--padded
 			.col-md-5
 				label.label--large(for="feedback") We'd like to know how you heard about us
 				select#feedback(selecter, name="feedback")
-					option(selecter, label="Select an option", value="{{option}}", data-ng-repeat="option in feedbackOptions", selecter-target="#feedback", selecter-callback="select", property="feedback", ng-selected="feedback == selectedItem") {{option}}
+					option(selecter, label="Select an option", value="{{option}}", data-ng-repeat="option in options.feedback", selecter-target="#feedback", selecter-callback="select", property="feedback", ng-selected="feedback == selectedItem") {{option}}
 
 		.row(style="margin-top:2em;")
 			.col-md-12
-				button.btn.btn-backward(type="button")
+				a.btn.btn-backward(href="", title="")
 					span.glyphicon.glyphicon-arrow-left
 					| Back
 
-				button.btn.btn-forward.btn-lg.pull-right(type="button") Proceed
+				a.btn.btn-forward.btn-lg.pull-right(href="", title="") Proceed
 					span.glyphicon.glyphicon-arrow-right
 
 		.row.margin--top
-			.col-md-2.col-md-offset-10
-				button.btn.btn-primary.btn-action.btn-block.btn-sm(type="button")
+			.col-md-3.col-md-offset-9
+				button.btn.btn-primary.btn-action.btn-block.btn-sm(type="button", data-ng-click="saveForLater()")
 					span.btn-action-default Save for later
 					span.btn-action-alt Saved!
 					span.glyphicon.glyphicon-ok
