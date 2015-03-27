@@ -1,3 +1,7 @@
+###
+This is a class for instantiating car objects, as used on the quote page
+###
+
 class Car
 
 	constructor: ->
@@ -15,6 +19,11 @@ class Car
 		@kmsperyear = null
 		@lowmileageoption = null
 		@usage = null
+
+###
+Using an Angular factory allows us to use dependency injection in the controller and instantiate
+objects from there
+###
 
 angular.module "DirectAsia"
 	.factory "Car", ->

@@ -35,8 +35,10 @@ gulp.task "lib", ->
 	# JavaScript
 
 	gulp.src [
-		Config.src + "lib/jquery/jquery.js",
+		Config.src + "lib/jquery/dist/jquery.js",
 		Config.src + "lib/angular/angular.js",
+		Config.src + "lib/angular-translate/angular-translate.js",
+		Config.src + "lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
 		Config.src + "lib/bootstrap/dist/js/bootstrap.js",
 		Config.src + "lib/Selecter/jquery.fs.selecter.js",
 		Config.src + "lib/fsm-sticky-header/src/fsm-sticky-header.js"
@@ -271,6 +273,9 @@ gulp.task "copy-files", ->
 	gulp.src Config.src + "images/*.xml"
 	.pipe gulp.dest Config.build + "images"
 
+	gulp.src Config.src + "content/**/*"
+	.pipe gulp.dest Config.build + "content"
+
 	# gulp.src Config.src + "sitemap.xml"
 	# .pipe gulp.dest Config.build
 
@@ -290,6 +295,7 @@ gulp.task "watch", ->
 	gulp.watch Config.src + "images/**/*.{jpg,png,gif,svg}", ["images"]
 	gulp.watch Config.src + "*", ["copy-files"]
 	gulp.watch Config.src + "images/favicons/*.xml", ["copy-files"]
+	gulp.watch Config.src + "content/**/*", ["copy-files"]
 
 # Run a test server
 

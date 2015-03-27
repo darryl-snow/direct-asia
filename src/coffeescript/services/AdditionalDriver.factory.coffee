@@ -1,3 +1,7 @@
+###
+This is a class for instantiating additional drivers, as used on the quote page
+###
+
 class AdditionalDriver
 
 	constructor: ->
@@ -16,6 +20,11 @@ class AdditionalDriver
 			atFault: null
 			notAtFault: null
 		@refusals = null
+
+###
+Using an Angular factory allows us to use dependency injection in the controller and instantiate
+objects from there
+###
 
 angular.module "DirectAsia"
 	.factory "AdditionalDriver", ->

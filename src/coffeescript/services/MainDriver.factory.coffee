@@ -1,3 +1,7 @@
+###
+This is a class for instantiating main drivers, as used on the quote page
+###
+
 class MainDriver
 
 	constructor: ->
@@ -19,6 +23,11 @@ class MainDriver
 			atFault: null
 			notAtFault: null
 		@additionalDrivers = null
+
+###
+Using an Angular factory allows us to use dependency injection in the controller and instantiate
+objects from there
+###
 
 angular.module "DirectAsia"
 	.factory "MainDriver", ->

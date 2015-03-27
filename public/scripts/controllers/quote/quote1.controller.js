@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Mar 27 2015 15:47:48 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Fri Mar 27 2015 18:17:51 GMT+0800 (CST) */
 var getMockData,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 

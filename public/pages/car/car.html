@@ -205,6 +205,12 @@
         </div>
       </section>
     </div>
+    <footer class="page-footer">
+      <div class="container">
+        <button ng-click="switchLanguage('zh_CN')" data-ng-show="currentLanguage=='en_GB'" class="btn btn-sm btn-icon btn-icon--chinese pull-right">Chinese</button>
+        <button ng-click="switchLanguage('en_GB')" data-ng-show="currentLanguage=='zh_CN'" class="btn btn-sm btn-icon btn-icon--english pull-right">English</button>
+      </div>
+    </footer>
     <script>
       //- function loadCSS(e,t,n){"use strict";var i=window.document.createElement("link");var o=t||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";o.parentNode.insertBefore(i,o);setTimeout(function(){i.media=n||"all"})}
       //- loadCSS("styles/main.css");
