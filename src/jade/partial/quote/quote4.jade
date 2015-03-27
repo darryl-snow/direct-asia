@@ -11,7 +11,7 @@ section#quote3.section.section--blue.section--padded.section--centred(data-ng-sh
 
 			.col-md-4(data-ng-repeat="option in options.optionalCover")
 				.option
-					.recommended(data-ng-if="recommended")
+					.recommended(data-ng-if="option.recommended")
 						img(src="../../images/star-icon.png")
 						| recommended
 					.panel
@@ -29,6 +29,6 @@ section#quote3.section.section--blue.section--padded.section--centred(data-ng-sh
 		.row
 			.col-md-12
 
-				button.btn.btn-continue(type="button", data-ng-click="continue()")
+				a.btn.btn-continue.internal-link(href="#quote4", title="", data-ng-click="continue(4)")
 					i.glyphicon.glyphicon-arrow-down
 					| No Thanks, Continue

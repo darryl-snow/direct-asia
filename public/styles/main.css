@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Thu Mar 26 2015 23:27:08 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Fri Mar 27 2015 14:15:46 GMT+0800 (CST) */
 @font-face {
   font-family: Proxima;
   src: url("../fonts/ProximaNova/ProximaNova-Regular.otf") format("opentype"); }
@@ -114,6 +114,12 @@ h1 img, h2 img {
 .inline-image {
   display: inline-block;
   vertical-align: middle; }
+
+.alert {
+  margin-top: 1em; }
+
+.alert-danger {
+  color: #ffffff; }
 
 .benefit-icon {
   float: left;
@@ -361,6 +367,8 @@ h1 img, h2 img {
 
 input[type="text"], input[type="number"] {
   padding: 6px 10px; }
+  input[type="text"].ng-invalid:not(.ng-pristine), input[type="number"].ng-invalid:not(.ng-pristine) {
+    border: 1px solid #d52b1e; }
 
 input[type="checkbox"], input[type="radio"] {
   display: none; }

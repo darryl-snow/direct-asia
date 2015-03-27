@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Thu Mar 26 2015 23:46:15 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Fri Mar 27 2015 15:47:48 GMT+0800 (CST) */
 var getMockData,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -100,7 +100,28 @@ getMockData = function() {
       usage: "personal use"
     },
     selectedCover: "comprehensive",
-    recommendedExcess: 2000
+    recommendedPlan: {
+      cover: {
+        name: "Comprehensive",
+        baseCost: 732
+      },
+      options: [
+        {
+          name: "Loss of use",
+          description: "S$50 to help you with transport costs while your car is being repaired",
+          cost: 156
+        }, {
+          name: "My workshop/ garage",
+          description: "Gives you the freedom to select your own preferred workshop for an optional benefit",
+          cost: 156
+        }, {
+          name: "Experienced Drivers",
+          description: "Cover anyone over 30 with more than 2 years driving experience",
+          cost: 156
+        }
+      ],
+      excess: 2000
+    }
   };
 };
 
@@ -114,17 +135,17 @@ is the $scope.quote variable.
 
 angular.module("DirectAsia").controller("QuoteCtrl", [
   "$scope", "$http", "InsurancePlan", "MainDriver", "Car", "AdditionalDriver", function($scope, $http, InsurancePlan, MainDriver, Car, AdditionalDriver) {
-    var calculateTotalCost, getDataFromAPI, setupData;
+    var calculateTotalCost, getDataFromAPI, selectRecommendedOptions, setupData;
     $scope.plan = new InsurancePlan();
+    $scope.recommendedPlan = new InsurancePlan();
+    $scope.savedPlan = new InsurancePlan();
     $scope.feedback = "";
     $scope.options = {
       coverPlans: [],
       excesses: [],
       feedback: [],
-      optionalCover: [],
-      recommendedExcess: null
+      optionalCover: []
     };
-    $scope.recommendedOptionalCover = [];
     $scope.currentStep = 1;
     getDataFromAPI = function() {
       var dataFromAPI;
@@ -137,15 +158,11 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       return dataFromAPI;
     };
     setupData = function(data) {
-      var car, mainDriver;
+      var car, i, mainDriver, matched, option, _i, _len, _ref;
       $scope.options.coverPlans = data.coverPlans;
       $scope.options.excesses = data.excesses;
       $scope.options.feedback = data.feedback;
       $scope.options.optionalCover = data.optionalCover;
-      $scope.options.recommendedExcess = data.recommendedExcess;
-      $scope.recommendedOptionalCover[0] = $scope.options.optionalCover[0];
-      $scope.recommendedOptionalCover[1] = $scope.options.optionalCover[1];
-      $scope.recommendedOptionalCover[2] = $scope.options.optionalCover[2];
       mainDriver = new MainDriver;
       mainDriver.ownership = data.mainDriver.ownership;
       mainDriver.dob = {
@@ -187,14 +204,33 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       $scope.plan.mainDriver = mainDriver;
       $scope.plan.additionalDrivers.push(new AdditionalDriver);
       $scope.plan.cover = $scope.options.coverPlans[data.selectedCover];
-      return $scope.plan.totalCost = $scope.plan.cover.baseCost;
+      $scope.recommendedPlan.car = $scope.plan.car;
+      $scope.recommendedPlan.driver = $scope.plan.driver;
+      $scope.recommendedPlan.cover = data.recommendedPlan.cover;
+      $scope.recommendedPlan.options = data.recommendedPlan.options;
+      $scope.recommendedPlan.excess = data.recommendedPlan.excess;
+      _ref = $scope.options.optionalCover;
+      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+        option = _ref[i];
+        matched = $scope.recommendedPlan.options.filter(function(recommendedOption) {
+          return recommendedOption.name === option.name;
+        });
+        if (matched.length) {
+          option.recommended = true;
+        }
+      }
+      calculateTotalCost($scope.plan);
+      return calculateTotalCost($scope.recommendedPlan);
     };
-    setupData(getMockData());
     $scope["continue"] = function() {
       return $scope.currentStep++;
     };
     $scope.addAdditionalDriver = function() {
       return $scope.plan.additionalDrivers.push(new AdditionalDriver);
+    };
+    $scope.selectPlan = function(cover) {
+      $scope.plan.cover = cover;
+      return calculateTotalCost();
     };
     $scope.selectOption = function(option) {
       option.selected = !option.selected;
@@ -206,23 +242,61 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
           return selectedOption !== option;
         });
       }
-      return calculateTotalCost();
+      return calculateTotalCost($scope.plan);
     };
-    calculateTotalCost = function() {
+    $scope.calculateOptionsCost = function(plan) {
       var option, optionsCost, _i, _len, _ref;
       optionsCost = 0;
-      _ref = $scope.plan.options;
+      _ref = plan.options;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         option = _ref[_i];
         optionsCost += option.cost;
       }
-      return $scope.plan.totalCost = $scope.plan.cover.baseCost + optionsCost;
+      return optionsCost;
+    };
+    calculateTotalCost = function(plan) {
+      return plan.totalCost = plan.cover.baseCost + $scope.calculateOptionsCost(plan);
     };
     $scope.saveForLater = function() {
       return console.table($scope.plan);
     };
-    return $scope.select = function(value, index, property) {
+    $scope.select = function(value, index, property) {
       return eval("$scope." + property + "='" + value + "'");
     };
+    selectRecommendedOptions = function() {
+      var matched, option, _i, _len, _ref, _results;
+      _ref = $scope.options.optionalCover;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        option = _ref[_i];
+        option.selected = false;
+        matched = $scope.recommendedPlan.options.filter(function(recommendedOption) {
+          return recommendedOption.name === option.name;
+        });
+        if (matched.length) {
+          _results.push($scope.selectOption(option));
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    };
+    $scope.selectPlanAndModify = function() {
+      selectRecommendedOptions();
+      return $scope["continue"](2);
+    };
+    $scope.useRecommendedPlan = function() {
+      $scope.savedPlan = $scope.plan;
+      $scope.plan.cover = $scope.recommendedPlan.cover;
+      $scope.plan.options = $scope.recommendedPlan.options;
+      selectRecommendedOptions();
+      $scope.plan.excess = $scope.recommendedPlan.excess;
+      $scope.plan.totalCost = $scope.recommendedPlan.totalCost;
+      return $scope.compare = false;
+    };
+    $scope.revertToPreviousPlan = function() {
+      return $scope.plan = $scope.savedPlan;
+    };
+    return setupData(getMockData());
   }
 ]);

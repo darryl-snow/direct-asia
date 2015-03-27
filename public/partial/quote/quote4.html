@@ -7,7 +7,7 @@
     <div class="options clearfix">
       <div data-ng-repeat="option in options.optionalCover" class="col-md-4">
         <div class="option">
-          <div data-ng-if="recommended" class="recommended"><img src="../../images/star-icon.png"/>recommended</div>
+          <div data-ng-if="option.recommended" class="recommended"><img src="../../images/star-icon.png"/>recommended</div>
           <div class="panel">
             <div class="panel-heading">
               <h3>{{option.name}}</h3>
@@ -20,9 +20,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
-        <button type="button" data-ng-click="continue()" class="btn btn-continue"><i class="glyphicon glyphicon-arrow-down"></i>No Thanks, Continue</button>
-      </div>
+      <div class="col-md-12"><a href="#quote4" title="" data-ng-click="continue(4)" class="btn btn-continue internal-link"><i class="glyphicon glyphicon-arrow-down"></i>No Thanks, Continue</a></div>
     </div>
   </div>
 </section>

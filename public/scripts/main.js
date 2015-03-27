@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Thu Mar 26 2015 23:46:15 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Fri Mar 27 2015 15:47:48 GMT+0800 (CST) */
 
 /*
 Lovely welcome message

@@ -6,102 +6,108 @@ section#quote2.section.section--blue.section--padded.section--centred.margin--to
 
 		.panel.align-left(data-ng-repeat="driver in plan.additionalDrivers")
 			.panel-body
-				h3(data-ng-cloak) Driver {{$index + 1}} -
 
-				.row
+				form(name="driver{{$index}}form", novalidate)
 
-					.col-md-4.margin--top.margin--bottom
-						label.label--large(for="driver{{$index}}-firstname") First Name
-						input.form-control(id="driver{{$index}}-firstname", name="driver{{$index}}-firstname", type="text", placeholder="enter first name", data-ng-model="driver.firstName")
+					h3(data-ng-cloak) Driver {{$index + 1}} -
 
-					.col-md-4.margin--top.margin--bottom
-						label.label--large(for="driver{{$index}}-lastname") Last Name
-						input.form-control(id="driver{{$index}}-lastname", name="driver{{$index}}-lastname", type="text", placeholder="enter last name", data-ng-model="driver.lastName")
+					.row
 
-				.row
+						.col-md-4.margin--top.margin--bottom
+							label.label--large(for="driver{{$index}}firstname") First Name
+							input.form-control(id="driver{{$index}}firstname", name="driver{{$index}}firstname", type="text", placeholder="enter first name", data-ng-model="driver.firstName", required)
+							.alert.alert-danger(data-ng-show="driver{{$index}}form.driver{{$index}}firstname.$invalid && !driver{{$index}}form.driver{{$index}}firstname.$pristine") Please enter a first name
 
-					.col-md-4.margin--top.margin--bottom
-						label.label--large(for="driver{{$index}}-dob-day") Date of Birth
-						.form-inline
-							input.day(id="driver{{$index}}-dob-day", min="1", max="31", name="driver{{$index}}-dob-day", placeholder="DD", type="number", data-ng-model="driver.dob.day")
-							input.month(id="driver{{$index}}-dob-month", min="1", max="12", name="driver{{$index}}-dob-month", placeholder="MM", type="number", data-ng-model="driver.dob.month")
-							input.year(id="driver{{$index}}-dob-year", min="1900", max="2015", name="driver{{$index}}-dob-year", placeholder="YYYY", type="number", data-ng-model="driver.dob.year")
+						.col-md-4.margin--top.margin--bottom
+							label.label--large(for="driver{{$index}}lastname") Last Name
+							input.form-control(id="driver{{$index}}lastname", name="driver{{$index}}lastname", type="text", placeholder="enter last name", data-ng-model="driver.lastName", required)
+							.alert.alert-danger(data-ng-show="driver{{$index}}form.driver{{$index}}lastname.$invalid && !driver{{$index}}form.driver{{$index}}lastname.$pristine") Please enter a last name
 
-					.col-md-4.margin--top.margin--bottom
-						label.label--large Gender
-						button.btn.btn-default.random-margin(type="button", ng-click="driver.gender='Male'", ng-class="{'active':driver.gender=='Male'}") Male
-							span.glyphicon.glyphicon-ok
+					.row
 
-						button.btn.btn-default(type="button", ng-click="driver.gender='Female'", ng-class="{'active':driver.gender=='Female'}") Female
-							span.glyphicon.glyphicon-ok
+						.col-md-4.margin--top.margin--bottom
+							label.label--large(for="driver{{$index}}dob-day") Date of Birth
+							.form-inline
+								input.day(id="driver{{$index}}dob_day", min="1", max="31", name="driver{{$index}}dob_day", placeholder="DD", type="number", data-ng-model="driver.dob.day", required)
+								input.month(id="driver{{$index}}dob_month", min="1", max="12", name="driver{{$index}}dob_month", placeholder="MM", type="number", data-ng-model="driver.dob.month", required)
+								input.year(id="driver{{$index}}dob_year", min="1900", max="2015", name="driver{{$index}}dob_year", placeholder="YYYY", type="number", data-ng-model="driver.dob.year", required)
+							.alert.alert-danger(data-ng-show="(driver{{$index}}form.driver{{$index}}dob_day.$invalid && !driver{{$index}}form.driver{{$index}}dob_day.$pristine) || (driver{{$index}}form.driver{{$index}}dob_month.$invalid && !driver{{$index}}form.driver{{$index}}dob_month.$pristine) || (driver{{$index}}form.driver{{$index}}dob_year.$invalid && !driver{{$index}}form.driver{{$index}}dob_year.$pristine)") Please enter a valid Date of Birth
 
-				.row
+						.col-md-4.margin--top.margin--bottom
+							label.label--large Gender
+							button.btn.btn-default.random-margin(type="button", ng-click="driver.gender='Male'", ng-class="{'active':driver.gender=='Male'}") Male
+								span.glyphicon.glyphicon-ok
 
-					.col-md-4.margin--top.margin--bottom
-						label.label--large Marital Status
-						button.btn.btn-default.random-margin(type="button", ng-click="driver.maritalStatus = 'single'", ng-class="{'active':driver.maritalStatus=='single'}") Single
-							span.glyphicon.glyphicon-ok
+							button.btn.btn-default(type="button", ng-click="driver.gender='Female'", ng-class="{'active':driver.gender=='Female'}") Female
+								span.glyphicon.glyphicon-ok
 
-						button.btn.btn-default(type="button", ng-click="driver.maritalStatus = 'married'", ng-class="{'active':driver.maritalStatus=='married'}") Married
-							span.glyphicon.glyphicon-ok
+					.row
 
-					.col-md-4.margin--top.margin--bottom
-						label.label--large(for="driver{{$index}}-occupation") Occupation
-						input.form-control(id="driver{{$index}}-occupation", name="driver{{$index}}-occupation", type="text", placeholder="enter occupation", data-ng-model="driver.occupation")
+						.col-md-4.margin--top.margin--bottom
+							label.label--large Marital Status
+							button.btn.btn-default.random-margin(type="button", ng-click="driver.maritalStatus = 'single'", ng-class="{'active':driver.maritalStatus=='single'}") Single
+								span.glyphicon.glyphicon-ok
 
-				.row
+							button.btn.btn-default(type="button", ng-click="driver.maritalStatus = 'married'", ng-class="{'active':driver.maritalStatus=='married'}") Married
+								span.glyphicon.glyphicon-ok
 
-					.col-md-7.margin--top.margin--bottom
-						label.label--large(for="driver{{$index}}-experience") Years of valid driving
+						.col-md-4.margin--top.margin--bottom
+							label.label--large(for="driver{{$index}}occupation") Occupation
+							input.form-control(id="driver{{$index}}occupation", name="driver{{$index}}occupation", type="text", placeholder="enter occupation", data-ng-model="driver.occupation")
 
-						.row
-							.col-md-9
-								p We are unable to insure drivers who've had their license suspended or cancelled in the last 5 years.
+					.row
 
-						.row
-							.col-md-6
-								select(id="driver{{$index}}-experience", name="driver{{$index}}-experience", data-ng-model="driver.drivingExperience")
-									option(selecter, label="Select number of years", value="{{n}}", data-ng-repeat="n in [] | range:100", selecter-target="#driver{{$parent.$index}}-experience", selecter-callback="select", property="experience", ng-selected="driver.drivingExperience == selectedItem") {{n}}
+						.col-md-7.margin--top.margin--bottom
+							label.label--large(for="driver{{$index}}experience") Years of valid driving
 
-				.row
+							.row
+								.col-md-9
+									p We are unable to insure drivers who've had their license suspended or cancelled in the last 5 years.
 
-					.col-md-7.margin--top.margin--bottom
-						label.label--large Did the main driver have any driving offence points in the last 2 years?
-							img(src="../../images/question-icon.png")
-						p If you're unsure, 
-							a(href="", title="") click here
-							|  to get this information. Please note that drivers must have less than 12 offence points.
+							.row
+								.col-md-6
+									select(id="driver{{$index}}experience", name="driver{{$index}}experience", data-ng-model="driver.drivingExperience")
+										option(selecter, label="Select number of years", value="{{n}}", data-ng-repeat="n in [] | range:100", selecter-target="#driver{{$parent.$index}}experience", selecter-callback="select", property="experience", ng-selected="driver.drivingExperience == selectedItem") {{n}}
 
-						.row
-							.col-md-12
-								button.btn.btn-default.random-margin(type="button", ng-click="driver.offences = true", ng-class="{'active':driver.offences}") Yes
-									span.glyphicon.glyphicon-ok
+					.row
 
-								button.btn.btn-default(type="button", ng-click="driver.offences = false", ng-class="{'active':driver.offences==false}") No
-									span.glyphicon.glyphicon-ok
+						.col-md-7.margin--top.margin--bottom
+							label.label--large Did the main driver have any driving offence points in the last 2 years?
+								img(src="../../images/question-icon.png")
+							p If you're unsure, 
+								a(href="", title="") click here
+								|  to get this information. Please note that drivers must have less than 12 offence points.
 
-				.row
+							.row
+								.col-md-12
+									button.btn.btn-default.random-margin(type="button", ng-click="driver.offences = true", ng-class="{'active':driver.offences}") Yes
+										span.glyphicon.glyphicon-ok
 
-					.col-md-12.margin--top.margin--bottom
-						label.label--large(for="driver{{$index}}-claims-at-fault") In the past 3 years (36 months), how many accidents and/or claims were made?
-							img(src="../../images/question-icon.png")
-						p Please include all accidents, but you can exclude windscreen claims.
+									button.btn.btn-default(type="button", ng-click="driver.offences = false", ng-class="{'active':driver.offences==false}") No
+										span.glyphicon.glyphicon-ok
 
-						.row
+					.row
 
-							.col-md-3
-								input.claim(id="driver{{$index}}-claims-at-fault", min="0", name="driver{{$index}}-claims-at-fault", placeholder="0", type="number", data-ng-model="driver.accidents.atFault")
-								| at fault
+						.col-md-12.margin--top.margin--bottom
+							label.label--large(for="driver{{$index}}claims-at-fault") In the past 3 years (36 months), how many accidents and/or claims were made?
+								img(src="../../images/question-icon.png")
+							p Please include all accidents, but you can exclude windscreen claims.
 
-							.col-md-3
-								input.claim(id="driver{{$index}}-claims-not-at-fault", min="0", name="driver{{$index}}-claims-not-at-fault", placeholder="0", type="number", data-ng-model="driver.accidents.notAtFault")
-								| not at fault
+							.row
+
+								.col-md-3
+									input.claim(id="driver{{$index}}claims-at-fault", min="0", name="driver{{$index}}claims-at-fault", placeholder="0", type="number", data-ng-model="driver.accidents.atFault")
+									| at fault
+
+								.col-md-3
+									input.claim(id="driver{{$index}}claims-not-at-fault", min="0", name="driver{{$index}}claims-not-at-fault", placeholder="0", type="number", data-ng-model="driver.accidents.notAtFault")
+									| not at fault
 
 		.panel.align-left(style="margin-bottom:40px;")
 			.panel-body
 				button.btn.btn-continue(type="button", data-ng-click="addAdditionalDriver()") &plus; Add another driver
 
 
-		button.btn.btn-continue(type="button", data-ng-click="continue()")
+		a.btn.btn-continue.internal-link(href="#quote3", title="", data-ng-click="continue(3)")
 			i.glyphicon.glyphicon-arrow-down
 			| Continue

@@ -102,7 +102,25 @@ getMockData = ->
 			lowmileageoption: true
 			usage: "personal use"
 		selectedCover: "comprehensive"
-		recommendedExcess: 2000
+		recommendedPlan:
+			cover:
+				name: "Comprehensive"
+				baseCost: 732
+			options: [
+				name: "Loss of use"
+				description: "S$50 to help you with transport costs while your car is being repaired"
+				cost: 156
+			,
+				name: "My workshop/ garage"
+				description: "Gives you the freedom to select your own preferred
+				 workshop for an optional benefit"
+				cost: 156
+			,
+				name: "Experienced Drivers"
+				description: "Cover anyone over 30 with more than 2 years driving experience"
+				cost: 156
+			]
+			excess: 2000
 
 
 ###
@@ -118,6 +136,8 @@ angular.module "DirectAsia"
 		($scope, $http, InsurancePlan, MainDriver, Car, AdditionalDriver) ->
 
 			$scope.plan = new InsurancePlan()
+			$scope.recommendedPlan = new InsurancePlan()
+			$scope.savedPlan = new InsurancePlan()
 
 			$scope.feedback = ""
 
@@ -126,9 +146,6 @@ angular.module "DirectAsia"
 				excesses: []
 				feedback: []
 				optionalCover: []
-				recommendedExcess: null
-
-			$scope.recommendedOptionalCover = []
 
 			$scope.currentStep = 1
 
@@ -154,12 +171,6 @@ angular.module "DirectAsia"
 				$scope.options.excesses = data.excesses
 				$scope.options.feedback = data.feedback
 				$scope.options.optionalCover = data.optionalCover
-				$scope.options.recommendedExcess = data.recommendedExcess
-
-				# set recommended optional cover
-				$scope.recommendedOptionalCover[0] = $scope.options.optionalCover[0]
-				$scope.recommendedOptionalCover[1] = $scope.options.optionalCover[1]
-				$scope.recommendedOptionalCover[2] = $scope.options.optionalCover[2]
 
 				# get details about main driver
 
@@ -201,17 +212,31 @@ angular.module "DirectAsia"
 				car.lowmileageoption = data.car.lowmileageoption
 				car.usage = data.car.usage
 
-				# save info for this plan
+				# save info for selected plan
 
 				$scope.plan.car = car
 				$scope.plan.mainDriver = mainDriver
 				$scope.plan.additionalDrivers.push new AdditionalDriver
 				$scope.plan.cover = $scope.options.coverPlans[data.selectedCover]
 
-				$scope.plan.totalCost = $scope.plan.cover.baseCost
+				# save info for recommended plan
 
-			# setupData getDataFromAPI()
-			setupData getMockData()
+				$scope.recommendedPlan.car = $scope.plan.car
+				$scope.recommendedPlan.driver = $scope.plan.driver
+				$scope.recommendedPlan.cover = data.recommendedPlan.cover
+				$scope.recommendedPlan.options = data.recommendedPlan.options
+				$scope.recommendedPlan.excess = data.recommendedPlan.excess
+
+				for option, i in $scope.options.optionalCover
+
+					matched = $scope.recommendedPlan.options.filter (recommendedOption) ->
+					 recommendedOption.name is option.name
+
+					if matched.length then option.recommended = true
+
+
+				calculateTotalCost $scope.plan
+				calculateTotalCost $scope.recommendedPlan
 
 			$scope.continue = ->
 				$scope.currentStep++
@@ -219,7 +244,15 @@ angular.module "DirectAsia"
 				# scroll down? - put in directive
 
 			$scope.addAdditionalDriver = ->
+				# if $scope.plan.additionalDrivers[0].firstname
+				# 	$scope.plan.additionalDrivers.push new AdditionalDriver
+
 				$scope.plan.additionalDrivers.push new AdditionalDriver
+
+			$scope.selectPlan = (cover) ->
+
+				$scope.plan.cover = cover
+				calculateTotalCost()
 
 			$scope.selectOption = (option) ->
 				option.selected = !option.selected
@@ -231,26 +264,61 @@ angular.module "DirectAsia"
 					$scope.plan.options = $scope.plan.options.filter (selectedOption) ->
 					 selectedOption isnt option
 
-				calculateTotalCost()
+				calculateTotalCost $scope.plan
 
-			calculateTotalCost = ->
+			$scope.calculateOptionsCost = (plan) ->
 
 				optionsCost = 0
 
-				for option in $scope.plan.options
+				for option in plan.options
 					optionsCost += option.cost
 
-				$scope.plan.totalCost = $scope.plan.cover.baseCost + optionsCost
+				optionsCost
+
+			calculateTotalCost = (plan) ->
+
+				plan.totalCost = plan.cover.baseCost + $scope.calculateOptionsCost(plan)
 
 			$scope.saveForLater = ->
 				# send data to server
 				console.table $scope.plan
 
-
 			$scope.select = (value, index, property) ->
 				eval "$scope." + property + "='" + value + "'"
 
-			# $scope.selectPlan = (plan) ->
-			# 	$scope.selectedPlan = plan
+			selectRecommendedOptions = ->
+
+				for option in $scope.options.optionalCover
+
+					option.selected = false
+
+					matched = $scope.recommendedPlan.options.filter (recommendedOption) ->
+					 recommendedOption.name is option.name
+
+					if matched.length then $scope.selectOption option
+
+			$scope.selectPlanAndModify = ->
+
+				selectRecommendedOptions()
+
+				$scope.continue(2)
+
+			$scope.useRecommendedPlan = ->
+
+				$scope.savedPlan = $scope.plan
+				$scope.plan.cover = $scope.recommendedPlan.cover
+				$scope.plan.options = $scope.recommendedPlan.options
+				selectRecommendedOptions()
+				$scope.plan.excess = $scope.recommendedPlan.excess
+				$scope.plan.totalCost = $scope.recommendedPlan.totalCost
+
+				$scope.compare = false
+
+			$scope.revertToPreviousPlan = ->
+
+				$scope.plan = $scope.savedPlan
+
+			# setupData getDataFromAPI()
+			setupData getMockData()
 
 	]

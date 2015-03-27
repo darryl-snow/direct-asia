@@ -7,15 +7,15 @@ section.section.section-quote(ng-controller="QuoteCtrl")
 
 	ul.side-pagination(role="tablist")
 		li(data-ng-class="{'active':currentStep>=1}")
-			a(href="#quote1", data-toggle="tooltip", data-placement="left", title="Select Car Insurance Plan")
+			a.internal-link(href="#quote1", data-toggle="tooltip", data-placement="left", title="Select Car Insurance Plan")
 		li(data-ng-class="{'active':currentStep>=2}")
-			a(href="#quote2", data-toggle="tooltip", data-placement="left", title="Add Additional Drivers")
+			a.internal-link(href="#quote2", data-toggle="tooltip", data-placement="left", title="Add Additional Drivers")
 		li(data-ng-class="{'active':currentStep>=3}")
-			a(href="#quote3", data-toggle="tooltip", data-placement="left", title="Customise Optional Coverage")
+			a.internal-link(href="#quote3", data-toggle="tooltip", data-placement="left", title="Customise Optional Coverage")
 		li(data-ng-class="{'active':currentStep>=4}")
-			a(href="#quote4", data-toggle="tooltip", data-placement="left", title="Select Policy Excess")
+			a.internal-link(href="#quote4", data-toggle="tooltip", data-placement="left", title="Select Policy Excess")
 		li(data-ng-class="{'active':currentStep>=5}")
-			a(href="#quote5", data-toggle="tooltip", data-placement="left", title="See Your Car Insurance Summary")
+			a.internal-link(href="#quote5", data-toggle="tooltip", data-placement="left", title="See Your Car Insurance Summary")
 
 	.navbar-da(fsm-sticky-header, scroll-body="'.section-quote'", scroll-stop="0")
 		.container
@@ -62,8 +62,10 @@ section.section.section-quote(ng-controller="QuoteCtrl")
 	include quote7
 
 	script.
-		$(".side-pagination a").on("click", function(e) {
+		$(".internal-link").on("click", function(e) {
 			e.preventDefault();
-			$("html, body").animate({scrollTop: $($(e.target).attr("href")).offset().top - 100});
+			setTimeout(function() {
+				$("html, body").animate({scrollTop: $($(e.target).attr("href")).offset().top - 100});
+			}, 200);
 		});
 		$('[data-toggle="tooltip"]').tooltip();

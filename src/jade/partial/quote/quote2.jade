@@ -46,12 +46,12 @@ section#quote1.container(data-ng-show="currentStep>=1")
 						span(data-ng-bind="plan.cover.name")
 						img(src="../../images/down-arrow.png")
 
-					div(data-ng-if="recommendedOptionalCover.length != 0")
+					div(data-ng-if="recommendedPlan.options.length != 0")
 
 						h3 Recommended Optional Cover
 
 						.row
-							.col-md-4(data-ng-repeat="option in recommendedOptionalCover")
+							.col-md-4(data-ng-repeat="option in recommendedPlan.options")
 								.benefit
 									img.benefit-icon(data-ng-src="../../images/{{option.name | slugify}}-icon.png")
 									.benefit-details
@@ -84,9 +84,9 @@ section#quote1.container(data-ng-show="currentStep>=1")
 
 			.row
 				.col-md-5
-					button.btn.btn-default.btn-lg.btn-block.btn-select-plan(data-ng-click="continue()", type="button") Select Plan &amp; Modify
+					a.btn.btn-default.btn-lg.btn-block.btn-select-plan.internal-link(data-ng-click="selectPlanAndModify()", href="#quote2", title="") Select Plan &amp; Modify
 						i.glyphicon.glyphicon-ok
-					button.btn.btn-white.btn-lg.btn-block(data-ng-click="continue()", type="button") or Build Plan Starting at S$
+					a.btn.btn-white.btn-lg.btn-block.internal-link(data-ng-click="continue(2)", href="#quote2", title="") or Build Plan Starting at S$
 						span(data-ng-bind="plan.cover.baseCost")
 						i.glyphicon.glyphicon-ok
 

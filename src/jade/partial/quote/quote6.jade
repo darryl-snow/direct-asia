@@ -110,7 +110,9 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 							.col-md-6
 								a.btn.btn-default(href="", title="") Edit
 
-							.col-md-6.align-right S$732 /yr
+							.col-md-6.align-right S$
+								span(data-ng-cloak) {{plan.cover.baseCost}}
+								|  /yr
 
 				.row
 					.col-xs-2
@@ -133,7 +135,9 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 							.col-md-6
 								a.btn.btn-default(href="", title="") Edit
 
-							.col-md-6.align-right S$235 /yr
+							.col-md-6.align-right S$
+								span(data-ng-cloak) {{calculateOptionsCost(plan)}}
+								|  /yr
 								div
 									span.strikethrough S$261 /yr
 									span.highlight  (10% discount)
@@ -159,17 +163,15 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 					button.btn.btn-plain.btn-medium.btn-block(type="button", data-ng-click="compare=!compare") Compare Recommended Plan
 						img(src="../../images/down-arrow.png")
 
-					h2(data-ng-cloak) Total S${{plan.totalCost}} /yr
-						.subtitle S${{plan.totalCost / 12}} /mo
+					h2(data-ng-cloak) Total S${{recommendedPlan.totalCost}} /yr
+						.subtitle S${{recommendedPlan.totalCost / 12}} /mo
 						.subtitle.subtitle-secondary Savings S$167 /yr
 
-					button.btn.btn-primary.btn-sm.pull-right(type="button") Select Plan
+					button.btn.btn-primary.btn-sm.pull-right(type="button", data-ng-click="useRecommendedPlan()") Select Plan
 
 					ul
-						li Comprehensive Premium
-							.subtitle S$113 /yr
-						li Loss of use, My Workshop, Experienced Drivers
-							.subtitle S$113 /yr
-							.subtitle S$500 /yr
-						li Use In-Car Camera, Go Paperless
-							.subtitle S$113 /yr
+						li(data-ng-cloak) {{recommendedPlan.cover.name}}
+							.subtitle S${{recommendedPlan.cover.baseCost}} /yr
+						li
+							span(data-ng-repeat="option in recommendedPlan.options", data-ng-cloak) {{option.name}} 
+							.subtitle(data-ng-repeat="option in recommendedPlan.options", data-ng-cloak) S${{option.cost}} /yr

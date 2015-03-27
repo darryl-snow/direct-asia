@@ -22,10 +22,10 @@
       <div class="row">
         <div class="col-md-10">
           <h2><span data-ng-bind="plan.cover.name"></span><img src="../../images/down-arrow.png"/></h2>
-          <div data-ng-if="recommendedOptionalCover.length != 0">
+          <div data-ng-if="recommendedPlan.options.length != 0">
             <h3>Recommended Optional Cover</h3>
             <div class="row">
-              <div data-ng-repeat="option in recommendedOptionalCover" class="col-md-4">
+              <div data-ng-repeat="option in recommendedPlan.options" class="col-md-4">
                 <div class="benefit"><img data-ng-src="../../images/{{option.name | slugify}}-icon.png" class="benefit-icon"/>
                   <div class="benefit-details">
                     <h4><a data-ng-click="showDescription=!showDescription" data-ng-cloak="data-ng-cloak">{{option.name}}<img src="../../images/down-arrow.png" data-ng-show="!showDescription"/><img src="../../images/up-arrow.png" data-ng-show="showDescription"/></a></h4>
@@ -49,10 +49,7 @@
     </div>
     <div class="panel-footer">
       <div class="row">
-        <div class="col-md-5">
-          <button data-ng-click="continue()" type="button" class="btn btn-default btn-lg btn-block btn-select-plan">Select Plan &amp; Modify<i class="glyphicon glyphicon-ok"></i></button>
-          <button data-ng-click="continue()" type="button" class="btn btn-white btn-lg btn-block">or Build Plan Starting at S$<span data-ng-bind="plan.cover.baseCost"></span><i class="glyphicon glyphicon-ok"></i></button>
-        </div>
+        <div class="col-md-5"><a data-ng-click="selectPlanAndModify()" href="#quote2" title="" class="btn btn-default btn-lg btn-block btn-select-plan internal-link">Select Plan &amp; Modify<i class="glyphicon glyphicon-ok"></i></a><a data-ng-click="continue(2)" href="#quote2" title="" class="btn btn-white btn-lg btn-block internal-link">or Build Plan Starting at S$<span data-ng-bind="plan.cover.baseCost"></span><i class="glyphicon glyphicon-ok"></i></a></div>
         <div class="col-md-7 align-right">
           <div class="total">Total S$<span data-ng-bind="plan.totalCost"></span> /yr
             <div class="subtitle">S$<span data-ng-bind="plan.totalCost / 12"></span> /mo</div>
