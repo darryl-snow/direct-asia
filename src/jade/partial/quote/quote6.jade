@@ -6,11 +6,18 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 
 			.panel-header(data-ng-class="{'compare':compare}")
 
-				h2.pull-left.margin--bottom Your Car Insurance Summary
+				h2.pull-left.margin--bottom(translate="PS_4_8a") Your Car Insurance Summary
 				.price-summary.clearfix
-					h2.align-right(data-ng-cloak) Total S${{plan.totalCost}} /yr
-						.subtitle.align-right S${{plan.totalCost / 12}} /mo
-						.subtitle.subtitle-secondary.align-right Savings S$167 /yr
+					h2.align-right(data-ng-cloak)
+						span(translate="PC_4_8a_1") Total 
+						| S${{plan.totalCost}}
+						span(translate="PC_4_8_1_2_2") /yr
+						.subtitle.align-right S${{plan.totalCost / 12}}
+						span(translate="PC_4_8_3_4") /mo
+						.subtitle.subtitle-secondary.align-right
+							span(translate="PC_4_8a_2") Savings
+							| S$167
+							span(translate="PC_4_8_1_2_2") /yr
 
 					label.label-checkbox(data-ng-show="compare")
 						input#selectCurrent(type="checkbox")
@@ -27,7 +34,7 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 
 						.row
 							.col-md-3
-								strong Car
+								strong(translate="PC_4_8_1_1a") Car
 
 							.col-md-8
 								span(data-ng-cloak) {{plan.car.year}} 
@@ -49,7 +56,7 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 
 						.row
 							.col-md-6
-								a.btn.btn-default(href="../car/car.html", title="Edit car details") Edit
+								a.btn.btn-default(href="../car/car.html", title="Edit car details", translate="PC_4_8_1_1b") Edit
 
 							.col-md-6.align-right
 
@@ -61,7 +68,7 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 
 						.row
 							.col-md-3
-								strong Driver
+								strong(translate="PC_4_8_1_2") Driver
 
 							.col-md-8
 								span(data-ng-cloak) {{plan.mainDriver.gender}}, 
@@ -77,9 +84,10 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 
 						.row
 							.col-md-6
-								a.btn.btn-default(href="../about-your-driver/your-driver.html", title="Edit driver information") Edit
+								a.btn.btn-default(href="../about-your-driver/your-driver.html", title="Edit driver information", translate="PC_4_8_1_2_1") Edit
 
-							.col-md-6.align-right S$45 /yr
+							.col-md-6.align-right S$45
+								span(translate="PC_4_8_1_2_2") /yr
 
 				.row(style="margin-bottom:2em;")
 					.col-xs-2
@@ -89,11 +97,12 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 
 						.row
 							.col-md-3
-								strong Policy
+								strong(translate="PC_4_8_1_3_1") Policy
 
 							.col-md-8
 								span(data-ng-cloak) {{plan.cover.name}}
-								span(data-ng-cloak, data-ng-show="plan.excess") , {{plan.excess}} policy excess
+								span(data-ng-cloak, data-ng-show="plan.excess") , {{plan.excess}}
+								span(translate="PC_4_8_1_3_2") policy excess
 								ul(data-ng-hide="!fulldetails")
 									li Third Party - Death or Bodily Injury
 									li Third Party - Property Damage
@@ -108,11 +117,11 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 
 						.row
 							.col-md-6
-								a.btn.btn-default(href="", title="") Edit
+								a.btn.btn-default(href="", title="", translate="PC_4_8_1_3_3") Edit
 
 							.col-md-6.align-right S$
 								span(data-ng-cloak) {{plan.cover.baseCost}}
-								|  /yr
+								span(translate="PC_4_8_1_3_4") /yr
 
 				.row
 					.col-xs-2
@@ -122,7 +131,7 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 
 						.row
 							.col-md-3
-								strong Cover
+								strong(translate="PC_4_8_1_5_1") Cover
 
 							.col-md-8
 								ul
@@ -133,14 +142,17 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 
 						.row
 							.col-md-6
-								a.btn.btn-default(href="", title="") Edit
+								a.btn.btn-default(href="", title="", translate="PC_4_8_1_5_2") Edit
 
 							.col-md-6.align-right S$
 								span(data-ng-cloak) {{calculateOptionsCost(plan)}}
-								|  /yr
+								span(translate="PC_4_8_1_5_3") /yr
 								div
-									span.strikethrough S$261 /yr
-									span.highlight  (10% discount)
+									span.strikethrough S$261
+									span(translate="PC_4_8_1_5_3") /yr
+									span.highlight  (10% 
+									span(translate="PC_4_8_1_5_4") discount
+									| )
 
 			.panel-footer
 
@@ -148,9 +160,9 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 
 					.col-md-7
 						button.btn.btn-plain.btn-large.btn-block(type="button", data-ng-click="fulldetails=!fulldetails")
-							span(data-ng-hide="fulldetails") Review Full Details
+							span(data-ng-hide="fulldetails", translate="PC_4_8_2_1") Review Full Details
 							img(src="../../images/down-arrow.png", data-ng-hide="fulldetails")
-							span(data-ng-hide="!fulldetails") See Summary
+							span(data-ng-hide="!fulldetails", translate="PC_4_8_2_2") See Summary
 							img(src="../../images/up-arrow.png", data-ng-hide="!fulldetails")
 
 					.col-md-5
@@ -160,18 +172,28 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 			.panel-comparison(data-ng-class="{active:compare}")
 				.panel-body
 
-					button.btn.btn-plain.btn-medium.btn-block(type="button", data-ng-click="compare=!compare") Compare Recommended Plan
+					button.btn.btn-plain.btn-medium.btn-block(type="button", data-ng-click="compare=!compare")
+						span(translate="PC_4_8_3_1") Compare Recommended Plan
 						img(src="../../images/down-arrow.png")
 
-					h2(data-ng-cloak) Total S${{recommendedPlan.totalCost}} /yr
-						.subtitle S${{recommendedPlan.totalCost / 12}} /mo
-						.subtitle.subtitle-secondary Savings S$167 /yr
+					h2(data-ng-cloak)
+						span(translate="PC_4_8_3_2") Total 
+						| S${{recommendedPlan.totalCost}}
+						span(translate="PC_4_8_3_3") /yr
+						.subtitle S${{recommendedPlan.totalCost / 12}}
+							span(translate="PC_4_8_3_4") /mo
+						.subtitle.subtitle-secondary
+							span(translate="PC_4_8_3_5") Savings
+							| S$167
+							span(translate="PC_4_8_3_3") /yr
 
-					button.btn.btn-primary.btn-sm.pull-right(type="button", data-ng-click="useRecommendedPlan()") Select Plan
+					button.btn.btn-primary.btn-sm.pull-right(type="button", data-ng-click="useRecommendedPlan()", translate="PC_4_8_3_6") Select Plan
 
 					ul
 						li(data-ng-cloak) {{recommendedPlan.cover.name}}
-							.subtitle S${{recommendedPlan.cover.baseCost}} /yr
+							.subtitle S${{recommendedPlan.cover.baseCost}}
+								span(translate="PC_4_8_3_3") /yr
 						li
 							span(data-ng-repeat="option in recommendedPlan.options", data-ng-cloak) {{option.name}} 
-							.subtitle(data-ng-repeat="option in recommendedPlan.options", data-ng-cloak) S${{option.cost}} /yr
+							.subtitle(data-ng-repeat="option in recommendedPlan.options", data-ng-cloak) S${{option.cost}}
+								span(translate="PC_4_8_3_3") /yr

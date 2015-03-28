@@ -2,25 +2,25 @@
 <script src="../../scripts/controllers/sos/sos1.controller.js"></script>
 <section ng-controller="SOSCtrl" class="section section-sos">
   <div class="jumbotron jumbotron--black">
-    <h1>You Need SOS Car Insurance:<br>Comprehensive Cover for Up to 4 Drivers</h1>
-    <p>Based on your details, you can get cover through our SOS Car Insurance. This cover provides comprehensive cover for a main driver and up to 2 additional drivers.</p>
+    <h1 translate="PS_3_A_0_1">You Need SOS Car Insurance:<br>Comprehensive Cover for Up to 4 Drivers</h1>
+    <p translate="PS_3_A_0_2">Based on your details, you can get cover through our SOS Car Insurance. This cover provides comprehensive cover for a main driver and up to 2 additional drivers.</p>
   </div>
   <div class="panel">
     <div class="panel-body">
-      <h1><img src="../../images/person-icon.png" class="pull-left"/>Tell us more about the main driver
-        <div class="subtitle">Please provide your drivers' details below or give us a call at <strong>666 55555 </strong>to finish your quote.</div>
+      <h1><img src="../../images/person-icon.png" class="pull-left"/><span translate="PS_3_A_1_1">Tell us more about the main driver</span>
+        <div translate="PS_3_A_1_2" class="subtitle">Please provide your drivers' details below or give us a call at <strong>666 55555 </strong>to finish your quote.</div>
       </h1>
     </div>
     <div class="panel-footer">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="margin--bottom">Insurance Coverage</h3>
-          <p>You said the main driver has had a valid driving license for <strong ng-bind="maindriver.yearslicensed"></strong> years.</p>
+          <h3 translate="PS_3_A_1_3" class="margin--bottom">Insurance Coverage</h3>
+          <p><span translate="PS_3_A_1_4">You said the main driver has had a valid driving license for </span><strong ng-bind="maindriver.yearslicensed"></strong><span translate="PS_3_A_1_5">years.</span></p>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <h3 class="margin--bottom">How many of those years included cover from a car insurance policy?</h3>
+          <h3 translate="PS_3_A_1_6" class="margin--bottom">How many of those years included cover from a car insurance policy?</h3>
         </div>
       </div>
       <div class="row">
@@ -32,7 +32,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <h3 class="margin--bottom">Roughly how many kilometers do you drive per year?</h3>
+          <h3 translate="PS_3_A_1_7" class="margin--bottom">Roughly how many kilometers do you drive per year?</h3>
         </div>
       </div>
       <div class="row">
@@ -53,21 +53,21 @@
   </div>
   <div class="container">
     <div class="container-fluid">
-      <h2 class="margin--bottom"><img src="../../images/car-icon2.png" class="inline-image"/>Claims History</h2>
-      <p>You indicated ["How many accidents and/or claims were made in the past 36 months (3 years)?"<br>on 3.0 Driver] accidents and/or claimes were made in the past 36 months (3 years).</p>
-      <h4>Please share the details of the claims you declared.</h4>
+      <h2 class="margin--bottom"><img src="../../images/car-icon2.png" class="inline-image"/><span translate="PS_3_A_2_1">Claims History</span></h2>
+      <p translate="PS_3_A_2_2">You indicated ["How many accidents and/or claims were made in the past 36 months (3 years)?"<br>on 3.0 Driver] accidents and/or claimes were made in the past 36 months (3 years).</p>
+      <h4 translate="PS_3_A_2_3">Please share the details of the claims you declared.</h4>
     </div>
   </div>
   <div ng-repeat="claim in maindriver.claims" class="panel">
     <div class="panel-body">
       <div class="row">
         <div class="col-md-2">
-          <h2>Claim <span data-ng-bind="claim.number"></span></h2>
+          <h2><span translate="PS_3_A_2_4">Claim </span><span data-ng-bind="claim.number"></span></h2>
         </div>
         <div class="col-md-10"><span data-ng-bind="claim.day"> </span><span data-ng-bind="claim.month"></span><span data-ng-bind="claim.year"></span><span data-ng-bind="claim.nature"></span>
           <div class="buttons pull-right">
-            <button type="button" class="btn btn-default btn-sm">Edit</button>
-            <button type="button" class="btn btn-danger btn-sm">Remove</button>
+            <button type="button" translate="PS_3_A_2_5" class="btn btn-default btn-sm">Edit</button>
+            <button type="button" translate="PS_3_A_2_6" class="btn btn-danger btn-sm">Remove</button>
           </div>
         </div>
       </div>
@@ -75,10 +75,10 @@
   </div>
   <div class="panel">
     <div class="panel-body">
-      <h2 class="margin--bottom">Claim 2</h2>
+      <h2 class="margin--bottom"><span translate="PS_3_A_2_4">Claim</span>2</h2>
       <div class="row margin--bottom">
         <div class="col-md-6">
-          <label for="day2">Date of Accident</label>
+          <label for="day2" translate="PS_3_A_2_7">Date of Accident</label>
           <div class="form-inline">
             <input id="day2" ng-model="maindriver.claims[1].day" placeholder="DD" type="number" min="1" max="31" class="day"/>
             <input ng-model="maindriver.claims[1].month" placeholder="MM" type="number" min="1" max="12" class="month"/>
@@ -86,7 +86,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <label for="natureofclaim">Nature of Claim</label>
+          <label for="natureofclaim" translate="PS_3_A_2_8">Nature of Claim</label>
           <select id="natureofclaim" name="natureofclaim">
             <option selecter="selecter" label="Select" value="{{nature}}" data-ng-repeat="nature in natures" selecter-target="#natureofclaim" selecter-callback="select" property="maindriver.claims[1].nature" ng-selected="maindriver.claims[1].nature == selectedItem">{{nature}}</option>
           </select>
@@ -94,9 +94,9 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <label class="block">Was the vehicle you wish to insure involved in the accident?</label>
-          <button type="button" ng-click="select(true, 0, 'maindriver.claims[1].vehicleInvoled')" ng-class="{'active':car.maindriver.claims[1].vehicleInvoled}" class="btn btn-default random-margin">Yes<span class="glyphicon glyphicon-ok"></span></button>
-          <button type="button" ng-click="select(false, 0, 'maindriver.claims[1].vehicleInvoled')" ng-class="{'active':car.maindriver.claims[1].vehicleInvoled==false}" class="btn btn-default">No<span class="glyphicon glyphicon-ok"></span></button>
+          <label translate="PS_3_A_2_9" class="block">Was the vehicle you wish to insure involved in the accident?</label>
+          <button type="button" ng-click="select(true, 0, 'maindriver.claims[1].vehicleInvoled')" ng-class="{'active':car.maindriver.claims[1].vehicleInvoled}" class="btn btn-default random-margin"><span translate="PS_3_A_2_10">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+          <button type="button" ng-click="select(false, 0, 'maindriver.claims[1].vehicleInvoled')" ng-class="{'active':car.maindriver.claims[1].vehicleInvoled==false}" class="btn btn-default"><span translate="PS_3_A_2_11">No</span><span class="glyphicon glyphicon-ok"></span></button>
         </div>
       </div>
     </div>

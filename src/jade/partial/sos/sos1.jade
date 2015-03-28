@@ -6,16 +6,16 @@ script(src="../../scripts/controllers/sos/sos1.controller.js")
 section.section.section-sos(ng-controller="SOSCtrl")
 
 	.jumbotron.jumbotron--black
-		h1 You Need SOS Car Insurance:<br>Comprehensive Cover for Up to 4 Drivers
-		p Based on your details, you can get cover through our SOS Car Insurance. This cover provides comprehensive cover for a main driver and up to 2 additional drivers.
+		h1(translate="PS_3_A_0_1") You Need SOS Car Insurance:<br>Comprehensive Cover for Up to 4 Drivers
+		p(translate="PS_3_A_0_2") Based on your details, you can get cover through our SOS Car Insurance. This cover provides comprehensive cover for a main driver and up to 2 additional drivers.
 
 	.panel
 		.panel-body
 
 			h1
 				img.pull-left(src="../../images/person-icon.png")
-				| Tell us more about the main driver
-				.subtitle Please provide your drivers' details below or give us a call at 
+				span(translate="PS_3_A_1_1") Tell us more about the main driver
+				.subtitle(translate="PS_3_A_1_2") Please provide your drivers' details below or give us a call at 
 					strong 666 55555 
 					| to finish your quote.
 
@@ -23,15 +23,16 @@ section.section.section-sos(ng-controller="SOSCtrl")
 			.row
 				.col-md-12
 
-					h3.margin--bottom Insurance Coverage
+					h3.margin--bottom(translate="PS_3_A_1_3") Insurance Coverage
 
-					p You said the main driver has had a valid driving license for 
+					p
+						span(translate="PS_3_A_1_4") You said the main driver has had a valid driving license for 
 						strong(ng-bind="maindriver.yearslicensed")
-						|  years.
+						span(translate="PS_3_A_1_5") years.
 			.row
 				.col-md-12
 
-					h3.margin--bottom How many of those years included cover from a car insurance policy?
+					h3.margin--bottom(translate="PS_3_A_1_6") How many of those years included cover from a car insurance policy?
 
 			.row
 				.col-md-3
@@ -41,7 +42,7 @@ section.section.section-sos(ng-controller="SOSCtrl")
 			.row
 				.col-md-12
 
-					h3.margin--bottom Roughly how many kilometers do you drive per year?
+					h3.margin--bottom(translate="PS_3_A_1_7") Roughly how many kilometers do you drive per year?
 
 			.row
 				.col-md-2
@@ -64,16 +65,17 @@ section.section.section-sos(ng-controller="SOSCtrl")
 		.container-fluid
 			h2.margin--bottom
 				img.inline-image(src="../../images/car-icon2.png")
-				| Claims History
-			p You indicated ["How many accidents and/or claims were made in the past 36 months (3 years)?"<br>on 3.0 Driver] accidents and/or claimes were made in the past 36 months (3 years).
+				span(translate="PS_3_A_2_1") Claims History
+			p(translate="PS_3_A_2_2") You indicated ["How many accidents and/or claims were made in the past 36 months (3 years)?"<br>on 3.0 Driver] accidents and/or claimes were made in the past 36 months (3 years).
 
-			h4 Please share the details of the claims you declared.
+			h4(translate="PS_3_A_2_3") Please share the details of the claims you declared.
 
 	.panel(ng-repeat="claim in maindriver.claims")
 		.panel-body
 			.row
 				.col-md-2
-					h2 Claim 
+					h2
+						span(translate="PS_3_A_2_4") Claim 
 						span(data-ng-bind="claim.number")
 				.col-md-10
 					span(data-ng-bind="claim.day") 
@@ -81,29 +83,33 @@ section.section.section-sos(ng-controller="SOSCtrl")
 					span(data-ng-bind="claim.year")
 					span(data-ng-bind="claim.nature")
 					.buttons.pull-right
-						button.btn.btn-default.btn-sm(type="button") Edit
-						button.btn.btn-danger.btn-sm(type="button") Remove
+						button.btn.btn-default.btn-sm(type="button", translate="PS_3_A_2_5") Edit
+						button.btn.btn-danger.btn-sm(type="button", translate="PS_3_A_2_6") Remove
 
 	.panel
 		.panel-body
-			h2.margin--bottom Claim 2
+			h2.margin--bottom
+				span(translate="PS_3_A_2_4") Claim
+				| 2
 			.row.margin--bottom
 				.col-md-6
-					label(for="day2") Date of Accident
+					label(for="day2", translate="PS_3_A_2_7") Date of Accident
 					.form-inline
 						input#day2.day(ng-model="maindriver.claims[1].day", placeholder="DD", type="number", min="1", max="31")
 						input.month(ng-model="maindriver.claims[1].month", placeholder="MM", type="number", min="1", max="12")
 						input.year(ng-model="maindriver.claims[1].year", placeholder="YYYY", type="number", min="1900", max="2015")
 				.col-md-4
-					label(for="natureofclaim") Nature of Claim
+					label(for="natureofclaim", translate="PS_3_A_2_8") Nature of Claim
 					select#natureofclaim(name="natureofclaim")
 						option(selecter, label="Select", value="{{nature}}", data-ng-repeat="nature in natures", selecter-target="#natureofclaim", selecter-callback="select", property="maindriver.claims[1].nature", ng-selected="maindriver.claims[1].nature == selectedItem") {{nature}}
 			.row
 				.col-md-12
-					label.block Was the vehicle you wish to insure involved in the accident?
+					label.block(translate="PS_3_A_2_9") Was the vehicle you wish to insure involved in the accident?
 
-					button.btn.btn-default.random-margin(type="button", ng-click="select(true, 0, 'maindriver.claims[1].vehicleInvoled')", ng-class="{'active':car.maindriver.claims[1].vehicleInvoled}") Yes
+					button.btn.btn-default.random-margin(type="button", ng-click="select(true, 0, 'maindriver.claims[1].vehicleInvoled')", ng-class="{'active':car.maindriver.claims[1].vehicleInvoled}")
+						span(translate="PS_3_A_2_10") Yes
 						span.glyphicon.glyphicon-ok
 
-					button.btn.btn-default(type="button", ng-click="select(false, 0, 'maindriver.claims[1].vehicleInvoled')", ng-class="{'active':car.maindriver.claims[1].vehicleInvoled==false}") No
+					button.btn.btn-default(type="button", ng-click="select(false, 0, 'maindriver.claims[1].vehicleInvoled')", ng-class="{'active':car.maindriver.claims[1].vehicleInvoled==false}")
+						span(translate="PS_3_A_2_11") No
 						span.glyphicon.glyphicon-ok

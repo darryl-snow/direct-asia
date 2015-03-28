@@ -15,6 +15,7 @@
 
         <link rel="stylesheet" href="../../lib/lib.css">
         <link rel="stylesheet" href="../../styles/main.css">
+        <link rel="stylesheet" href="../../styles/custom.css">
         <!--if lt IE 9
         script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
         
@@ -40,27 +41,64 @@
         <script src="../../scripts/directives.js"></script>
 
     </head> 
-    <body ng-controller="qouteController" style="position: absolute; height: 100%; width: 100%;">
-        <div class="container">
+    <body style="position: absolute; height: 100%; width: 100%;">
+        <div class="need-help" ng-controller="helpController">
+            <button type="button" class="popover-button btn btn-primary btn-action btn-sm" translate="GS_0_0_2a">Need Help?</button>
+            <div id="popover" class="popover left help-div">
+                <div class="arrow"></div>
+                <form>
+                <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+                <div ng-hide="helps.submit">
+                <p><b translate="PS_3_0_1">Let us call you. Provide your details below and someone from our HK customer care team will get back to you.</b></p>
+                <div ng-class="{error:!helps.name && helps.no_content}">
+                    <img class="error-image" src="../../images/error.png">
+                    <input class="form-control" type="text" placeholder="Enter Name" name="name" ng-model="helps.name">
+                </div>
+                <div class="space"></div>
+                <div ng-class="{error:!helps.email && helps.no_content}">
+                    <img class="error-image" src="../../images/error.png">
+                    <input class="form-control" type="email" placeholder="Enter Email Address" name="email" ng-model="helps.email">
+                </div>
+                <div class="space"></div>
+                <div ng-class="{error:!helps.number && helps.no_content}">
+                    <img class="error-image" src="../../images/error.png">
+                    <input class="form-control" type="tel" placeholder="Enter Phone Number" name="phone" ng-model="helps.number">
+                </div>
+                <div class="space"></div>
+                <button type="button" class="btn btn-forward" ng-click="helps.click()" translate="PS_3_0_2">Send Now</button>
+
+                </div>
+                <div class="on-submit" ng-show="helps.submit">
+                    <h2><span translate="PS_3_0_3">Message Sent</span>
+                        <div class="subtitle" translate="PS_3_0_4">Thank you for your message. We will respond to you with 24 hours.</div>
+                    </h2>
+                </div>
+                <div class="space"></div>
+                <p><span translate="GS_0_0_2a">Call us on</span> +852 2884 8888<br/><span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
+                <p><span translate="GS_0_0_3a">Email us at</span> <a href="">enquiries@directasia.com.hk</a></p>                 
+                </form>
+            </div>
+        </div>
+        <div class="container" ng-controller="qouteController">
             <div style="width:100%; margin-top:50px; text-align:center;">
                 <img src="../../images/loading.gif" style="width: 100px;">
             </div>
-            <h1 style="text-align:center;">We're working on your quote</h1>
+            <h1 style="text-align:center;" translate="PS_1_5_1">We're working on your quote</h1>
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Why our customers choose DirectAsia.com's<br/>Car Insurance:</h2>
+                    <h2 translate="PS_1_5_2">Why our customers choose DirectAsia.com's Car Insurance:</h2>
                     <ul>
-                        <li>Award Winning Insurer - People's Choice Awards</li>
-                        <li>Award Winning Customer Service - Call Center Association of Singapore</li>
-                        <li>Favourite Online Insurance - Service Lifestyle Awards</li>
-                        <li>Gold Award in Mystery Caller Assessment - Hong Kong Corporate Counsel Association</li>
-                        <li>100% Owned by Hiscox Group</li>
+                        <li translate="PS_1_5_3">Award Winning Insurer - People's Choice Awards</li>
+                        <li translate="PS_1_5_4">Award Winning Customer Service - Call Center Association of Singapore</li>
+                        <li translate="PS_1_5_5">Favourite Online Insurance - Service Lifestyle Awards</li>
+                        <li translate="PS_1_5_6">Gold Award in Mystery Caller Assessment - Hong Kong Corporate Counsel Association</li>
+                        <li translate="PS_1_5_7">100% Owned by Hiscox Group</li>
                     </ul>
                 </div>
                 <div class="col-sm-6">
                     <div class="panel" style="margin-top: 30px;">
                        <div class="panel-body">
-                            <h2 style="margin-bottom: 20px;">Where did you hear about<br/>DirectAsia.com?</h2>
+                            <h2 style="margin-bottom: 20px;" translate="PS_1_5_8">Where did you hear about DirectAsia.com?</h2>
                             <div style="width:300px">
                                 <select id="heardAboutUs" name="heardAboutUs">
                                     <option selecter label="Enter Driving License" value="{{heardAboutUs}}" data-ng-repeat="heardAboutUs in heardAboutUs" selecter-target="#heardAboutUs" selecter-callback="select" property="heardAboutUs" ng-selected="heardAboutUs == selectedItem">{{heardAboutUs}}</option>

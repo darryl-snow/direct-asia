@@ -156,12 +156,15 @@ angular.module "DirectAsia"
 		"MainDriver",
 		"Car",
 		"AdditionalDriver",
-		($scope, $http, InsurancePlan, MainDriver, Car, AdditionalDriver) ->
+		"$rootScope",
+		($scope, $http, InsurancePlan, MainDriver, Car, AdditionalDriver, $rootScope) ->
 
 			###
-			plan = the resulting plan containing everything the user has selected. This is what will be submitted to the server
-			recommendedPlan = what we're recommendingthe user selects, shown on the page as a comparison
-			savedPlan = in case the user wants to save the plan for later or switch to the recommended plan and then switch back
+			plan = the resulting plan containing everything the user has selected.
+			This is what will be submitted to the server recommendedPlan = what
+			we're recommendingthe user selects, shown on the page as a comparison
+			savedPlan = in case the user wants to save the plan for later or switch
+			to the recommended plan and then switch back
 			###
 
 			$scope.plan = new InsurancePlan()
@@ -169,7 +172,8 @@ angular.module "DirectAsia"
 			$scope.savedPlan = new InsurancePlan()
 
 			###
-			Feedback is for recording how the user heard about DA. This is to be sent to the server as well as the plan they've selected
+			Feedback is for recording how the user heard about DA. This is to be sent
+			to the server as well as the plan they've selected
 			###
 
 			$scope.feedback = ""
@@ -193,7 +197,8 @@ angular.module "DirectAsia"
 			- Choose policy excess
 			- Summary / Save
 
-			This sets the current step as 'choose plan' so that only that section will be displayed initially.
+			This sets the current step as 'choose plan' so that only that section
+			will be displayed initially.
 
 			###
 
@@ -203,14 +208,19 @@ angular.module "DirectAsia"
 			###
 			This function fetches data from the back-end to be used on the page
 
-			(NOTE: This isn't used currently as the data is mocked by the function getMockData() above)
+			(NOTE: This isn't used currently as the data is mocked by the
+			function getMockData() above)
 			###
 
 			getDataFromAPI = ->
 
 				dataFromAPI = {}
 
-				$http.get "http://api-url"
+				###
+				You'll want to get localised data returned from the server
+				###
+
+				$http.get "http://api-url?lang=" + $rootScope.currentLanguage
 					.success (data, status, headers, config) ->
 
 						dataFromAPI = data
@@ -221,7 +231,8 @@ angular.module "DirectAsia"
 				dataFromAPI
 
 			###
-			This function formats the data returned from the server so that it can be used on the page
+			This function formats the data returned from the server so that it
+			can be used on the page
 			###
 
 			setupData = (data) ->
@@ -336,8 +347,9 @@ angular.module "DirectAsia"
 				$scope.plan.additionalDrivers.push new AdditionalDriver
 
 			###
-			This function is for the fixed navbar where the user can select their cover type. When selecting
-			a new type, the plan's total cost should be recalculated.
+			This function is for the fixed navbar where the user can select
+			their cover type. When selecting a new type, the plan's total
+			cost should be recalculated.
 			###
 
 			$scope.selectPlan = (cover) ->
@@ -346,10 +358,11 @@ angular.module "DirectAsia"
 				calculateTotalCost $scope.plan
 
 			###
-			This function is a toggle  for selecting/deselecting an optional benefit to add to the plan.
-			If the plan isn't already selected it will be added to the list.
-			If the plan is already selected it will be removed.
-			After changing the selected benefits, the plan's total cost should be recalculated.
+			This function is a toggle  for selecting/deselecting an optional
+			benefit to add to the plan. If the plan isn't already selected it
+			will be added to the list. If the plan is already selected it will
+			be removed. After changing the selected benefits, the plan's total
+			cost should be recalculated.
 			###
 
 			$scope.selectOption = (option) ->
@@ -365,8 +378,9 @@ angular.module "DirectAsia"
 				calculateTotalCost $scope.plan
 
 			###
-			This function goes through the selected optional benefits and tallies up the cost.
-			Used for calculating the plan's total cost and for showing a breakdown in the summary section.
+			This function goes through the selected optional benefits and
+			tallies up the cost. Used for calculating the plan's total cost and
+			for showing a breakdown in the summary section.
 			###
 
 			$scope.calculateOptionsCost = (plan) ->
@@ -379,8 +393,8 @@ angular.module "DirectAsia"
 				optionsCost
 
 			###
-			Private function for calculating the total cost of the plan. Used only from within
-			other functions in this controller.
+			Private function for calculating the total cost of the plan. Used
+			only from within other functions in this controller.
 			###
 
 			calculateTotalCost = (plan) ->
@@ -388,8 +402,9 @@ angular.module "DirectAsia"
 				plan.totalCost = plan.cover.baseCost + $scope.calculateOptionsCost(plan)
 
 			###
-			Function for saving the plan for later - called by buttons in the navbar and at the bottom
-			of the page. When this is clicked, the saved plan should be sent to the server (not implemented)
+			Function for saving the plan for later - called by buttons in the
+			navbar and at the bottom of the page. When this is clicked, the saved
+			plan should be sent to the server (not implemented)
 			###
 
 			$scope.saveForLater = ->
@@ -403,21 +418,23 @@ angular.module "DirectAsia"
 				console.table $scope.plan
 
 			###
-			This function is required for the custom select fields to work. When the field value
-			changes the corresponding scope variable is updated.
+			This function is required for the custom select fields to work. When the
+			field value changes the corresponding scope variable is updated.
 			###
 
 			$scope.select = (value, index, property) ->
 				eval "$scope." + property + "='" + value + "'"
 
 			###
-			When the user selects the recommended plan from the comparison pane in the summary section
-			or clicks the 'select plan and modify' button in the first section, the recommended options
-			,and only those options, should be pre-selected. The options displayed on the page are from the 
-			$scope.options.optionalCover object, while the recommended options are in the 
-			$scope.recommendedPlan.options object. The function loops through the options on the page 
-			and if they are also in the recommended options then the selectOption function is called on 
-			that option. This is a private function called only from within functions in this controller.
+			When the user selects the recommended plan from the comparison pane
+			in the summary section or clicks the 'select plan and modify' button
+			in the first section, the recommended options ,and only those options,
+			should be pre-selected. The options displayed on the page are from the
+			$scope.options.optionalCover object, while the recommended options are
+			in the $scope.recommendedPlan.options object. The function loops through
+			the options on the page and if they are also in the recommended options
+			then the selectOption function is called on that option. This is a
+			private function called only from within functions in this controller.
 			###
 
 			selectRecommendedOptions = ->
@@ -432,8 +449,10 @@ angular.module "DirectAsia"
 					if matched.length then $scope.selectOption option
 
 			###
-			When the user selects the 'select plan and modify' button in section 1, 2 things need to happen:
-			- the recommended plan is selected, so we call the selectRecommendedOptions function
+			When the user selects the 'select plan and modify' button in section
+			1, 2 things need to happen:
+			- the recommended plan is selected, so we call the
+			  selectRecommendedOptions function
 			- the user should go to the next section, so we call the continue function
 			###
 
@@ -444,12 +463,13 @@ angular.module "DirectAsia"
 				$scope.continue(2)
 
 			###
-			When the user selects the 'select plan' button in the comparison pane of the summary section,
-			The current plan should be saved, in case they need to revert back to it later, then the current
-			plan should be updated with the cover, options, and excess from the recommended plan. The total
-			cost of the selected plan will then be the same as that for the recommended plan. The function
-			should also ensure that the recommended options are selected and that the comparison pane is
-			closed.
+			When the user selects the 'select plan' button in the comparison pane of
+			the summary section, The current plan should be saved, in case they need
+			to revert back to it later, then the current plan should be updated with
+			the cover, options, and excess from the recommended plan. The total cost
+			of the selected plan will then be the same as that for the recommended
+			plan. The function should also ensure that the recommended options are
+			selected and that the comparison pane is closed.
 			###
 
 			$scope.useRecommendedPlan = ->
@@ -464,11 +484,12 @@ angular.module "DirectAsia"
 				$scope.compare = false
 
 			###
-			In case the user wants to go back from the recommended plan to the options they had selected
-			previously, this function simply restores the page to the state it was in before they selected
-			the recommended plan.
+			In case the user wants to go back from the recommended plan to the
+			options they had selected previously, this function simply restores the
+			page to the state it was in before they selected the recommended plan.
 
-			Note: currently there is no 'revert to previous plan' button as this will require design decisions
+			Note: currently there is no 'revert to previous plan' button as this will
+			require design decisions
 			###
 
 			$scope.revertToPreviousPlan = ->
@@ -476,8 +497,8 @@ angular.module "DirectAsia"
 				$scope.plan = $scope.savedPlan
 
 			###
-			Finally, now that all functions have been parsed, setup the data on the page using that returned
-			from the server or mocked.
+			Finally, now that all functions have been parsed, setup the data on the
+			page using that returned from the server or mocked.
 			###
 
 			###

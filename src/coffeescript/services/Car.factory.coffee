@@ -21,8 +21,8 @@ class Car
 		@usage = null
 
 ###
-Using an Angular factory allows us to use dependency injection in the controller and instantiate
-objects from there
+Using an Angular factory allows us to use dependency injection in the controller
+and instantiate objects from there
 ###
 
 angular.module "DirectAsia"

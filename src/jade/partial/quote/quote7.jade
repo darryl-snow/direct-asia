@@ -4,7 +4,7 @@ section.section.section--padded(data-ng-show="currentStep>=5")
 
 		.row
 			.col-md-5
-				label.label--large(for="feedback") We'd like to know how you heard about us
+				label.label--large(for="feedback", translate="PC_4_9a") We'd like to know how you heard about us
 				select#feedback(selecter, name="feedback")
 					option(selecter, label="Select an option", value="{{option}}", data-ng-repeat="option in options.feedback", selecter-target="#feedback", selecter-callback="select", property="feedback", ng-selected="feedback == selectedItem") {{option}}
 
@@ -12,15 +12,16 @@ section.section.section--padded(data-ng-show="currentStep>=5")
 			.col-md-12
 				a.btn.btn-backward(href="", title="")
 					span.glyphicon.glyphicon-arrow-left
-					| Back
+					span(translate="PC_4_10_1") Back
 
-				a.btn.btn-forward.btn-lg.pull-right(href="", title="") Proceed
+				a.btn.btn-forward.btn-lg.pull-right(href="", title="")
+					span(translate="PC_4_10_2") Proceed
 					span.glyphicon.glyphicon-arrow-right
 
 		.row.margin--top
 			.col-md-3.col-md-offset-9
 				button.btn.btn-primary.btn-action.btn-block.btn-sm(type="button", data-ng-click="saveForLater()")
-					span.btn-action-default Save for later
-					span.btn-action-alt Saved!
+					span.btn-action-default(translate="PC_4_10_3") Save for later
+					span.btn-action-alt(translate="PC_4_10_4") Saved!
 					span.glyphicon.glyphicon-ok
-				p Your details will be saved for 90 days so you can finish later
+				p(translate="PC_4_10_8") Your details will be saved for 90 days so you can finish later

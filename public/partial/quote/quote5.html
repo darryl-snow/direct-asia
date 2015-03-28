@@ -3,28 +3,28 @@
   <div class="container"><img src="../../images/policy-icon.png"/>
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h2 class="margin--bottom">Policy Excess
-          <div class="subtitle">Policy excess is the amount that you'll pay out of your own pocket if you have a claim. If you choose a higher excess, you will have a lower the premium.</div>
+        <h2 class="margin--bottom"><span translate="PC_4_6a">Policy Excess</span>
+          <div translate="PC_4_6b" class="subtitle">Policy excess is the amount that you'll pay out of your own pocket if you have a claim. If you choose a higher excess, you will have a lower the premium.</div>
         </h2>
       </div>
     </div>
     <div style="margin-bottom:30px;" class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h3 class="recommended-excess">Recommended Excess:
+        <h3 class="recommended-excess"><span translate="PC_4_6c">Recommended Excess:</span>
           <div data-ng-cloak="data-ng-cloak" class="price">S${{recommendedPlan.excess | number: 0}}</div>
         </h3>
       </div>
     </div>
     <div style="margin-bottom:30px;" class="row">
       <div class="col-md-4 col-md-offset-4">
-        <p>or</p>
+        <p translate="PC_4_6d">or</p>
         <select id="excess" name="excess">
           <option selecter="selecter" label="Choose your excess" value="{{excess}}" data-ng-repeat="excess in options.excesses" selecter-target="#excess" selecter-callback="select" property="plan.excess" ng-selected="plan.excess === selectedItem">{{excess}}</option>
         </select>
       </div>
     </div>
     <div style="margin-bottom:30px;" class="row margin--top">
-      <div class="col-md-12"><a href="#quote5" title="" data-ng-click="continue(5)" class="btn btn-continue internal-link"><i class="glyphicon glyphicon-arrow-down"></i>Continue</a></div>
+      <div class="col-md-12"><a href="#quote5" title="" data-ng-click="continue(5)" class="btn btn-continue internal-link"><i class="glyphicon glyphicon-arrow-down"></i><span translate="PC_4_4_4">Continue</span></a></div>
     </div>
   </div>
 </section>

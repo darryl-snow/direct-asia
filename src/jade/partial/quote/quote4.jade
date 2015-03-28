@@ -3,9 +3,10 @@ section#quote3.section.section--blue.section--padded.section--centred(data-ng-sh
 	.container
 
 		img(src="../../images/cover-icon3.png")
-		h2.margin--bottom Optional Cover
+		h2.margin--bottom
+			span(translate="PC_4_5a") Optional Cover
 			img(src="../../images/question-icon.png")
-			.subtitle Customise your coverage and save money by adding optional items
+			.subtitle(translate="PC_4_5b") Customise your coverage and save money by adding optional items
 
 		.options.clearfix
 
@@ -13,7 +14,7 @@ section#quote3.section.section--blue.section--padded.section--centred(data-ng-sh
 				.option
 					.recommended(data-ng-if="option.recommended")
 						img(src="../../images/star-icon.png")
-						| recommended
+						span(translate="PC_4_5_1") recommended
 					.panel
 						.panel-heading
 							h3 {{option.name}}
@@ -22,8 +23,8 @@ section#quote3.section.section--blue.section--padded.section--centred(data-ng-sh
 							strong S$ 
 								span {{option.cost}}
 							button.btn.btn-default.btn-action(type="button", data-ng-click="selectOption(option)", ng-class="{'active':option.selected, 'done':option.selected}")
-								span.btn-action-default Select
-								span.btn-action-alt Selected
+								span.btn-action-default(translate="PC_4_5c") Select
+								span.btn-action-alt(translate="PC_4_5d") Selected
 								i.glyphicon.glyphicon-ok
 
 		.row
@@ -31,4 +32,4 @@ section#quote3.section.section--blue.section--padded.section--centred(data-ng-sh
 
 				a.btn.btn-continue.internal-link(href="#quote4", title="", data-ng-click="continue(4)")
 					i.glyphicon.glyphicon-arrow-down
-					| No Thanks, Continue
+					span(translate="PC_4_5_2") No Thanks, Continue

@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Mar 27 2015 20:04:58 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Sat Mar 28 2015 17:09:47 GMT+0800 (CST) */
 @font-face {
   font-family: Proxima;
   src: url("../fonts/ProximaNova/ProximaNova-Regular.otf") format("opentype"); }
@@ -1122,22 +1122,82 @@ body .outer-wrap > section {
 .compare .row.one .active {
   background: #f7d500; }
 
-.need-help .help-button {
+.need-help .popover-button {
   -ms-transform: rotate(-90deg);
   -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg);
   position: fixed;
   right: -60px;
   top: 90px;
-  z-index: 999; }
+  z-index: 9999; }
+
+.save-for-later .popover {
+  left: auto;
+  margin-left: -50px;
+  margin-top: 50px;
+  margin-bottom: 30px; }
+
+.custom-tooltip .popover {
+  font-size: 12px;
+  background: #FCD900;
+  border: #FCD900;
+  color: #333; }
+
+.custom-tooltip .popover .popover-content {
+  padding: 0px; }
+
+.custom-tooltip .popover.right .arrow, .custom-tooltip .popover.right .arrow:after {
+  border-right-color: #FCD900; }
 
 .need-help .popover {
   background-color: #FCD900;
   border-color: #FCD900;
-  color: #333; }
+  color: #333;
+  margin-top: 20px; }
 
 .need-help .popover.left .arrow, .need-help .popover.left .arrow:after {
   border-left-color: #FCD900; }
+
+.need-help .popover {
+  position: fixed;
+  right: 33px;
+  left: auto; }
+
+.need-help .error-image {
+  position: absolute;
+  right: 20px;
+  margin-top: 8px;
+  width: 16px;
+  display: none; }
+
+.need-help .error input {
+  border-color: #D52B1E; }
+
+.need-help .error .error-image {
+  display: initial; }
+
+/*for overlay*/
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999999;
+  text-align: center; }
+
+.overlay .panel {
+  width: 600px;
+  margin: auto;
+  top: 35%; }
+
+.overlay .overlay-close-button {
+  background: transparent;
+  border: none;
+  color: #333;
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em; }
 
 @media (min-width: 1000px) {
   @viewport {

@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Mar 27 2015 20:04:58 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Sat Mar 28 2015 17:17:43 GMT+0800 (CST) */
 
 /*
 This is a class for instantiating additional drivers, as used on the quote page
@@ -32,8 +32,8 @@ AdditionalDriver = (function() {
 
 
 /*
-Using an Angular factory allows us to use dependency injection in the controller and instantiate
-objects from there
+Using an Angular factory allows us to use dependency injection in the controller
+and instantiate objects from there
  */
 
 angular.module("DirectAsia").factory("AdditionalDriver", function() {
@@ -71,8 +71,8 @@ Car = (function() {
 
 
 /*
-Using an Angular factory allows us to use dependency injection in the controller and instantiate
-objects from there
+Using an Angular factory allows us to use dependency injection in the controller
+and instantiate objects from there
  */
 
 angular.module("DirectAsia").factory("Car", function() {
@@ -141,9 +141,11 @@ angular.module("DirectAsia").factory("Cars", [
 
 
 /*
-This is a class for instantiating whole insurance plans, as used on the quote page. The quote page
-is basically all about generating a plan and filling in these details. There may also be other plans,
-such as saved plans or recommended plans, and so it makes sense to have a Class for this type of object.
+This is a class for instantiating whole insurance plans, as used on the
+quote page. The quote page is basically all about generating a plan and
+filling in these details. There may also be other plans, such as saved
+plans or recommended plans, and so it makes sense to have a Class for
+this type of object.
  */
 var InsurancePlan;
 
@@ -165,8 +167,8 @@ InsurancePlan = (function() {
 
 
 /*
-Using an Angular factory allows us to use dependency injection in the controller and instantiate
-objects from there
+Using an Angular factory allows us to use dependency injection in the
+controller and instantiate objects from there
  */
 
 angular.module("DirectAsia").factory("InsurancePlan", function() {
@@ -209,8 +211,8 @@ MainDriver = (function() {
 
 
 /*
-Using an Angular factory allows us to use dependency injection in the controller and instantiate
-objects from there
+Using an Angular factory allows us to use dependency injection in the
+controller and instantiate objects from there
  */
 
 angular.module("DirectAsia").factory("MainDriver", function() {
@@ -219,9 +221,10 @@ angular.module("DirectAsia").factory("MainDriver", function() {
 
 
 /*
-This is an angular filter that allows us to change the format of expressions on the page. This one simply
-takes a total number and returns an array from 0 to that number. The input value provided will then be
-replaced by that array. Useful for generating lists.
+This is an angular filter that allows us to change the format of
+expressions on the page. This one simply takes a total number and
+returns an array from 0 to that number. The input value provided
+will then be replaced by that array. Useful for generating lists.
  */
 angular.module("DirectAsia").filter("range", function() {
   return function(input, total) {
@@ -236,9 +239,12 @@ angular.module("DirectAsia").filter("range", function() {
 
 
 /*
-This is an angular filter that allows us to change the format of expressions on the page. This filter takes
-a string, removes special characters, and replaces spaces with hyphens. Useful for generating file names, such
-as images or icons, based on an title. e.g. "24hr breakdown assistance" becomes "24hr-breakdown-assistance"
+This is an angular filter that allows us to change the format
+of expressions on the page. This filter takes a string, removes
+special characters, and replaces spaces with hyphens. Useful
+for generating file names, such as images or icons, based on an
+title. e.g. "24hr breakdown assistance" becomes
+"24hr-breakdown-assistance"
  */
 angular.module("DirectAsia").filter("slugify", function() {
   return function(input) {

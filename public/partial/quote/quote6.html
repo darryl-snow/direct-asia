@@ -3,11 +3,11 @@
   <div class="container">
     <div class="panel panel-comparable margin--top">
       <div data-ng-class="{'compare':compare}" class="panel-header">
-        <h2 class="pull-left margin--bottom">Your Car Insurance Summary</h2>
+        <h2 translate="PS_4_8a" class="pull-left margin--bottom">Your Car Insurance Summary</h2>
         <div class="price-summary clearfix">
-          <h2 data-ng-cloak="data-ng-cloak" class="align-right">Total S${{plan.totalCost}} /yr
-            <div class="subtitle align-right">S${{plan.totalCost / 12}} /mo</div>
-            <div class="subtitle subtitle-secondary align-right">Savings S$167 /yr</div>
+          <h2 data-ng-cloak="data-ng-cloak" class="align-right"><span translate="PC_4_8a_1">Total </span>S${{plan.totalCost}}<span translate="PC_4_8_1_2_2">/yr</span>
+            <div class="subtitle align-right">S${{plan.totalCost / 12}}</div><span translate="PC_4_8_3_4">/mo</span>
+            <div class="subtitle subtitle-secondary align-right"><span translate="PC_4_8a_2">Savings</span>S$167<span translate="PC_4_8_1_2_2">/yr</span></div>
           </h2>
           <label data-ng-show="compare" class="label-checkbox">
             <input id="selectCurrent" type="checkbox"/>
@@ -20,7 +20,7 @@
           <div class="col-xs-2"><img src="../../images/car-icon2.png"/></div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-3"><strong>Car</strong></div>
+              <div class="col-md-3"><strong translate="PC_4_8_1_1a">Car</strong></div>
               <div class="col-md-8"><span data-ng-cloak="data-ng-cloak">{{plan.car.year}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.make}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.model}}</span><span data-ng-cloak="data-ng-cloak">{{plan.car.lowmileageoption ? ", Low Mileage" : "" }}</span>
                 <div data-ng-hide="!fulldetails"><span data-ng-if="plan.car.modifications.bodykit || plan.car.modifications.rimstires || plan.car.modifications.airintakeexhaust || plan.car.modifications.suspensionstabiliser">Modifications:</span>
                   <ul data-ng-if="plan.car.modifications.bodykit || plan.car.modifications.rimstires || plan.car.modifications.airintakeexhaust || plan.car.modifications.suspensionstabiliser">
@@ -35,7 +35,7 @@
           </div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-6"><a href="../car/car.html" title="Edit car details" class="btn btn-default">Edit</a></div>
+              <div class="col-md-6"><a href="../car/car.html" title="Edit car details" translate="PC_4_8_1_1b" class="btn btn-default">Edit</a></div>
               <div class="col-md-6 align-right"></div>
             </div>
           </div>
@@ -44,7 +44,7 @@
           <div class="col-xs-2"><img src="../../images/driver-icon.png"/></div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-3"><strong>Driver</strong></div>
+              <div class="col-md-3"><strong translate="PC_4_8_1_2">Driver</strong></div>
               <div class="col-md-8"><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.gender}}, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.age}} years old, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.noClaimsDiscount}} NCD, </span>
                 <p data-ng-hide="!fulldetails">
                   <ng-pluralize data-ng-cloak="data-ng-cloak" count="plan.mainDriver.accidents.atFault" when="{'0':'0 at fault claims', '1': '1 at fault claim', 'other': '{} at fault claims'}"></ng-pluralize>
@@ -57,8 +57,8 @@
           </div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-6"><a href="../about-your-driver/your-driver.html" title="Edit driver information" class="btn btn-default">Edit</a></div>
-              <div class="col-md-6 align-right">S$45 /yr</div>
+              <div class="col-md-6"><a href="../about-your-driver/your-driver.html" title="Edit driver information" translate="PC_4_8_1_2_1" class="btn btn-default">Edit</a></div>
+              <div class="col-md-6 align-right">S$45<span translate="PC_4_8_1_2_2">/yr</span></div>
             </div>
           </div>
         </div>
@@ -66,8 +66,8 @@
           <div class="col-xs-2"><img src="../../images/policy-icon2.png"/></div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-3"><strong>Policy</strong></div>
-              <div class="col-md-8"><span data-ng-cloak="data-ng-cloak">{{plan.cover.name}}</span><span data-ng-cloak="data-ng-cloak" data-ng-show="plan.excess">, {{plan.excess}} policy excess</span>
+              <div class="col-md-3"><strong translate="PC_4_8_1_3_1">Policy</strong></div>
+              <div class="col-md-8"><span data-ng-cloak="data-ng-cloak">{{plan.cover.name}}</span><span data-ng-cloak="data-ng-cloak" data-ng-show="plan.excess">, {{plan.excess}}</span><span translate="PC_4_8_1_3_2">policy excess</span>
                 <ul data-ng-hide="!fulldetails">
                   <li>Third Party - Death or Bodily Injury</li>
                   <li>Third Party - Property Damage</li>
@@ -83,8 +83,8 @@
           </div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-6"><a href="" title="" class="btn btn-default">Edit</a></div>
-              <div class="col-md-6 align-right">S$<span data-ng-cloak="data-ng-cloak">{{plan.cover.baseCost}}</span> /yr</div>
+              <div class="col-md-6"><a href="" title="" translate="PC_4_8_1_3_3" class="btn btn-default">Edit</a></div>
+              <div class="col-md-6 align-right">S$<span data-ng-cloak="data-ng-cloak">{{plan.cover.baseCost}}</span><span translate="PC_4_8_1_3_4">/yr</span></div>
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@
           <div class="col-xs-2"><img src="../../images/cover-icon2.png"/></div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-3"><strong>Cover</strong></div>
+              <div class="col-md-3"><strong translate="PC_4_8_1_5_1">Cover</strong></div>
               <div class="col-md-8">
                 <ul>
                   <li data-ng-repeat="option in plan.options" data-ng-cloak="data-ng-cloak">{{option.name}}<small data-ng-hide="!fulldetails" data-ng-cloak="data-ng-cloak">{{option.description}}</small></li>
@@ -102,9 +102,9 @@
           </div>
           <div class="col-xs-5">
             <div class="row">
-              <div class="col-md-6"><a href="" title="" class="btn btn-default">Edit</a></div>
-              <div class="col-md-6 align-right">S$<span data-ng-cloak="data-ng-cloak">{{calculateOptionsCost(plan)}}</span> /yr
-                <div><span class="strikethrough">S$261 /yr</span><span class="highlight"> (10% discount)</span></div>
+              <div class="col-md-6"><a href="" title="" translate="PC_4_8_1_5_2" class="btn btn-default">Edit</a></div>
+              <div class="col-md-6 align-right">S$<span data-ng-cloak="data-ng-cloak">{{calculateOptionsCost(plan)}}</span><span translate="PC_4_8_1_5_3">/yr</span>
+                <div><span class="strikethrough">S$261</span><span translate="PC_4_8_1_5_3">/yr</span><span class="highlight"> (10% </span><span translate="PC_4_8_1_5_4">discount</span>)</div>
               </div>
             </div>
           </div>
@@ -113,7 +113,7 @@
       <div class="panel-footer">
         <div class="row">
           <div class="col-md-7">
-            <button type="button" data-ng-click="fulldetails=!fulldetails" class="btn btn-plain btn-large btn-block"><span data-ng-hide="fulldetails">Review Full Details</span><img src="../../images/down-arrow.png" data-ng-hide="fulldetails"/><span data-ng-hide="!fulldetails">See Summary</span><img src="../../images/up-arrow.png" data-ng-hide="!fulldetails"/></button>
+            <button type="button" data-ng-click="fulldetails=!fulldetails" class="btn btn-plain btn-large btn-block"><span data-ng-hide="fulldetails" translate="PC_4_8_2_1">Review Full Details</span><img src="../../images/down-arrow.png" data-ng-hide="fulldetails"/><span data-ng-hide="!fulldetails" translate="PC_4_8_2_2">See Summary</span><img src="../../images/up-arrow.png" data-ng-hide="!fulldetails"/></button>
           </div>
           <div class="col-md-5">
             <button type="button" data-ng-click="compare=!compare" class="btn btn-plain btn-large btn-block">Compare Recommended Plan<img src="../../images/down-arrow.png"/></button>
@@ -122,18 +122,18 @@
       </div>
       <div data-ng-class="{active:compare}" class="panel-comparison">
         <div class="panel-body">
-          <button type="button" data-ng-click="compare=!compare" class="btn btn-plain btn-medium btn-block">Compare Recommended Plan<img src="../../images/down-arrow.png"/></button>
-          <h2 data-ng-cloak="data-ng-cloak">Total S${{recommendedPlan.totalCost}} /yr
-            <div class="subtitle">S${{recommendedPlan.totalCost / 12}} /mo</div>
-            <div class="subtitle subtitle-secondary">Savings S$167 /yr</div>
+          <button type="button" data-ng-click="compare=!compare" class="btn btn-plain btn-medium btn-block"><span translate="PC_4_8_3_1">Compare Recommended Plan</span><img src="../../images/down-arrow.png"/></button>
+          <h2 data-ng-cloak="data-ng-cloak"><span translate="PC_4_8_3_2">Total </span>S${{recommendedPlan.totalCost}}<span translate="PC_4_8_3_3">/yr</span>
+            <div class="subtitle">S${{recommendedPlan.totalCost / 12}}<span translate="PC_4_8_3_4">/mo</span></div>
+            <div class="subtitle subtitle-secondary"><span translate="PC_4_8_3_5">Savings</span>S$167<span translate="PC_4_8_3_3">/yr</span></div>
           </h2>
-          <button type="button" data-ng-click="useRecommendedPlan()" class="btn btn-primary btn-sm pull-right">Select Plan</button>
+          <button type="button" data-ng-click="useRecommendedPlan()" translate="PC_4_8_3_6" class="btn btn-primary btn-sm pull-right">Select Plan</button>
           <ul>
             <li data-ng-cloak="data-ng-cloak">{{recommendedPlan.cover.name}}
-              <div class="subtitle">S${{recommendedPlan.cover.baseCost}} /yr</div>
+              <div class="subtitle">S${{recommendedPlan.cover.baseCost}}<span translate="PC_4_8_3_3">/yr</span></div>
             </li>
             <li><span data-ng-repeat="option in recommendedPlan.options" data-ng-cloak="data-ng-cloak">{{option.name}} </span>
-              <div data-ng-repeat="option in recommendedPlan.options" data-ng-cloak="data-ng-cloak" class="subtitle">S${{option.cost}} /yr</div>
+              <div data-ng-repeat="option in recommendedPlan.options" data-ng-cloak="data-ng-cloak" class="subtitle">S${{option.cost}}<span translate="PC_4_8_3_3">/yr</span></div>
             </li>
           </ul>
         </div>

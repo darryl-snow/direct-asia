@@ -10,6 +10,7 @@
         <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
         <link rel="stylesheet" href="../../lib/lib.css">
         <link rel="stylesheet" href="../../styles/main.css">
+        <link rel="stylesheet" href="../../styles/custom.css">
         <!--if lt IE 9
         script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
         
@@ -39,42 +40,84 @@
         <script src="../../scripts/directives.js"></script>
 
     </head>
-    <body ng-controller="qouteController">
-        <div class="outer-wrap">
+    <body>
+        <div class="need-help" ng-controller="helpController">
+            <button type="button" class="popover-button btn btn-primary btn-action btn-sm" translate="GS_0_0_2a">Need Help?</button>
+            <div id="popover" class="popover left help-div">
+                <div class="arrow"></div>
+                <form>
+                <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+                <div ng-hide="helps.submit">
+                <p><b translate="PS_3_0_1">Let us call you. Provide your details below and someone from our HK customer care team will get back to you.</b></p>
+                <div ng-class="{error:!helps.name && helps.no_content}">
+                    <img class="error-image" src="../../images/error.png">
+                    <input class="form-control" type="text" placeholder="Enter Name" name="name" ng-model="helps.name">
+                </div>
+                <div class="space"></div>
+                <div ng-class="{error:!helps.email && helps.no_content}">
+                    <img class="error-image" src="../../images/error.png">
+                    <input class="form-control" type="email" placeholder="Enter Email Address" name="email" ng-model="helps.email">
+                </div>
+                <div class="space"></div>
+                <div ng-class="{error:!helps.number && helps.no_content}">
+                    <img class="error-image" src="../../images/error.png">
+                    <input class="form-control" type="tel" placeholder="Enter Phone Number" name="phone" ng-model="helps.number">
+                </div>
+                <div class="space"></div>
+                <button type="button" class="btn btn-forward" ng-click="helps.click()" translate="PS_3_0_2">Send Now</button>
+
+                </div>
+                <div class="on-submit" ng-show="helps.submit">
+                    <h2>
+                        <span translate="PS_3_0_3">Message Sent</span>
+                        <div class="subtitle" translate="PS_3_0_4">Thank you for your message. We will respond to you with 24 hours.</div>
+                    </h2>
+                </div>
+                <div class="space"></div>
+                <p>
+                    <span translate="GS_0_0_2a">Call us on </span>+852 2884 8888<br/><span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
+                <p><span translate="GS_0_0_3a">Email us at</span> <a href="">enquiries@directasia.com.hk</a></p>                 
+                </form>
+            </div>
+        </div>
             <section class="section section-thankyou">
                 <div class="container">
                     <div class="navbar navbar-default" data-resource-id="GS 0.0">
                         <div class="navbar-header"><a href="/" class="navbar-brand"><img src="../../images/direct-asia-logo.png"></a></div>
-                        <div class="navbar-title">Car Insurance</div>
-                        <ol class="breadcrumb breadcrumb-arrow">
-                          <li class="active"><a href="#">Your Car &amp; Drivers</a></li>
-                          <li><span>Your Quote</span></li>
-                          <li><span>Purchase</span></li>
+                        <div class="navbar-title" translate="GS_0_0_1">Car Insurance</div>
+                        <ol class="breadcrumb breadcrumb-arrow" data-resource-id="GC 0.1">
+                            <li class="active"><a href="#" translate="GC_0_1_1">Your Car &amp; Drivers</a></li>
+                            <li><a href="#" translate="GC_0_1_2">Your Quote</a></li>
+                            <li><span translate="GC_0_1_3">Purchase</span></li>
                         </ol>
-                        <div class="navbar-telephone pull-right">Call our Singapore Team on<span class="navbar-telephone-number">9854 4345</span></div>
-                      </div>
+                        <div class="navbar-telephone pull-right">
+                            <span translate="GS_0_0_2">Need help? Speak with Our Hong Kong Team</span>
+                            <span class="navbar-telephone-number">2884 8888</span>
+                            <span translate="GS_0_0_3">Mon - Fri 8am - 8pm | Sat 9am - 6pm</span>
+                        </div>
+                    </div> 
                     <h1 data-resource-id="PS 7.0">
-                        <div class="desktop">You're all done! We're sending you a confirmation<br/>email so you have a copy of your policy details.</div>
-                        <div class="mobile">You're all done! Please look for the confirmation email with your policy details.</div>
-                        <div class="subtitle">Please allow [x] mins to receive your confirmation email.</div></h1>
+                        <div class="desktop" translate="PS_7_0_1">You're all done! We're sending you a confirmation<br/>email so you have a copy of your policy details.</div>
+                        <div class="mobile" translate="PS_7_0_2">You're all done! Please look for the confirmation email with your policy details.</div>
+                        <div class="subtitle" translate="PS_7_0_3">Please allow [x] mins to receive your confirmation email.</div></h1>
                     <div class="panel" data-resource-id="PS 7.1" ng-init="content = false">
                         <div class="panel-header">
                             <div class="desktop">
-                                <h2 style="float:left;">Your Car Insurance Summary
-                                    <div class="subtitle">Policy Number: 2332434535t66</div>
+                                <h2 style="float:left;"><span translate="PS_7_1_1">Your Car Insurance Summary</span>
+                                    <div class="subtitle"><span translate="PS_7_1_2">Policy Number:</span> 2332434535t66</div>
                                 </h2>
                                 <div class="yr-right" style="float:none;">
-                                    <h2>Total S$1,356 /yr</h2>
-                                    <div class="subtitle">S$113 /mo</div>
-                                    <div class="subtitle" style="color:#fcd900;">Savings S$167 /yr</div>
+                                    <h2><span translate="PS_7_1_3">Total</span> S$1,356 <span translate="PS_7_1_4">/yr</span></h2>
+                                    <div class="subtitle">S$113 <span translate="PS_7_1_5">/mo</span></div>
+                                    <div class="subtitle" style="color:#fcd900;"><span translate="PS_7_1_6">Savings</span> S$167 <span translate="PS_7_1_4">/yr</span></div>
                                 </div>
                             </div>
                             <div class="mobile">
-                                <h2>Your Car Insurance Summary
-                                    <div class="subtitle">Policy Number:2332434535t66</div>
+                                <h2><span translate="PS_7_1_7">Your Car Insurance Summary</span>
+                                    <div class="subtitle"><span translate="PS_7_1_2">Policy Number:</span>2332434535t66</div>
                                     <div class="space"></div>
-                                        <h2>Total S$1,356 /yr</h2>
-                                        <div class="subtitle">S$113 /mo | <span style="color:#fcd900;">Savings S$167 /yr</span></div>
+                                        <h2><span translate="PS_7_1_3">Total</span> S$1,356 <span translate="PS_7_1_4">/yr</span></h2>
+                                        <div class="subtitle">S$113 <span translate="PS_7_1_5">/mo</span> | <span style="color:#fcd900;"><span translate="PS_7_1_6">Savings</span> S$167 <span translate="PS_7_1_4">/yr</span></span></div>
                                     
                                 </h2>
                             </div>
@@ -82,8 +125,8 @@
                         </div>
                         <div class="panel-body" ng-hide="content">
                             <h2>Comprehensive Premium</h2>
-                            <p>Excess amount: <span style="color:#25A8E0;">S$500</span></p>
-                            <p>Optional Cover included: <span style="color:#25A8E0;">Loss of use, My Workshop, Experienced Drivers</span></p>
+                            <p><span translate="PS_7_1_8">Excess amount:</span> <span style="color:#25A8E0;">S$500</span></p>
+                            <p><span translate="PS_7_1_9">Optional Cover included:</span> <span style="color:#25A8E0;">Loss of use, My Workshop, Experienced Drivers</span></p>
                         </div>
                         <div class="panel-body" ng-show="content">
                             <div class="row">
@@ -94,7 +137,7 @@
                                 <div class="col-xs-5">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="subtitle"><b>Car</b></div>
+                                            <div class="subtitle"><b translate="PC_4_8_1_1a">Car</b></div>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="subtitle">2010 Honda Civic, Low Mileage</div>
@@ -109,10 +152,10 @@
                                 <div class="col-xs-5">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <button type="button" class="btn btn-default btn-sm desktop">Edit</button>
+                                            <button type="button" class="btn btn-default btn-sm desktop" translate="PC_4_8_1_1b">Edit</button>
                                         </div>
                                         <div class="col-md-6" style="text-align:right;">
-                                            <button type="button" class="btn btn-default btn-sm mobile">Edit</button>
+                                            <button type="button" class="btn btn-default btn-sm mobile" translate="PC_4_8_1_1b">Edit</button>
                                         </div>
 
                                         <div class="col-md-6">
@@ -128,7 +171,7 @@
                                 <div class="col-xs-5">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="subtitle"><b>Driver</b></div>
+                                            <div class="subtitle"><b translate="PC_4_8_1_2">Driver</b></div>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="subtitle">Female, 37 years old, 30% NCD, Certificate of Merit, 1 at fault claim</div>
@@ -141,14 +184,14 @@
                                 <div class="col-xs-5">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <button type="button" class="btn btn-default btn-sm desktop">Edit</button>
+                                            <button type="button" class="btn btn-default btn-sm desktop" translate="PC_4_8_1_1b">Edit</button>
                                         </div>
                                         <div class="col-md-6" style="text-align:right;">
-                                            <button type="button" class="btn btn-default btn-sm mobile">Edit</button>
+                                            <button type="button" class="btn btn-default btn-sm mobile" translate="PC_4_8_1_1b">Edit</button>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="yr-right" style="margin-top: 15px;">
-                                                <div class="subtitle">S$45 /yr</div>
+                                                <div class="subtitle">S$45 <span translate="PC_4_8_1_2_2">/yr</span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -162,10 +205,10 @@
                                 <div class="col-xs-5">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="subtitle"><b>Policy</b></div>
+                                            <div class="subtitle"><b translate="PC_4_8_1_3_1">Policy</b></div>
                                         </div>
                                         <div class="col-md-8">
-                                            <div class="subtitle">Comprehensive Premium, S$500 policy excess</div>
+                                            <div class="subtitle">Comprehensive Premium, S$500 <span translate="PC_4_8_1_3_2">policy excess</span></div>
                                             <div class="subtitle" ng-show="content">
                                                 Third Party - Death or Bodily Injury<br/>
                                                 Third Party - Property Damage<br/>
@@ -182,14 +225,14 @@
                                 <div class="col-xs-5">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <button type="button" class="btn btn-default btn-sm desktop">Edit</button>
+                                            <button type="button" class="btn btn-default btn-sm desktop" translate="PC_4_8_1_3_3">Edit</button>
                                         </div>
                                         <div class="col-md-6" style="text-align:right;">
-                                            <button type="button" class="btn btn-default btn-sm mobile">Edit</button>
+                                            <button type="button" class="btn btn-default btn-sm mobile" translate="PC_4_8_1_3_3">Edit</button>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="yr-right" style="margin-top: 15px;">
-                                                <div class="subtitle">S$732 /yr</div>
+                                                <div class="subtitle">S$732 <span translate="PC_4_8_1_3_4">/yr</span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -203,7 +246,7 @@
                                 <div class="col-xs-5">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="subtitle"><b>Cover</b></div>
+                                            <div class="subtitle"><b translate="PC_4_8_1_5_1">Cover</b></div>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="subtitle">Loss of use, My Workshop, Experienced Drivers</div>
@@ -216,14 +259,14 @@
                                 <div class="col-xs-5">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <button type="button" class="btn btn-default btn-sm desktop">Edit</button>
+                                            <button type="button" class="btn btn-default btn-sm desktop" translate="PC_4_8_1_5_2">Edit</button>
                                         </div>
                                         <div class="col-md-6" style="text-align:right;">
-                                            <button type="button" class="btn btn-default btn-sm mobile">Edit</button>
+                                            <button type="button" class="btn btn-default btn-sm mobile" translate="PC_4_8_1_5_2">Edit</button>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="yr-right" style="margin-top: 15px;">
-                                                <div class="subtitle">S$235 /yr<br><span style="text-decoration:line-through;">S$261 /yr</span>  <span style="color:#D52B1E;">(10% Discount)</span></div>
+                                                <div class="subtitle">S$235 <span translate="PC_4_8_1_5_3">/yr</span><br><span style="text-decoration:line-through;">S$261 <span translate="PC_4_8_1_5_3">/yr</span></span>  <span style="color:#D52B1E;">(10% <span translate="PC_4_8_1_5_4">Discount</span>)</span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -232,11 +275,11 @@
                         </div>
                         <div class="panel-footer" style="text-align:center;">      
                             <div ng-hide="content" ng-click="content = true">
-                                <h2>Review Full Details</h2>
+                                <h2 translate="PC_4_8_2_1">Review Full Details</h2>
                                 <img src="../../images/down-arrow.png">
                             </div>
                             <div ng-show="content" ng-click="content = false">
-                                <h2>See Summary</h2>
+                                <h2 translate="PC_4_8_2_2">See Summary</h2>
                                 <img src="../../images/up-arrow.png">
                             </div>
                         </div>
@@ -247,18 +290,18 @@
                         <div class="col-md-4">
                             <div class="panel" data-resource-id="PS 7.2">
                                 <div class="panel-body">
-                                    <h2>Want to add [Product Name]?</h2>
-                                    <p>Customer's who buy car insurance through DirectAsia.com often buy [Product Name]. Get your [Product Name] quote online now.</p>
-                                    <button type="button" class="btn btn-danger btn-sm">Get Started</button>
+                                    <h2 translate="PS_7_2_1">Want to add [Product Name]?</h2>
+                                    <p translate="PS_7_2_2">Customer's who buy car insurance through DirectAsia.com often buy [Product Name]. Get your [Product Name] quote online now.</p>
+                                    <button type="button" class="btn btn-danger btn-sm" translate="PS_7_2_4">Get Started</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="panel" data-resource-id="PS 7.3">
                                 <div class="panel-body">
-                                    <h2>Your DirectAsia.com Account</h2>
-                                    <p>We have automatically created a DirectAsia.com account for you! You can log in at any time to review your policy, manage claims or update your profile.</p>
-                                    <button type="button" class="btn btn-primary btn-sm">Login Now</button>
+                                    <h2 translate="PS_7_3_1">Your DirectAsia.com Account</h2>
+                                    <p translate="PS_7_3_2">We have automatically created a DirectAsia.com account for you! You can log in at any time to review your policy, manage claims or update your profile.</p>
+                                    <button type="button" class="btn btn-primary btn-sm" translate="PS_7_3_3">Login Now</button>
                                 </div>
                             </div>
                         </div>
@@ -267,8 +310,8 @@
                     </div>
                     <div class="panel" data-resource-id="PS 7.4" style="text-align:center;">
                         <div class="panel-body">
-                            <h2>Connect With Us for Great Offers!</h2>
-                            <p>We want you to get to know the people in our customer care centre and those behind the website. Follow us on our social media accounts and stay up to date with DirectAsia.com's news and special offers.</p>
+                            <h2 translate="PS_7_4_1">Connect With Us for Great Offers!</h2>
+                            <p translate="PS_7_4_2">We want you to get to know the people in our customer care centre and those behind the website. Follow us on our social media accounts and stay up to date with DirectAsia.com's news and special offers.</p>
                             <div class="row">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-2 col-xs-4" style="margin-top:60px">
@@ -296,19 +339,18 @@
                     </div>
                     <div class="panel" data-resource-id="PS 7.5">
                         <div class="panel-body">
-                            <h2 style="text-align:center;">Help Us Improve</h2>
-                            <p>We love honest feedback so we can make a better business for our customers. If you have two minutes, please complete a short survey about your DirectAsia.com experience. </p>
+                            <h2 style="text-align:center;" translate="PS_7_5_1">Help Us Improve</h2>
+                            <p translate="PS_7_5_2">We love honest feedback so we can make a better business for our customers. If you have two minutes, please complete a short survey about your DirectAsia.com experience. </p>
                             <ul>
-                                <li>Rate and Review Us</li>
-                                <li>Refer a Friend and Get a $25 Voucher</li>
-                                <li>Refer a friend to us for their car insurance and receive a $25 voucher when they sign up with us!</li>
+                                <li translate="PS_7_5_3">Rate and Review Us</li>
+                                <li translate="PS_7_5_4">Refer a Friend and Get a $25 Voucher</li>
+                                <li translate="PS_7_5_5">Refer a friend to us for their car insurance and receive a $25 voucher when they sign up with us!</li>
                             </ul>
-                            <button type="button" class="btn btn-primary btn-sm">Learn More</button>
+                            <button type="button" class="btn btn-primary btn-sm" translate="PS_7_5_6">Learn More</button>
                         </div>
                     </div>
 
                 </div>
             </section>
-        </div>
     </body>
 </html>

@@ -10,37 +10,43 @@ section.section.section-car(ng-controller="CarCtrl")
 		.panel-body
 			h1
 				img.pull-left(src="../../images/car-icon.png")
-				| Tell us about the car
-				.subtitle Please note that we do not cover cars used for commercial<br>purposes or for hire/reward
+				span(translate="PS_2_0_1") Tell us about the car
+				.subtitle(translate="PS_2_0_2") Please note that we do not cover cars used for commercial<br>purposes or for hire/reward
 		.panel-footer
 			.row
 				.col-md-3
-					label.show-tooltip(for="year", data-toggle="tooltip" data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document.") Year
+					label.show-tooltip(for="year", data-toggle="tooltip" data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document.")
+						span(translate="PS_2_0_3") Year
 						img(src="../../images/question-icon.png")
 					select#year(name="year")
 						option(selecter, label="Enter year", value="{{year}}", data-ng-repeat="year in years", selecter-target="#year", selecter-callback="select", property="year", ng-selected="year == selectedItem") {{year}}
 
 				.col-md-3
-					label(for="make") Car Make
+					label(for="make")
+						span(translate="PS_2_0_4") Car Make
 						img(src="../../images/question-icon.png")
 					select#make(name="make")
 						option(selecter, label="Enter make", value="{{make}}", data-ng-repeat="make in makes", selecter-target="#make", selecter-callback="select", property="make", ng-selected="make == selectedItem") {{make}}
 
 				.col-md-3
-					label(for="model") Car Model
+					label(for="model")
+						span(translate="PS_2_0_5") Car Model
 						img(src="../../images/question-icon.png")
 					select#model(name="model")
 						option(selecter, label="Enter model", value="{{model}}", data-ng-repeat="model in models", selecter-target="#model", selecter-callback="select", property="model", ng-selected="model == selectedItem") {{model}}
 
 	.container-fluid
 		.container-fluid
-			h2.margin--bottom Has the car been modified?
-				.subtitle e.g. Allow wheels, exhaust upgrade?
+			h2.margin--bottom
+				span(translate="PS_2_1_1a") Has the car been modified?
+				.subtitle(translate="PS_2_1_1b") e.g. Allow wheels, exhaust upgrade?
 
-			button.btn.btn-default.random-margin(type="button", ng-click="select(true, 0, 'modified')", ng-class="{'active':car.modified}") Yes
+			button.btn.btn-default.random-margin(type="button", ng-click="select(true, 0, 'modified')", ng-class="{'active':car.modified}")
+				span(translate="PS_2_1_1c") Yes
 				span.glyphicon.glyphicon-ok
 
-			button.btn.btn-default(type="button", ng-click="select(false, 0, 'modified')", ng-class="{'active':car.modified==false}") No
+			button.btn.btn-default(type="button", ng-click="select(false, 0, 'modified')", ng-class="{'active':car.modified==false}")
+				span(translate="PS_2_1_1d") No
 				span.glyphicon.glyphicon-ok
 
 	.row.margin--top(ng-show="car.modified")
@@ -50,8 +56,9 @@ section.section.section-car(ng-controller="CarCtrl")
 
 				.panel-body
 
-					h2 Select the modifications done on your car.
-						.subtitle Please note that these need to be 
+					h2
+						span(translate="PS_2_1_1_1") Select the modifications done on your car.
+						.subtitle(translate="PS_2_1_1_2") Please note that these need to be 
 							a(href="http://www.onemotoring.com.sg/publish/onemotoring/en/lta_information_guidelines/modifications_and_vehoffences/modification_guide.html", target="_blank") LTA compliant
 
 					.container-fluid.margin--top
@@ -61,105 +68,119 @@ section.section.section-car(ng-controller="CarCtrl")
 								input#checkbox1(type="checkbox", ng-model="car.modifications.bodykit")
 								.fake-checkbox
 									span.glyphicon.glyphicon-ok
-								span Body Kit
+								span(translate="PS_2_1_1_3") Body Kit
 
 							label.label-checkbox(for="checkbox2")
 								input#checkbox2(type="checkbox", ng-model="car.modifications.rimstires")
 								.fake-checkbox
 									span.glyphicon.glyphicon-ok
-								span Rims / Tires
+								span(translate="PS_2_1_1_4") Rims / Tires
 
 							label.label-checkbox(for="checkbox3")
 								input#checkbox3(type="checkbox", ng-model="car.modifications.suspensionstabiliser")
 								.fake-checkbox
 									span.glyphicon.glyphicon-ok
-								span Suspension / Stabiliser System
+								span(translate="PS_2_1_1_5") Suspension / Stabiliser System
 
 							label.label-checkbox(for="checkbox4")
 								input#checkbox4(type="checkbox", ng-model="car.modifications.airintakeexhaust")
 								.fake-checkbox
 									span.glyphicon.glyphicon-ok
-								span Air Intake / Exhaust System
+								span(translate="PS_2_1_1_6") Air Intake / Exhaust System
 
 	.container-fluid.margin--bottom
 		.container-fluid
-			h2.margin--bottom Is the vehicle privately owned or corporate owned?
+			h2.margin--bottom(translate="PS_2_1_2_1") Is the vehicle privately owned or corporate owned?
 
-			button.btn.btn-default.random-margin(type="button", ng-click="select('private', 0, 'ownership')", ng-class="{'active':car.ownership=='private'}") Private
+			button.btn.btn-default.random-margin(type="button", ng-click="select('private', 0, 'ownership')", ng-class="{'active':car.ownership=='private'}")
+				span(translate="PS_2_1_2_2") Private
 				span.glyphicon.glyphicon-ok
-			button.btn.btn-default(type="button", ng-click="select('corporate', 0, 'ownership')", ng-class="{'active':car.ownership=='corporate'}") Corporate
+			button.btn.btn-default(type="button", ng-click="select('corporate', 0, 'ownership')", ng-class="{'active':car.ownership=='corporate'}")
+				span(translate="PS_2_1_2_3") Corporate
 				span.glyphicon.glyphicon-ok
 
 	.container-fluid.margin--bottom.margin--top
 		.container-fluid
-			h2.margin--bottom Is the car financed?
-				.subtitle e.g. Allow wheels, exhaust upgrade?
+			h2.margin--bottom
+				span(translate="PS_2_1_3_1") Is the car financed?
+				.subtitle(translate="PS_2_1_3_2") e.g. Allow wheels, exhaust upgrade?
 
-			button.btn.btn-default.random-margin(type="button", ng-click="select(true, 0, 'financed')", ng-class="{'active':car.financed}") Yes
+			button.btn.btn-default.random-margin(type="button", ng-click="select(true, 0, 'financed')", ng-class="{'active':car.financed}")
+				span(translate="PS_2_1_3_3") Yes
 				span.glyphicon.glyphicon-ok
 
-			button.btn.btn-default(type="button", ng-click="select(false, 0, 'financed')", ng-class="{'active':car.financed==false}") No
+			button.btn.btn-default(type="button", ng-click="select(false, 0, 'financed')", ng-class="{'active':car.financed==false}")
+				span(translate="PS_2_1_3_4") No
 				span.glyphicon.glyphicon-ok
 
-			p.margin--top(ng-show="car.financed") Please check your cover requirements. If your car is financed, your bank/finance company<br>may require you to have comprehensive cover for your car.
+			p.margin--top(ng-show="car.financed", translate="PS_2_1_3_5") Please check your cover requirements. If your car is financed, your bank/finance company<br>may require you to have comprehensive cover for your car.
 
 	.container-fluid.margin--bottom.margin--top
 		.container-fluid.margin--bottom
-			h2.margin--bottom Roughly how many kilometres do you drive per year?
+			h2.margin--bottom
+				span(translate="PS_2_1_4_a") Roughly how many kilometres do you drive per year?
 				img(src="../../images/question-icon.png")
 
 			.row
 				.col-md-2
-					button.btn.btn-default.margin--bottom(type="button", ng-click="select('< 8,000', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='< 8,000'}") Less than<br>8,000 km
+					button.btn.btn-default.margin--bottom(type="button", ng-click="select('< 8,000', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='< 8,000'}")
+						span(translate="PS_2_1_4_b") Less than<br>8,000 km
 						span.glyphicon.glyphicon-ok
 
 				.col-md-2
-					button.btn.btn-default.margin--bottom(type="button", ng-click="select('8,000 - 15,000', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='8,000 - 15,000'}") 8,000 km -<br>15,000 km
+					button.btn.btn-default.margin--bottom(type="button", ng-click="select('8,000 - 15,000', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='8,000 - 15,000'}")
+						span(translate="PS_2_1_4_c") 8,000 km -<br>15,000 km
 						span.glyphicon.glyphicon-ok
 
 				.col-md-2
-					button.btn.btn-default.margin--bottom(type="button", ng-click="select('> 15,000', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='> 15,000'}") Over<br>15,000 km
+					button.btn.btn-default.margin--bottom(type="button", ng-click="select('> 15,000', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='> 15,000'}")
+						span(translate="PS_2_1_4_d") Over<br>15,000 km
 						span.glyphicon.glyphicon-ok
 
 				.col-md-2
-					button.btn.btn-default.margin--bottom(type="button", ng-click="select('not sure', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='not sure'}") Not<br>sure
+					button.btn.btn-default.margin--bottom(type="button", ng-click="select('not sure', 0, 'kmsperyear')", ng-class="{'active':car.kmsperyear=='not sure'}")
+						span(translate="PS_2_1_4_e") Not<br>sure
 						span.glyphicon.glyphicon-ok
 
 			.margin--top(ng-show="car.kmsperyear=='< 8,000'")
-				p If you drive less than 8,000 km, you can get a discount with our Low-Mileage option!
-				p Please note that you'll be required to pay an additional $5,000 (before GST) if you make a claim and you drove more than 8,000 km.
+				p(translate="PS_2_1_4_1_1") If you drive less than 8,000 km, you can get a discount with our Low-Mileage option!
+				p(translate="PS_2_1_4_1_2") Please note that you'll be required to pay an additional $5,000 (before GST) if you make a claim and you drove more than 8,000 km.
 				label.label-checkbox(for="checkbox5")
 					input#checkbox5(type="checkbox", ng-model="car.lowmileageoption")
 					.fake-checkbox
 						span.glyphicon.glyphicon-ok
-					span Sign me up for the Low-Mileage option!
+					span(translate="PS_2_1_4_1_3") Sign me up for the Low-Mileage option!
 
 	.row
 		.col-md-8
 			.panel.margin--top
 				.arrow(style="left:407px;")
 				.panel-body
-					h2.margin--bottom What do you use the car for?
+					h2.margin--bottom(translate="PS_2_1_4_2_1") What do you use the car for?
 
 					.row.margin--top
 						.col-md-3.centred
 							img.margin--bottom.show-tooltip(src="../../images/moon-icon.png", data-toggle="tooltip" data-placement="top" title="If you drive a car with a red plate registration in Singapore.")
-							button.btn.btn-default.btn-block(type="button", ng-click="select('off peak', 0, 'usage')", ng-class="{'active':car.usage=='off peak'}") Off-peak<br>car
+							button.btn.btn-default.btn-block(type="button", ng-click="select('off peak', 0, 'usage')", ng-class="{'active':car.usage=='off peak'}")
+								span(translate="PS_2_1_4_2_2") Off-peak<br>car
 								span.glyphicon.glyphicon-ok
 						.col-md-3.centred
 							img.margin--bottom.show-tooltip(src="../../images/trolley-icon.png", data-toggle="tooltip" data-placement="top" title="If you are only using your car in the course of your private life and for leisure.")
-							button.btn.btn-default.btn-block(type="button", ng-click="select('personal use', 0, 'usage')", ng-class="{'active':car.usage=='personal use'}") Personal<br>use
+							button.btn.btn-default.btn-block(type="button", ng-click="select('personal use', 0, 'usage')", ng-class="{'active':car.usage=='personal use'}")
+								span(translate="PS_2_1_4_2_3") Personal<br>use
 								span.glyphicon.glyphicon-ok
 						.col-md-3.centred
 							img.margin--bottom.show-tooltip(src="../../images/cityscape-icon.png", data-toggle="tooltip" data-placement="top" title="If you are using your car in the course of your private life and to go to and from your workplace.")
-							button.btn.btn-default.btn-block(type="button", ng-click="select('personal use + commute', 0, 'usage')", ng-class="{'active':car.usage=='personal use + commute'}") Personal use<br>+ Commute
+							button.btn.btn-default.btn-block(type="button", ng-click="select('personal use + commute', 0, 'usage')", ng-class="{'active':car.usage=='personal use + commute'}")
+								span(translate="PS_2_1_4_2_4") Personal use<br>+ Commute
 								span.glyphicon.glyphicon-ok
 						.col-md-3.centred
 							img.margin--bottom.show-tooltip(src="../../images/lanyard-icon.png", data-toggle="tooltip" data-placement="top" title="If you are using your car to go to and from your workplace and for or during the course of your work.")
-							button.btn.btn-default.btn-block(type="button", ng-click="select('commute + during work', 0, 'usage')", ng-class="{'active':car.usage=='commute + during work'}") Commute +<br>During work
+							button.btn.btn-default.btn-block(type="button", ng-click="select('commute + during work', 0, 'usage')", ng-class="{'active':car.usage=='commute + during work'}")
+								span(translate="PS_2_1_4_2_5") Commute +<br>During work
 								span.glyphicon.glyphicon-ok
 
-					p.margin--top(style="color:#777777") Do you sometimes use your car for commute or work? You can use your car up to 5 times per year outside the usage you declare. Simply email us at 
+					p.margin--top(style="color:#777777", translate="PS_2_1_4_2_6") Do you sometimes use your car for commute or work? You can use your car up to 5 times per year outside the usage you declare. Simply email us at 
 						a(href="mailto:carusage@directasia.com") CarUsage@DirectAsia.com 
 						| before you drive, and you'll be covered in case something happens.
 
@@ -168,11 +189,12 @@ section.section.section-car(ng-controller="CarCtrl")
 
 			.row(style="margin-top:3em;")
 				.col-md-12
-					button.btn.btn-forward.btn-lg(type="button", ng-click="proceed()") Proceed
+					button.btn.btn-forward.btn-lg(type="button", ng-click="proceed()")
+						span(translate="PS_2_2_1") Proceed
 						span.glyphicon.glyphicon-arrow-right
 
 			.row(style="margin-top:1em;margin-bottom:12em;")
 				.col-md-12
 					button.btn.btn-backward(type="button")
 						span.glyphicon.glyphicon-arrow-left
-						| Back
+						span(translate="PS_2_2_2") Back

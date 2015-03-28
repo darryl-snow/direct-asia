@@ -2,31 +2,33 @@ section#quote2.section.section--blue.section--padded.section--centred.margin--to
 
 	.container.margin--top
 		img(src="../../images/cover-icon.png")
-		h2 Add Additional Driver
+		h2(translate="PS_4_4a") Add Additional Driver
 
 		.panel.align-left(data-ng-repeat="driver in plan.additionalDrivers")
 			.panel-body
 
 				form(name="driver{{$index}}form", novalidate)
 
-					h3(data-ng-cloak) Driver {{$index + 1}} -
+					h3
+						span(translate="PC_4_4_1_5_1") Driver 
+						span(data-ng-cloak) {{$index + 1}} - {{driver.firstName}} {{driver.lastName}}
 
 					.row
 
 						.col-md-4.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}firstname") First Name
+							label.label--large(for="driver{{$index}}firstname", translate="PC_4_4_1_1a") First Name
 							input.form-control(id="driver{{$index}}firstname", name="driver{{$index}}firstname", type="text", placeholder="enter first name", data-ng-model="driver.firstName", required)
 							.alert.alert-danger(data-ng-show="driver{{$index}}form.driver{{$index}}firstname.$invalid && !driver{{$index}}form.driver{{$index}}firstname.$pristine") Please enter a first name
 
 						.col-md-4.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}lastname") Last Name
+							label.label--large(for="driver{{$index}}lastname", translate="PC_4_4_1_1b") Last Name
 							input.form-control(id="driver{{$index}}lastname", name="driver{{$index}}lastname", type="text", placeholder="enter last name", data-ng-model="driver.lastName", required)
 							.alert.alert-danger(data-ng-show="driver{{$index}}form.driver{{$index}}lastname.$invalid && !driver{{$index}}form.driver{{$index}}lastname.$pristine") Please enter a last name
 
 					.row
 
 						.col-md-4.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}dob-day") Date of Birth
+							label.label--large(for="driver{{$index}}dob-day", translate="PC_4_4_1_1c") Date of Birth
 							.form-inline
 								input.day(id="driver{{$index}}dob_day", min="1", max="31", name="driver{{$index}}dob_day", placeholder="DD", type="number", data-ng-model="driver.dob.day", required)
 								input.month(id="driver{{$index}}dob_month", min="1", max="12", name="driver{{$index}}dob_month", placeholder="MM", type="number", data-ng-model="driver.dob.month", required)
@@ -34,17 +36,19 @@ section#quote2.section.section--blue.section--padded.section--centred.margin--to
 							.alert.alert-danger(data-ng-show="(driver{{$index}}form.driver{{$index}}dob_day.$invalid && !driver{{$index}}form.driver{{$index}}dob_day.$pristine) || (driver{{$index}}form.driver{{$index}}dob_month.$invalid && !driver{{$index}}form.driver{{$index}}dob_month.$pristine) || (driver{{$index}}form.driver{{$index}}dob_year.$invalid && !driver{{$index}}form.driver{{$index}}dob_year.$pristine)") Please enter a valid Date of Birth
 
 						.col-md-4.margin--top.margin--bottom
-							label.label--large Gender
-							button.btn.btn-default.random-margin(type="button", ng-click="driver.gender='Male'", ng-class="{'active':driver.gender=='Male'}") Male
+							label.label--large(translate="PC_4_4_1_1d") Gender
+							button.btn.btn-default.random-margin(type="button", ng-click="driver.gender='Male'", ng-class="{'active':driver.gender=='Male'}")
+								span(translate="PC_4_4_1_1d_1") Male
 								span.glyphicon.glyphicon-ok
 
-							button.btn.btn-default(type="button", ng-click="driver.gender='Female'", ng-class="{'active':driver.gender=='Female'}") Female
+							button.btn.btn-default(type="button", ng-click="driver.gender='Female'", ng-class="{'active':driver.gender=='Female'}")
+								span(translate="PC_4_4_1_1d_2") Female
 								span.glyphicon.glyphicon-ok
 
 					.row
 
 						.col-md-4.margin--top.margin--bottom
-							label.label--large Marital Status
+							label.label--large(translate="PC_4_4_1_1e") Marital Status
 							button.btn.btn-default.random-margin(type="button", ng-click="driver.maritalStatus = 'single'", ng-class="{'active':driver.maritalStatus=='single'}") Single
 								span.glyphicon.glyphicon-ok
 
@@ -52,17 +56,17 @@ section#quote2.section.section--blue.section--padded.section--centred.margin--to
 								span.glyphicon.glyphicon-ok
 
 						.col-md-4.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}occupation") Occupation
+							label.label--large(for="driver{{$index}}occupation", translate="PC_4_4_1_1f") Occupation
 							input.form-control(id="driver{{$index}}occupation", name="driver{{$index}}occupation", type="text", placeholder="enter occupation", data-ng-model="driver.occupation")
 
 					.row
 
 						.col-md-7.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}experience") Years of valid driving
+							label.label--large(for="driver{{$index}}experience", translate="PC_4_4_1_2a") Years of valid driving
 
 							.row
 								.col-md-9
-									p We are unable to insure drivers who've had their license suspended or cancelled in the last 5 years.
+									p(translate="PC_4_4_1_2b") We are unable to insure drivers who've had their license suspended or cancelled in the last 5 years.
 
 							.row
 								.col-md-6
@@ -72,42 +76,46 @@ section#quote2.section.section--blue.section--padded.section--centred.margin--to
 					.row
 
 						.col-md-7.margin--top.margin--bottom
-							label.label--large Did the main driver have any driving offence points in the last 2 years?
+							label.label--large
+								span(translate="PC_4_4_1_3a") Did the main driver have any driving offence points in the last 2 years?
 								img(src="../../images/question-icon.png")
-							p If you're unsure, 
+							p(translate="PC_4_4_1_3b") If you're unsure, 
 								a(href="", title="") click here
 								|  to get this information. Please note that drivers must have less than 12 offence points.
 
 							.row
 								.col-md-12
-									button.btn.btn-default.random-margin(type="button", ng-click="driver.offences = true", ng-class="{'active':driver.offences}") Yes
+									button.btn.btn-default.random-margin(type="button", ng-click="driver.offences = true", ng-class="{'active':driver.offences}")
+										span(translate="PC_4_4_1_3c") Yes
 										span.glyphicon.glyphicon-ok
 
-									button.btn.btn-default(type="button", ng-click="driver.offences = false", ng-class="{'active':driver.offences==false}") No
+									button.btn.btn-default(type="button", ng-click="driver.offences = false", ng-class="{'active':driver.offences==false}")
+										span(translate="PC_4_4_1_3d") No
 										span.glyphicon.glyphicon-ok
 
 					.row
 
 						.col-md-12.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}claims-at-fault") In the past 3 years (36 months), how many accidents and/or claims were made?
+							label.label--large(for="driver{{$index}}claims-at-fault")
+								span(translate="PC_4_4_1_4a") In the past 3 years (36 months), how many accidents and/or claims were made?
 								img(src="../../images/question-icon.png")
-							p Please include all accidents, but you can exclude windscreen claims.
+							p(translate="PC_4_4_1_4b") Please include all accidents, but you can exclude windscreen claims.
 
 							.row
 
 								.col-md-3
 									input.claim(id="driver{{$index}}claims-at-fault", min="0", name="driver{{$index}}claims-at-fault", placeholder="0", type="number", data-ng-model="driver.accidents.atFault")
-									| at fault
+									span(translate="PC_4_4_1_4c") at fault
 
 								.col-md-3
 									input.claim(id="driver{{$index}}claims-not-at-fault", min="0", name="driver{{$index}}claims-not-at-fault", placeholder="0", type="number", data-ng-model="driver.accidents.notAtFault")
-									| not at fault
+									span(translate="PC_4_4_1_4d") not at fault
 
 		.panel.align-left(style="margin-bottom:40px;")
 			.panel-body
-				button.btn.btn-continue(type="button", data-ng-click="addAdditionalDriver()") &plus; Add another driver
+				button.btn.btn-continue(type="button", data-ng-click="addAdditionalDriver()", translate="PC_4_4_1_5") &plus; Add another driver
 
 
 		a.btn.btn-continue.internal-link(href="#quote3", title="", data-ng-click="continue(3)")
 			i.glyphicon.glyphicon-arrow-down
-			| Continue
+			span(translate="PC_4_4_4") Continue

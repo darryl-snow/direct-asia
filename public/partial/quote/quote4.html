@@ -1,26 +1,26 @@
 
 <section id="quote3" data-ng-show="currentStep&gt;=3" class="section section--blue section--padded section--centred">
   <div class="container"><img src="../../images/cover-icon3.png"/>
-    <h2 class="margin--bottom">Optional Cover<img src="../../images/question-icon.png"/>
-      <div class="subtitle">Customise your coverage and save money by adding optional items</div>
+    <h2 class="margin--bottom"><span translate="PC_4_5a">Optional Cover</span><img src="../../images/question-icon.png"/>
+      <div translate="PC_4_5b" class="subtitle">Customise your coverage and save money by adding optional items</div>
     </h2>
     <div class="options clearfix">
       <div data-ng-repeat="option in options.optionalCover" class="col-md-4">
         <div class="option">
-          <div data-ng-if="option.recommended" class="recommended"><img src="../../images/star-icon.png"/>recommended</div>
+          <div data-ng-if="option.recommended" class="recommended"><img src="../../images/star-icon.png"/><span translate="PC_4_5_1">recommended</span></div>
           <div class="panel">
             <div class="panel-heading">
               <h3>{{option.name}}</h3>
             </div>
             <div class="panel-footer"><img data-ng-src="../../images/{{option.name | slugify}}-icon.png" class="option-icon"/><strong>S$ <span>{{option.cost}}</span></strong>
-              <button type="button" data-ng-click="selectOption(option)" ng-class="{'active':option.selected, 'done':option.selected}" class="btn btn-default btn-action"><span class="btn-action-default">Select</span><span class="btn-action-alt">Selected</span><i class="glyphicon glyphicon-ok"></i></button>
+              <button type="button" data-ng-click="selectOption(option)" ng-class="{'active':option.selected, 'done':option.selected}" class="btn btn-default btn-action"><span translate="PC_4_5c" class="btn-action-default">Select</span><span translate="PC_4_5d" class="btn-action-alt">Selected</span><i class="glyphicon glyphicon-ok"></i></button>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12"><a href="#quote4" title="" data-ng-click="continue(4)" class="btn btn-continue internal-link"><i class="glyphicon glyphicon-arrow-down"></i>No Thanks, Continue</a></div>
+      <div class="col-md-12"><a href="#quote4" title="" data-ng-click="continue(4)" class="btn btn-continue internal-link"><i class="glyphicon glyphicon-arrow-down"></i><span translate="PC_4_5_2">No Thanks, Continue</span></a></div>
     </div>
   </div>
 </section>

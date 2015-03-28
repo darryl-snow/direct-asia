@@ -3,19 +3,19 @@
   <div class="container">
     <div class="row">
       <div class="col-md-5">
-        <label for="feedback" class="label--large">We'd like to know how you heard about us</label>
+        <label for="feedback" translate="PC_4_9a" class="label--large">We'd like to know how you heard about us</label>
         <select id="feedback" selecter="selecter" name="feedback">
           <option selecter="selecter" label="Select an option" value="{{option}}" data-ng-repeat="option in options.feedback" selecter-target="#feedback" selecter-callback="select" property="feedback" ng-selected="feedback == selectedItem">{{option}}</option>
         </select>
       </div>
     </div>
     <div style="margin-top:2em;" class="row">
-      <div class="col-md-12"><a href="" title="" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span>Back</a><a href="" title="" class="btn btn-forward btn-lg pull-right">Proceed<span class="glyphicon glyphicon-arrow-right"></span></a></div>
+      <div class="col-md-12"><a href="" title="" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_4_10_1">Back</span></a><a href="" title="" class="btn btn-forward btn-lg pull-right"><span translate="PC_4_10_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></a></div>
     </div>
     <div class="row margin--top">
       <div class="col-md-3 col-md-offset-9">
-        <button type="button" data-ng-click="saveForLater()" class="btn btn-primary btn-action btn-block btn-sm"><span class="btn-action-default">Save for later</span><span class="btn-action-alt">Saved!</span><span class="glyphicon glyphicon-ok"></span></button>
-        <p>Your details will be saved for 90 days so you can finish later</p>
+        <button type="button" data-ng-click="saveForLater()" class="btn btn-primary btn-action btn-block btn-sm"><span translate="PC_4_10_3" class="btn-action-default">Save for later</span><span translate="PC_4_10_4" class="btn-action-alt">Saved!</span><span class="glyphicon glyphicon-ok"></span></button>
+        <p translate="PC_4_10_8">Your details will be saved for 90 days so you can finish later</p>
       </div>
     </div>
   </div>
