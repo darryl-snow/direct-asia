@@ -12,7 +12,7 @@
         <div class="plan-left"><img src="../../images/car-icon3.png"/></div>
         <div class="plan-right">
           <div class="plan-item"><strong translate="PC_4_3_1_1">Car</strong><span data-ng-cloak="data-ng-cloak">{{plan.car.year}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.make}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.model}}</span><span data-ng-cloak="data-ng-cloak">{{plan.car.lowmileageoption ? ", Low Mileage" : "" }}</span><a href="../car/car.html" title="Edit car details" translate="PC_4_3_1_2" class="btn btn-default btn-sm margin--left">Edit</a></div>
-          <div class="plan-item"><strong translate="PC_4_3_1_3">Driver</strong><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.gender}}, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.age}}</span><span translate="PC_4_3_1_3a">years old, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.noClaimsDiscount}} NCD, </span>
+          <div class="plan-item"><strong translate="PC_4_3_1_3">Driver</strong><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.gender}}, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.age}}</span><span translate="PC_4_3_1_3a"> years old, </span><span data-ng-cloak="data-ng-cloak"> {{plan.mainDriver.noClaimsDiscount}} NCD, </span>
             <ng-pluralize data-ng-cloak="data-ng-cloak" count="plan.mainDriver.accidents.atFault" when="{'0':'0 at fault claims', '1': '1 at fault claim', 'other': '{} at fault claims'}"></ng-pluralize><a href="../about-your-driver/your-driver.html" title="Edit driver information" translate="PC_4_3_1_4" class="btn btn-default btn-sm margin--left">Edit</a>
           </div>
         </div>

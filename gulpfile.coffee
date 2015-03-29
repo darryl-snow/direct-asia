@@ -34,6 +34,37 @@ gulp.task "lib", ->
 
 	# JavaScript
 
+	# gulp.src [
+	# 	Config.src + "lib/jquery/dist/jquery.js",
+	# 	Config.src + "lib/angular/angular.js",
+	# 	Config.src + "lib/angular-translate/angular-translate.js",
+	# 	Config.src + "lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
+	# 	Config.src + "lib/bootstrap/dist/js/bootstrap.js",
+	# 	Config.src + "lib/Selecter/jquery.fs.selecter.js",
+	# 	Config.src + "lib/fsm-sticky-header/src/fsm-sticky-header.js"
+	# ]
+	# .pipe plugins.plumber()
+	# .pipe plugins.concat "lib.js"
+	# .pipe plugins.uglify()
+	# .pipe plugins.size
+	# 	showFiles: true
+	# .pipe gulp.dest Config.build + "lib"
+
+	# # CSS
+
+	# gulp.src [
+	# 	Config.src + "lib/bootstrap/dist/css/bootstrap.css",
+	# 	Config.src + "lib/Bootflat/bootflat/css/bootflat.css"
+	# ]
+	# .pipe plugins.plumber()
+	# .pipe plugins.concat "lib.css"
+	# .pipe plugins.minifyCss()
+	# .pipe plugins.size
+	# 	showFiles: true
+	# .pipe gulp.dest Config.build + "lib"
+
+	# JavaScript
+
 	gulp.src [
 		Config.src + "lib/jquery/dist/jquery.js",
 		Config.src + "lib/angular/angular.js",
@@ -43,11 +74,6 @@ gulp.task "lib", ->
 		Config.src + "lib/Selecter/jquery.fs.selecter.js",
 		Config.src + "lib/fsm-sticky-header/src/fsm-sticky-header.js"
 	]
-	.pipe plugins.plumber()
-	.pipe plugins.concat "lib.js"
-	.pipe plugins.uglify()
-	.pipe plugins.size
-		showFiles: true
 	.pipe gulp.dest Config.build + "lib"
 
 	# CSS
@@ -56,12 +82,8 @@ gulp.task "lib", ->
 		Config.src + "lib/bootstrap/dist/css/bootstrap.css",
 		Config.src + "lib/Bootflat/bootflat/css/bootflat.css"
 	]
-	.pipe plugins.plumber()
-	.pipe plugins.concat "lib.css"
-	.pipe plugins.minifyCss()
-	.pipe plugins.size
-		showFiles: true
 	.pipe gulp.dest Config.build + "lib"
+
 
 # Compile coffeescript
 
@@ -92,11 +114,11 @@ gulp.task "coffeescript", ->
 	.pipe plugins.coffee
 		bare: true
 	# .pipe plugins.sourcemaps.write "./sourcemaps"
-	.pipe plugins.concat "directives.js"
+	# .pipe plugins.concat "directives.js"
 	.pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */\n"
 	.pipe plugins.size
 		showFiles: true
-	.pipe gulp.dest Config.build + "scripts"
+	.pipe gulp.dest Config.build + "scripts/directives"
 
 	# Services
 
@@ -106,11 +128,25 @@ gulp.task "coffeescript", ->
 	.pipe plugins.coffee
 		bare: true
 	# .pipe plugins.sourcemaps.write "./sourcemaps"
-	.pipe plugins.concat "services.js"
+	# .pipe plugins.concat "services.js"
 	.pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */\n"
 	.pipe plugins.size
 		showFiles: true
-	.pipe gulp.dest Config.build + "scripts"
+	.pipe gulp.dest Config.build + "scripts/services"
+
+	# Filters
+
+	gulp.src Config.src + "coffeescript/filters/*.coffee"
+	.pipe plugins.plumber()
+	# .pipe plugins.sourcemaps.init()
+	.pipe plugins.coffee
+		bare: true
+	# .pipe plugins.sourcemaps.write "./sourcemaps"
+	# .pipe plugins.concat "filters.js"
+	.pipe plugins.header "/* " + Config.name + " : " + Config.version + " : " + new Date() + " */\n"
+	.pipe plugins.size
+		showFiles: true
+	.pipe gulp.dest Config.build + "scripts/filters"
 
 	# Main module
 
@@ -233,12 +269,6 @@ gulp.task "jade", ->
 			keywords: pkg.keywords
 	.pipe gulp.dest Config.build + "partial"
 
-	# copy other developers' stuff
-	gulp.src Config.src + "other-developers-stuff/pages/**/*"
-	.pipe gulp.dest Config.build + "pages"
-	gulp.src Config.src + "other-developers-stuff/partials/**/*"
-	.pipe gulp.dest Config.build + "partials"
-
 # Optimise images
 
 gulp.task "images", ->
@@ -278,6 +308,14 @@ gulp.task "copy-files", ->
 
 	# gulp.src Config.src + "sitemap.xml"
 	# .pipe gulp.dest Config.build
+
+	# copy other developers' stuff
+	gulp.src Config.src + "other-developers-stuff/pages/**/*"
+	.pipe gulp.dest Config.build + "pages"
+	gulp.src Config.src + "other-developers-stuff/partials/**/*"
+	.pipe gulp.dest Config.build + "partials"
+	gulp.src Config.src + "other-developers-stuff/scripts/**/*"
+	.pipe gulp.dest Config.build + "scripts/controllers"
 
 # Watch for changes to files
 

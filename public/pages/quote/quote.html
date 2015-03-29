@@ -8,7 +8,8 @@
     <meta name="keywords" content="bootstrap angularJS bootflat">
     <meta name="author" content="Darryl Snow">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="../../lib/lib.css">
+    <link rel="stylesheet" href="../../lib/bootstrap.css">
+    <link rel="stylesheet" href="../../lib/bootflat.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <!--if lt IE 9
     script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
@@ -32,10 +33,25 @@
     <meta name="msapplication-TileImage" content="../../images/mstile-144x144.png">
     <meta name="msapplication-config" content="../../images/browserconfig.xml">
     <link rel="shortcut icon" href="../../images/favicon.ico">
-    <script src="../../lib/lib.js"></script>
+    <script src="../../lib/jquery.js"></script>
+    <script src="../../lib/angular.js"></script>
+    <script src="../../lib/angular-translate.js"></script>
+    <script src="../../lib/angular-translate-loader-static-files.js"></script>
+    <script src="../../lib/bootstrap.js"></script>
+    <script src="../../lib/jquery.fs.selecter.js"></script>
+    <script src="../../lib/fsm-sticky-header.js"></script>
     <script src="../../scripts/main.js"></script>
-    <script src="../../scripts/directives.js"></script>
-    <script src="../../scripts/services.js"></script>
+    <script src="../../scripts/directives/input-group.directive.js"></script>
+    <script src="../../scripts/directives/popover.directive.js"></script>
+    <script src="../../scripts/directives/selecter.directive.js"></script>
+    <script src="../../scripts/directives/toggle-buttons.directive.js"></script>
+    <script src="../../scripts/directives/tooltip.directive.js"></script>
+    <script src="../../scripts/services/AdditionalDriver.factory.js"></script>
+    <script src="../../scripts/services/Car.factory.js"></script>
+    <script src="../../scripts/services/InsurancePlan.factory.js"></script>
+    <script src="../../scripts/services/MainDriver.factory.js"></script>
+    <script src="../../scripts/filters/range.filter.js"></script>
+    <script src="../../scripts/filters/slugify.filter.js"></script>
   </head>
   <body>
     <div class="container">
@@ -95,7 +111,7 @@
               <div class="plan-left"><img src="../../images/car-icon3.png"></div>
               <div class="plan-right">
                 <div class="plan-item"><strong translate="PC_4_3_1_1">Car</strong><span data-ng-cloak>{{plan.car.year}} </span><span data-ng-cloak>{{plan.car.make}} </span><span data-ng-cloak>{{plan.car.model}}</span><span data-ng-cloak>{{plan.car.lowmileageoption ? ", Low Mileage" : "" }}</span><a href="../car/car.html" title="Edit car details" translate="PC_4_3_1_2" class="btn btn-default btn-sm margin--left">Edit</a></div>
-                <div class="plan-item"><strong translate="PC_4_3_1_3">Driver</strong><span data-ng-cloak>{{plan.mainDriver.gender}}, </span><span data-ng-cloak>{{plan.mainDriver.age}}</span><span translate="PC_4_3_1_3a">years old, </span><span data-ng-cloak>{{plan.mainDriver.noClaimsDiscount}} NCD, </span>
+                <div class="plan-item"><strong translate="PC_4_3_1_3">Driver</strong><span data-ng-cloak>{{plan.mainDriver.gender}}, </span><span data-ng-cloak>{{plan.mainDriver.age}}</span><span translate="PC_4_3_1_3a"> years old, </span><span data-ng-cloak> {{plan.mainDriver.noClaimsDiscount}} NCD, </span>
                   <ng-pluralize data-ng-cloak count="plan.mainDriver.accidents.atFault" when="{'0':'0 at fault claims', '1': '1 at fault claim', 'other': '{} at fault claims'}"></ng-pluralize><a href="../about-your-driver/your-driver.html" title="Edit driver information" translate="PC_4_3_1_4" class="btn btn-default btn-sm margin--left">Edit</a>
                 </div>
               </div>

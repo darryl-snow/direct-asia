@@ -16,7 +16,8 @@ html(lang="en", ng-app="DirectAsia")
 		block meta
 
 		//- 3rd party library Styles
-		link(rel="stylesheet", href="../../lib/lib.css")
+		link(rel="stylesheet", href="../../lib/bootstrap.css")
+		link(rel="stylesheet", href="../../lib/bootflat.css")
 
 		//- Custom Styles
 		link(rel="stylesheet", href="../../styles/main.css")
@@ -50,13 +51,34 @@ html(lang="en", ng-app="DirectAsia")
 		//- footer
 
 		//- 3rd party libraries & plugins
-		script(src="../../lib/lib.js")
+		//- DO NOT CHANGE THE ORDER
+		script(src="../../lib/jquery.js")
+		script(src="../../lib/angular.js")
+		script(src="../../lib/angular-translate.js")
+		script(src="../../lib/angular-translate-loader-static-files.js")
+		script(src="../../lib/bootstrap.js")
+		script(src="../../lib/jquery.fs.selecter.js")
+		script(src="../../lib/fsm-sticky-header.js")
 
 		//- Main module - required on all pages
 		script(src="../../scripts/main.js")
 
-		//- All directives in 1 file
-		script(src="../../scripts/directives.js")
+		//- All directives
+		script(src="../../scripts/directives/input-group.directive.js")
+		script(src="../../scripts/directives/popover.directive.js")
+		script(src="../../scripts/directives/selecter.directive.js")
+		script(src="../../scripts/directives/toggle-buttons.directive.js")
+		script(src="../../scripts/directives/tooltip.directive.js")
+
+		//- All services
+		script(src="../../scripts/services/AdditionalDriver.factory.js")
+		script(src="../../scripts/services/Car.factory.js")
+		script(src="../../scripts/services/InsurancePlan.factory.js")
+		script(src="../../scripts/services/MainDriver.factory.js")
+
+		//- All filters
+		script(src="../../scripts/filters/range.filter.js")
+		script(src="../../scripts/filters/slugify.filter.js")
 
 	body
 
