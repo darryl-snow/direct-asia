@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Sun Mar 29 2015 12:22:08 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Tue Mar 31 2015 14:01:02 GMT+0800 (CST) */
 @font-face {
   font-family: Proxima;
   src: url("../fonts/ProximaNova/ProximaNova-Regular.otf") format("opentype"); }
@@ -121,21 +121,29 @@ h1 img, h2 img {
 .alert-danger {
   color: #ffffff; }
 
-.benefit-icon {
-  float: left;
-  margin-right: 15px; }
-.benefit-details {
-  float: left;
-  width: 65%; }
-.benefit a {
-  color: #252525;
-  cursor: pointer;
-  display: block;
-  font-family: "ProximaSemiBold"; }
-.benefit h4 {
-  margin: 0; }
-  .benefit h4 img {
-    margin-left: 10px; }
+.benefit {
+  height: 120px;
+  overflow: hidden;
+  margin-bottom: 1em; }
+  .benefit-icon {
+    float: left;
+    margin-right: 15px; }
+  .benefit-details {
+    float: left;
+    width: 65%; }
+  .benefit a {
+    color: #252525;
+    cursor: pointer;
+    display: block;
+    font-family: "ProximaSemiBold"; }
+    .benefit a span {
+      float: left;
+      width: 75%; }
+  .benefit h4 {
+    margin: 0; }
+    .benefit h4 img {
+      float: left;
+      margin-left: 10px; }
 
 .breadcrumb-arrow {
   background-color: #ffffff;
@@ -216,10 +224,13 @@ h1 img, h2 img {
           transition: 0.2s background-color ease-in-out; }
   .btn .glyphicon {
     margin-top: -7px;
+    pointer-events: none;
     position: absolute;
     right: 12px;
     top: 50%;
     visibility: hidden; }
+  .btn span {
+    pointer-events: none; }
   .btn.active {
     background: #fcd900 !important;
     border: none;

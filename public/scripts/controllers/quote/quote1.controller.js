@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Sun Mar 29 2015 12:22:08 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Tue Mar 31 2015 14:15:31 GMT+0800 (CST) */
 
 /*
 
@@ -44,7 +44,7 @@ getMockData = function() {
         description: "S$50 to help you with transport costs while your car is being repaired",
         cost: 156
       }, {
-        name: "My workshop/ garage",
+        name: "My workshop / garage",
         description: "Gives you the freedom to select your own preferred workshop for an optional benefit",
         cost: 156
       }, {
@@ -73,6 +73,18 @@ getMockData = function() {
         cost: 156
       }, {
         name: "Repatriation costs",
+        description: "Description",
+        cost: 156
+      }, {
+        name: "NCPD",
+        description: "Description",
+        cost: 156
+      }, {
+        name: "Uninsured loss recovery",
+        description: "Description",
+        cost: 156
+      }, {
+        name: "Windscreen and window breakage",
         description: "Description",
         cost: 156
       }
@@ -122,21 +134,6 @@ getMockData = function() {
         name: "Comprehensive",
         baseCost: 732
       },
-      options: [
-        {
-          name: "Loss of use",
-          description: "S$50 to help you with transport costs while your car is being repaired",
-          cost: 156
-        }, {
-          name: "My workshop/ garage",
-          description: "Gives you the freedom to select your own preferred workshop for an optional benefit",
-          cost: 156
-        }, {
-          name: "Experienced Drivers",
-          description: "Cover anyone over 30 with more than 2 years driving experience",
-          cost: 156
-        }
-      ],
       excess: 2000
     }
   };
@@ -160,7 +157,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			savedPlan = in case the user wants to save the plan for later or switch
     			to the recommended plan and then switch back
      */
-    var calculateTotalCost, getDataFromAPI, selectRecommendedOptions, setupData;
+    var calculateTotalCost, getDataFromAPI, getOption, getRecommendedOptions, getRecommendedPlan, selectRecommendedOptions, setupData;
     $scope.plan = new InsurancePlan();
     $scope.recommendedPlan = new InsurancePlan();
     $scope.savedPlan = new InsurancePlan();
@@ -196,7 +193,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     $scope.currentStep = 1;
 
     /*
-    			This function fetches data from the back-end to be used on the page
+    			This private function fetches data from the back-end to be used on the page
     
     			(NOTE: This isn't used currently as the data is mocked by the
     			function getMockData() above)
@@ -217,7 +214,113 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     };
 
     /*
-    			This function formats the data returned from the server so that it
+    			This private function takes the name of an optional benefit and
+    			returns the object corresponding to that benefit, if it exists
+     */
+    getOption = function(name) {
+      var option;
+      option = $scope.options.optionalCover.filter(function(ob) {
+        return ob.name.trim().toLowerCase() === name.trim().toLowerCase();
+      });
+      return option[0];
+    };
+
+    /*
+    			This private function determines which options to recommend based
+    			on data the user has previously entered, using the supplied logic
+    			table
+     */
+    getRecommendedOptions = function(cover, driver, car) {
+      var date, options, years;
+      options = [];
+      date = new Date;
+      years = date.getFullYear() - car.year;
+
+      /*
+      				CO & TP+ get LOU
+       */
+      if ((cover === "Comprehensive" || cover === "Third-Party Fire & Theft") && options.length < 4) {
+        options.push(getOption("Loss of Use"));
+      }
+
+      /*
+      				CO gets new for old and my workshop if car is less than 1 years
+       */
+      if (years <= 1 && cover === "Comprehensive" && options.length < 4) {
+        options.push(getOption("24 months new for old replacement car"));
+      }
+
+      /*
+      				All cover plans get NCDP if driver has 50%NCD
+       */
+      if ((driver.noClaimsDiscount === "50%" || driver.noClaimsDiscount === "60%") && options.length < 4) {
+        options.push(getOption("NCPD"));
+      }
+
+      /*
+      				CO and TP+ get 24hrs bd if the driver is female
+       */
+      if ((cover === "Comprehensive" || cover === "Third-Party Fire & Theft") && options.length < 4) {
+        options.push(getOption("24 hr breakdown assistance"));
+      }
+
+      /*
+      				CO gets my workshop if car is less than 3 years
+       */
+      if (cover === "Comprehensive" && years <= 3 && options.length < 4) {
+        options.push(getOption("My workshop / garage"));
+      }
+
+      /*
+      				Everyone gets PA and ME. TPO also gets uninsured loss recovery
+       */
+      if (options.length < 4) {
+        options.push(getOption("Personal accident"));
+        options.push(getOption("Medical expenses"));
+        if (cover === "Third-Party") {
+          options.push(getOption("Uninsured loss recovery"));
+        }
+      }
+
+      /*
+      				TP+ and TPO get windscreen and window breakage if car is less than 5 years
+       */
+      if ((cover === "Third-Party Fire & Theft" || cover === "Third-Party") && years <= 5 && options.length < 4) {
+        options.push(getOption("Windscreen and window breakage"));
+      }
+      return options;
+    };
+
+    /*
+    			This private function determines which plan is recommended based on what the
+    			user has selected
+     */
+    getRecommendedPlan = function() {
+      var i, matched, option, _i, _len, _ref;
+      $scope.recommendedPlan.car = $scope.plan.car;
+      $scope.recommendedPlan.driver = $scope.plan.driver;
+      $scope.recommendedPlan.cover = $scope.plan.cover;
+      $scope.recommendedPlan.options = getRecommendedOptions($scope.plan.cover.name, $scope.mainDriver, $scope.car);
+
+      /*
+      				set recommended optional benefits
+       */
+      _ref = $scope.options.optionalCover;
+      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+        option = _ref[i];
+        option.recommended = false;
+        matched = $scope.recommendedPlan.options.filter(function(recommendedOption) {
+          return recommendedOption.name === option.name;
+        });
+        if (matched.length) {
+          option.recommended = true;
+        }
+      }
+      return calculateTotalCost($scope.recommendedPlan);
+    };
+
+    /*
+    			This private function formats the data returned from the server so that it
     			can be used on the page
      */
     setupData = function(data) {
@@ -225,7 +328,6 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       /*
       				get page options
        */
-      var car, i, mainDriver, matched, option, _i, _len, _ref;
       $scope.options.coverPlans = data.coverPlans;
       $scope.options.excesses = data.excesses;
       $scope.options.feedback = data.feedback;
@@ -234,84 +336,66 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       /*
       				get details about main driver
        */
-      mainDriver = new MainDriver;
-      mainDriver.ownership = data.mainDriver.ownership;
-      mainDriver.dob = {
+      $scope.mainDriver = new MainDriver;
+      $scope.mainDriver.ownership = data.mainDriver.ownership;
+      $scope.mainDriver.dob = {
         day: data.mainDriver.dob.day,
         month: data.mainDriver.dob.month,
         year: data.mainDriver.dob.year
       };
-      mainDriver.age = data.mainDriver.age;
-      mainDriver.gender = data.mainDriver.gender;
-      mainDriver.maritalStatus = data.mainDriver.maritalStatus;
-      mainDriver.occupation = data.mainDriver.occupation;
-      mainDriver.residentialDistrict = data.mainDriver.residentialDistrict;
-      mainDriver.drivingExperience = data.mainDriver.drivingExperience;
-      mainDriver.noClaimsDiscount = data.mainDriver.noClaimsDiscount;
-      mainDriver.offences = data.mainDriver.offences;
-      mainDriver.refusals = data.mainDriver.refusals;
-      mainDriver.accidents = {
+      $scope.mainDriver.age = data.mainDriver.age;
+      $scope.mainDriver.gender = data.mainDriver.gender;
+      $scope.mainDriver.maritalStatus = data.mainDriver.maritalStatus;
+      $scope.mainDriver.occupation = data.mainDriver.occupation;
+      $scope.mainDriver.residentialDistrict = data.mainDriver.residentialDistrict;
+      $scope.mainDriver.drivingExperience = data.mainDriver.drivingExperience;
+      $scope.mainDriver.noClaimsDiscount = data.mainDriver.noClaimsDiscount;
+      $scope.mainDriver.offences = data.mainDriver.offences;
+      $scope.mainDriver.refusals = data.mainDriver.refusals;
+      $scope.mainDriver.accidents = {
         atFault: data.mainDriver.accidents.atFault,
         notAtFault: data.mainDriver.accidents.atFault
       };
-      mainDriver.additionalDrivers = data.mainDriver.additionalDrivers;
+      $scope.mainDriver.additionalDrivers = data.mainDriver.additionalDrivers;
 
       /*
       				get details about car
        */
-      car = new Car;
-      car.year = data.car.year;
-      car.make = data.car.make;
-      car.model = data.car.model;
-      car.modified = data.car.modified;
-      car.modifications = {
+      $scope.car = new Car;
+      $scope.car.year = data.car.year;
+      $scope.car.make = data.car.make;
+      $scope.car.model = data.car.model;
+      $scope.car.modified = data.car.modified;
+      $scope.car.modifications = {
         airintakeexhaust: data.car.modifications.airintakeexhaust,
         bodykit: data.car.modifications.bodykit,
         rimstires: data.car.modifications.rimstires,
         suspensionstabiliser: data.car.modifications.suspensionstabiliser
       };
-      car.ownership = data.car.ownership;
-      car.financed = data.car.financed;
-      car.kmsperyear = data.car.kmsperyear;
-      car.lowmileageoption = data.car.lowmileageoption;
-      car.usage = data.car.usage;
+      $scope.car.ownership = data.car.ownership;
+      $scope.car.financed = data.car.financed;
+      $scope.car.kmsperyear = data.car.kmsperyear;
+      $scope.car.lowmileageoption = data.car.lowmileageoption;
+      $scope.car.usage = data.car.usage;
 
       /*
       				save info for selected plan
        */
-      $scope.plan.car = car;
-      $scope.plan.mainDriver = mainDriver;
+      $scope.plan.car = $scope.car;
+      $scope.plan.mainDriver = $scope.mainDriver;
       $scope.plan.additionalDrivers.push(new AdditionalDriver);
       $scope.plan.cover = $scope.options.coverPlans[data.selectedCover];
 
       /*
       				save info for recommended plan
        */
-      $scope.recommendedPlan.car = $scope.plan.car;
-      $scope.recommendedPlan.driver = $scope.plan.driver;
-      $scope.recommendedPlan.cover = data.recommendedPlan.cover;
-      $scope.recommendedPlan.options = data.recommendedPlan.options;
       $scope.recommendedPlan.excess = data.recommendedPlan.excess;
+      getRecommendedPlan();
 
       /*
-      				set recommended optional benefits
+      				Calculate the annual costs for the selected plan
        */
-      _ref = $scope.options.optionalCover;
-      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
-        option = _ref[i];
-        matched = $scope.recommendedPlan.options.filter(function(recommendedOption) {
-          return recommendedOption.name === option.name;
-        });
-        if (matched.length) {
-          option.recommended = true;
-        }
-      }
-
-      /*
-      				Calculate the annual costs for the selected and recommended plans
-       */
-      calculateTotalCost($scope.plan);
-      return calculateTotalCost($scope.recommendedPlan);
+      return calculateTotalCost($scope.plan);
     };
 
     /*
@@ -336,7 +420,8 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
      */
     $scope.selectPlan = function(cover) {
       $scope.plan.cover = cover;
-      return calculateTotalCost($scope.plan);
+      calculateTotalCost($scope.plan);
+      return getRecommendedPlan();
     };
 
     /*

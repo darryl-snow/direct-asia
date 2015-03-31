@@ -1,0 +1,109 @@
+//- Choose Your Car Insurance Plan
+
+section#quote1.container(data-ng-show="currentStep>=1")
+
+	h1(translate="PC_4_2a") Choose Your Car Insurance Plan
+
+	.panel
+
+		.panel-header
+
+			h2
+				span(translate="PC_4_3a") Your Recommended Plan
+				img(src="../../images/question-icon.png", style="margin-left:10px;")
+				.subtitle(translate="PC_4_3b") Your recommended plan is based on the car and driver details you provide, as well as popular options our customer's enjoy.
+
+		.panel-body.panel-body--grey
+
+			.plan
+				.plan-left
+					img(src="../../images/car-icon3.png")
+
+				.plan-right
+
+					.plan-item
+						strong(translate="PC_4_3_1_1") Car
+						span(data-ng-cloak) {{plan.car.year}} 
+						span(data-ng-cloak) {{plan.car.make}} 
+						span(data-ng-cloak) {{plan.car.model}}
+						span(data-ng-cloak) {{plan.car.lowmileageoption ? ", Low Mileage" : "" }}
+						a.btn.btn-default.btn-sm.margin--left(href="../car/car.html", title="Edit car details", translate="PC_4_3_1_2") Edit
+
+					.plan-item
+						strong(translate="PC_4_3_1_3") Driver
+						span(data-ng-cloak) {{plan.mainDriver.gender}}, 
+						span(data-ng-cloak) {{plan.mainDriver.age}}
+						span(translate="PC_4_3_1_3a")  years old, 
+						span(data-ng-cloak)  {{plan.mainDriver.noClaimsDiscount}} NCD, 
+						ng-pluralize(data-ng-cloak, count="plan.mainDriver.accidents.atFault", when="{'0':'0 at fault claims', '1': '1 at fault claim', 'other': '{} at fault claims'}")
+						a.btn.btn-default.btn-sm.margin--left(href="../about-your-driver/your-driver.html", title="Edit driver information", translate="PC_4_3_1_4") Edit
+
+		.panel-body
+
+			.row
+
+				.col-md-10
+
+					h2
+						span(data-ng-bind="plan.cover.name")
+						img(src="../../images/down-arrow.png")
+
+					div(data-ng-if="recommendedPlan.options.length != 0")
+
+						h3(translate="PC_4_3_1_5") Recommended Optional Cover
+
+						.row
+							.col-md-4(data-ng-repeat="option in recommendedPlan.options")
+								.benefit
+									img.benefit-icon(data-ng-src="../../images/{{option.name | slugify}}-icon.png")
+									.benefit-details
+										h4
+											a.clearfix(data-ng-click="showDescription=!showDescription", data-ng-cloak)
+												span {{option.name}}
+												img(src="../../images/down-arrow.png", data-ng-show="!showDescription")
+												img(src="../../images/up-arrow.png", data-ng-show="showDescription")
+										p(data-ng-show="showDescription", data-ng-cloak) {{option.description}}
+
+				.col-md-2.align-right
+
+					h2 S$
+						span(data-ng-bind="plan.cover.baseCost")
+						span(translate="PC_4_1_1_1") /yr
+
+						.subtitle S$
+							span(data-ng-bind="plan.cover.baseCost / 12")
+							span(translate="PC_4_1_1_2") /mo
+
+					h2(style="margin-top:10px;") S$
+						span(data-ng-bind="recommendedPlan.totalCost - recommendedPlan.cover.baseCost")
+						span(translate="PC_4_1_1_1") /yr
+
+						.subtitle S$
+							span(data-ng-bind="(recommendedPlan.totalCost - recommendedPlan.cover.baseCost) / 12")
+							span(translate="PC_4_1_1_2") /mo
+						.subtitle.highlight (10% 
+							span(translte="PC_4_3_1_6") off
+							| )
+
+		.panel-footer
+
+			.row
+				.col-md-5
+					a.btn.btn-default.btn-lg.btn-block.btn-select-plan.internal-link(data-ng-click="selectPlanAndModify()", href="#quote2", title="")
+						span(translate="PC_4_3_6_2") Select Plan &amp; Modify
+						i.glyphicon.glyphicon-ok
+					a.btn.btn-white.btn-lg.btn-block.internal-link(data-ng-click="continue(2)", href="#quote2", title="")
+						span(translate="PC_4_3_6_3") or Build Plan Starting at 
+						| S$
+						span(data-ng-bind="plan.cover.baseCost")
+						i.glyphicon.glyphicon-ok
+
+				.col-md-7.align-right
+					.total
+						span(translate="PC_4_3_6_1") Total
+						|  S$
+						span(data-ng-bind="recommendedPlan.totalCost")
+						span(translate="PC_4_1_1_1") /yr
+						.subtitle S$
+							span(data-ng-bind="recommendedPlan.totalCost / 12")
+							span(translate="PC_4_1_1_2") /mo

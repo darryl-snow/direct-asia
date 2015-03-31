@@ -1,0 +1,194 @@
+<script src="../../scripts/controllers/about-your-driver/about-your-driver.controller.js"></script>
+
+<section id="yourDriver" ng-controller="aboutYourDriverController" class="section section-plan">
+                <div class="container">
+                    <div class="panel" data-resource-id="PS 3.0">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h1 data-resource-id="PS 3.0a">
+                                        <img src="../../images/person-icon.png" class="pull-left" style="padding-bottom: 30px;">
+                                        <span translate="PS_3_0a">Tell Us About the Main Driver</span>
+                                        <div class="subtitle" style="margin-left:75px;" data-resource-id="PS 3.0b" translate="PS_3_0b">it's important that you're honest about who the main driver is so you're covered if you ever have a claim.</div>
+                                    </h1>
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                    <!-- LOGIN PARTIAL -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="panel1">
+                                <div class="container-fluid" data-resource-id="PS 3.0">
+                                    <h2 data-toggle="tooltip" data-placement="top" title="The main driver is the person who uses the car most frequently. They do not need to be the car owner (policyholder)." class="show-tooltip" style="margin-top:30px;" data-resource-id="PS 3.0c"><span translate="PS_3_0c">Does the main driver own the car?</span> <img src="../../images/question-icon.png"></h2>
+                                    <button type="button" class="btn btn-default random-margin" ng-class="{active: driver.own_car == 'yes'}" ng-click="select('yes', 'own_car')" data-resource-id="PS 3.0d"><span translate="PS_3_0d">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                                    <button type="button" class="btn btn-default"  ng-class="{active: driver.own_car == 'no'}" ng-click="select('no', 'own_car')" data-resource-id="PS 3.0e"><span translate="PS_3_0e">No</span><span class="glyphicon glyphicon-ok"></span></button>
+                                    <h2 data-resource-id="PS 3.0f" translate="PS_3_0f">Date of Birth</h2>
+                                    <div class="custom-tooltip" style="width:300px">
+                                        <div class="form-inline hover-tooltip" data-toggle="popover" data-placement="right" popover="#popover2" popover-type="" data-original-title="" title="">
+                                            <input id="day2" placeholder="DD" type="number" min="1" max="31" class="day">
+                                            <input placeholder="MM" type="number" min="1" max="12" class="month">
+                                            <input placeholder="YYYY" type="number" min="1900" max="2015" class="year">
+                                        </div>
+                                        <div id="popover2" class="popover right">
+                                            <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+                                            <span translate="PS_3_0f_1">The main driver should be less than 70 year old</span>
+                                        </div>
+                                    </div> 
+                                    <div class="row" data-resource-id="PS 3.0g">
+                                        <div class="col-md-6">
+                                            <h2 translate="PS_3_0g">Gender</h2>
+                                            <button type="button" class="btn btn-default random-margin" ng-class="{active: driver.gender == 'male'}" ng-click="select('male', 'gender')"><span translate="PS_3_0g_1">Male</span><span class="glyphicon glyphicon-ok"></span></button>
+                                            <button type="button" class="btn btn-default" ng-class="{active: driver.gender == 'female'}" ng-click="select('female', 'gender')"><span translate="PS_3_0g_2">Female</span><span class="glyphicon glyphicon-ok"></span></button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h2 data-resource-id="PS 3.0h" translate="PS_3_0h">Marital Status</h2>
+                                            <button type="button" class="btn btn-default random-margin " ng-class="{active: driver.status == 'single'}" ng-click="select('single', 'status')" data-resource-id="PS 3.0i"><span translate="PS_3_0i">Single</span><span class="glyphicon glyphicon-ok"></span></button>
+                                            <button type="button" class="btn btn-default" ng-class="{active: driver.status == 'married'}" ng-click="select('married', 'status')" data-resource-id="PS 3.0j"><span translate="PS_3_0j">Married</span><span class="glyphicon glyphicon-ok"></span></button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h2 data-resource-id="PS 3.0k" translate="PS_3_0k">Occupation</h2>
+                                            <div style="width:300px">
+                                                <select id="occupation" name="occupation">
+                                                    <option selecter label="Enter Occupation" value="{{occupation}}" data-ng-repeat="occupation in occupations" selecter-target="#occupation" selecter-callback="select" property="occupation" ng-selected="occupation == selectedItem">{{occupation}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h2 data-resource-id="PS 3.0l" translate="PS_3_0l">Residential District</h2>
+                                            <div style="width:300px">
+                                            <select id="residential" name="residential">
+                                                <option selecter label="Enter Residential District" value="{{residential}}" data-ng-repeat="residential in residentials" selecter-target="#residential" selecter-callback="select" property="residential" ng-selected="residential == selectedItem">{{residential}}</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                <div data-resource-id="PS 3.1">
+                                <div class="container-fluid" data-resource-id="PC 3.1.1">
+                                    <h2 data-resource-id="PS 3.1.1a" translate="PS_3_1_1a">Years of valid driving license</h2>
+                                    <div class="custom-tooltip">
+                                        <div data-toggle="popover" data-placement="right" class="hover-tooltip" popover="#driving-license" popover-type="" data-original-title="" title="" style="width:300px">
+                                            <select id="drivingLicense" name="drivingLicense">
+                                                <option selecter label="Enter Driving License" value="{{drivingLicense}}" data-ng-repeat="drivingLicense in drivingLicenses" selecter-target="#drivingLicense" selecter-callback="select" property="drivingLicense" ng-selected="drivingLicense == selectedItem">{{drivingLicense}}</option>
+                                            </select>
+                                        </div>
+                                        <div id="driving-license" class="popover right">
+                                            <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+                                            <span translate="PS_3_1_1b">We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid" data-resource-id="PC 3.1.2">
+                                    <h2 data-resource-id="PS 3.1.2a">
+                                        <span translate="PS_3_1_2a">No Claims Discount</span>
+                                        <div class="subtitle" data-resource-id="PS 3.1.2b" translate="PS_3_1_2b">You will find on the renewal notice you recieved from your insurer</div>
+                                    </h2>
+                                    <div style="width:300px">
+                                    <select id="discount" name="discount" ng-model="driver.discount">
+                                        <option selecter label="Enter Claims Discount" value="{{discount}}" data-ng-repeat="discount in discounts" selecter-target="#discount" selecter-callback="select" property="discount" ng-selected="discount == selectedItem">{{discount}}</option>
+                                    </select>
+                                    </div>
+                                    <div ng-show="driver.discount == '0%'">
+                                        <h2 data-resource-id="PS 3.1.2-1a" translate="PS_3_1_2_1a">Why does the main driver have 0% NCD?</h2>
+                                        <label for="checkbox1" class="label-checkbox">
+                                          <input id="checkbox1" type="checkbox"  class="ng-pristine ng-untouched ng-valid">
+                                          <div class="fake-checkbox" data-resource-id="PS 3.1.2-1b"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1b">Never been insured</span>
+                                        </label>
+                                        <label for="checkbox2" class="label-checkbox">
+                                          <input id="checkbox2" type="checkbox"  class="ng-pristine ng-untouched ng-valid">
+                                          <div class="fake-checkbox" data-resource-id="PS 3.1.2-1c"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1c">Insured in the past, but not in the last 12 months</span>
+                                        </label>
+                                        <label for="checkbox3" class="label-checkbox">
+                                          <input id="checkbox3" type="checkbox"  class="ng-pristine ng-untouched ng-valid">
+                                          <div class="fake-checkbox" data-resource-id="PS 3.1.2-1d"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1d">Claims have been made in the last 12 months</span>
+                                        </label>
+                                        <label for="checkbox4" class="label-checkbox">
+                                          <input id="checkbox4" type="checkbox"  class="ng-pristine ng-untouched ng-valid">
+                                          <div class="fake-checkbox" data-resource-id="PS 3.1.2-1e"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1e">Insured as a named driver on another policy</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="container-fluid" data-resource-id="PC 3.1.3">
+                                    <h2 data-resource-id="PC 3.1.3a" style="margin-bottom: 30px;"><span translate="PC_3_1_3a">Did the main driver have any driving offence points in the last 2 years?</span>
+                                        <div class="subtitle" data-resource-id="PC 3.1.3b"></div>
+                                    </h2>
+                                    <div class="custom-tooltip" style="width:200px">
+                                        <div class="hover-tooltip" data-toggle="popover" data-placement="right" popover="#driving-offence" popover-type="" data-original-title="" title="">
+                                        <button type="button" class="btn btn-default random-margin" ng-class="{active: driver.demerit_points == 'yes'}" ng-click="select('yes', 'demerit_points')" class="subtitle" data-resource-id="PC 3.1.3c"><span translate="PC_3_1_3c">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                                        <button type="button" class="btn btn-default" ng-class="{active: driver.demerit_points == 'no'}" ng-click="select('no', 'demerit_points')" class="subtitle" data-resource-id="PC 3.1.3d"><span translate="PC_3_1_3d">No</span><span class="glyphicon glyphicon-ok"></span></button>
+                                        </div>
+                                        <div id="driving-offence" class="popover right">
+                                            <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button><span translate="PC_3_1_3b">If you're unsure, <a href="http://www.police.gov.hk/ppp_en/05_traffic_matters/tcr.html">click here</a> to get this information. Please note that drivers must have less than 12 offence points. </span>    
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="container-fluid">
+                                    <h2 data-resource-id="PC 3.1.5a" translate="PC_3_1_5a">Has insurance been refused or cancelled in the past 3 years?</h2>
+                                    <button type="button" class="btn btn-default random-margin" ng-class="{active: driver.refused_insurance == 'yes'}" ng-click="select('yes', 'refused_insurance')" data-resource-id="PC 3.1.5b"><span translate="PC_3_1_5b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                                    <button type="button" class="btn btn-default" ng-class="{active: driver.refused_insurance == 'no'}" ng-click="select('no', 'refused_insurance')" data-resource-id="PC 3.1.5c"><span translate="PC_3_1_5c">No</span><span class="glyphicon glyphicon-ok"></span></button>
+                                </div>
+                                <div class="container-fluid" data-resource-id="PC 3.1.4">
+                                    <h2  data-resource-id="PC 3.1.4a"><span translate="PC_3_1_4a">In the past 3 years (36 months), how many accidents and/or claims where made?</span>
+                                        <div class="subtitle"  data-resource-id="PC 3.1.4b" translate="PC_3_1_4b">You should include all accidents and/or claims, but you can exclude windscreen claims.</div>
+                                    </h2>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div style="width:200px">
+                                                <label translate="PC_4_4_1_4c">at Fault</label>
+                                            <select id="fault" name="fault">
+                                                <option selecter label="at Fault" value="{{fault}}" data-ng-repeat="fault in faults" selecter-target="#fault" selecter-callback="select" property="fault" ng-selected="fault == selectedItem">{{fault}}</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div style="width:200px">
+                                            <label translate="PC_4_4_1_4d">Not at Fault</label>
+                                            <select id="notFault" name="notFault">
+                                                <option selecter label="Not at Fault" value="{{notFault}}" data-ng-repeat="notFault in notFaults" selecter-target="#notFault" selecter-callback="select" property="notFault" ng-selected="notFault == selectedItem">{{notFault}}</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                </div>
+                            </div>
+                            <div class="additional-driver" data-resource-id="PC 3.2.1" >
+                                <h2 style="margin-left: 15px;" data-resource-id="PC 3.2a"><span translate="PC_3_2a">Do you want to cover additional drivers?</span>
+                                    <div class="subtitle"  data-resource-id="PC 3.2b" translate="PC_3_2b">If other people drive the car, you may want to cover them in case they get into an accident.</div>
+                                    <div style="margin-top:20px;"></div>
+                                    <button type="button" class="btn btn-default random-margin" ng-class="{active:yes_no === true}" ng-click="yes_no = true" data-resource-id="PC 3.2c"><span translate="PC_3_2c">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                                    <button type="button" class="btn btn-default" ng-class="{active:yes_no === false}" ng-click="yes_no = false" data-resource-id="PC 3.2d"><span translate="PC_3_2d">No</span><span class="glyphicon glyphicon-ok"></span></button>
+                                </h2>
+                                <div ng-show="yes_no" class="container-fluid">
+                                    <h2 data-resource-id="PC 3.1.5a" translate="PC_3_1_5a">Has insurance been refused or cancelled in the past 3 years?</h2>
+                                    <button type="button" class="btn btn-default random-margin" ng-class="{active: driver.refused_insurance == 'yes'}" ng-click="select('yes', 'refused_insurance')" data-resource-id="PC 3.1.5b"><span translate="PC_3_2c">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                                    <button type="button" class="btn btn-default" ng-class="{active: driver.refused_insurance == 'no'}" ng-click="select('no', 'refused_insurance')" data-resource-id="PC 3.1.5c"><span translate="PC_3_2d">No</span><span class="glyphicon glyphicon-ok"></span></button>                                    
+                                </div>
+
+                            </div>
+
+                            <div data-resource-id="PS 3.3" style="margin-top:3em;" class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-backward" style="float:left;"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_3_3_1">Back</span></button>
+                                    <button type="button" ng-click="proceed()" class="btn btn-forward btn-lg" style="float:right;"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+                                </div>
+                            </div>
+                            <div style="margin-top: 1em;margin-bottom: 1em;" class="row">
+                                <div class="col-md-12">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>

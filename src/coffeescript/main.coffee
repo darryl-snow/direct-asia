@@ -62,3 +62,32 @@ angular.module "DirectAsia", ["fsm", "pascalprecht.translate"]
 			$translate.use key
 			$rootScope.currentLanguage = key
 	]
+
+# other developers's code
+
+section = {}
+(($) ->
+
+	$(document).ready ->
+		section.sections = $("body > .outer-wrap > section")
+		$(".popover-close-button").click ->
+			$(this).parent().parent().parent().find(".popover").removeClass "fade in"
+			$(this).parent().parent().parent().find(".popover").css "display", "none"
+
+		$(".popover-button").click ->
+			if $(this).parent().find(".popover").hasClass("fade")
+				$(this).parent().find(".popover").removeClass "fade in"
+				$(this).parent().find(".popover").css "display", "none"
+			else
+				$(this).parent().find(".popover").addClass "fade in"
+				$(this).parent().find(".popover").css "display", "block"
+
+		$(".hover-tooltip").hover ->
+			if !$(this).attr("aria-describedby")
+				$(this).trigger "click"
+
+		$(".overlay .overlay-close-button").click ->
+			$(".overlay").css "display", "none"
+
+) jQuery
+utility = {}

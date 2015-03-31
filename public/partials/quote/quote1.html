@@ -1,0 +1,419 @@
+
+<script src="../../scripts/controllers/quote/quote1.controller.js"></script>
+<section ng-controller="QuoteCtrl" class="section section-quote">
+  <ul role="tablist" class="side-pagination">
+    <li data-ng-class="{'active':currentStep&gt;=1}"><a href="#quote1" data-toggle="tooltip" data-placement="left" title="Select Car Insurance Plan" class="internal-link"></a></li>
+    <li data-ng-class="{'active':currentStep&gt;=2}"><a href="#quote2" data-toggle="tooltip" data-placement="left" title="Add Additional Drivers" class="internal-link"></a></li>
+    <li data-ng-class="{'active':currentStep&gt;=3}"><a href="#quote3" data-toggle="tooltip" data-placement="left" title="Customise Optional Coverage" class="internal-link"></a></li>
+    <li data-ng-class="{'active':currentStep&gt;=4}"><a href="#quote4" data-toggle="tooltip" data-placement="left" title="Select Policy Excess" class="internal-link"></a></li>
+    <li data-ng-class="{'active':currentStep&gt;=5}"><a href="#quote5" data-toggle="tooltip" data-placement="left" title="See Your Car Insurance Summary" class="internal-link"></a></li>
+  </ul>
+  <div fsm-sticky-header="fsm-sticky-header" scroll-body="'.section-quote'" scroll-stop="0" class="navbar-da">
+    <div class="container">
+      <nav data-ng-class="{'notchosen':currentStep&gt;1}">
+        <li data-ng-repeat="cover in options.coverPlans" data-ng-class="{active:cover.name==plan.cover.name}"><a data-ng-click="selectPlan(cover)" data-ng-cloak="data-ng-cloak"><span data-ng-bind="cover.name" class="navbar-item"></span><span class="navbar-price">S$ <span data-ng-bind="cover.baseCost"></span><span translate="PC_4_1_1_1">/yr</span></span><span class="navbar-smallprint">S$<span data-ng-bind="cover.baseCost / 12"></span><span translate="PC_4_1_1_2">/mo</span></span></a></li>
+      </nav>
+      <nav data-ng-show="currentStep&gt;1" data-ng-class="{'chosen':currentStep&gt;1}">
+        <li class="active"><a href="#"><span data-ng-cloak="data-ng-cloak" class="navbar-item">{{plan.cover.name}}</span><span data-ng-cloak="data-ng-cloak" class="navbar-price">S${{plan.cover.baseCost}}<span translate="PC_4_1_1_1">/yr</span></span><span data-ng-cloak="data-ng-cloak" class="navbar-smallprint">S${{plan.cover.baseCost / 12}}<span translate="PC_4_1_1_2">/mo</span></span></a></li>
+        <li>
+          <div class="navbar-info"><span translate="PC_4_3_2_2" class="navbar-item">Additional Drivers</span><span data-ng-cloak="data-ng-cloak" class="navbar-price">{{plan.additionalDrivers[0].firstName ? plan.additionalDrivers.length : "0"}}</span></div>
+        </li>
+        <li>
+          <div class="navbar-info"><span translate="PC_4_5a" class="navbar-item">Optional Cover</span><span data-ng-cloak="data-ng-cloak" class="navbar-price">{{plan.options.length}}</span></div>
+        </li>
+        <li>
+          <div class="navbar-info"><span translate="PC_4_3_5_1" class="navbar-item">Excess Policy</span><span data-ng-cloak="data-ng-cloak" class="navbar-price">{{plan.excess}}</span></div>
+        </li>
+      </nav>
+      <div class="save-for-later">
+        <button data-ng-click="saveForLater()" translate="PC_4_1_2_1" class="btn btn-primary btn-sm btn-block">Save for Later</button>
+        <p translate="PC_4_1_2d">Your details will be saved for 90 days so you can finish later</p>
+      </div>
+    </div>
+  </div>
+  <section id="quote1" data-ng-show="currentStep&gt;=1" class="container">
+    <h1 translate="PC_4_2a">Choose Your Car Insurance Plan</h1>
+    <div class="panel">
+      <div class="panel-header">
+        <h2><span translate="PC_4_3a">Your Recommended Plan</span><img src="../../images/question-icon.png" style="margin-left:10px;"/>
+          <div translate="PC_4_3b" class="subtitle">Your recommended plan is based on the car and driver details you provide, as well as popular options our customer's enjoy.</div>
+        </h2>
+      </div>
+      <div class="panel-body panel-body--grey">
+        <div class="plan">
+          <div class="plan-left"><img src="../../images/car-icon3.png"/></div>
+          <div class="plan-right">
+            <div class="plan-item"><strong translate="PC_4_3_1_1">Car</strong><span data-ng-cloak="data-ng-cloak">{{plan.car.year}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.make}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.model}}</span><span data-ng-cloak="data-ng-cloak">{{plan.car.lowmileageoption ? ", Low Mileage" : "" }}</span><a href="../car/car.html" title="Edit car details" translate="PC_4_3_1_2" class="btn btn-default btn-sm margin--left">Edit</a></div>
+            <div class="plan-item"><strong translate="PC_4_3_1_3">Driver</strong><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.gender}}, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.age}}</span><span translate="PC_4_3_1_3a"> years old, </span><span data-ng-cloak="data-ng-cloak"> {{plan.mainDriver.noClaimsDiscount}} NCD, </span>
+              <ng-pluralize data-ng-cloak="data-ng-cloak" count="plan.mainDriver.accidents.atFault" when="{'0':'0 at fault claims', '1': '1 at fault claim', 'other': '{} at fault claims'}"></ng-pluralize><a href="../about-your-driver/your-driver.html" title="Edit driver information" translate="PC_4_3_1_4" class="btn btn-default btn-sm margin--left">Edit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-10">
+            <h2><span data-ng-bind="plan.cover.name"></span><img src="../../images/down-arrow.png"/></h2>
+            <div data-ng-if="recommendedPlan.options.length != 0">
+              <h3 translate="PC_4_3_1_5">Recommended Optional Cover</h3>
+              <div class="row">
+                <div data-ng-repeat="option in recommendedPlan.options" class="col-md-4">
+                  <div class="benefit"><img data-ng-src="../../images/{{option.name | slugify}}-icon.png" class="benefit-icon"/>
+                    <div class="benefit-details">
+                      <h4><a data-ng-click="showDescription=!showDescription" data-ng-cloak="data-ng-cloak" class="clearfix"><span>{{option.name}}</span><img src="../../images/down-arrow.png" data-ng-show="!showDescription"/><img src="../../images/up-arrow.png" data-ng-show="showDescription"/></a></h4>
+                      <p data-ng-show="showDescription" data-ng-cloak="data-ng-cloak">{{option.description}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 align-right">
+            <h2>S$<span data-ng-bind="plan.cover.baseCost"></span><span translate="PC_4_1_1_1">/yr</span>
+              <div class="subtitle">S$<span data-ng-bind="plan.cover.baseCost / 12"></span><span translate="PC_4_1_1_2">/mo</span></div>
+            </h2>
+            <h2 style="margin-top:10px;">S$<span data-ng-bind="recommendedPlan.totalCost - recommendedPlan.cover.baseCost"></span><span translate="PC_4_1_1_1">/yr</span>
+              <div class="subtitle">S$<span data-ng-bind="(recommendedPlan.totalCost - recommendedPlan.cover.baseCost) / 12"></span><span translate="PC_4_1_1_2">/mo</span></div>
+              <div class="subtitle highlight">(10% <span translte="PC_4_3_1_6">off</span>)</div>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-md-5"><a data-ng-click="selectPlanAndModify()" href="#quote2" title="" class="btn btn-default btn-lg btn-block btn-select-plan internal-link"><span translate="PC_4_3_6_2">Select Plan &amp; Modify</span><i class="glyphicon glyphicon-ok"></i></a><a data-ng-click="continue(2)" href="#quote2" title="" class="btn btn-white btn-lg btn-block internal-link"><span translate="PC_4_3_6_3">or Build Plan Starting at </span>S$<span data-ng-bind="plan.cover.baseCost"></span><i class="glyphicon glyphicon-ok"></i></a></div>
+          <div class="col-md-7 align-right">
+            <div class="total"><span translate="PC_4_3_6_1">Total</span> S$<span data-ng-bind="recommendedPlan.totalCost"></span><span translate="PC_4_1_1_1">/yr</span>
+              <div class="subtitle">S$<span data-ng-bind="recommendedPlan.totalCost / 12"></span><span translate="PC_4_1_1_2">/mo</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="quote2" data-ng-show="currentStep&gt;=2" class="section section--blue section--padded section--centred margin--top">
+    <div class="container margin--top"><img src="../../images/cover-icon.png"/>
+      <h2 translate="PS_4_4a">Add Additional Driver</h2>
+      <div data-ng-repeat="driver in plan.additionalDrivers" class="panel align-left">
+        <div class="panel-body">
+          <form name="driver{{$index}}form" novalidate="novalidate">
+            <h3><span translate="PC_4_4_1_5_1">Driver </span><span data-ng-cloak="data-ng-cloak">{{$index + 1}} - {{driver.firstName}} {{driver.lastName}}</span></h3>
+            <div class="row">
+              <div class="col-md-4 margin--top margin--bottom">
+                <label for="driver{{$index}}firstname" translate="PC_4_4_1_1a" class="label--large">First Name</label>
+                <input id="driver{{$index}}firstname" name="driver{{$index}}firstname" type="text" placeholder="enter first name" data-ng-model="driver.firstName" required="required" class="form-control"/>
+                <div data-ng-show="driver{{$index}}form.driver{{$index}}firstname.$invalid &amp;&amp; !driver{{$index}}form.driver{{$index}}firstname.$pristine" class="alert alert-danger">Please enter a first name</div>
+              </div>
+              <div class="col-md-4 margin--top margin--bottom">
+                <label for="driver{{$index}}lastname" translate="PC_4_4_1_1b" class="label--large">Last Name</label>
+                <input id="driver{{$index}}lastname" name="driver{{$index}}lastname" type="text" placeholder="enter last name" data-ng-model="driver.lastName" required="required" class="form-control"/>
+                <div data-ng-show="driver{{$index}}form.driver{{$index}}lastname.$invalid &amp;&amp; !driver{{$index}}form.driver{{$index}}lastname.$pristine" class="alert alert-danger">Please enter a last name</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 margin--top margin--bottom">
+                <label for="driver{{$index}}dob-day" translate="PC_4_4_1_1c" class="label--large">Date of Birth</label>
+                <div class="form-inline">
+                  <input id="driver{{$index}}dob_day" min="1" max="31" name="driver{{$index}}dob_day" placeholder="DD" type="number" data-ng-model="driver.dob.day" required="required" class="day"/>
+                  <input id="driver{{$index}}dob_month" min="1" max="12" name="driver{{$index}}dob_month" placeholder="MM" type="number" data-ng-model="driver.dob.month" required="required" class="month"/>
+                  <input id="driver{{$index}}dob_year" min="1900" max="2015" name="driver{{$index}}dob_year" placeholder="YYYY" type="number" data-ng-model="driver.dob.year" required="required" class="year"/>
+                </div>
+                <div data-ng-show="(driver{{$index}}form.driver{{$index}}dob_day.$invalid &amp;&amp; !driver{{$index}}form.driver{{$index}}dob_day.$pristine) || (driver{{$index}}form.driver{{$index}}dob_month.$invalid &amp;&amp; !driver{{$index}}form.driver{{$index}}dob_month.$pristine) || (driver{{$index}}form.driver{{$index}}dob_year.$invalid &amp;&amp; !driver{{$index}}form.driver{{$index}}dob_year.$pristine)" class="alert alert-danger">Please enter a valid Date of Birth</div>
+              </div>
+              <div class="col-md-4 margin--top margin--bottom">
+                <label translate="PC_4_4_1_1d" class="label--large">Gender</label>
+                <button type="button" ng-click="driver.gender='Male'" ng-class="{'active':driver.gender=='Male'}" class="btn btn-default random-margin"><span translate="PC_4_4_1_1d_1">Male</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button type="button" ng-click="driver.gender='Female'" ng-class="{'active':driver.gender=='Female'}" class="btn btn-default"><span translate="PC_4_4_1_1d_2">Female</span><span class="glyphicon glyphicon-ok"></span></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 margin--top margin--bottom">
+                <label translate="PC_4_4_1_1e" class="label--large">Marital Status</label>
+                <button type="button" ng-click="driver.maritalStatus = 'single'" ng-class="{'active':driver.maritalStatus=='single'}" class="btn btn-default random-margin">Single<span class="glyphicon glyphicon-ok"></span></button>
+                <button type="button" ng-click="driver.maritalStatus = 'married'" ng-class="{'active':driver.maritalStatus=='married'}" class="btn btn-default">Married<span class="glyphicon glyphicon-ok"></span></button>
+              </div>
+              <div class="col-md-4 margin--top margin--bottom">
+                <label for="driver{{$index}}occupation" translate="PC_4_4_1_1f" class="label--large">Occupation</label>
+                <input id="driver{{$index}}occupation" name="driver{{$index}}occupation" type="text" placeholder="enter occupation" data-ng-model="driver.occupation" class="form-control"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-7 margin--top margin--bottom">
+                <label for="driver{{$index}}experience" translate="PC_4_4_1_2a" class="label--large">Years of valid driving</label>
+                <div class="row">
+                  <div class="col-md-9">
+                    <p translate="PC_4_4_1_2b">We are unable to insure drivers who've had their license suspended or cancelled in the last 5 years.</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <select id="driver{{$index}}experience" name="driver{{$index}}experience" data-ng-model="driver.drivingExperience">
+                      <option selecter="selecter" label="Select number of years" value="{{n}}" data-ng-repeat="n in [] | range:100" selecter-target="#driver{{$parent.$index}}experience" selecter-callback="select" property="experience" ng-selected="driver.drivingExperience == selectedItem">{{n}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-7 margin--top margin--bottom">
+                <label class="label--large"><span translate="PC_4_4_1_3a">Did the main driver have any driving offence points in the last 2 years?</span><img src="../../images/question-icon.png"/></label>
+                <p translate="PC_4_4_1_3b">If you're unsure, <a href="" title="">click here</a> to get this information. Please note that drivers must have less than 12 offence points.</p>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button type="button" ng-click="driver.offences = true" ng-class="{'active':driver.offences}" class="btn btn-default random-margin"><span translate="PC_4_4_1_3c">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                    <button type="button" ng-click="driver.offences = false" ng-class="{'active':driver.offences==false}" class="btn btn-default"><span translate="PC_4_4_1_3d">No</span><span class="glyphicon glyphicon-ok"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 margin--top margin--bottom">
+                <label for="driver{{$index}}claims-at-fault" class="label--large"><span translate="PC_4_4_1_4a">In the past 3 years (36 months), how many accidents and/or claims were made?</span><img src="../../images/question-icon.png"/></label>
+                <p translate="PC_4_4_1_4b">Please include all accidents, but you can exclude windscreen claims.</p>
+                <div class="row">
+                  <div class="col-md-3">
+                    <input id="driver{{$index}}claims-at-fault" min="0" name="driver{{$index}}claims-at-fault" placeholder="0" type="number" data-ng-model="driver.accidents.atFault" class="claim"/><span translate="PC_4_4_1_4c">at fault</span>
+                  </div>
+                  <div class="col-md-3">
+                    <input id="driver{{$index}}claims-not-at-fault" min="0" name="driver{{$index}}claims-not-at-fault" placeholder="0" type="number" data-ng-model="driver.accidents.notAtFault" class="claim"/><span translate="PC_4_4_1_4d">not at fault</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div style="margin-bottom:40px;" class="panel align-left">
+        <div class="panel-body">
+          <button type="button" data-ng-click="addAdditionalDriver()" translate="PC_4_4_1_5" class="btn btn-continue">&plus; Add another driver</button>
+        </div>
+      </div><a href="#quote3" title="" data-ng-click="continue(3)" class="btn btn-continue internal-link"><i class="glyphicon glyphicon-arrow-down"></i><span translate="PC_4_4_4">Continue</span></a>
+    </div>
+  </section>
+  <section id="quote3" data-ng-show="currentStep&gt;=3" class="section section--blue section--padded section--centred">
+    <div class="container"><img src="../../images/cover-icon3.png"/>
+      <h2 class="margin--bottom"><span translate="PC_4_5a">Optional Cover</span><img src="../../images/question-icon.png"/>
+        <div translate="PC_4_5b" class="subtitle">Customise your coverage and save money by adding optional items</div>
+      </h2>
+      <div class="options clearfix">
+        <div data-ng-repeat="option in options.optionalCover" class="col-md-4">
+          <div class="option">
+            <div data-ng-if="option.recommended" class="recommended"><img src="../../images/star-icon.png"/><span translate="PC_4_5_1">recommended</span></div>
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>{{option.name}}</h3>
+              </div>
+              <div class="panel-footer"><img data-ng-src="../../images/{{option.name | slugify}}-icon.png" class="option-icon"/><strong>S$ <span>{{option.cost}}</span></strong>
+                <button type="button" data-ng-click="selectOption(option)" ng-class="{'active':option.selected, 'done':option.selected}" class="btn btn-default btn-action"><span translate="PC_4_5c" class="btn-action-default">Select</span><span translate="PC_4_5d" class="btn-action-alt">Selected</span><i class="glyphicon glyphicon-ok"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><a href="#quote4" title="" data-ng-click="continue(4)" class="btn btn-continue internal-link"><i class="glyphicon glyphicon-arrow-down"></i><span translate="PC_4_5_2">No Thanks, Continue</span></a></div>
+      </div>
+    </div>
+  </section>
+  <section id="quote4" data-ng-show="currentStep&gt;=4" class="section section--blue section--padded section--centred">
+    <div class="container"><img src="../../images/policy-icon.png"/>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h2 class="margin--bottom"><span translate="PC_4_6a">Policy Excess</span>
+            <div translate="PC_4_6b" class="subtitle">Policy excess is the amount that you'll pay out of your own pocket if you have a claim. If you choose a higher excess, you will have a lower the premium.</div>
+          </h2>
+        </div>
+      </div>
+      <div style="margin-bottom:30px;" class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h3 class="recommended-excess"><span translate="PC_4_6c">Recommended Excess:</span>
+            <div data-ng-cloak="data-ng-cloak" class="price">S${{recommendedPlan.excess | number: 0}}</div>
+          </h3>
+        </div>
+      </div>
+      <div style="margin-bottom:30px;" class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <p translate="PC_4_6d">or</p>
+          <select id="excess" name="excess">
+            <option selecter="selecter" label="Choose your excess" value="{{excess}}" data-ng-repeat="excess in options.excesses" selecter-target="#excess" selecter-callback="select" property="plan.excess" ng-selected="plan.excess === selectedItem">{{excess}}</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-bottom:30px;" class="row margin--top">
+        <div class="col-md-12"><a href="#quote5" title="" data-ng-click="continue(5)" class="btn btn-continue internal-link"><i class="glyphicon glyphicon-arrow-down"></i><span translate="PC_4_4_4">Continue</span></a></div>
+      </div>
+    </div>
+  </section>
+  <section id="quote5" data-ng-show="currentStep&gt;=5" class="section section--padded">
+    <div class="container">
+      <div class="panel panel-comparable margin--top">
+        <div data-ng-class="{'compare':compare}" class="panel-header">
+          <h2 translate="PS_4_8a" class="pull-left margin--bottom">Your Car Insurance Summary</h2>
+          <div class="price-summary clearfix">
+            <h2 data-ng-cloak="data-ng-cloak" class="align-right"><span translate="PC_4_8a_1">Total </span>S${{plan.totalCost}}<span translate="PC_4_8_1_2_2">/yr</span>
+              <div class="subtitle align-right">S${{plan.totalCost / 12}}</div><span translate="PC_4_8_3_4">/mo</span>
+              <div class="subtitle subtitle-secondary align-right"><span translate="PC_4_8a_2">Savings</span>S$167<span translate="PC_4_8_1_2_2">/yr</span></div>
+            </h2>
+            <label data-ng-show="compare" class="label-checkbox">
+              <input id="selectCurrent" type="checkbox"/>
+              <div class="fake-checkbox"><i class="glyphicon glyphicon-ok"></i></div>
+            </label>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div style="margin-bottom:2em;" class="row">
+            <div class="col-xs-2"><img src="../../images/car-icon2.png"/></div>
+            <div class="col-xs-5">
+              <div class="row">
+                <div class="col-md-3"><strong translate="PC_4_8_1_1a">Car</strong></div>
+                <div class="col-md-8"><span data-ng-cloak="data-ng-cloak">{{plan.car.year}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.make}} </span><span data-ng-cloak="data-ng-cloak">{{plan.car.model}}</span><span data-ng-cloak="data-ng-cloak">{{plan.car.lowmileageoption ? ", Low Mileage" : "" }}</span>
+                  <div data-ng-hide="!fulldetails"><span data-ng-if="plan.car.modifications.bodykit || plan.car.modifications.rimstires || plan.car.modifications.airintakeexhaust || plan.car.modifications.suspensionstabiliser">Modifications:</span>
+                    <ul data-ng-if="plan.car.modifications.bodykit || plan.car.modifications.rimstires || plan.car.modifications.airintakeexhaust || plan.car.modifications.suspensionstabiliser">
+                      <li data-ng-cloak="data-ng-cloak" data-ng-if="plan.car.modifications.bodykit">Body Kit</li>
+                      <li data-ng-cloak="data-ng-cloak" data-ng-if="plan.car.modifications.rimstires">Rims/Tires</li>
+                      <li data-ng-cloak="data-ng-cloak" data-ng-if="plan.car.modifications.airintakeexhaust">Air Intake/Exhaust</li>
+                      <li data-ng-cloak="data-ng-cloak" data-ng-if="plan.car.modifications.suspensionstabiliser">Suspension Stabiliser</li>
+                    </ul><span data-ng-if="plan.car.financed">Financed </span><span data-ng-cloak="data-ng-cloak">{{plan.car.ownership == "private" ? "Privately Owned " : "" }}</span><span data-ng-cloak="data-ng-cloak">{{plan.car.lowmileageoption ? "Low Mileage " : "" }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-5">
+              <div class="row">
+                <div class="col-md-6"><a href="../car/car.html" title="Edit car details" translate="PC_4_8_1_1b" class="btn btn-default">Edit</a></div>
+                <div class="col-md-6 align-right"></div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-bottom:2em;" class="row">
+            <div class="col-xs-2"><img src="../../images/driver-icon.png"/></div>
+            <div class="col-xs-5">
+              <div class="row">
+                <div class="col-md-3"><strong translate="PC_4_8_1_2">Driver</strong></div>
+                <div class="col-md-8"><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.gender}}, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.age}} years old, </span><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.noClaimsDiscount}} NCD, </span>
+                  <p data-ng-hide="!fulldetails">
+                    <ng-pluralize data-ng-cloak="data-ng-cloak" count="plan.mainDriver.accidents.atFault" when="{'0':'0 at fault claims', '1': '1 at fault claim', 'other': '{} at fault claims'}"></ng-pluralize>
+                  </p>
+                  <p data-ng-hide="!fulldetails"><span data-ng-cloak="data-ng-cloak">{{plan.mainDriver.occupation}} </span>
+                    <ng-pluralize data-ng-cloak="data-ng-cloak" count="plan.mainDriver.drivingExperience" when="{'0':'0 years', '1': '1 year', 'other': '{} years'}"></ng-pluralize>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-5">
+              <div class="row">
+                <div class="col-md-6"><a href="../about-your-driver/your-driver.html" title="Edit driver information" translate="PC_4_8_1_2_1" class="btn btn-default">Edit</a></div>
+                <div class="col-md-6 align-right">S$45<span translate="PC_4_8_1_2_2">/yr</span></div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-bottom:2em;" class="row">
+            <div class="col-xs-2"><img src="../../images/policy-icon2.png"/></div>
+            <div class="col-xs-5">
+              <div class="row">
+                <div class="col-md-3"><strong translate="PC_4_8_1_3_1">Policy</strong></div>
+                <div class="col-md-8"><span data-ng-cloak="data-ng-cloak">{{plan.cover.name}}</span><span data-ng-cloak="data-ng-cloak" data-ng-show="plan.excess">, {{plan.excess}}</span><span translate="PC_4_8_1_3_2">policy excess</span>
+                  <ul data-ng-hide="!fulldetails">
+                    <li>Third Party - Death or Bodily Injury</li>
+                    <li>Third Party - Property Damage</li>
+                    <li>24 hour accident towing</li>
+                    <li>Own damage - Fire</li>
+                    <li>Own damage - Theft</li>
+                    <li>Own damage - Act of God</li>
+                    <li>Own damage - All Accidents</li>
+                    <li>Windscreen / Window Breakage</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-5">
+              <div class="row">
+                <div class="col-md-6"><a href="" title="" translate="PC_4_8_1_3_3" class="btn btn-default">Edit</a></div>
+                <div class="col-md-6 align-right">S$<span data-ng-cloak="data-ng-cloak">{{plan.cover.baseCost}}</span><span translate="PC_4_8_1_3_4">/yr</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-2"><img src="../../images/cover-icon2.png"/></div>
+            <div class="col-xs-5">
+              <div class="row">
+                <div class="col-md-3"><strong translate="PC_4_8_1_5_1">Cover</strong></div>
+                <div class="col-md-8">
+                  <ul>
+                    <li data-ng-repeat="option in plan.options" data-ng-cloak="data-ng-cloak">{{option.name}}<small data-ng-hide="!fulldetails" data-ng-cloak="data-ng-cloak">{{option.description}}</small></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-5">
+              <div class="row">
+                <div class="col-md-6"><a href="" title="" translate="PC_4_8_1_5_2" class="btn btn-default">Edit</a></div>
+                <div class="col-md-6 align-right">S$<span data-ng-cloak="data-ng-cloak">{{calculateOptionsCost(plan)}}</span><span translate="PC_4_8_1_5_3">/yr</span>
+                  <div><span class="strikethrough">S$261</span><span translate="PC_4_8_1_5_3">/yr</span><span class="highlight"> (10% </span><span translate="PC_4_8_1_5_4">discount</span>)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-md-7">
+              <button type="button" data-ng-click="fulldetails=!fulldetails" class="btn btn-plain btn-large btn-block"><span data-ng-hide="fulldetails" translate="PC_4_8_2_1">Review Full Details</span><img src="../../images/down-arrow.png" data-ng-hide="fulldetails"/><span data-ng-hide="!fulldetails" translate="PC_4_8_2_2">See Summary</span><img src="../../images/up-arrow.png" data-ng-hide="!fulldetails"/></button>
+            </div>
+            <div class="col-md-5">
+              <button type="button" data-ng-click="compare=!compare" class="btn btn-plain btn-large btn-block">Compare Recommended Plan<img src="../../images/down-arrow.png"/></button>
+            </div>
+          </div>
+        </div>
+        <div data-ng-class="{active:compare}" class="panel-comparison">
+          <div class="panel-body">
+            <button type="button" data-ng-click="compare=!compare" class="btn btn-plain btn-medium btn-block"><span translate="PC_4_8_3_1">Compare Recommended Plan</span><img src="../../images/down-arrow.png"/></button>
+            <h2 data-ng-cloak="data-ng-cloak"><span translate="PC_4_8_3_2">Total </span>S${{recommendedPlan.totalCost}}<span translate="PC_4_8_3_3">/yr</span>
+              <div class="subtitle">S${{recommendedPlan.totalCost / 12}}<span translate="PC_4_8_3_4">/mo</span></div>
+              <div class="subtitle subtitle-secondary"><span translate="PC_4_8_3_5">Savings</span>S$167<span translate="PC_4_8_3_3">/yr</span></div>
+            </h2>
+            <button type="button" data-ng-click="useRecommendedPlan()" translate="PC_4_8_3_6" class="btn btn-primary btn-sm pull-right">Select Plan</button>
+            <ul>
+              <li data-ng-cloak="data-ng-cloak">{{recommendedPlan.cover.name}}
+                <div class="subtitle">S${{recommendedPlan.cover.baseCost}}<span translate="PC_4_8_3_3">/yr</span></div>
+              </li>
+              <li><span data-ng-repeat="option in recommendedPlan.options" data-ng-cloak="data-ng-cloak">{{option.name}} </span>
+                <div data-ng-repeat="option in recommendedPlan.options" data-ng-cloak="data-ng-cloak" class="subtitle">S${{option.cost}}<span translate="PC_4_8_3_3">/yr</span></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section data-ng-show="currentStep&gt;=5" class="section section--padded">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <label for="feedback" translate="PC_4_9a" class="label--large">We'd like to know how you heard about us</label>
+          <select id="feedback" selecter="selecter" name="feedback">
+            <option selecter="selecter" label="Select an option" value="{{option}}" data-ng-repeat="option in options.feedback" selecter-target="#feedback" selecter-callback="select" property="feedback" ng-selected="feedback == selectedItem">{{option}}</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:2em;" class="row">
+        <div class="col-md-12"><a href="" title="" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_4_10_1">Back</span></a><a href="" title="" class="btn btn-forward btn-lg pull-right"><span translate="PC_4_10_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></a></div>
+      </div>
+      <div class="row margin--top">
+        <div class="col-md-3 col-md-offset-9">
+          <button type="button" data-ng-click="saveForLater()" class="btn btn-primary btn-action btn-block btn-sm"><span translate="PC_4_10_3" class="btn-action-default">Save for later</span><span translate="PC_4_10_4" class="btn-action-alt">Saved!</span><span class="glyphicon glyphicon-ok"></span></button>
+          <p translate="PC_4_10_8">Your details will be saved for 90 days so you can finish later</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    $(".internal-link").on("click", function(e) {
+    	e.preventDefault();
+    	setTimeout(function() {
+    		$("html, body").animate({scrollTop: $($(e.target).attr("href")).offset().top - 100});
+    	}, 200);
+    });
+    $('[data-toggle="tooltip"]').tooltip();
+  </script>
+</section>

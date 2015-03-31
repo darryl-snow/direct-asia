@@ -52,7 +52,7 @@ getMockData = ->
 			description: "S$50 to help you with transport costs while your car is being repaired"
 			cost: 156
 		,
-			name: "My workshop/ garage"
+			name: "My workshop / garage"
 			description: "Gives you the freedom to select your own preferred
 			 workshop for an optional benefit"
 			cost: 156
@@ -82,6 +82,18 @@ getMockData = ->
 			cost: 156
 		,
 			name: "Repatriation costs"
+			description: "Description"
+			cost: 156
+		,
+			name: "NCPD"
+			description: "Description"
+			cost: 156
+		,
+			name: "Uninsured loss recovery"
+			description: "Description"
+			cost: 156
+		,
+			name: "Windscreen and window breakage"
 			description: "Description"
 			cost: 156
 		]
@@ -124,20 +136,20 @@ getMockData = ->
 			cover:
 				name: "Comprehensive"
 				baseCost: 732
-			options: [
-				name: "Loss of use"
-				description: "S$50 to help you with transport costs while your car is being repaired"
-				cost: 156
-			,
-				name: "My workshop/ garage"
-				description: "Gives you the freedom to select your own preferred
-				 workshop for an optional benefit"
-				cost: 156
-			,
-				name: "Experienced Drivers"
-				description: "Cover anyone over 30 with more than 2 years driving experience"
-				cost: 156
-			]
+			# options: [
+			# 	name: "Loss of use"
+			# 	description: "S$50 to help you with transport costs while your car is being repaired"
+			# 	cost: 156
+			# ,
+			# 	name: "My workshop/ garage"
+			# 	description: "Gives you the freedom to select your own preferred
+			# 	 workshop for an optional benefit"
+			# 	cost: 156
+			# ,
+			# 	name: "Experienced Drivers"
+			# 	description: "Cover anyone over 30 with more than 2 years driving experience"
+			# 	cost: 156
+			# ]
 			excess: 2000
 
 
@@ -206,7 +218,7 @@ angular.module "DirectAsia"
 
 
 			###
-			This function fetches data from the back-end to be used on the page
+			This private function fetches data from the back-end to be used on the page
 
 			(NOTE: This isn't used currently as the data is mocked by the
 			function getMockData() above)
@@ -231,7 +243,122 @@ angular.module "DirectAsia"
 				dataFromAPI
 
 			###
-			This function formats the data returned from the server so that it
+			This private function takes the name of an optional benefit and
+			returns the object corresponding to that benefit, if it exists
+			###
+
+			getOption = (name) ->
+
+				option = $scope.options.optionalCover.filter (ob) ->
+					ob.name.trim().toLowerCase() is name.trim().toLowerCase()
+
+				option[0]
+
+			###
+			This private function determines which options to recommend based
+			on data the user has previously entered, using the supplied logic
+			table
+			###
+
+			getRecommendedOptions = (cover, driver, car) ->
+
+				options = []
+				date = new Date
+				years = date.getFullYear() - car.year
+
+				###
+				CO & TP+ get LOU
+				###
+
+				if (cover is "Comprehensive" or cover is "Third-Party Fire & Theft") and
+					options.length < 4
+
+						options.push getOption "Loss of Use"
+
+				###
+				CO gets new for old and my workshop if car is less than 1 years
+				###
+
+				if years <= 1 and cover is "Comprehensive" and options.length < 4
+					options.push getOption "24 months new for old replacement car"
+
+				###
+				All cover plans get NCDP if driver has 50%NCD
+				###
+
+				if (driver.noClaimsDiscount is "50%" or driver.noClaimsDiscount is "60%") and
+					options.length < 4
+
+						options.push getOption "NCPD"
+
+				###
+				CO and TP+ get 24hrs bd if the driver is female
+				###
+
+				if (cover is "Comprehensive" or cover is "Third-Party Fire & Theft") and
+					options.length < 4
+
+						options.push getOption "24 hr breakdown assistance"
+
+				###
+				CO gets my workshop if car is less than 3 years
+				###
+
+				if cover is "Comprehensive" and years <= 3 and options.length < 4
+
+					options.push getOption "My workshop / garage"
+
+				###
+				Everyone gets PA and ME. TPO also gets uninsured loss recovery
+				###
+				
+				if options.length < 4
+					options.push getOption "Personal accident"
+					options.push getOption "Medical expenses"
+
+					if cover is "Third-Party"
+						options.push getOption "Uninsured loss recovery"
+
+				###
+				TP+ and TPO get windscreen and window breakage if car is less than 5 years
+				###
+
+				if (cover is "Third-Party Fire & Theft" or cover is "Third-Party") and
+					years <= 5 and options.length < 4
+
+						options.push getOption "Windscreen and window breakage"
+
+				options
+
+			###
+			This private function determines which plan is recommended based on what the
+			user has selected
+			###
+
+			getRecommendedPlan = ->
+
+				$scope.recommendedPlan.car = $scope.plan.car
+				$scope.recommendedPlan.driver = $scope.plan.driver
+				$scope.recommendedPlan.cover = $scope.plan.cover
+				$scope.recommendedPlan.options = getRecommendedOptions $scope.plan.cover.name, $scope.mainDriver, $scope.car
+
+				###
+				set recommended optional benefits
+				###
+
+				for option, i in $scope.options.optionalCover
+
+					option.recommended = false
+
+					matched = $scope.recommendedPlan.options.filter (recommendedOption) ->
+					 recommendedOption.name is option.name
+
+					if matched.length then option.recommended = true
+
+				calculateTotalCost $scope.recommendedPlan
+
+			###
+			This private function formats the data returned from the server so that it
 			can be used on the page
 			###
 
@@ -250,52 +377,52 @@ angular.module "DirectAsia"
 				get details about main driver
 				###
 
-				mainDriver = new MainDriver
-				mainDriver.ownership = data.mainDriver.ownership
-				mainDriver.dob =
+				$scope.mainDriver = new MainDriver
+				$scope.mainDriver.ownership = data.mainDriver.ownership
+				$scope.mainDriver.dob =
 					day: data.mainDriver.dob.day
 					month: data.mainDriver.dob.month
 					year: data.mainDriver.dob.year
-				mainDriver.age = data.mainDriver.age
-				mainDriver.gender = data.mainDriver.gender
-				mainDriver.maritalStatus = data.mainDriver.maritalStatus
-				mainDriver.occupation = data.mainDriver.occupation
-				mainDriver.residentialDistrict = data.mainDriver.residentialDistrict
-				mainDriver.drivingExperience = data.mainDriver.drivingExperience
-				mainDriver.noClaimsDiscount = data.mainDriver.noClaimsDiscount
-				mainDriver.offences = data.mainDriver.offences
-				mainDriver.refusals = data.mainDriver.refusals
-				mainDriver.accidents =
+				$scope.mainDriver.age = data.mainDriver.age
+				$scope.mainDriver.gender = data.mainDriver.gender
+				$scope.mainDriver.maritalStatus = data.mainDriver.maritalStatus
+				$scope.mainDriver.occupation = data.mainDriver.occupation
+				$scope.mainDriver.residentialDistrict = data.mainDriver.residentialDistrict
+				$scope.mainDriver.drivingExperience = data.mainDriver.drivingExperience
+				$scope.mainDriver.noClaimsDiscount = data.mainDriver.noClaimsDiscount
+				$scope.mainDriver.offences = data.mainDriver.offences
+				$scope.mainDriver.refusals = data.mainDriver.refusals
+				$scope.mainDriver.accidents =
 					atFault: data.mainDriver.accidents.atFault
 					notAtFault: data.mainDriver.accidents.atFault
-				mainDriver.additionalDrivers = data.mainDriver.additionalDrivers
+				$scope.mainDriver.additionalDrivers = data.mainDriver.additionalDrivers
 
 				###
 				get details about car
 				###
 
-				car = new Car
-				car.year = data.car.year
-				car.make = data.car.make
-				car.model = data.car.model
-				car.modified = data.car.modified
-				car.modifications =
+				$scope.car = new Car
+				$scope.car.year = data.car.year
+				$scope.car.make = data.car.make
+				$scope.car.model = data.car.model
+				$scope.car.modified = data.car.modified
+				$scope.car.modifications =
 					airintakeexhaust: data.car.modifications.airintakeexhaust
 					bodykit: data.car.modifications.bodykit
 					rimstires: data.car.modifications.rimstires
 					suspensionstabiliser: data.car.modifications.suspensionstabiliser
-				car.ownership = data.car.ownership
-				car.financed = data.car.financed
-				car.kmsperyear = data.car.kmsperyear
-				car.lowmileageoption = data.car.lowmileageoption
-				car.usage = data.car.usage
+				$scope.car.ownership = data.car.ownership
+				$scope.car.financed = data.car.financed
+				$scope.car.kmsperyear = data.car.kmsperyear
+				$scope.car.lowmileageoption = data.car.lowmileageoption
+				$scope.car.usage = data.car.usage
 
 				###
 				save info for selected plan
 				###
 
-				$scope.plan.car = car
-				$scope.plan.mainDriver = mainDriver
+				$scope.plan.car = $scope.car
+				$scope.plan.mainDriver = $scope.mainDriver
 				$scope.plan.additionalDrivers.push new AdditionalDriver
 				$scope.plan.cover = $scope.options.coverPlans[data.selectedCover]
 
@@ -303,30 +430,14 @@ angular.module "DirectAsia"
 				save info for recommended plan
 				###
 
-				$scope.recommendedPlan.car = $scope.plan.car
-				$scope.recommendedPlan.driver = $scope.plan.driver
-				$scope.recommendedPlan.cover = data.recommendedPlan.cover
-				$scope.recommendedPlan.options = data.recommendedPlan.options
 				$scope.recommendedPlan.excess = data.recommendedPlan.excess
+				getRecommendedPlan()
 
 				###
-				set recommended optional benefits
-				###
-
-				for option, i in $scope.options.optionalCover
-
-					matched = $scope.recommendedPlan.options.filter (recommendedOption) ->
-					 recommendedOption.name is option.name
-
-					if matched.length then option.recommended = true
-
-
-				###
-				Calculate the annual costs for the selected and recommended plans
+				Calculate the annual costs for the selected plan
 				###
 
 				calculateTotalCost $scope.plan
-				calculateTotalCost $scope.recommendedPlan
 
 			###
 			This function is used by the 'continue' buttons and simply sets the current step
@@ -356,6 +467,8 @@ angular.module "DirectAsia"
 
 				$scope.plan.cover = cover
 				calculateTotalCost $scope.plan
+
+				getRecommendedPlan()
 
 			###
 			This function is a toggle  for selecting/deselecting an optional

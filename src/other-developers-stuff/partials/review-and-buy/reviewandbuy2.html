@@ -1,0 +1,144 @@
+<div data-resource-id="PS 6.2">
+   <h3 data-resource-id="PS 6.2.0" translate="PS_6_2_0">3 Easy Ways to Purchase</h3>
+<div class="panel">
+ 
+    <ul id="myTab1" data-resource-id="PS 6.2.1" class="nav nav-tabs nav-justified">
+        <li class="active"><a href="#book" data-toggle="tab"><img src="../../images/online-icon.png" data-resource-id="PS 6.2.1a" translate="PS_6_2_1a"> Book Online</a></li>
+        <li class=""><a href="#call" data-toggle="tab"><img src="../../images/call-icon.png" data-resource-id="PS 6.2.1b" translate="PS_6_2_1b"> Call Us</a></li>
+        <li class=""><a href="#store" data-toggle="tab"><img src="../../images/store-icon.png" data-resource-id="PS 6.2.1c" translate="PS_6_2_1c"> Walk-In Centers</a></li>
+    </ul>
+    <div id="myTabContent" data-resource-id="PS 6.2.1.1" class="tab-content">
+        <div class="tab-pane fade active in" id="book">
+            <div class="space"></div>
+            <h2 translate="PS_6_2_1_1_a">Your Quote Agreement</h2>
+            <p translate="PS_6_2_1_1_b">Please read the agreement below carefully before you purchasing. This is for your protection in the event of a claim.</p>
+            <p translate="PS_6_2_1_1_c">We are required by law to tell you that before we provide cover, you must fully and faithfully tell us everything you know or could reasonably be expected to know that is relevant to our decision to give you the insurance, otherwise you may receive no benefit from your policy or we may cancel your policy and treat it as never having existed.</p>
+            <h2 translate="PS_6_2_1_1_d">You are agreeing to the statements below:</h2>
+            <ul>
+                <li translate="PS_6_2_1_1_e">The car is not used for commercial purposes or for hire/reward.</li>
+                <li translate="PS_6_2_1_1_f">The car is registered in Hong Kong.</li>
+                <li translate="PS_6_2_1_1_g">The car is registered in Singapore and any modifications it may have are LTA compliant.</li>
+                <li translate="PS_6_2_1_1_h">That the policyholder must be the registered owner of the vehicle.</li>
+                <li translate="PS_6_2_1_1_i">That the drivers you wish to insure do not have 2 or more at-fault accidents/claims on this or another vehicle (excluding motorcycles) in the last 3 years.</li>
+                <li translate="PS_6_2_1_1_j">You have read and agree to our Privacy Statement.</li>
+                <li translate="PS_6_2_1_1_k">The main driver of the car is aged 70 and below and has a valid driving license of at least 2 years.</li>
+                <li translate="PS_6_2_1_1_l">No driver has been refused insurance or had it terminated in the last 3 years.</li>
+                <li translate="PS_6_2_1_1_m">No driver has had any class of license suspended or cancelled in the last 5 years</li>
+                <li translate="PS_6_2_1_1_n">All drivers have valid driving licenses with less than 12 driving offence points.</li>
+                <li translate="PS_6_2_1_1_o">That the policyholder must be the registered owner of the vehicle.</li>
+                <li translate="PS_6_2_1_1_p">You have read and understood the Policy summary and Policy wording</li>
+            </ul>
+
+            <label for="checkbox1" data-resource-id="PS 6.2.1.1.1" class="label-checkbox">
+              <input id="checkbox1" type="checkbox" ng-model="checked">
+              <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_6_2_1_1_1">I Agree to the terms</span>
+            </label>
+            <div class="row">
+                <div class="col-md-8">
+                   <div class="panel" ng-show="checked">
+                        <div class="panel-body" data-resource-id="PS 6.3">
+                            <h2 translate="PS_6_3_1">Payment Details</h2>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="space"></div>
+                                    <p translate="PS_6_3_2">How would you like to pay?</p>
+                                    <button type="button" class="btn btn-default random-margin" ng-class="{active:mont_anual === false}" ng-click="mont_anual = false"><span translate="PS_6_3_2_1">Monthly</span><span class="glyphicon glyphicon-ok"></span></button>
+                                    <button type="button" class="btn btn-default" ng-class="{active:mont_anual === true}" ng-click="mont_anual = true"><span translate="PS_6_3_2_2">Annually</span><span class="glyphicon glyphicon-ok"></span></button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="space"></div>
+                                    <p translate="PS_6_3_3">Using Bank</p>
+                                    <input class="form-control" type="text"  name="bank_name">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="space"></div>
+                                    <p translate="PS_6_3_3">Cardholder Name</p>
+                                    <input class="form-control" type="text" placeholder="name as it appears on the card" name="card_name">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="space"></div>
+                                    <p translate="PS_6_3_3">Credit Card Number</p>
+                                    <input class="form-control" type="text" placeholder="enter credit card number" name="card_number">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="space"></div>
+                                    <p translate="PS_6_3_3">Verification Number</p>
+                                    <input class="form-control" type="text" name="verification_number">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="space"></div>
+                                    <p translate="PS_6_3_3">Expiry Date</p>
+                                    <div class="form-inline">
+                                        <input placeholder="MM" type="number" min="1" max="12" class="month">
+                                        <input placeholder="YYYY" type="number" min="1900" max="2015" class="year">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div data-resource-id="PS 6.4" ng-show="mont_anual">
+                            <h2 translate="PS_6_4_0">Would you like to sign up for auto renew?</h2>
+                            <p translate="PS_6_4_0_1">Copy further touting the benefits of notification, lorem ipsum dolor sit atmet.</p>
+                            <button type="button" class="btn btn-default" ng-class="{active:yes_no === true}" ng-click="yes_no = true" data-resource-id="PS 1.2b"><span translate="PS_1_2b">Yes</span> <span class="glyphicon glyphicon-ok"></span></button>
+                            <button type="button" class="btn btn-default" ng-class="{active:yes_no === false}" ng-click="yes_no = false" data-resource-id="PS 1.2c"><span translate="PS_1_2c">No</span> <span class="glyphicon glyphicon-ok"></span></button>
+                            </div>
+                            <div class="space"></div>
+                            <div data-resource-id="PS 6.5">
+                            <h2><span translate="PS_6_5_1">What you pay today:</span> S$1,356
+                                <div class="subtitle" translate="PS_6_5_2">if you change your mind, you have 15 days in which you can cancel your policy to receive a full refund</div>
+                            </h2>
+                            <h2><span translate="PS_6_5_3">Future monthly payments:</span> S$400</h2>
+                            <a href="" translate="PS_6_5_4">See monthly payment breakdown</a>
+                            </div>
+                            <button data-resource-id="PS 6.5.1" type="button" class="btn btn-forward btn-sm" style="float:right;" translate="PS_6_5_5">Buy Now</button>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            
+        </div>
+        <div class="tab-pane fade" id="call">
+            <div class="space"></div>
+            <h2 translate="PS_6_5_6">Want to finish over the phone? Let our [Country] team help you by calling us directly.</h2>
+            <p>[Phone Number]</p>
+            <p translate="PS_6_5_7">Please provide your policy number below so we can pick up where you left off.</p>
+            <p><span translate="PS_6_5_8">Your Policy Number:</span> [XXXXX]</p>
+            <h2><span translate="PS_6_5_9">We are available at these times</span> [Call Center Hours]</h2>
+        </div>
+        <div class="tab-pane fade" id="store">
+            <div class="space"></div>
+            <h2 translate="PS_6_5_10">Come and visit us in person!</h2>
+            <p>[Address]</p>
+            <iframe style="width:100%; height:300px;" src="http://regiohelden.de/google-maps/map_en.php?hl=en&amp;q=1101%2C%2011%2FF%2C%20Allied%20Kajima%20Building%2C%20138%20Gloucester%20Road%2C%20Wan%20Chai%2C%20Hong%20Kong+(RegioHelden%20GmbH)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=A&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+        </div>
+    </div>
+</div>
+</div>
+<div data-resource-id="PS 6.6">
+<button type="button" class="btn btn-backward" style="float:left; padding: 5px 12px;"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_6_6_1">Back</span></button>
+    <div class="save-for-later" data-resource-id="PC 4.1.2">
+        <button type="button" class="popover-button btn btn-primary btn-action btn-sm"><span ng-hide="submit" translate="PS_6_6_2">Save for later</span><span ng-show="submit" translate="PS_6_6_3">Saved!</span></button>
+        <div id="popover1" class="popover save-div bottom">
+            <div class="arrow"></div>
+            <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+            <div ng-hide="send">
+            <p data-resource-id="PC 4.1.2a" translate="PS_6_6_4">Please provide your email below and we'll send you a link to retrieve your quotation for up to 90 days.</p>
+            <input type="email" placeholder="Enter email address" class="form-control">
+            <p data-resource-id="PC 4.1.2b" translate="PS_6_6_4_1">Want us to help you finish? provide your phone number and we'll give you a call.</p>
+            <input type="tel" placeholder="Enter phone number" class="form-control">
+            <button type="button" class="btn btn-forward" data-resource-id="PC 4.1.2c" ng-click="send = true" translate="PS_6_6_6">Send</button>
+            </div>
+            <div class="on-send" ng-show="send">
+                <p translate="PS_6_6_6_1">Your quote has been successfully saved. Please check your email, which contains a link to retrieve your quotation.</p>
+                <p translate="PS_6_6_6_2">Share your current renewal premium so we can make sure we're giving you the best value</p>
+                <button type="button" class="btn btn-forward" ng-click="submit = true" translate="PS_6_6_6_3">Submit</button>
+            </div>
+        </div>
+        <p data-resource-id="PC 4.1.2d" translate="PS_6_6_7">Your details will be saved for 90 days so you can finish later</p>
+    </div>
+</div>

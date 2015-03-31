@@ -41,6 +41,7 @@
     <script src="../../lib/jquery.fs.selecter.js"></script>
     <script src="../../lib/fsm-sticky-header.js"></script>
     <script src="../../scripts/main.js"></script>
+    <script src="../../scripts/controllers/help/help.controller.js"></script>
     <script src="../../scripts/directives/input-group.directive.js"></script>
     <script src="../../scripts/directives/popover.directive.js"></script>
     <script src="../../scripts/directives/selecter.directive.js"></script>
@@ -81,7 +82,7 @@
             <li data-ng-repeat="cover in options.coverPlans" data-ng-class="{active:cover.name==plan.cover.name}"><a data-ng-click="selectPlan(cover)" data-ng-cloak><span data-ng-bind="cover.name" class="navbar-item"></span><span class="navbar-price">S$ <span data-ng-bind="cover.baseCost"></span><span translate="PC_4_1_1_1">/yr</span></span><span class="navbar-smallprint">S$<span data-ng-bind="cover.baseCost / 12"></span><span translate="PC_4_1_1_2">/mo</span></span></a></li>
           </nav>
           <nav data-ng-show="currentStep&gt;1" data-ng-class="{'chosen':currentStep&gt;1}">
-            <li class="active"><a href="#"><span data-ng-cloak class="navbar-item">{{plan.cover.name}}</span><span data-ng-cloak class="navbar-price">S${{plan.cover.baseCost}}</span><span translate="PC_4_1_1_1">/yr</span><span data-ng-cloak class="navbar-smallprint">S${{plan.cover.baseCost / 12}}</span><span translate="PC_4_1_1_2">/mo</span></a></li>
+            <li class="active"><a href="#"><span data-ng-cloak class="navbar-item">{{plan.cover.name}}</span><span data-ng-cloak class="navbar-price">S${{plan.cover.baseCost}}<span translate="PC_4_1_1_1">/yr</span></span><span data-ng-cloak class="navbar-smallprint">S${{plan.cover.baseCost / 12}}<span translate="PC_4_1_1_2">/mo</span></span></a></li>
             <li>
               <div class="navbar-info"><span translate="PC_4_3_2_2" class="navbar-item">Additional Drivers</span><span data-ng-cloak class="navbar-price">{{plan.additionalDrivers[0].firstName ? plan.additionalDrivers.length : "0"}}</span></div>
             </li>
@@ -127,7 +128,7 @@
                     <div data-ng-repeat="option in recommendedPlan.options" class="col-md-4">
                       <div class="benefit"><img data-ng-src="../../images/{{option.name | slugify}}-icon.png" class="benefit-icon">
                         <div class="benefit-details">
-                          <h4><a data-ng-click="showDescription=!showDescription" data-ng-cloak>{{option.name}}<img src="../../images/down-arrow.png" data-ng-show="!showDescription"><img src="../../images/up-arrow.png" data-ng-show="showDescription"></a></h4>
+                          <h4><a data-ng-click="showDescription=!showDescription" data-ng-cloak class="clearfix"><span>{{option.name}}</span><img src="../../images/down-arrow.png" data-ng-show="!showDescription"><img src="../../images/up-arrow.png" data-ng-show="showDescription"></a></h4>
                           <p data-ng-show="showDescription" data-ng-cloak>{{option.description}}</p>
                         </div>
                       </div>
@@ -139,8 +140,8 @@
                 <h2>S$<span data-ng-bind="plan.cover.baseCost"></span><span translate="PC_4_1_1_1">/yr</span>
                   <div class="subtitle">S$<span data-ng-bind="plan.cover.baseCost / 12"></span><span translate="PC_4_1_1_2">/mo</span></div>
                 </h2>
-                <h2 style="margin-top:10px;">S$<span data-ng-bind="plan.totalCost"></span><span translate="PC_4_1_1_1">/yr</span>
-                  <div class="subtitle">S$<span data-ng-bind="plan.totalCost / 12"></span><span translate="PC_4_1_1_2">/mo</span></div>
+                <h2 style="margin-top:10px;">S$<span data-ng-bind="recommendedPlan.totalCost - recommendedPlan.cover.baseCost"></span><span translate="PC_4_1_1_1">/yr</span>
+                  <div class="subtitle">S$<span data-ng-bind="(recommendedPlan.totalCost - recommendedPlan.cover.baseCost) / 12"></span><span translate="PC_4_1_1_2">/mo</span></div>
                   <div class="subtitle highlight">(10% <span translte="PC_4_3_1_6">off</span>)</div>
                 </h2>
               </div>
@@ -150,8 +151,8 @@
             <div class="row">
               <div class="col-md-5"><a data-ng-click="selectPlanAndModify()" href="#quote2" title="" class="btn btn-default btn-lg btn-block btn-select-plan internal-link"><span translate="PC_4_3_6_2">Select Plan &amp; Modify</span><i class="glyphicon glyphicon-ok"></i></a><a data-ng-click="continue(2)" href="#quote2" title="" class="btn btn-white btn-lg btn-block internal-link"><span translate="PC_4_3_6_3">or Build Plan Starting at </span>S$<span data-ng-bind="plan.cover.baseCost"></span><i class="glyphicon glyphicon-ok"></i></a></div>
               <div class="col-md-7 align-right">
-                <div class="total"><span translate="PC_4_3_6_1">Total</span> S$<span data-ng-bind="plan.totalCost"></span><span translate="PC_4_1_1_1">/yr</span>
-                  <div class="subtitle">S$<span data-ng-bind="plan.totalCost / 12"></span><span translate="PC_4_1_1_2">/mo</span></div>
+                <div class="total"><span translate="PC_4_3_6_1">Total</span> S$<span data-ng-bind="recommendedPlan.totalCost"></span><span translate="PC_4_1_1_1">/yr</span>
+                  <div class="subtitle">S$<span data-ng-bind="recommendedPlan.totalCost / 12"></span><span translate="PC_4_1_1_2">/mo</span></div>
                 </div>
               </div>
             </div>

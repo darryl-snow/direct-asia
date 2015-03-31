@@ -16,10 +16,15 @@
 
 	.glyphicon {
 		margin-top:		-7px;
+		pointer-events: none;
 		position:		absolute;
 		right:			12px;
 		top:			50%;
 		visibility:		hidden;
+	}
+
+	span {
+		pointer-events:	none;
 	}
 
 	// @include ActiveFocusHover {

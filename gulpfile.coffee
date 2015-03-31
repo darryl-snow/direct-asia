@@ -260,14 +260,14 @@ gulp.task "jade", ->
 	.pipe gulp.dest Config.build + "pages"
 
 	# # compile partials
-	gulp.src Config.src + "jade/partial/**/*.jade"
+	gulp.src Config.src + "jade/partials/**/*.jade"
 	.pipe plugins.plumber()
 	.pipe plugins.jade
 		pretty: true
 		data:
 			description: pkg.description
 			keywords: pkg.keywords
-	.pipe gulp.dest Config.build + "partial"
+	.pipe gulp.dest Config.build + "partials"
 
 # Optimise images
 
