@@ -7,7 +7,8 @@
 }
 
 .navbar-item {
-	font-size:			0.85em;
+	font-size:			0.9em;
+	margin-top:			4px;
 }
 
 .navbar-price {
@@ -50,7 +51,7 @@
 		color:			$dark-grey-2;
 		cursor: 		pointer;
 		font-weight:	300;
-		margin:			0.5em 0.2em;
+		margin:			0.5em 0.4em;
 		padding:		0.5em 0.75em;
 		position:		relative;
 	}
@@ -80,12 +81,38 @@
 		}
 
 	}
+
+	.recommended {
+		background: 	$red;
+		color: 			$white;
+		left: 			-5px;
+		font-size:		0.7em;
+		margin-top: 	-14px;
+		padding: 		0px 10px;
+		position: 		absolute;
+		z-index:		2;
+
+		&:before {
+			border-color:	$red transparent;
+			border-style:	solid;
+			border-width:	5px 0px 0px 5px;
+			bottom:			-5px;
+			content:		"";
+			left:			0px;
+			position:		absolute;
+		}
+
+		img {
+			margin:		0 5px 0 0;
+		}
+	}
 }
 
 .navbar-info {
 	border-left:			1px solid rgba($white, 0.7);
 	border-right:			1px solid $medium-grey;
-	margin:					0.5em 0;
+	height:					66px;
+	margin:					0.5em 1px 0.5em 0;
 	padding:				0.5em 0.85em;
 	text-align:				center;
 

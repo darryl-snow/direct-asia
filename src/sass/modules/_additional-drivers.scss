@@ -1,0 +1,49 @@
+.additional-driver {
+	display:				inline-block;
+	margin:					1em 0.5em;
+	position:				relative;
+	vertical-align:			top;
+
+	&-content {
+		background:			$white;
+		border-radius:		4px;
+		box-shadow: 		0 1px 2px rgba($black, .2);
+		color:				$medium-grey;
+		min-height:			255px;
+		padding:			3em;
+		position:			relative;
+		width:				270px;
+
+		h4 {
+			color:			$black;
+			font-family: 	"ProximaSemiBold";
+			font-size: 		1.2em;
+			font-weight:	500;
+		}
+	}
+
+	@include ActiveFocusHover {
+
+		.additional-driver-content {
+			background:		$yellow;
+		}
+
+	}
+
+	&.active {
+		height:				1813px;
+
+		@media (min-width: 654px) {
+			height:			1450px;
+		}
+
+		@media (min-width: 992px) {
+			height:			1198px;
+		}
+
+		@media (min-width: 1200px) {
+			height:			1178px;
+		}
+	}
+
+}

@@ -10,17 +10,17 @@ section#quote4.section.section--blue.section--padded.section--centred(data-ng-sh
 					span(translate="PC_4_6a") Policy Excess
 					.subtitle(translate="PC_4_6b") Policy excess is the amount that you'll pay out of your own pocket if you have a claim. If you choose a higher excess, you will have a lower the premium.
 
-		.row(style="margin-bottom:30px;")
+		.row
 			.col-md-6.col-md-offset-3
 				h3.recommended-excess
 					span(translate="PC_4_6c") Recommended Excess:
-					.price(data-ng-cloak) S${{recommendedPlan.excess | number: 0}}
+				p(translate="PC_4_6d") or Choose your excess
 
-		.row(style="margin-bottom:30px;")
+		.row(style="margin-bottom:90px;")
 			.col-md-4.col-md-offset-4
-				p(translate="PC_4_6d") or
-				select#excess(name="excess")
-					option(selecter, label="Choose your excess", value="{{excess}}", data-ng-repeat="excess in options.excesses", selecter-target="#excess", selecter-callback="select", property="plan.excess", ng-selected="plan.excess === selectedItem") {{excess}}
+				.excess-selecter
+					select#excess(name="excess")
+						option(selecter, label="S${{recommendedPlan.excess | number: 0}}", value="{{excess | number:0}}", data-ng-repeat="excess in options.excesses", selecter-target="#excess", selecter-callback="select", property="plan.excess", ng-selected="plan.excess === selectedItem") S${{excess | number: 0}}
 
 		.row.margin--top(style="margin-bottom:30px;")
 			.col-md-12

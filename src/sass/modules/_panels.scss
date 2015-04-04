@@ -27,6 +27,7 @@
 		}
 
 		&.compare {
+			height:				210px;
 			padding-right:		47%;
 
 			.price-summary {
@@ -53,6 +54,10 @@
 
 	&-comparable {
 		overflow:				hidden;
+
+		.row {
+			min-height:			60px;
+		}
 	}
 
 	&-comparison {
@@ -71,8 +76,25 @@
 			transform: 			translateX(0%);
 		}
 
+		.panel-header {
+			background:			$light-grey-1;
+			height:				210px;
+
+			h2 {
+				color:			$dark-grey-1 !important;
+			}
+		}
+
+		.subtitle-secondary {
+			color:				$black;
+		}
+
 		.btn-medium {
 			margin-bottom:		1em;
+		}
+
+		strong {
+			color:				$blue;
 		}
 
 		ul {
@@ -127,6 +149,397 @@
 			top: 				-1px;
 			width: 				0;
 			z-index: 			1;			
+		}
+	}
+
+	&-otherdriver {
+		width:					270px;
+
+		@media (min-width: 654px) {
+			width:				555px;
+		}
+
+		@media (min-width: 992px) {
+			width:				838px;
+		}
+
+		@media (min-width: 1200px) {
+			width:				1122px;
+		}
+	}
+
+	// arrow in the middle
+	&-otherdriver-0 {
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+		}
+	}
+
+	// arrow at 37.5%
+	&-otherdriver-1 {
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+
+			@media (min-width: 654px) {
+				left:			75%;
+			}
+
+			@media (min-width: 769px) {
+				left:			62.5%;
+			}
+		}
+	}
+
+	// arrow at 33.3%
+	&-otherdriver-2 {
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+
+			@media (min-width: 654px) {
+				left:			75%;
+			}
+		}
+	}
+
+	// arrow at 87.5%
+	&-otherdriver-3 {
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+
+			@media (min-width: 654px) {
+				left:			87.5%;
+			}
+		}
+	}
+
+	&-editdriver {
+		left:					0;
+		margin:					1em 0;
+		position:				absolute;
+		top:					255px;
+		width:					270px;
+		z-index:				10;
+
+		@media (min-width: 654px) {
+			width:				555px;
+		}
+
+		@media (min-width: 992px) {
+			width:				838px;
+		}
+
+		@media (min-width: 1200px) {
+			width:				1122px;
+		}
+	}
+
+	&-editdriver-0 {
+		left:					0;
+
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+
+			@media (min-width: 654px) {
+				left:			25%;
+			}
+
+			@media (min-width: 992px) {
+				left:			16.5%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			12.5%;
+			}
+		}
+	}
+
+	&-editdriver-1 {
+		left:					0;
+
+		@media (min-width: 654px) {
+			left:				-284px;
+		}
+
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+
+			@media (min-width: 654px) {
+				left:			75%;
+			}
+
+			@media (min-width: 992px) {
+				left:			50%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			37.5%;
+			}
+		}
+	}
+
+	&-editdriver-2 {
+		left:					0;
+
+		@media (min-width: 654px) {
+			left:				0;
+		}
+
+		@media (min-width: 992px) {
+			left:				-568px;
+		}
+
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+
+			@media (min-width: 654px) {
+				left:			25%;
+			}
+
+			@media (min-width: 992px) {
+				left:			83.5%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			62.5%;
+			}
+		}
+	}
+
+	&-editdriver-3 {
+		left:					0;
+
+		@media (min-width: 654px) {
+			left:				-284px;
+		}
+
+		@media (min-width: 992px) {
+			left:				0;
+		}
+
+		@media (min-width: 1200px) {
+			left:				-852px;
+		}
+
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+
+			@media (min-width: 654px) {
+				left:			75%;
+			}
+
+			@media (min-width: 992px) {
+				left:			16.5%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			87.5%;
+			}
+		}
+	}
+
+	&-editdriver-4 {
+		left:					0;
+
+		@media (min-width: 654px) {
+			left:				0;
+		}
+
+		@media (min-width: 992px) {
+			left:				-284px;
+		}
+
+		@media (min-width: 1200px) {
+			left:				-142px;
+		}
+
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+
+			@media (min-width: 654px) {
+				left:			25%;
+			}
+
+			@media (min-width: 992px) {
+				left:			50%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			25%;
+			}
+		}
+	}
+
+	&-editdriver-5 {
+		left:					0;
+
+		@media (min-width: 654px) {
+			left:				-284px;
+		}
+
+		@media (min-width: 992px) {
+			left:				-568px;
+		}
+
+		@media (min-width: 1200px) {
+			left:				-426px;
+		}
+
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+
+			@media (min-width: 654px) {
+				left:			75%;
+			}
+
+			@media (min-width: 992px) {
+				left:			83.5%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			50%;
+			}
+		}
+	}
+
+	&-editdriver-6 {
+		left:					0;
+
+		@media (min-width: 654px) {
+			left:				0;
+		}
+
+		@media (min-width: 992px) {
+			left:				-284px;
+		}
+
+		@media (min-width: 1200px) {
+			left:				-284px;
+		}
+
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+
+			@media (min-width: 654px) {
+				left:			25%;
+			}
+
+			@media (min-width: 992px) {
+				left:			50%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			37.5%;
+			}
 		}
 	}
 }

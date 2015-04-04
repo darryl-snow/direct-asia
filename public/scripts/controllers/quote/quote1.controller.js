@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Tue Mar 31 2015 14:15:31 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Fri Apr 03 2015 23:23:49 GMT+0800 (CST) */
 
 /*
 
@@ -36,7 +36,7 @@ getMockData = function() {
         baseCost: 540
       }
     },
-    excesses: ["S$500", "S$1000", "S$2000", "S$3000", "S$4000", "S$5000"],
+    excesses: ["500", "1000", "2000", "3000", "4000", "5000"],
     feedback: ["Friends & Family", "TV", "Online", "Print/Billboards", "Social", "Taxi", "Cinema", "Other"],
     optionalCover: [
       {
@@ -157,7 +157,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			savedPlan = in case the user wants to save the plan for later or switch
     			to the recommended plan and then switch back
      */
-    var calculateTotalCost, getDataFromAPI, getOption, getRecommendedOptions, getRecommendedPlan, selectRecommendedOptions, setupData;
+    var addAdditionalDrivers, calculateTotalCost, getDataFromAPI, getOption, getRecommendedOptions, getRecommendedPlan, saveCurrentPlan, selectPreviousOptions, selectRecommendedOptions, setupData;
     $scope.plan = new InsurancePlan();
     $scope.recommendedPlan = new InsurancePlan();
     $scope.savedPlan = new InsurancePlan();
@@ -190,7 +190,14 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			This sets the current step as 'choose plan' so that only that section
     			will be displayed initially.
      */
-    $scope.currentStep = 1;
+    $scope.currentStep = 5;
+
+    /*
+    			This indicates whether the recommended plan has been selected from the comparison
+    			section at the bottom of the page
+     */
+    $scope.selectRecommendedPlan = false;
+    $scope.addnewdriver = false;
 
     /*
     			This private function fetches data from the back-end to be used on the page
@@ -323,10 +330,36 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			This private function formats the data returned from the server so that it
     			can be used on the page
      */
+    addAdditionalDrivers = function() {
+      var i, newdriver, _i, _results;
+      _results = [];
+      for (i = _i = 0; _i <= 1; i = ++_i) {
+        newdriver = new AdditionalDriver;
+        newdriver.firstName = "oihohoh";
+        newdriver.lastName = "hhhoi";
+        newdriver.dob = {
+          day: 7,
+          month: 7,
+          year: 2008
+        };
+        newdriver.gender = "Male";
+        newdriver.maritalStatus = "single";
+        newdriver.occupation = "rpergjerg";
+        newdriver.drivingExperience = 4;
+        newdriver.offences = true;
+        newdriver.accidents = {
+          atFault: 0,
+          notAtFault: 3
+        };
+        newdriver.refusals = 0;
+        _results.push($scope.plan.additionalDrivers.push(newdriver));
+      }
+      return _results;
+    };
     setupData = function(data) {
 
       /*
-      				get page options
+      				Get page options
        */
       $scope.options.coverPlans = data.coverPlans;
       $scope.options.excesses = data.excesses;
@@ -334,7 +367,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       $scope.options.optionalCover = data.optionalCover;
 
       /*
-      				get details about main driver
+      				Get details about main driver
        */
       $scope.mainDriver = new MainDriver;
       $scope.mainDriver.ownership = data.mainDriver.ownership;
@@ -359,7 +392,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       $scope.mainDriver.additionalDrivers = data.mainDriver.additionalDrivers;
 
       /*
-      				get details about car
+      				Get details about car
        */
       $scope.car = new Car;
       $scope.car.year = data.car.year;
@@ -379,15 +412,17 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       $scope.car.usage = data.car.usage;
 
       /*
-      				save info for selected plan
+      				Save info for selected plan. Excess is recommended excess by default.
        */
       $scope.plan.car = $scope.car;
       $scope.plan.mainDriver = $scope.mainDriver;
-      $scope.plan.additionalDrivers.push(new AdditionalDriver);
+      $scope.plan.additionalDrivers = [];
       $scope.plan.cover = $scope.options.coverPlans[data.selectedCover];
+      $scope.plan.excess = data.recommendedPlan.excess;
+      addAdditionalDrivers();
 
       /*
-      				save info for recommended plan
+      				Save info for recommended plan
        */
       $scope.recommendedPlan.excess = data.recommendedPlan.excess;
       getRecommendedPlan();
@@ -469,12 +504,27 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     };
 
     /*
+    			This private function copies data from the currently selected plan
+    			into another object for temporary storage.
+     */
+    saveCurrentPlan = function() {
+      $scope.savedPlan.cover = $scope.plan.cover;
+      $scope.savedPlan.totalCost = $scope.plan.totalCost;
+      $scope.savedPlan.car = $scope.plan.car;
+      $scope.savedPlan.mainDriver = $scope.plan.mainDriver;
+      $scope.savedPlan.additionalDrivers = $scope.plan.additionalDrivers;
+      $scope.savedPlan.referral = $scope.plan.referral;
+      $scope.savedPlan.options = $scope.plan.options;
+      return $scope.savedPlan.excess = $scope.plan.excess;
+    };
+
+    /*
     			Function for saving the plan for later - called by buttons in the
     			navbar and at the bottom of the page. When this is clicked, the saved
     			plan should be sent to the server (not implemented)
      */
     $scope.saveForLater = function() {
-      $scope.savedPlan = $scope.plan;
+      saveCurrentPlan();
 
       /*
       				send data to server
@@ -522,6 +572,35 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     };
 
     /*
+    			When the user selects to revert to the previous plan from the comparison
+    			pane in the summary section, the recommended options should be de-selected
+    			and those previously selected re-selected. The options displayed on the page
+    			are from the $scope.options.optionalCover object, while the previously
+    			selected options are in the $savedPlan.options object. The function loops
+    			through the options on the page and if they are also in the saved plan options
+    			then the selectOption function is called on that option. This is a
+    			private function called only from within functions in this controller.
+     */
+    selectPreviousOptions = function() {
+      var matched, option, _i, _len, _ref, _results;
+      _ref = $scope.options.optionalCover;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        option = _ref[_i];
+        option.selected = false;
+        matched = $scope.savedPlan.options.filter(function(previousOption) {
+          return previousOption.name === option.name;
+        });
+        if (matched.length) {
+          _results.push($scope.selectOption(option));
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    };
+
+    /*
     			When the user selects the 'select plan and modify' button in section
     			1, 2 things need to happen:
     			- the recommended plan is selected, so we call the
@@ -543,13 +622,14 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			selected and that the comparison pane is closed.
      */
     $scope.useRecommendedPlan = function() {
-      $scope.savedPlan = $scope.plan;
+      saveCurrentPlan();
       $scope.plan.cover = $scope.recommendedPlan.cover;
       $scope.plan.options = $scope.recommendedPlan.options;
       selectRecommendedOptions();
       $scope.plan.excess = $scope.recommendedPlan.excess;
       $scope.plan.totalCost = $scope.recommendedPlan.totalCost;
-      return $scope.compare = false;
+      $scope.compare = false;
+      return $scope.selectRecommendedPlan = true;
     };
 
     /*
@@ -561,7 +641,57 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			require design decisions
      */
     $scope.revertToPreviousPlan = function() {
-      return $scope.plan = $scope.savedPlan;
+      $scope.plan = $scope.savedPlan;
+      selectPreviousOptions();
+      $scope.selectRecommendedPlan = false;
+      return $scope.compare = false;
+    };
+    $scope.showNewDriverForm = function() {
+      var d, _i, _len, _ref;
+      _ref = $scope.plan.additionalDrivers;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        d = _ref[_i];
+        d.editing = false;
+      }
+      $scope.newDriver = new AdditionalDriver;
+      return $scope.addnewdriver = true;
+    };
+    $scope.addNewDriver = function() {
+      $scope.plan.additionalDrivers.push($scope.newDriver);
+      $scope.newDriver = {};
+      $scope.addnewdriver = false;
+      return $scope.newDriverForm.$setPristine();
+    };
+    $scope.removeAdditionalDriver = function(driver) {
+      var additionalDrivers;
+      additionalDrivers = $scope.plan.additionalDrivers.filter(function(ad) {
+        return ad !== driver;
+      });
+      return $scope.plan.additionalDrivers = additionalDrivers;
+    };
+    $scope.editAdditionalDriver = function(driver) {
+      var d, _i, _len, _ref;
+      $scope.addnewdriver = false;
+      _ref = $scope.plan.additionalDrivers;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        d = _ref[_i];
+        d.editing = false;
+      }
+      return driver.editing = true;
+    };
+    $scope.saveChangesToDriver = function(driver) {
+      var d, _i, _len, _ref, _results;
+      _ref = $scope.plan.additionalDrivers;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        d = _ref[_i];
+        _results.push(delete d["editing"]);
+      }
+      return _results;
+
+      /*
+      				synch data with server
+       */
     };
 
     /*

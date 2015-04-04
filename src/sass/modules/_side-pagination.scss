@@ -1,5 +1,4 @@
 .side-pagination {
-	background:				$dark-grey-1;
 	list-style:				none;
 	position:				fixed;
 	padding:				0px;
@@ -8,13 +7,14 @@
 	z-index:				10;
 
 	a {
-		border: 			2px solid #aaa;
+		background:			$blue;
 		border-radius: 		100%;
+		box-shadow:			0 2px 3px rgba($black, 0.3);
 		cursor: 			pointer;
 		display: 			block;
-		height: 			16px;
+		height: 			20px;
 		margin: 			8px;
-		width: 				16px;
+		width: 				20px;
 	}
 
 	li {
@@ -22,13 +22,13 @@
 	}
 
 	.active a {
-  		background: 		#aaa;
+  		background: 		$yellow;
 		border: 			none;
 	}
 
 	.tooltip {
 		left:				auto !important;
-		margin-right:		25px;
+		margin-right:		32px;
 		right:				0;
 		min-width:			200px;
 	}

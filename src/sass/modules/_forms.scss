@@ -31,10 +31,23 @@
 	text-align:				left;
 }
 
+.ng-submitted {
+	.selecter {
+		display:			inline-block;
+		vertical-align: 	middle;
+		width:				calc(100% - 33px);
+
+		.ng-invalid + .selecter-selected {
+			border:			1px solid $red;
+		}
+
+	}
+}
+
 .selecter .selecter-options {
 	border: 				1px solid $blue;
 	border-top:				none;
-	box-shadow:				0 3px 0 $light-grey-1;
+	box-shadow:				0 2px 2px rgba($black, 0.2);
 	color:					$medium-grey;
 	text-align:				left;
 
@@ -45,11 +58,28 @@
 
 input[type="text"],
 input[type="number"]{
+	border:					1px solid #aab2bd;
+	border-radius: 			4px;
+	box-shadow:				none;
 	padding:				6px 10px;
 
-	&.ng-invalid:not(.ng-pristine) {
+	&.ng-invalid.ng-dirty:not(.year):not(.month):not(.day):not(.claim) {
 		border:				1px solid $red;
+		display:			inline-block;
+		width:				calc(100% - 33px);
 	}
+}
+
+.ng-submitted {
+	.ng-invalid:not(.year):not(.month):not(.day):not(.claim) {
+		border:				1px solid $red;
+		display:			inline-block;
+		width:				calc(100% - 33px);
+	}
+}
+
+img[src*="error.png"] {
+	margin-left:			5px;
 }
 
 input[type="checkbox"],
@@ -133,6 +163,24 @@ input[type="radio"]:disabled ~ span {
 }
 
 .day,
+.month,
+.year {
+	&.ng-invalid.ng-dirty {
+		border:				1px solid $red;
+	}
+}
+
+.ng-submitted {
+	.day,
+	.month,
+	.year {
+		&.ng-invalid {
+			border:			1px solid $red;
+		}
+	}
+}
+
+.day,
 .month {
 	width:					60px;
 }
@@ -144,4 +192,16 @@ input[type="radio"]:disabled ~ span {
 .claim {
 	margin:					0 5px 0 0;
 	width:					80px;
+
+	&.ng-invalid.ng-dirty {
+		border:				1px solid $red;
+	}
+}
+
+.ng-submitted {
+	.claim {
+		&.ng-invalid {
+			border:			1px solid $red;
+		}
+	}
 }

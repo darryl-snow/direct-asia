@@ -30,12 +30,12 @@ getMockData = ->
 				name: "Third-Party"
 				baseCost: 540
 		excesses: [
-			"S$500"
-			"S$1000"
-			"S$2000"
-			"S$3000"
-			"S$4000"
-			"S$5000"
+			"500"
+			"1000"
+			"2000"
+			"3000"
+			"4000"
+			"5000"
 		]
 		feedback: [
 			"Friends & Family"
@@ -136,20 +136,6 @@ getMockData = ->
 			cover:
 				name: "Comprehensive"
 				baseCost: 732
-			# options: [
-			# 	name: "Loss of use"
-			# 	description: "S$50 to help you with transport costs while your car is being repaired"
-			# 	cost: 156
-			# ,
-			# 	name: "My workshop/ garage"
-			# 	description: "Gives you the freedom to select your own preferred
-			# 	 workshop for an optional benefit"
-			# 	cost: 156
-			# ,
-			# 	name: "Experienced Drivers"
-			# 	description: "Cover anyone over 30 with more than 2 years driving experience"
-			# 	cost: 156
-			# ]
 			excess: 2000
 
 
@@ -214,8 +200,16 @@ angular.module "DirectAsia"
 
 			###
 
-			$scope.currentStep = 1
+			$scope.currentStep = 5
 
+			###
+			This indicates whether the recommended plan has been selected from the comparison
+			section at the bottom of the page
+			###
+
+			$scope.selectRecommendedPlan = false
+
+			$scope.addnewdriver = false
 
 			###
 			This private function fetches data from the back-end to be used on the page
@@ -340,7 +334,8 @@ angular.module "DirectAsia"
 				$scope.recommendedPlan.car = $scope.plan.car
 				$scope.recommendedPlan.driver = $scope.plan.driver
 				$scope.recommendedPlan.cover = $scope.plan.cover
-				$scope.recommendedPlan.options = getRecommendedOptions $scope.plan.cover.name, $scope.mainDriver, $scope.car
+				$scope.recommendedPlan.options =
+					getRecommendedOptions $scope.plan.cover.name, $scope.mainDriver, $scope.car
 
 				###
 				set recommended optional benefits
@@ -362,10 +357,34 @@ angular.module "DirectAsia"
 			can be used on the page
 			###
 
+			addAdditionalDrivers = ->
+
+				for i in [0..1]
+
+					newdriver = new AdditionalDriver
+
+					newdriver.firstName = "oihohoh"
+					newdriver.lastName = "hhhoi"
+					newdriver.dob =
+						day: 7
+						month: 7
+						year: 2008
+					newdriver.gender = "Male"
+					newdriver.maritalStatus = "single"
+					newdriver.occupation = "rpergjerg"
+					newdriver.drivingExperience = 4
+					newdriver.offences = true
+					newdriver.accidents =
+						atFault: 0
+						notAtFault: 3
+					newdriver.refusals = 0
+
+					$scope.plan.additionalDrivers.push newdriver
+
 			setupData = (data) ->
 
 				###
-				get page options
+				Get page options
 				###
 				
 				$scope.options.coverPlans = data.coverPlans
@@ -374,7 +393,7 @@ angular.module "DirectAsia"
 				$scope.options.optionalCover = data.optionalCover
 
 				###
-				get details about main driver
+				Get details about main driver
 				###
 
 				$scope.mainDriver = new MainDriver
@@ -398,7 +417,7 @@ angular.module "DirectAsia"
 				$scope.mainDriver.additionalDrivers = data.mainDriver.additionalDrivers
 
 				###
-				get details about car
+				Get details about car
 				###
 
 				$scope.car = new Car
@@ -418,16 +437,19 @@ angular.module "DirectAsia"
 				$scope.car.usage = data.car.usage
 
 				###
-				save info for selected plan
+				Save info for selected plan. Excess is recommended excess by default.
 				###
 
 				$scope.plan.car = $scope.car
 				$scope.plan.mainDriver = $scope.mainDriver
-				$scope.plan.additionalDrivers.push new AdditionalDriver
+				$scope.plan.additionalDrivers = []
 				$scope.plan.cover = $scope.options.coverPlans[data.selectedCover]
+				$scope.plan.excess = data.recommendedPlan.excess
+
+				addAdditionalDrivers()
 
 				###
-				save info for recommended plan
+				Save info for recommended plan
 				###
 
 				$scope.recommendedPlan.excess = data.recommendedPlan.excess
@@ -515,6 +537,21 @@ angular.module "DirectAsia"
 				plan.totalCost = plan.cover.baseCost + $scope.calculateOptionsCost(plan)
 
 			###
+			This private function copies data from the currently selected plan
+			into another object for temporary storage.
+			###
+
+			saveCurrentPlan = ->
+				$scope.savedPlan.cover = $scope.plan.cover
+				$scope.savedPlan.totalCost = $scope.plan.totalCost
+				$scope.savedPlan.car = $scope.plan.car
+				$scope.savedPlan.mainDriver = $scope.plan.mainDriver
+				$scope.savedPlan.additionalDrivers = $scope.plan.additionalDrivers
+				$scope.savedPlan.referral = $scope.plan.referral
+				$scope.savedPlan.options = $scope.plan.options
+				$scope.savedPlan.excess = $scope.plan.excess
+
+			###
 			Function for saving the plan for later - called by buttons in the
 			navbar and at the bottom of the page. When this is clicked, the saved
 			plan should be sent to the server (not implemented)
@@ -522,7 +559,7 @@ angular.module "DirectAsia"
 
 			$scope.saveForLater = ->
 
-				$scope.savedPlan = $scope.plan
+				saveCurrentPlan()
 
 				###
 				send data to server
@@ -557,7 +594,29 @@ angular.module "DirectAsia"
 					option.selected = false
 
 					matched = $scope.recommendedPlan.options.filter (recommendedOption) ->
-					 recommendedOption.name is option.name
+						recommendedOption.name is option.name
+
+					if matched.length then $scope.selectOption option
+
+			###
+			When the user selects to revert to the previous plan from the comparison
+			pane in the summary section, the recommended options should be de-selected
+			and those previously selected re-selected. The options displayed on the page
+			are from the $scope.options.optionalCover object, while the previously
+			selected options are in the $savedPlan.options object. The function loops
+			through the options on the page and if they are also in the saved plan options
+			then the selectOption function is called on that option. This is a
+			private function called only from within functions in this controller.
+			###
+
+			selectPreviousOptions = ->
+
+				for option in $scope.options.optionalCover
+
+					option.selected = false
+
+					matched = $scope.savedPlan.options.filter (previousOption) ->
+						previousOption.name is option.name
 
 					if matched.length then $scope.selectOption option
 
@@ -587,7 +646,8 @@ angular.module "DirectAsia"
 
 			$scope.useRecommendedPlan = ->
 
-				$scope.savedPlan = $scope.plan
+				saveCurrentPlan()
+
 				$scope.plan.cover = $scope.recommendedPlan.cover
 				$scope.plan.options = $scope.recommendedPlan.options
 				selectRecommendedOptions()
@@ -595,6 +655,7 @@ angular.module "DirectAsia"
 				$scope.plan.totalCost = $scope.recommendedPlan.totalCost
 
 				$scope.compare = false
+				$scope.selectRecommendedPlan = true
 
 			###
 			In case the user wants to go back from the recommended plan to the
@@ -608,6 +669,50 @@ angular.module "DirectAsia"
 			$scope.revertToPreviousPlan = ->
 
 				$scope.plan = $scope.savedPlan
+				selectPreviousOptions()
+				$scope.selectRecommendedPlan = false
+				$scope.compare = false
+
+			
+
+
+			$scope.showNewDriverForm = ->
+				for d in $scope.plan.additionalDrivers
+					d.editing = false
+
+				$scope.newDriver = new AdditionalDriver
+				$scope.addnewdriver = true
+
+			$scope.addNewDriver = ->
+				$scope.plan.additionalDrivers.push $scope.newDriver
+				$scope.newDriver = {}
+				$scope.addnewdriver = false
+				$scope.newDriverForm.$setPristine()
+
+			$scope.removeAdditionalDriver = (driver) ->
+
+				additionalDrivers = $scope.plan.additionalDrivers.filter (ad) ->
+					ad isnt driver
+
+				$scope.plan.additionalDrivers = additionalDrivers
+
+			$scope.editAdditionalDriver = (driver) ->
+				$scope.addnewdriver = false
+
+				for d in $scope.plan.additionalDrivers
+					d.editing = false
+
+				driver.editing = true
+
+			$scope.saveChangesToDriver = (driver) ->
+				# remove 'editing' key from all drivers
+				for d in $scope.plan.additionalDrivers
+					delete d["editing"]
+
+				###
+				synch data with server
+				###
+
 
 			###
 			Finally, now that all functions have been parsed, setup the data on the

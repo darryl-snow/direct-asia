@@ -9,6 +9,7 @@
 	font-size:			12px;
 	font-weight:		200;
 	letter-spacing:		1px;
+	overflow:			hidden;
 	padding:			5px 2.5em;
 	position:			relative;
 	text-transform:		uppercase;
@@ -20,21 +21,16 @@
 		position:		absolute;
 		right:			12px;
 		top:			50%;
-		visibility:		hidden;
+		// visibility:		hidden;
+	}
+
+	.glyphicon-ok {
+		visibility: 	hidden;
 	}
 
 	span {
 		pointer-events:	none;
 	}
-
-	// @include ActiveFocusHover {
-	// 	border:			none;
-	// 	box-shadow:		0 3px 0 rgba($black, 0.1);
-
-	// 	.glyphicon {
-	// 		visibility:	visible;
-	// 	}
-	// }
 
 	&.active {
 		background:		$yellow !important;
@@ -42,19 +38,40 @@
 		box-shadow:		0 3px 0 rgba($black, 0.1);
 		color:			$black !important;
 
-		.glyphicon {
+		.glyphicon-ok {
 			visibility:	visible;
 		}
+	}
+
+	&-sm {
+		border-radius:	3px;
+		padding:		2px 10px;
+		font-size:		10px;
+		line-height:	1.5;
 	}
 
 	&-default {
 		background:			$blue;
 		color:				$white;
 
-		// @include ActiveFocusHover {
-		// 	background:		$yellow;
-		// 	color:			$black;
-		// }
+		@include ActiveFocusHover {
+			background:		$black;
+			color:			$white;
+		}
+	}
+
+	&-default--inverse {
+		background: 		$white;
+		color:				$blue;
+	}
+
+	&-remove {
+		padding-right:		22px;
+
+		.glyphicon {
+			margin-top: 	-6px;
+			right:			6px;
+		}
 	}
 
 	&-plain {

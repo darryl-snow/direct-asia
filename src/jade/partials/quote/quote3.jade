@@ -2,120 +2,295 @@ section#quote2.section.section--blue.section--padded.section--centred.margin--to
 
 	.container.margin--top
 		img(src="../../images/cover-icon.png")
-		h2(translate="PS_4_4a") Add Additional Driver
 
-		.panel.align-left(data-ng-repeat="driver in plan.additionalDrivers")
-			.panel-body
+		.row(data-ng-show="!plan.mainDriver.additionalDrivers", style="margin-bottom:30px;")
+			.col-md-6.col-md-offset-3
+				h2.margin--bottom(translate="PS_4_4a") You indicated that you don't want to cover additional drivers?
+				a.btn.btn-default--inverse.margin--right(translate="PS_4_4b", href="#quote3", title="", data-ng-click="continue(3)") Yes, continue
+				button.btn.btn-default--inverse(translate="PS_4_4c", data-ng-click="plan.mainDriver.additionalDrivers = true") No, add drivers
 
-				form(name="driver{{$index}}form", novalidate)
+		div(data-ng-show="plan.mainDriver.additionalDrivers", style="margin-bottom:30px;")
 
-					h3
-						span(translate="PC_4_4_1_5_1") Driver 
-						span(data-ng-cloak) {{$index + 1}} - {{driver.firstName}} {{driver.lastName}}
+			h2(translate="PS_4_4d") Tell us about your additional drivers
 
-					.row
+			.additional-driver(data-ng-repeat="driver in plan.additionalDrivers", data-ng-class="{'active':driver.editing}")
+				.additional-driver-content
+					img(src="../../images/driver-icon3.png")
+					h4 {{driver.firstName}} {{driver.lastName}}
+					p {{driver.dob.year + "-" + driver.dob.month + "-" + driver.dob.day | age}} 
+						span(translate="PS_4_4g") yrs old 
+						span  {{driver.gender}} 
+						span(translate="PS_4_4h") with 
+						span  {{driver.drivingExperience}} 
+						span(translate="PS_4_4i") yrs of driving experience
+					button.btn.btn-default.margin--right(type="button", data-ng-click="editAdditionalDriver(driver)", data-ng-show="!driver.editing", translate="PS_4_4j") Edit
+					button.btn.btn-sm.btn-danger.btn-remove(type="button", data-ng-click="removeAdditionalDriver(driver)")
+						span(translate="PS_4_4k") Remove
+						i.glyphicon.glyphicon-remove
 
-						.col-md-4.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}firstname", translate="PC_4_4_1_1a") First Name
-							input.form-control(id="driver{{$index}}firstname", name="driver{{$index}}firstname", type="text", placeholder="enter first name", data-ng-model="driver.firstName", required)
-							.alert.alert-danger(data-ng-show="driver{{$index}}form.driver{{$index}}firstname.$invalid && !driver{{$index}}form.driver{{$index}}firstname.$pristine") Please enter a first name
+				//- EDIT DRIVER
 
-						.col-md-4.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}lastname", translate="PC_4_4_1_1b") Last Name
-							input.form-control(id="driver{{$index}}lastname", name="driver{{$index}}lastname", type="text", placeholder="enter last name", data-ng-model="driver.lastName", required)
-							.alert.alert-danger(data-ng-show="driver{{$index}}form.driver{{$index}}lastname.$invalid && !driver{{$index}}form.driver{{$index}}lastname.$pristine") Please enter a last name
+				.panel.panel-editdriver.align-left(data-ng-show="driver.editing", data-ng-class="{'panel-editdriver-0': ($parent.plan.additionalDrivers.length >= 3) && ($index % 4 == 0),'panel-editdriver-1': (($parent.plan.additionalDrivers.length >= 3) && (($index - 1) % 4 == 0)) || ((($parent.plan.additionalDrivers.length - 1) % 4 = 0) && (($index - 1) % 4 = 0)),'panel-editdriver-2': ($parent.plan.additionalDrivers.length >= 3) && (($index - 2) % 4 = 0),'panel-editdriver-3': ($parent.plan.additionalDrivers.length >= 3) && (($index + 1) % 4 = 0),'panel-editdriver-4': (($parent.plan.additionalDrivers.length > 5) && (($parent.plan.additionalDrivers.length - 2) % 4 = 0) && ($index % 4 = 0)),'panel-editdriver-5': (($parent.plan.additionalDrivers.length > 5) && (($parent.plan.additionalDrivers.length - 2) % 4 = 0)) && (($index - 1) % 4 = 0)}")
+					.panel-body
 
-					.row
-
-						.col-md-4.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}dob-day", translate="PC_4_4_1_1c") Date of Birth
-							.form-inline
-								input.day(id="driver{{$index}}dob_day", min="1", max="31", name="driver{{$index}}dob_day", placeholder="DD", type="number", data-ng-model="driver.dob.day", required)
-								input.month(id="driver{{$index}}dob_month", min="1", max="12", name="driver{{$index}}dob_month", placeholder="MM", type="number", data-ng-model="driver.dob.month", required)
-								input.year(id="driver{{$index}}dob_year", min="1900", max="2015", name="driver{{$index}}dob_year", placeholder="YYYY", type="number", data-ng-model="driver.dob.year", required)
-							.alert.alert-danger(data-ng-show="(driver{{$index}}form.driver{{$index}}dob_day.$invalid && !driver{{$index}}form.driver{{$index}}dob_day.$pristine) || (driver{{$index}}form.driver{{$index}}dob_month.$invalid && !driver{{$index}}form.driver{{$index}}dob_month.$pristine) || (driver{{$index}}form.driver{{$index}}dob_year.$invalid && !driver{{$index}}form.driver{{$index}}dob_year.$pristine)") Please enter a valid Date of Birth
-
-						.col-md-4.margin--top.margin--bottom
-							label.label--large(translate="PC_4_4_1_1d") Gender
-							button.btn.btn-default.random-margin(type="button", ng-click="driver.gender='Male'", ng-class="{'active':driver.gender=='Male'}")
-								span(translate="PC_4_4_1_1d_1") Male
-								span.glyphicon.glyphicon-ok
-
-							button.btn.btn-default(type="button", ng-click="driver.gender='Female'", ng-class="{'active':driver.gender=='Female'}")
-								span(translate="PC_4_4_1_1d_2") Female
-								span.glyphicon.glyphicon-ok
-
-					.row
-
-						.col-md-4.margin--top.margin--bottom
-							label.label--large(translate="PC_4_4_1_1e") Marital Status
-							button.btn.btn-default.random-margin(type="button", ng-click="driver.maritalStatus = 'single'", ng-class="{'active':driver.maritalStatus=='single'}") Single
-								span.glyphicon.glyphicon-ok
-
-							button.btn.btn-default(type="button", ng-click="driver.maritalStatus = 'married'", ng-class="{'active':driver.maritalStatus=='married'}") Married
-								span.glyphicon.glyphicon-ok
-
-						.col-md-4.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}occupation", translate="PC_4_4_1_1f") Occupation
-							input.form-control(id="driver{{$index}}occupation", name="driver{{$index}}occupation", type="text", placeholder="enter occupation", data-ng-model="driver.occupation")
-
-					.row
-
-						.col-md-7.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}experience", translate="PC_4_4_1_2a") Years of valid driving
+						form(name="editDriverForm[{{$index}}]", novalidate, data-ng-submit="editDriverForm[$index].$valid && saveChangesToDriver(driver)")
 
 							.row
-								.col-md-9
-									p(translate="PC_4_4_1_2b") We are unable to insure drivers who've had their license suspended or cancelled in the last 5 years.
+
+								.col-md-6.margin--top.margin--bottom
+									label.label--large(for="editDriver{{$index}}FirstName", translate="PC_4_4_1_1a") First Name
+									input.form-control(id="editDriver{{$index}}FirstName", name="editDriver{{$index}}FirstName", type="text", placeholder="enter first name", data-ng-model="driver.firstName", data-ng-pattern="/^[a-zA-Z0-9_ -]*$/", required)
+									img(src="../../images/error.png", data-ng-show="(editDriverForm[$index].editDriver{{$index}}FirstName.$invalid && editDriverForm[$index].editDriver{{$index}}FirstName.$dirty) || (editDriverForm[$index].editDriver{{$index}}FirstName.$invalid && editDriverForm[$index].$submitted)")
+
+
+								.col-md-6.margin--top.margin--bottom
+									label.label--large(for="editDriver{{$index}}LastName", translate="PC_4_4_1_1b") Last Name
+									input.form-control(id="editDriver{{$index}}LastName", name="editDriver{{$index}}LastName", type="text", placeholder="enter last name", data-ng-model="driver.lastName", data-ng-pattern="/^[a-zA-Z0-9_ -]*$/", required)
+									img(src="../../images/error.png", data-ng-show="(editDriverForm[$index].editDriver{{$index}}LastName.$invalid && editDriverForm[$index].editDriver{{$index}}LastName.$dirty) || (editDriverForm[$index].editDriver{{$index}}LastName.$invalid && editDriverForm[$index].$submitted)")
 
 							.row
-								.col-md-6
-									select(id="driver{{$index}}experience", name="driver{{$index}}experience", data-ng-model="driver.drivingExperience")
-										option(selecter, label="Select number of years", value="{{n}}", data-ng-repeat="n in [] | range:100", selecter-target="#driver{{$parent.$index}}experience", selecter-callback="select", property="experience", ng-selected="driver.drivingExperience == selectedItem") {{n}}
 
-					.row
+								.col-md-6.margin--top.margin--bottom
+									label.label--large(for="editDriver{{$index}}DOBDay", translate="PC_4_4_1_1c") Date of Birth
+									.form-inline
+										input.day(id="editDriver{{$index}}DOBDay", min="1", max="31", name="editDriver{{$index}}DOBDay", placeholder="DD", type="number", data-ng-model="driver.dob.day", required)
+										input.month(id="editDriver{{$index}}DOBMonth", min="1", max="12", name="editDriver{{$index}}DOBMonth", placeholder="MM", type="number", data-ng-model="driver.dob.month", required)
+										input.year(id="editDriver{{$index}}DOBYear", min="1900", max="2015", name="editDriver{{$index}}DOBYear", placeholder="YYYY", type="number", data-ng-model="driver.dob.year", required)
+										img(src="../../images/error.png", data-ng-show="((editDriverForm[$index].editDriver{{$index}}DOBDay.$invalid && editDriverForm[$index].editDriver{{$index}}DOBDay.$dirty) || (editDriverForm[$index].editDriver{{$index}}DOBDay.$invalid && editDriverForm[$index].$submitted)) || ((editDriverForm[$index].editDriver{{$index}}DOBMonth.$invalid && editDriverForm[$index].editDriver{{$index}}DOBMonth.$dirty) || (editDriverForm[$index].editDriver{{$index}}DOBMonth.$invalid && editDriverForm[$index].$submitted)) || ((editDriverForm[$index].editDriver{{$index}}DOBYear.$invalid && editDriverForm[$index].editDriver{{$index}}DOBYear.$dirty) || (editDriverForm[$index].editDriver{{$index}}DOBYear.$invalid && editDriverForm[$index].$submitted))")
 
-						.col-md-7.margin--top.margin--bottom
-							label.label--large
-								span(translate="PC_4_4_1_3a") Did the main driver have any driving offence points in the last 2 years?
-								img(src="../../images/question-icon.png")
-							p(translate="PC_4_4_1_3b") If you're unsure, 
-								a(href="", title="") click here
-								|  to get this information. Please note that drivers must have less than 12 offence points.
-
-							.row
-								.col-md-12
-									button.btn.btn-default.random-margin(type="button", ng-click="driver.offences = true", ng-class="{'active':driver.offences}")
-										span(translate="PC_4_4_1_3c") Yes
+								.col-md-6.margin--top.margin--bottom
+									label.label--large(translate="PC_4_4_1_1d") Gender
+									button.btn.btn-default.random-margin(type="button", ng-click="driver.gender='Male'", ng-class="{'active':driver.gender=='Male'}")
+										span(translate="PC_4_4_1_1d_1") Male
 										span.glyphicon.glyphicon-ok
 
-									button.btn.btn-default(type="button", ng-click="driver.offences = false", ng-class="{'active':driver.offences==false}")
-										span(translate="PC_4_4_1_3d") No
+									button.btn.btn-default(type="button", ng-click="driver.gender='Female'", ng-class="{'active':driver.gender=='Female'}")
+										span(translate="PC_4_4_1_1d_2") Female
 										span.glyphicon.glyphicon-ok
 
-					.row
-
-						.col-md-12.margin--top.margin--bottom
-							label.label--large(for="driver{{$index}}claims-at-fault")
-								span(translate="PC_4_4_1_4a") In the past 3 years (36 months), how many accidents and/or claims were made?
-								img(src="../../images/question-icon.png")
-							p(translate="PC_4_4_1_4b") Please include all accidents, but you can exclude windscreen claims.
+									img(src="../../images/error.png", data-ng-show="!driver.gender && editDriverForm[$index].$submitted")
 
 							.row
 
-								.col-md-3
-									input.claim(id="driver{{$index}}claims-at-fault", min="0", name="driver{{$index}}claims-at-fault", placeholder="0", type="number", data-ng-model="driver.accidents.atFault")
-									span(translate="PC_4_4_1_4c") at fault
+								.col-md-6.margin--top.margin--bottom
+									label.label--large(translate="PC_4_4_1_1e") Marital Status
+									button.btn.btn-default.random-margin(type="button", ng-click="driver.maritalStatus = 'single'", ng-class="{'active':driver.maritalStatus=='single'}") Single
+										span.glyphicon.glyphicon-ok
 
-								.col-md-3
-									input.claim(id="driver{{$index}}claims-not-at-fault", min="0", name="driver{{$index}}claims-not-at-fault", placeholder="0", type="number", data-ng-model="driver.accidents.notAtFault")
-									span(translate="PC_4_4_1_4d") not at fault
+									button.btn.btn-default(type="button", ng-click="driver.maritalStatus = 'married'", ng-class="{'active':driver.maritalStatus=='married'}") Married
+										span.glyphicon.glyphicon-ok
 
-		.panel.align-left(style="margin-bottom:40px;")
-			.panel-body
-				button.btn.btn-continue(type="button", data-ng-click="addAdditionalDriver()", translate="PC_4_4_1_5") &plus; Add another driver
+									img(src="../../images/error.png", data-ng-show="!driver.maritalStatus && editDriverForm[$index].$submitted")
+
+								.col-md-6.margin--top.margin--bottom
+									label.label--large(for="editDriver{{$index}}Occupation", translate="PC_4_4_1_1f") Occupation
+									input.form-control(id="editDriver{{$index}}Occupation", name="editDriver{{$index}}Occupation", type="text", placeholder="enter occupation", data-ng-model="driver.occupation", data-ng-pattern="/^[a-zA-Z0-9_ -]*$/", required)
+									img(src="../../images/error.png", data-ng-show="(editDriverForm[$index].editDriver{{$index}}Occupation.$invalid && editDriverForm[$index].editDriver{{$index}}Occupation.$dirty) || (editDriverForm[$index].editDriver{{$index}}Occupation.$invalid && editDriverForm[$index].$submitted)")
+
+							.row
+
+								.col-md-7.margin--top.margin--bottom
+									label.label--large(for="editDriver{{$index}}-experience", translate="PC_4_4_1_2a") Years of valid driving
+
+									.row
+										.col-md-9
+											p(translate="PC_4_4_1_2b") We are unable to insure drivers who've had their license suspended or cancelled in the last 5 years.
+
+									.row
+										.col-md-6
+											select(id="editDriver{{$index}}-experience", name="editDriver{{$index}}-experience", data-ng-model="driver.drivingExperience", required)
+												option(selecter, label="Select number of years", value="{{n}}", data-ng-repeat="n in [] | range:100", selecter-target="#editDriver{{$parent.$index}}-experience", selecter-callback="select", property="plan.additionalDrivers[{{$parent.$index}}].drivingExperience", ng-selected="plan.additionalDrivers[{{$parent.$index}}].drivingExperience == n") {{n}}
+
+											img(src="../../images/error.png", data-ng-show="!editDriver{{$index}}.drivingExperience && editDriverForm[$index].$submitted")
+
+							.row
+
+								.col-md-7.margin--top.margin--bottom
+									label.label--large
+										span(translate="PC_4_4_1_3a") Did the main driver have any driving offence points in the last 2 years?
+										img(src="../../images/question-icon.png")
+									p(translate="PC_4_4_1_3b") If you're unsure, 
+										a(href="", title="") click here
+										|  to get this information. Please note that drivers must have less than 12 offence points.
+
+									.row
+										.col-md-12
+											button.btn.btn-default.random-margin(type="button", ng-click="driver.offences = true", ng-class="{'active':driver.offences}")
+												span(translate="PC_4_4_1_3c") Yes
+												span.glyphicon.glyphicon-ok
+
+											button.btn.btn-default(type="button", ng-click="driver.offences = false", ng-class="{'active':driver.offences==false}")
+												span(translate="PC_4_4_1_3d") No
+												span.glyphicon.glyphicon-ok
+
+											img(src="../../images/error.png", data-ng-show="!driver.offences && editDriverForm[$index].$submitted && driver.offences != 0")
+
+							.row
+
+								.col-md-8.margin--top.margin--bottom
+									label.label--large(for="newDriverClaimsAtFault")
+										span(translate="PC_4_4_1_4a") In the past 3 years (36 months), how many accidents and/or claims were made?
+										img(src="../../images/question-icon.png")
+									p(translate="PC_4_4_1_4b") Please include all accidents, but you can exclude windscreen claims.
+
+									.row
+
+										.col-md-3
+											input.claim(id="editDriver{{$index}}ClaimsAtFault", min="0", name="editDriver{{$index}}ClaimsAtFault", placeholder="0", type="number", data-ng-model="driver.accidents.atFault", required)
+											span(translate="PC_4_4_1_4c") at fault
+											img(src="../../images/error.png", data-ng-show="(editDriverForm[$index].editDriver{{$index}}ClaimsAtFault.$invalid && editDriverForm[$index].editDriver{{$index}}ClaimsAtFault.$dirty) || (editDriverForm[$index].editDriver{{$index}}ClaimsAtFault.$invalid && editDriverForm[$index].$submitted)")
+
+										.col-md-3
+											input.claim(id="editDriver{{$index}}ClaimsNotAtFault", min="0", name="editDriver{{$index}}ClaimsNotAtFault", placeholder="0", type="number", data-ng-model="driver.accidents.notAtFault", required)
+											span(translate="PC_4_4_1_4d") not at fault
+											img(src="../../images/error.png", data-ng-show="(editDriverForm[$index].editDriver{{$index}}ClaimsNotAtFault.$invalid && editDriverForm[$index].editDriver{{$index}}ClaimsNotAtFault.$dirty) || (editDriverForm[$index].editDriver{{$index}}ClaimsNotAtFault.$invalid && editDriverForm[$index].$submitted)")
+
+							.row
+
+								.col-md-12.margin--top.margin--top
+
+									button.btn.btn-forward.btn-lg(type="submit")
+										span(translate="PS_4_4l") Save
+										span.glyphicon.glyphicon-arrow-right
+
+							.row
+
+								.col-md-12.margin--top.margin--top
+									button.btn.btn-sm.btn-danger(type="button", data-ng-click="removeAdditionalDriver(driver)")
+										span(translate="PS_4_4m") Remove this driver
+
+			.additional-driver
+				.additional-driver-content
+					img(src="../../images/driver-icon2.png")
+					h4(translate="PS_4_4e", data-ng-show="!addnewdriver") Add Driver
+					h4(data-ng-cloak, data-ng-show="addnewdriver") {{newDriver.firstName}} {{newDriver.lastName}}
+					button.btn.btn-default(translate="PS_4_4f", data-ng-click="showNewDriverForm()", data-ng-show="!addnewdriver") Add
+
+			//- ADD DRIVER
+
+			.panel.panel-otherdriver.align-left(data-ng-show="addnewdriver", data-ng-class="{'panel-otherdriver-0':plan.additionalDrivers.length % 4 == 0, 'panel-otherdriver-1':plan.additionalDrivers.length % 4 == 1, 'panel-otherdriver-2':plan.additionalDrivers.length % 4 == 2, 'panel-otherdriver-3':plan.additionalDrivers.length % 4 == 3}")
+				.panel-body
+
+					form(name="newDriverForm", novalidate, data-ng-submit="newDriverForm.$valid && addNewDriver()")
+
+						.row
+
+							.col-md-6.margin--top.margin--bottom
+								label.label--large(for="newDriverFirstName", translate="PC_4_4_1_1a") First Name
+								input.form-control(id="newDriverFirstName", name="newDriverFirstName", type="text", placeholder="enter first name", data-ng-model="newDriver.firstName", data-ng-pattern="/^[a-zA-Z0-9_ -]*$/", required)
+								img(src="../../images/error.png", data-ng-show="(newDriverForm.newDriverFirstName.$invalid && newDriverForm.newDriverFirstName.$dirty) || (newDriverForm.newDriverFirstName.$invalid && newDriverForm.$submitted)")
 
 
-		a.btn.btn-continue.internal-link(href="#quote3", title="", data-ng-click="continue(3)")
-			i.glyphicon.glyphicon-arrow-down
-			span(translate="PC_4_4_4") Continue
+							.col-md-6.margin--top.margin--bottom
+								label.label--large(for="newDriverLastName", translate="PC_4_4_1_1b") Last Name
+								input.form-control(id="newDriverLastName", name="newDriverLastName", type="text", placeholder="enter last name", data-ng-model="newDriver.lastName", data-ng-pattern="/^[a-zA-Z0-9_ -]*$/", required)
+								img(src="../../images/error.png", data-ng-show="(newDriverForm.newDriverLastName.$invalid && newDriverForm.newDriverLastName.$dirty) || (newDriverForm.newDriverLastName.$invalid && newDriverForm.$submitted)")
+
+						.row
+
+							.col-md-6.margin--top.margin--bottom
+								label.label--large(for="newDriverDOBDay", translate="PC_4_4_1_1c") Date of Birth
+								.form-inline
+									input.day(id="newDriverDOBDay", min="1", max="31", name="newDriverDOBDay", placeholder="DD", type="number", data-ng-model="newDriver.dob.day", required)
+									input.month(id="newDriverDOBMonth", min="1", max="12", name="newDriverDOBMonth", placeholder="MM", type="number", data-ng-model="newDriver.dob.month", required)
+									input.year(id="newDriverDOBYear", min="1900", max="2015", name="newDriverDOBYear", placeholder="YYYY", type="number", data-ng-model="newDriver.dob.year", required)
+									img(src="../../images/error.png", data-ng-show="((newDriverForm.newDriverDOBDay.$invalid && newDriverForm.newDriverDOBDay.$dirty) || (newDriverForm.newDriverDOBDay.$invalid && newDriverForm.$submitted)) || ((newDriverForm.newDriverDOBMonth.$invalid && newDriverForm.newDriverDOBMonth.$dirty) || (newDriverForm.newDriverDOBMonth.$invalid && newDriverForm.$submitted)) || ((newDriverForm.newDriverDOBYear.$invalid && newDriverForm.newDriverDOBYear.$dirty) || (newDriverForm.newDriverDOBYear.$invalid && newDriverForm.$submitted))")
+
+							.col-md-6.margin--top.margin--bottom
+								label.label--large(translate="PC_4_4_1_1d") Gender
+								button.btn.btn-default.random-margin(type="button", ng-click="newDriver.gender='Male'", ng-class="{'active':newDriver.gender=='Male'}")
+									span(translate="PC_4_4_1_1d_1") Male
+									span.glyphicon.glyphicon-ok
+
+								button.btn.btn-default(type="button", ng-click="newDriver.gender='Female'", ng-class="{'active':newDriver.gender=='Female'}")
+									span(translate="PC_4_4_1_1d_2") Female
+									span.glyphicon.glyphicon-ok
+
+								img(src="../../images/error.png", data-ng-show="!newDriver.gender && newDriverForm.$submitted")
+
+						.row
+
+							.col-md-6.margin--top.margin--bottom
+								label.label--large(translate="PC_4_4_1_1e") Marital Status
+								button.btn.btn-default.random-margin(type="button", ng-click="newDriver.maritalStatus = 'single'", ng-class="{'active':newDriver.maritalStatus=='single'}") Single
+									span.glyphicon.glyphicon-ok
+
+								button.btn.btn-default(type="button", ng-click="newDriver.maritalStatus = 'married'", ng-class="{'active':newDriver.maritalStatus=='married'}") Married
+									span.glyphicon.glyphicon-ok
+
+								img(src="../../images/error.png", data-ng-show="!newDriver.maritalStatus && newDriverForm.$submitted")
+
+							.col-md-6.margin--top.margin--bottom
+								label.label--large(for="newDriverOccupation", translate="PC_4_4_1_1f") Occupation
+								input.form-control(id="newDriverOccupation", name="newDriverOccupation", type="text", placeholder="enter occupation", data-ng-model="newDriver.occupation", data-ng-pattern="/^[a-zA-Z0-9_ -]*$/", required)
+								img(src="../../images/error.png", data-ng-show="(newDriverForm.newDriverOccupation.$invalid && newDriverForm.newDriverOccupation.$dirty) || (newDriverForm.newDriverOccupation.$invalid && newDriverForm.$submitted)")
+
+						.row
+
+							.col-md-7.margin--top.margin--bottom
+								label.label--large(for="newDriver-experience", translate="PC_4_4_1_2a") Years of valid driving
+
+								.row
+									.col-md-9
+										p(translate="PC_4_4_1_2b") We are unable to insure drivers who've had their license suspended or cancelled in the last 5 years.
+
+								.row
+									.col-md-6
+										select(id="newDriver-experience", name="newDriver-experience", data-ng-model="newDriver.drivingExperience", required)
+											option(selecter, label="Select number of years", value="{{n}}", data-ng-repeat="n in [] | range:100", selecter-target="#newDriver-experience", selecter-callback="select", property="newDriver.drivingExperience", ng-selected="newDriver.drivingExperience == n") {{n}}
+
+										img(src="../../images/error.png", data-ng-show="!newDriver.drivingExperience && newDriverForm.$submitted")
+
+						.row
+
+							.col-md-7.margin--top.margin--bottom
+								label.label--large
+									span(translate="PC_4_4_1_3a") Did the main driver have any driving offence points in the last 2 years?
+									img(src="../../images/question-icon.png")
+								p(translate="PC_4_4_1_3b") If you're unsure, 
+									a(href="", title="") click here
+									|  to get this information. Please note that drivers must have less than 12 offence points.
+
+								.row
+									.col-md-12
+										button.btn.btn-default.random-margin(type="button", ng-click="newDriver.offences = true", ng-class="{'active':newDriver.offences}")
+											span(translate="PC_4_4_1_3c") Yes
+											span.glyphicon.glyphicon-ok
+
+										button.btn.btn-default(type="button", ng-click="newDriver.offences = false", ng-class="{'active':newDriver.offences==false}")
+											span(translate="PC_4_4_1_3d") No
+											span.glyphicon.glyphicon-ok
+
+										img(src="../../images/error.png", data-ng-show="!newDriver.offences && newDriverForm.$submitted && newDriver.offences != 0")
+
+						.row
+
+							.col-md-8.margin--top.margin--bottom
+								label.label--large(for="newDriverClaimsAtFault")
+									span(translate="PC_4_4_1_4a") In the past 3 years (36 months), how many accidents and/or claims were made?
+									img(src="../../images/question-icon.png")
+								p(translate="PC_4_4_1_4b") Please include all accidents, but you can exclude windscreen claims.
+
+								.row
+
+									.col-md-3
+										input.claim(id="newDriverClaimsAtFault", min="0", name="newDriverClaimsAtFault", placeholder="0", type="number", data-ng-model="newDriver.accidents.atFault", required)
+										span(translate="PC_4_4_1_4c") at fault
+										img(src="../../images/error.png", data-ng-show="(newDriverForm.newDriverClaimsAtFault.$invalid && newDriverForm.newDriverClaimsAtFault.$dirty) || (newDriverForm.newDriverClaimsAtFault.$invalid && newDriverForm.$submitted)")
+
+									.col-md-3
+										input.claim(id="newDriverClaimsNotAtFault", min="0", name="newDriverClaimsNotAtFault", placeholder="0", type="number", data-ng-model="newDriver.accidents.notAtFault", required)
+										span(translate="PC_4_4_1_4d") not at fault
+										img(src="../../images/error.png", data-ng-show="(newDriverForm.newDriverClaimsNotAtFault.$invalid && newDriverForm.newDriverClaimsNotAtFault.$dirty) || (newDriverForm.newDriverClaimsNotAtFault.$invalid && newDriverForm.$submitted)")
+
+						button.btn.btn-forward.btn-lg.margin--top(type="submit")
+							span(translate="PS_4_4f") Add
+							span.glyphicon.glyphicon-arrow-right
+
+			//- CONTINUE
+
+			.row
+				.col-md-12
+					a.btn.btn-continue.internal-link(href="#quote3", title="", data-ng-click="continue(3)", style="margin-top:30px;")
+						i.glyphicon.glyphicon-arrow-down
+						span(translate="PC_4_4_4") Continue

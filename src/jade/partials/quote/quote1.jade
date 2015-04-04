@@ -23,6 +23,9 @@ section.section.section-quote(ng-controller="QuoteCtrl")
 			nav(data-ng-class="{'notchosen':currentStep>1}")
 				li(data-ng-repeat="cover in options.coverPlans", data-ng-class="{active:cover.name==plan.cover.name}")
 					a(data-ng-click="selectPlan(cover)", data-ng-cloak)
+						.recommended(data-ng-if="cover.name=='Comprehensive'")
+							img(src="../../images/star-icon.png")
+							span(translate="PC_4_5_1") recommended
 						span.navbar-item(data-ng-bind="cover.name")
 						span.navbar-price S$ 
 							span(data-ng-bind="cover.baseCost")
@@ -42,7 +45,7 @@ section.section.section-quote(ng-controller="QuoteCtrl")
 				li
 					.navbar-info
 						span.navbar-item(translate="PC_4_3_2_2") Additional Drivers
-						span.navbar-price(data-ng-cloak) {{plan.additionalDrivers[0].firstName ? plan.additionalDrivers.length : "0"}}
+						span.navbar-price(data-ng-cloak) {{plan.additionalDrivers.length}}
 				li
 					.navbar-info
 						span.navbar-item(translate="PC_4_5a") Optional Cover
@@ -50,7 +53,7 @@ section.section.section-quote(ng-controller="QuoteCtrl")
 				li
 					.navbar-info
 						span.navbar-item(translate="PC_4_3_5_1") Excess Policy
-						span.navbar-price(data-ng-cloak) {{plan.excess}}
+						span.navbar-price(data-ng-cloak) S${{plan.excess  | number: 0}}
 
 			.save-for-later
 				button.btn.btn-primary.btn-sm.btn-block(data-ng-click="saveForLater()", translate="PC_4_1_2_1") Save for Later
