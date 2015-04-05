@@ -15,28 +15,38 @@ section#quote1.container(data-ng-show="currentStep>=1")
 
 		.panel-body.panel-body--grey
 
-			.plan
-				.plan-left
+			.row
+				.col-md-2
 					img(src="../../images/car-icon3.png")
 
-				.plan-right
+				.col-md-10.align-left
 
 					.plan-item
-						strong(translate="PC_4_3_1_1") Car
-						span(data-ng-cloak) {{plan.car.year}} 
-						span(data-ng-cloak) {{plan.car.make}} 
-						span(data-ng-cloak) {{plan.car.model}}
-						span(data-ng-cloak) {{plan.car.lowmileageoption ? ", Low Mileage" : "" }}
-						a.btn.btn-default.btn-sm.margin--left(href="../car/car.html", title="Edit car details", translate="PC_4_3_1_2") Edit
+
+						.row
+							.col-md-1
+								strong(translate="PC_4_3_1_1") Car
+							.col-md-7
+								span(data-ng-cloak) {{plan.car.year}} 
+								span(data-ng-cloak) {{plan.car.make}} 
+								span(data-ng-cloak) {{plan.car.model}}
+								span(data-ng-cloak) {{plan.car.lowmileageoption ? ", Low Mileage" : "" }}
+							.col-md-4
+								a.btn.btn-default.btn-sm(href="../car/car.html", title="Edit car details", translate="PC_4_3_1_2") Edit
 
 					.plan-item
-						strong(translate="PC_4_3_1_3") Driver
-						span(data-ng-cloak) {{plan.mainDriver.gender}}, 
-						span(data-ng-cloak) {{plan.mainDriver.age}}
-						span(translate="PC_4_3_1_3a")  years old, 
-						span(data-ng-cloak)  {{plan.mainDriver.noClaimsDiscount}} NCD, 
-						ng-pluralize(data-ng-cloak, count="plan.mainDriver.accidents.atFault", when="{'0':'0 at fault claims', '1': '1 at fault claim', 'other': '{} at fault claims'}")
-						a.btn.btn-default.btn-sm.margin--left(href="../about-your-driver/your-driver.html", title="Edit driver information", translate="PC_4_3_1_4") Edit
+
+						.row
+							.col-md-1
+								strong(translate="PC_4_3_1_3") Driver
+							.col-md-7
+								span(data-ng-cloak) {{plan.mainDriver.gender}}, 
+								span(data-ng-cloak) {{plan.mainDriver.age}}
+								span(translate="PC_4_3_1_3a")  years old, 
+								span(data-ng-cloak)  {{plan.mainDriver.noClaimsDiscount}} NCD, 
+								ng-pluralize(data-ng-cloak, count="plan.mainDriver.accidents.atFault", when="{'0':'0 at fault claims', '1': '1 at fault claim', 'other': '{} at fault claims'}")
+							.col-md-4
+								a.btn.btn-default.btn-sm(href="../about-your-driver/your-driver.html", title="Edit driver information", translate="PC_4_3_1_4") Edit
 
 		.panel-body
 
@@ -99,7 +109,7 @@ section#quote1.container(data-ng-show="currentStep>=1")
 						i.glyphicon.glyphicon-ok
 
 				.col-md-6.align-right
-					.total
+					.plan-total
 						span(translate="PC_4_3_6_1") Total
 						|  S$
 						span(data-ng-bind="recommendedPlan.totalCost")

@@ -29,7 +29,18 @@
 	.breadcrumb {
 		float:			left;
 		margin-bottom:	0;
-		margin-top:		30px;
+		margin-top:		90px !important;
+		width:			auto !important;
+
+		@media (min-width: 769px) {
+			margin-top:	115px !important;
+			width:		100% !important;
+		}
+
+		@media (min-width: 1000px) {
+			margin-top:	30px !important;
+			width:		auto !important;
+		}
 	}
 
 }

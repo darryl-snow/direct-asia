@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Apr 03 2015 23:23:49 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Sun Apr 05 2015 17:41:19 GMT+0800 (CST) */
 
 /*
 
@@ -157,7 +157,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			savedPlan = in case the user wants to save the plan for later or switch
     			to the recommended plan and then switch back
      */
-    var addAdditionalDrivers, calculateTotalCost, getDataFromAPI, getOption, getRecommendedOptions, getRecommendedPlan, saveCurrentPlan, selectPreviousOptions, selectRecommendedOptions, setupData;
+    var calculateTotalCost, getDataFromAPI, getOption, getRecommendedOptions, getRecommendedPlan, saveCurrentPlan, selectPreviousOptions, selectRecommendedOptions, setupData;
     $scope.plan = new InsurancePlan();
     $scope.recommendedPlan = new InsurancePlan();
     $scope.savedPlan = new InsurancePlan();
@@ -330,32 +330,6 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			This private function formats the data returned from the server so that it
     			can be used on the page
      */
-    addAdditionalDrivers = function() {
-      var i, newdriver, _i, _results;
-      _results = [];
-      for (i = _i = 0; _i <= 1; i = ++_i) {
-        newdriver = new AdditionalDriver;
-        newdriver.firstName = "oihohoh";
-        newdriver.lastName = "hhhoi";
-        newdriver.dob = {
-          day: 7,
-          month: 7,
-          year: 2008
-        };
-        newdriver.gender = "Male";
-        newdriver.maritalStatus = "single";
-        newdriver.occupation = "rpergjerg";
-        newdriver.drivingExperience = 4;
-        newdriver.offences = true;
-        newdriver.accidents = {
-          atFault: 0,
-          notAtFault: 3
-        };
-        newdriver.refusals = 0;
-        _results.push($scope.plan.additionalDrivers.push(newdriver));
-      }
-      return _results;
-    };
     setupData = function(data) {
 
       /*
@@ -419,7 +393,6 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       $scope.plan.additionalDrivers = [];
       $scope.plan.cover = $scope.options.coverPlans[data.selectedCover];
       $scope.plan.excess = data.recommendedPlan.excess;
-      addAdditionalDrivers();
 
       /*
       				Save info for recommended plan

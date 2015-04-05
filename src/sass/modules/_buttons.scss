@@ -9,6 +9,7 @@
 	font-size:			12px;
 	font-weight:		200;
 	letter-spacing:		1px;
+	max-width:			100%;
 	overflow:			hidden;
 	padding:			5px 2.5em;
 	position:			relative;
@@ -58,6 +59,10 @@
 			background:		$black;
 			color:			$white;
 		}
+	}
+
+	&--spaced {
+		margin:				0 0.5em;
 	}
 
 	&-default--inverse {
@@ -145,6 +150,17 @@
 			.btn-action-alt {
 				display:	inline;
 			}
+		}
+
+	}
+
+	&-white {
+		font-size:			13px !important;
+		padding:			1em !important;
+
+		@media(min-width: 768px) {
+			font-size: 		17px !important;
+			padding:		1em 3em !important;
 		}
 
 	}

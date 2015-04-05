@@ -25,4 +25,19 @@
 		}
 	}
 
+	&-total {
+		color:				$blue;
+		font-family:		"ProximaSemiBold";
+		font-size:			2em;
+		margin-top:			0.5 * $base-spacing-unit;
+
+		@media(min-width: 1000px) {
+			margin-top:		0;
+		}
+
+		.subtitle {
+			color:			$dark-grey-1;
+		}
+	}
+
 }

@@ -357,30 +357,6 @@ angular.module "DirectAsia"
 			can be used on the page
 			###
 
-			addAdditionalDrivers = ->
-
-				for i in [0..1]
-
-					newdriver = new AdditionalDriver
-
-					newdriver.firstName = "oihohoh"
-					newdriver.lastName = "hhhoi"
-					newdriver.dob =
-						day: 7
-						month: 7
-						year: 2008
-					newdriver.gender = "Male"
-					newdriver.maritalStatus = "single"
-					newdriver.occupation = "rpergjerg"
-					newdriver.drivingExperience = 4
-					newdriver.offences = true
-					newdriver.accidents =
-						atFault: 0
-						notAtFault: 3
-					newdriver.refusals = 0
-
-					$scope.plan.additionalDrivers.push newdriver
-
 			setupData = (data) ->
 
 				###
@@ -445,8 +421,6 @@ angular.module "DirectAsia"
 				$scope.plan.additionalDrivers = []
 				$scope.plan.cover = $scope.options.coverPlans[data.selectedCover]
 				$scope.plan.excess = data.recommendedPlan.excess
-
-				addAdditionalDrivers()
 
 				###
 				Save info for recommended plan
