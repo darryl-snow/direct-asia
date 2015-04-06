@@ -15,7 +15,7 @@ angular.module "DirectAsia"
 			'Cinema'
 			'Other'
 		]
-		# currency 
+		# currency
 		$scope.currency =
 			code: 'S$'
 			name: 'Singapore Dollar'

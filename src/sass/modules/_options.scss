@@ -3,25 +3,58 @@
 }
 
 .option {
+	display:			inline-block;
+	margin:				1em 0.5em;
 	position:			relative;
+	vertical-align:		top;
+
+	&-content {
+		min-height:			215px;
+		position:			relative;
+		width:				320px;
+
+		.panel-heading {
+			cursor:			pointer;
+		}
+
+		.panel-footer {
+			height:			140px;
+			padding:		1em;
+			position:		relative;
+			text-align: 	right;
+		}
+	}
+
+	&-edit {
+		h4 {
+  			color: 			$black;
+			font-size: 		1.2em;
+  			font-weight: 	600;
+  			font-family: 	"ProximaSemiBold";
+  			margin-bottom: 	0;
+		}
+	}
+
+	.panel {
+		margin-bottom:		0;
+	}
 	
 	.panel-heading {
 		height:			75px;
 		padding: 		1em;
 	}
 
-	.panel-footer {
-		height:			140px;
-		line-height: 	108px;
-		padding:		1em;
-		position:		relative;
-		text-align: 	right;
-	}
-
 	h3 {
 		font-family:	"ProximaSemiBold";
 		margin: 		0;
+		max-width: 		90%;
 		text-align: 	left;
+	}
+
+	.option-details-icon {
+		position: 		absolute;
+		right:			0.5em;
+		top:			0.5em;
 	}
 
 	.option-icon {
@@ -35,12 +68,23 @@
 		display:		inline-block;
 		font-size:		24px;
 		font-weight:	600;
+		line-height: 	108px;
 	}
 
-	.btn {
+	.buttons {
 		bottom:			1em;
+		line-height: 	1;
 		position:		absolute;
 		right:			1em;
+	}
+
+	.icon {
+		bottom:			0.5em;
+		color:			$black;
+		font-size:		28px;
+		line-height: 	1;
+		position:		absolute;
+		right:			0.5em;
 	}
 
 	.recommended {
@@ -63,7 +107,44 @@
 		}
 
 		img {
-			margin:		0 5px 0 0;
+			margin:			0 5px 0 0;
+		}
+	}
+
+	&.selected {
+		.panel-heading {
+			background:		$yellow;
+		}
+		.panel-footer {
+			background:		darken($yellow, 5%);
+		}
+	}
+
+	&.editing {
+		height:				767px;
+
+		@media (min-width: 754px) {
+			height:			637px;
+		}
+
+		@media (min-width: 992px) {
+			height:			625px;
+		}
+
+		@media (min-width: 1200px) {
+			height:			605px;
+		}
+	}
+
+	&.details {
+		height:				507px;
+
+		@media (min-width: 754px) {
+			height:			405px;
+		}
+
+		@media (min-width: 1200px) {
+			height:			385px;
 		}
 	}
 

@@ -51,51 +51,63 @@ getMockData = ->
 			name: "Loss of use"
 			description: "S$50 to help you with transport costs while your car is being repaired"
 			cost: 156
+			editable: false
 		,
 			name: "My workshop / garage"
 			description: "Gives you the freedom to select your own preferred
 			 workshop for an optional benefit"
 			cost: 156
+			editable: false
 		,
 			name: "Experienced Drivers"
 			description: "Cover anyone over 30 with more than 2 years driving experience"
 			cost: 156
+			editable: false
 		,
 			name: "24 hr breakdown assistance"
 			description: "Description"
 			cost: 156
+			editable: false
 		,
 			name: "24 months new for old replacement car"
 			description: "Description"
 			cost: 156
+			editable: false
 		,
 			name: "Car modifications"
 			description: "Description"
 			cost: 156
+			editable: true
 		,
 			name: "Medical expenses"
 			description: "Description"
 			cost: 156
+			editable: false
 		,
 			name: "Personal accident"
 			description: "Description"
 			cost: 156
+			editable: false
 		,
 			name: "Repatriation costs"
 			description: "Description"
 			cost: 156
+			editable: false
 		,
 			name: "NCPD"
 			description: "Description"
 			cost: 156
+			editable: false
 		,
 			name: "Uninsured loss recovery"
 			description: "Description"
 			cost: 156
+			editable: false
 		,
 			name: "Windscreen and window breakage"
 			description: "Description"
 			cost: 156
+			editable: false
 		]
 		mainDriver:
 			ownership: true
@@ -647,7 +659,8 @@ angular.module "DirectAsia"
 				$scope.selectRecommendedPlan = false
 				$scope.compare = false
 
-			
+
+
 
 
 			$scope.showNewDriverForm = ->
@@ -662,6 +675,15 @@ angular.module "DirectAsia"
 				$scope.newDriver = {}
 				$scope.addnewdriver = false
 				$scope.newDriverForm.$setPristine()
+				
+				# dirty hack!
+				setTimeout ->
+					$("#newDriver-experience").val("").trigger("change");
+				, 1000
+
+				###
+				synch data with server
+				###
 
 			$scope.removeAdditionalDriver = (driver) ->
 
@@ -679,14 +701,19 @@ angular.module "DirectAsia"
 				driver.editing = true
 
 			$scope.saveChangesToDriver = (driver) ->
+
+				console.log "saving driver"
+
 				# remove 'editing' key from all drivers
 				for d in $scope.plan.additionalDrivers
+					d.editing = false
 					delete d["editing"]
 
 				###
 				synch data with server
 				###
 
+				console.table $scope.plan.additionalDrivers
 
 			###
 			Finally, now that all functions have been parsed, setup the data on the

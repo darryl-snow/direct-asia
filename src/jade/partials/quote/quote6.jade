@@ -2,76 +2,99 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 
 	.container
 
-		.panel.panel-comparable.margin--top
-
-			.panel-header(data-ng-class="{'compare':compare}")
-
-				h2.pull-left.margin--bottom(translate="PS_4_8a") Your Car Insurance Summary
-				.price-summary.clearfix
-					h2.align-right(data-ng-cloak)
-						span(translate="PC_4_8a_1") Total 
-						| S${{plan.totalCost}}
-						span(translate="PC_4_8_1_2_2") /yr
-						.subtitle.align-right S${{plan.totalCost / 12}}
-							span(translate="PC_4_8_3_4") /mo
-						.subtitle.subtitle-secondary.align-right
-							span(translate="PC_4_8a_2") Savings
-							| S$167
-							span(translate="PC_4_8_1_2_2") /yr
-
-					label.label-checkbox(data-ng-show="compare")
-						input#selectCurrent(type="checkbox")
-						.fake-checkbox
-							i.glyphicon.glyphicon-ok
+		.panel.panel-nopadding
 
 			.panel-body
+				table.table.table-plain
+					tr
+						td.blue(colspan="3")
+							h2.pull-left.margin--bottom(translate="PS_4_8a") Your Car Insurance Summary
 
-				.row(style="margin-bottom:2em;")
-					.col-xs-2
-						img(src="../../images/car-icon2.png")
+							.price-summary.clearfix.pull-right(data-ng-show="comparing")
+								div(style="height:29px;")
+								h2.align-right(data-ng-cloak)
+									span(translate="PC_4_8a_1") Total 
+									| S${{plan.totalCost}}
+									span(translate="PC_4_8_1_2_2") /yr
+									.subtitle.align-right S${{plan.totalCost / 12}}
+										span(translate="PC_4_8_3_4") /mo
+									.subtitle.subtitle-secondary.align-right
+										span(translate="PC_4_8a_2") Savings
+										| S$167
+										span(translate="PC_4_8_1_2_2") /yr
 
-					.col-xs-5
+								label.label-checkbox
+									input#selectCurrent(type="checkbox")
+									.fake-checkbox
+										i.glyphicon.glyphicon-ok
 
-						.row
-							.col-md-3
-								strong(translate="PC_4_8_1_1a") Car
+						td(colspan="2", data-ng-class="{'blue': !comparing, 'dark-grey': comparing, 'shadow': comparing}")
+							.price-summary.clearfix(data-ng-show="!comparing")
+								h2.align-right(data-ng-cloak)
+									span(translate="PC_4_8a_1") Total 
+									| S${{plan.totalCost}}
+									span(translate="PC_4_8_1_2_2") /yr
+									.subtitle.align-right S${{plan.totalCost / 12}}
+										span(translate="PC_4_8_3_4") /mo
+									.subtitle.subtitle-secondary.align-right
+										span(translate="PC_4_8a_2") Savings
+										| S$167
+										span(translate="PC_4_8_1_2_2") /yr
 
-							.col-md-8
-								span(data-ng-cloak) {{plan.car.year}} 
-								span(data-ng-cloak) {{plan.car.make}} 
-								span(data-ng-cloak) {{plan.car.model}}
-								span(data-ng-cloak) {{plan.car.lowmileageoption ? ", Low Mileage" : "" }}
-								div(data-ng-hide="!fulldetails")
-									span(data-ng-if="plan.car.modifications.bodykit || plan.car.modifications.rimstires || plan.car.modifications.airintakeexhaust || plan.car.modifications.suspensionstabiliser") Modifications:
-									ul(data-ng-if="plan.car.modifications.bodykit || plan.car.modifications.rimstires || plan.car.modifications.airintakeexhaust || plan.car.modifications.suspensionstabiliser")
-										li(data-ng-cloak, data-ng-if="plan.car.modifications.bodykit") Body Kit
-										li(data-ng-cloak, data-ng-if="plan.car.modifications.rimstires") Rims/Tires
-										li(data-ng-cloak, data-ng-if="plan.car.modifications.airintakeexhaust") Air Intake/Exhaust
-										li(data-ng-cloak, data-ng-if="plan.car.modifications.suspensionstabiliser") Suspension Stabiliser
-									span(data-ng-if="plan.car.financed") Financed 
-									span(data-ng-cloak) {{plan.car.ownership == "private" ? "Privately Owned " : "" }}
-									span(data-ng-cloak) {{plan.car.lowmileageoption ? "Low Mileage " : "" }}
+							div(data-ng-show="comparing")
+								button.btn.btn-plain.btn-medium.btn-block(type="button", data-ng-click="comparing=!comparing", style="font-size:1.25em;")
+									span(translate="PC_4_8_3_1") Compare Recommended Plan
+									img(src="../../images/down-arrow.png")
 
-					.col-xs-5
+								h2(data-ng-cloak)
+									span(translate="PC_4_8_3_2") Total 
+									| S${{recommendedPlan.totalCost}}
+									span(translate="PC_4_8_3_3") /yr
+									.subtitle S${{recommendedPlan.totalCost / 12}}
+										span(translate="PC_4_8_3_4") /mo
+									.subtitle.subtitle-secondary
+										span(translate="PC_4_8_3_5") Savings
+										| S$167
+										span(translate="PC_4_8_3_3") /yr
 
-						.row
-							.col-md-6
-								a.btn.btn-default(href="../car/car.html", title="Edit car details", translate="PC_4_8_1_1b") Edit
+								button.btn.btn-primary.btn-sm.pull-right(type="button", data-ng-click="useRecommendedPlan()", translate="PC_4_8_3_6", data-ng-show="!selectRecommendedPlan") Select Plan
+								button.btn.btn-primary.btn-sm.pull-right(type="button", data-ng-click="revertToPreviousPlan()", translate="PC_4_8_3_6_1", data-ng-show="selectRecommendedPlan") Back to Previous Plan
 
-							.col-md-6.align-right
+					tr
+						td
+							img(src="../../images/car-icon2.png")
+						td
+							strong(translate="PC_4_8_1_1a") Car
+						td
+							span(data-ng-cloak) {{plan.car.year}} 
+							span(data-ng-cloak) {{plan.car.make}} 
+							span(data-ng-cloak) {{plan.car.model}}
+							span(data-ng-cloak) {{plan.car.lowmileageoption ? ", Low Mileage" : "" }}
+							div(data-ng-hide="!fulldetails")
+								span(data-ng-if="plan.car.modifications.bodykit || plan.car.modifications.rimstires || plan.car.modifications.airintakeexhaust || plan.car.modifications.suspensionstabiliser") Modifications:
+								ul(data-ng-if="plan.car.modifications.bodykit || plan.car.modifications.rimstires || plan.car.modifications.airintakeexhaust || plan.car.modifications.suspensionstabiliser")
+									li(data-ng-cloak, data-ng-if="plan.car.modifications.bodykit") Body Kit
+									li(data-ng-cloak, data-ng-if="plan.car.modifications.rimstires") Rims/Tires
+									li(data-ng-cloak, data-ng-if="plan.car.modifications.airintakeexhaust") Air Intake/Exhaust
+									li(data-ng-cloak, data-ng-if="plan.car.modifications.suspensionstabiliser") Suspension Stabiliser
+								span(data-ng-if="plan.car.financed") Financed 
+								span(data-ng-cloak) {{plan.car.ownership == "private" ? "Privately Owned " : "" }}
+								span(data-ng-cloak) {{plan.car.lowmileageoption ? "Low Mileage " : "" }}
+						td(data-ng-class="{'light-grey':comparing, 'shadow': comparing}")
+							a.btn.btn-default(href="../car/car.html", title="Edit car details", translate="PC_4_8_1_1b", data-ng-show="!comparing") Edit
+							strong(translate="PC_4_8_1_1a", data-ng-show="comparing") Car
+						td.align-right(data-ng-class="{'light-grey':comparing}")
+							div(data-ng-show="!comparing") S$45
+								span(translate="PC_4_8_1_2_2") /yr
+							div(data-ng-show="comparing") Loss of use
 
-				.row(style="margin-bottom:2em;")
-					.col-xs-2
-						img(src="../../images/driver-icon.png")
-
-					.col-xs-5
-
-						.row
-							.col-md-3
-								strong(translate="PC_4_8_1_2") Driver
-
-							.col-md-8
-								span(data-ng-cloak) {{plan.mainDriver.gender}}, 
+					tr
+						td
+							img(src="../../images/driver-icon.png")
+						td
+							strong(translate="PC_4_8_1_2") Driver
+						td
+							span(data-ng-cloak) {{plan.mainDriver.gender}}, 
 								span(data-ng-cloak) {{plan.mainDriver.age}} years old, 
 								span(data-ng-cloak) {{plan.mainDriver.noClaimsDiscount}} NCD, 
 								p(data-ng-hide="!fulldetails")
@@ -80,87 +103,63 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 									span(data-ng-cloak) {{plan.mainDriver.occupation}} 
 									ng-pluralize(data-ng-cloak, count="plan.mainDriver.drivingExperience", when="{'0':'0 years', '1': '1 year', 'other': '{} years'}")
 
-					.col-xs-5
-
-						.row
-							.col-md-6
-								a.btn.btn-default(href="../about-your-driver/your-driver.html", title="Edit driver information", translate="PC_4_8_1_2_1") Edit
-
-							.col-md-6.align-right S$45
+						td(data-ng-class="{'light-grey':comparing, 'shadow': comparing}")
+							a.btn.btn-default(href="../about-your-driver/your-driver.html", title="Edit driver information", translate="PC_4_8_1_2_1", data-ng-show="!comparing") Edit
+							strong(translate="PC_4_8_1_2", data-ng-show="comparing") Driver
+						td.align-right(data-ng-class="{'light-grey':comparing}")
+							div(data-ng-show="!comparing") S$45
 								span(translate="PC_4_8_1_2_2") /yr
+							div(data-ng-show="comparing") Loss of use
 
-				.row(style="margin-bottom:2em;")
-					.col-xs-2
-						img(src="../../images/policy-icon2.png")
-
-					.col-xs-5
-
-						.row
-							.col-md-3
-								strong(translate="PC_4_8_1_3_1") Cover Type
-
-							.col-md-8
-								span(data-ng-cloak) {{plan.cover.name}} 
-								span(data-ng-cloak, data-ng-show="plan.excess") , {{plan.excess}}
-								span(translate="PC_4_8_1_3_2") policy excess
-
-					.col-xs-5
-
-						.row
-							.col-md-6
-								a.btn.btn-default(href="", title="", translate="PC_4_8_1_3_3") Edit
-
-							.col-md-6.align-right S$
+					tr
+						td
+							img(src="../../images/policy-icon2.png")
+						td
+							strong(translate="PC_4_8_1_3_1") Cover Type
+						td
+							span(data-ng-cloak) {{plan.cover.name}} 
+							span(data-ng-cloak, data-ng-show="plan.excess") , {{plan.excess}}
+							span(translate="PC_4_8_1_3_2") policy excess
+						td(data-ng-class="{'light-grey':comparing, 'shadow': comparing}")
+							a.btn.btn-default(href="", title="", translate="PC_4_8_1_3_3", data-ng-show="!comparing") Edit
+							strong(translate="PC_4_8_1_1a", data-ng-show="comparing") Car
+						td.align-right(data-ng-class="{'light-grey':comparing}")
+							div(data-ng-show="!comparing") S$
 								span(data-ng-cloak) {{plan.cover.baseCost}}
 								span(translate="PC_4_8_1_3_4") /yr
+							div(data-ng-show="comparing") Loss of use
 
-				.row(style="margin-bottom:2em;")
-					.col-xs-2
-						img(src="../../images/cover-icon2.png")
+					tr
+						td
+							img(src="../../images/cover-icon2.png")
+						td
+							strong(translate="PC_4_3_2_2") Additional Drivers
+						td
+							ul
+								li(data-ng-repeat="option in plan.options", data-ng-cloak) {{option.name}}
+									small(data-ng-hide="!fulldetails", data-ng-cloak) {{option.description}}
+						td(data-ng-class="{'light-grey':comparing, 'shadow': comparing}")
+							a.btn.btn-default(href="", title="", translate="PC_4_8_1_3_3", data-ng-show="!comparing") Edit
+							strong(translate="PC_4_3_2_2", data-ng-show="comparing") Additional Drivers
+						td.align-right(data-ng-class="{'light-grey':comparing}")
+							div(data-ng-show="!comparing") S$45
+								span(translate="PC_4_8_1_2_2") /yr
+							div(data-ng-show="comparing") Loss of use
 
-					.col-xs-5
-
-						.row
-							.col-md-3
-								strong(translate="PC_4_3_2_2") Additional Drivers
-
-							.col-md-8
-								ul
-									li(data-ng-repeat="option in plan.options", data-ng-cloak) {{option.name}}
-										small(data-ng-hide="!fulldetails", data-ng-cloak) {{option.description}}
-
-					.col-xs-5
-
-						.row
-							.col-md-6
-								a.btn.btn-default(href="", title="", translate="PC_4_8_1_3_3") Edit
-
-							.col-md-6.align-right S$
-								span(data-ng-cloak) 0
-								span(translate="PC_4_8_1_3_4")  /yr
-
-				.row(style="margin-bottom:2em;")
-					.col-xs-2
-						img(src="../../images/cover-icon2.png")
-
-					.col-xs-5
-
-						.row
-							.col-md-3
-								strong(translate="PC_4_3_2_3") Optional Benefits
-
-							.col-md-8
-								ul
-									li(data-ng-repeat="option in plan.options", data-ng-cloak) {{option.name}}
-										small(data-ng-hide="!fulldetails", data-ng-cloak) {{option.description}}
-
-					.col-xs-5
-
-						.row
-							.col-md-6
-								a.btn.btn-default(href="", title="", translate="PC_4_8_1_5_2") Edit
-
-							.col-md-6.align-right S$
+					tr
+						td
+							img(src="../../images/cover-icon2.png")
+						td
+							strong(translate="PC_4_3_2_3") Optional Benefits
+						td
+							ul
+								li(data-ng-repeat="option in plan.options", data-ng-cloak) {{option.name}}
+									small(data-ng-hide="!fulldetails", data-ng-cloak) {{option.description}}
+						td(data-ng-class="{'light-grey':comparing, 'shadow': comparing}")
+							a.btn.btn-default(href="", title="", translate="PC_4_8_1_3_3", data-ng-show="!comparing") Edit
+							strong(translate="PC_4_3_2_3", data-ng-show="comparing") Optional Benefits
+						td.align-right(data-ng-class="{'light-grey':comparing}")
+							div(data-ng-show="!comparing") S$
 								span(data-ng-cloak) {{calculateOptionsCost(plan)}}
 								span(translate="PC_4_8_1_5_3")  /yr
 								div
@@ -169,106 +168,33 @@ section#quote5.section.section--padded(data-ng-show="currentStep>=5")
 									span.highlight  (10% 
 									span(translate="PC_4_8_1_5_4") discount
 									| )
+							div(data-ng-show="comparing") Loss of use
 
-				.row
-					.col-xs-2
-						img(src="../../images/cover-icon2.png")
-
-					.col-xs-5
-
-						.row
-							.col-md-3
-								strong(translate="PC_4_3_5") Policy Excess
-
-							.col-md-8
-								ul
-									li(data-ng-repeat="option in plan.options", data-ng-cloak) {{option.name}}
-										small(data-ng-hide="!fulldetails", data-ng-cloak) {{option.description}}
-
-					.col-xs-5
-
-						.row
-							.col-md-6
-								a.btn.btn-default(href="", title="", translate="PC_4_8_1_3_3") Edit
-
-							.col-md-6.align-right S$
+					tr
+						td
+							img(src="../../images/cover-icon2.png")
+						td
+							strong(translate="PC_4_3_5") Policy Excess
+						td
+							ul
+								li(data-ng-repeat="option in plan.options", data-ng-cloak) {{option.name}}
+									small(data-ng-hide="!fulldetails", data-ng-cloak) {{option.description}}
+						td(data-ng-class="{'light-grey':comparing, 'shadow': comparing}")
+							a.btn.btn-default(href="", title="", translate="PC_4_8_1_3_3", data-ng-show="!comparing") Edit
+							strong(translate="PC_4_3_5", data-ng-show="comparing") Policy Excess
+						td.align-right(data-ng-class="{'light-grey':comparing}")
+							div(data-ng-show="!comparing") S$
 								span(data-ng-cloak) {{plan.excess || 0}}
 								span(translate="PC_4_8_1_3_4")  /yr
-
-			.panel-footer
-
-				.row
-
-					.col-md-7
-						button.btn.btn-plain.btn-large.btn-block(type="button", data-ng-click="fulldetails=!fulldetails")
-							span(data-ng-hide="fulldetails", translate="PC_4_8_2_1") Review Full Details
-							img(src="../../images/down-arrow.png", data-ng-hide="fulldetails")
-							span(data-ng-hide="!fulldetails", translate="PC_4_8_2_2") See Summary
-							img(src="../../images/up-arrow.png", data-ng-hide="!fulldetails")
-
-					.col-md-5
-						button.btn.btn-plain.btn-large.btn-block(type="button", data-ng-click="compare=!compare") Compare Recommended Plan
-							img(src="../../images/down-arrow.png")
-
-			.panel-comparison(data-ng-class="{active:compare}")
-				.panel-header
-
-					button.btn.btn-plain.btn-medium.btn-block(type="button", data-ng-click="compare=!compare", style="font-size:1.25em;")
-						span(translate="PC_4_8_3_1") Compare Recommended Plan
-						img(src="../../images/down-arrow.png")
-
-					h2(data-ng-cloak)
-						span(translate="PC_4_8_3_2") Total 
-						| S${{recommendedPlan.totalCost}}
-						span(translate="PC_4_8_3_3") /yr
-						.subtitle S${{recommendedPlan.totalCost / 12}}
-							span(translate="PC_4_8_3_4") /mo
-						.subtitle.subtitle-secondary
-							span(translate="PC_4_8_3_5") Savings
-							| S$167
-							span(translate="PC_4_8_3_3") /yr
-
-					button.btn.btn-primary.btn-sm.pull-right(type="button", data-ng-click="useRecommendedPlan()", translate="PC_4_8_3_6", data-ng-show="!selectRecommendedPlan") Select Plan
-					button.btn.btn-primary.btn-sm.pull-right(type="button", data-ng-click="revertToPreviousPlan()", translate="PC_4_8_3_6_1", data-ng-show="selectRecommendedPlan") Back to Previous Plan
-
-				.panel-body
-
-					.row(style="margin-bottom:2em;")
-						.col-xs-4
-							strong(translate="PC_4_8_1_1a") Car
-						.col-xs-8 Loss of use
-
-					.row(style="margin-bottom:2em;")
-						.col-xs-4
-							strong(translate="PC_4_8_1_2") Driver
-						.col-xs-8 Loss of use
-
-					.row(style="margin-bottom:2em;")
-						.col-xs-4
-							strong(translate="PC_4_8_1_3_1") Cover Type
-						.col-xs-8 Loss of use
-
-					.row(style="margin-bottom:2em;")
-						.col-xs-4
-							strong(translate="PC_4_3_2_2") Additional Drivers
-						.col-xs-8 Loss of use
-
-					.row(style="margin-bottom:2em;")
-						.col-xs-4
-							strong(translate="PC_4_3_2_3") Optional Benefits
-						.col-xs-8 Loss of use
-
-					.row(style="margin-bottom:2em;")
-						.col-xs-4
-							strong(translate="PC_4_3_5") Policy Excess
-						.col-xs-8 Loss of use
-
-
-					//- ul
-					//- 	li(data-ng-cloak) {{recommendedPlan.cover.name}}
-					//- 		.subtitle S${{recommendedPlan.cover.baseCost}}
-					//- 			span(translate="PC_4_8_3_3") /yr
-					//- 	li
-					//- 		span(data-ng-repeat="option in recommendedPlan.options", data-ng-cloak) {{option.name}} 
-					//- 		.subtitle(data-ng-repeat="option in recommendedPlan.options", data-ng-cloak) S${{option.cost}}
-					//- 			span(translate="PC_4_8_3_3") /yr
+							div(data-ng-show="comparing") Loss of use
+							
+					tr
+						td.light-grey(colspan="3")
+							button.btn.btn-plain.btn-large.btn-block(type="button", data-ng-click="fulldetails=!fulldetails")
+								span(data-ng-hide="fulldetails", translate="PC_4_8_2_1") Review Full Details
+								img(src="../../images/down-arrow.png", data-ng-hide="fulldetails")
+								span(data-ng-hide="!fulldetails", translate="PC_4_8_2_2") See Summary
+								img(src="../../images/up-arrow.png", data-ng-hide="!fulldetails")
+						td.light-grey(colspan="2", data-ng-class="{'shadow': comparing}")
+							button.btn.btn-plain.btn-large.btn-block(type="button", data-ng-click="comparing=!comparing", data-ng-show="!comparing") Compare Recommended Plan
+								img(src="../../images/down-arrow.png")

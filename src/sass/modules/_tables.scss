@@ -1,0 +1,36 @@
+.table {
+
+	&-plain {
+		margin-bottom:		0;
+
+		td {
+			border-top:		none !important;
+			padding:		2em !important;
+		}
+
+	}
+
+}
+
+td {
+	&.blue {
+		background:			$blue;
+		color:				$white !important;
+
+		h2 {
+			color:			$white !important;
+		}
+	}
+
+	&.light-grey {
+		background:			$light-grey-3;
+	}
+
+	&.dark-grey {
+		background:			$light-grey-1;
+	}
+
+	&.shadow {
+		box-shadow:			-2px 0 0 rgba($black,0.1);
+	}
+}

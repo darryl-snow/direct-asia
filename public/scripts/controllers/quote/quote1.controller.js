@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Sun Apr 05 2015 17:41:19 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 06 2015 20:59:34 GMT+0800 (CST) */
 
 /*
 
@@ -42,51 +42,63 @@ getMockData = function() {
       {
         name: "Loss of use",
         description: "S$50 to help you with transport costs while your car is being repaired",
-        cost: 156
+        cost: 156,
+        editable: false
       }, {
         name: "My workshop / garage",
         description: "Gives you the freedom to select your own preferred workshop for an optional benefit",
-        cost: 156
+        cost: 156,
+        editable: false
       }, {
         name: "Experienced Drivers",
         description: "Cover anyone over 30 with more than 2 years driving experience",
-        cost: 156
+        cost: 156,
+        editable: false
       }, {
         name: "24 hr breakdown assistance",
         description: "Description",
-        cost: 156
+        cost: 156,
+        editable: false
       }, {
         name: "24 months new for old replacement car",
         description: "Description",
-        cost: 156
+        cost: 156,
+        editable: false
       }, {
         name: "Car modifications",
         description: "Description",
-        cost: 156
+        cost: 156,
+        editable: true
       }, {
         name: "Medical expenses",
         description: "Description",
-        cost: 156
+        cost: 156,
+        editable: false
       }, {
         name: "Personal accident",
         description: "Description",
-        cost: 156
+        cost: 156,
+        editable: false
       }, {
         name: "Repatriation costs",
         description: "Description",
-        cost: 156
+        cost: 156,
+        editable: false
       }, {
         name: "NCPD",
         description: "Description",
-        cost: 156
+        cost: 156,
+        editable: false
       }, {
         name: "Uninsured loss recovery",
         description: "Description",
-        cost: 156
+        cost: 156,
+        editable: false
       }, {
         name: "Windscreen and window breakage",
         description: "Description",
-        cost: 156
+        cost: 156,
+        editable: false
       }
     ],
     mainDriver: {
@@ -633,7 +645,14 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       $scope.plan.additionalDrivers.push($scope.newDriver);
       $scope.newDriver = {};
       $scope.addnewdriver = false;
-      return $scope.newDriverForm.$setPristine();
+      $scope.newDriverForm.$setPristine();
+      return setTimeout(function() {
+        return $("#newDriver-experience").val("").trigger("change");
+      }, 1000);
+
+      /*
+      				synch data with server
+       */
     };
     $scope.removeAdditionalDriver = function(driver) {
       var additionalDrivers;
@@ -653,18 +672,19 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       return driver.editing = true;
     };
     $scope.saveChangesToDriver = function(driver) {
-      var d, _i, _len, _ref, _results;
+      var d, _i, _len, _ref;
+      console.log("saving driver");
       _ref = $scope.plan.additionalDrivers;
-      _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         d = _ref[_i];
-        _results.push(delete d["editing"]);
+        d.editing = false;
+        delete d["editing"];
       }
-      return _results;
 
       /*
       				synch data with server
        */
+      return console.table($scope.plan.additionalDrivers);
     };
 
     /*

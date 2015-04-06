@@ -10,6 +10,14 @@
 		padding:				2em;
 	}
 
+	&-nopadding {
+		.panel-header,
+		.panel-body,
+		.panel-footer {
+			padding:			0;
+		}
+	}
+
 	&-header {
 		background:				$blue;
 		border-radius:			$border-radius $border-radius 0 0;
@@ -268,6 +276,21 @@
 		@media (min-width: 1200px) {
 			width:				1122px;
 		}
+
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+		}
+
 	}
 
 	&-editdriver-1 {
@@ -282,17 +305,6 @@
 		}
 
 		&:after {
-			border-bottom: 		10px solid $white;
-			border-left: 		10px solid transparent;
-			border-right: 		10px solid transparent;
-			content:			"";
-			display:			block;
-			height: 			0;
-			left:				50%;
-			margin-left:		-10px;
-			position:			absolute;
-			top:				-10px;
-			width: 				0;
 
 			@media (min-width: 654px) {
 				left:			75%;
@@ -316,17 +328,6 @@
 		}
 
 		&:after {
-			border-bottom: 		10px solid $white;
-			border-left: 		10px solid transparent;
-			border-right: 		10px solid transparent;
-			content:			"";
-			display:			block;
-			height: 			0;
-			left:				50%;
-			margin-left:		-10px;
-			position:			absolute;
-			top:				-10px;
-			width: 				0;
 
 			@media (min-width: 654px) {
 				left:			25%;
@@ -354,17 +355,6 @@
 		}
 
 		&:after {
-			border-bottom: 		10px solid $white;
-			border-left: 		10px solid transparent;
-			border-right: 		10px solid transparent;
-			content:			"";
-			display:			block;
-			height: 			0;
-			left:				50%;
-			margin-left:		-10px;
-			position:			absolute;
-			top:				-10px;
-			width: 				0;
 
 			@media (min-width: 654px) {
 				left:			25%;
@@ -388,17 +378,6 @@
 		}
 
 		&:after {
-			border-bottom: 		10px solid $white;
-			border-left: 		10px solid transparent;
-			border-right: 		10px solid transparent;
-			content:			"";
-			display:			block;
-			height: 			0;
-			left:				50%;
-			margin-left:		-10px;
-			position:			absolute;
-			top:				-10px;
-			width: 				0;
 
 			@media (min-width: 654px) {
 				left:			25%;
@@ -427,17 +406,6 @@
 		}
 
 		&:after {
-			border-bottom: 		10px solid $white;
-			border-left: 		10px solid transparent;
-			border-right: 		10px solid transparent;
-			content:			"";
-			display:			block;
-			height: 			0;
-			left:				50%;
-			margin-left:		-10px;
-			position:			absolute;
-			top:				-10px;
-			width: 				0;
 
 			@media (min-width: 654px) {
 				left:			50%;
@@ -465,17 +433,6 @@
 		}
 
 		&:after {
-			border-bottom: 		10px solid $white;
-			border-left: 		10px solid transparent;
-			border-right: 		10px solid transparent;
-			content:			"";
-			display:			block;
-			height: 			0;
-			left:				50%;
-			margin-left:		-10px;
-			position:			absolute;
-			top:				-10px;
-			width: 				0;
 
 			@media (min-width: 654px) {
 				left:			25%;
@@ -503,17 +460,6 @@
 		}
 
 		&:after {
-			border-bottom: 		10px solid $white;
-			border-left: 		10px solid transparent;
-			border-right: 		10px solid transparent;
-			content:			"";
-			display:			block;
-			height: 			0;
-			left:				50%;
-			margin-left:		-10px;
-			position:			absolute;
-			top:				-10px;
-			width: 				0;
 
 			@media (min-width: 654px) {
 				left:			75%;
@@ -526,6 +472,208 @@
 			@media (min-width: 1200px) {
 				left:			87.5%;
 			}
+		}
+	}
+
+	&-editoption,
+	&-option-details {
+		left:					0;
+		margin:					0;
+		position:				absolute;
+		top:					230px;
+		width:					320px;
+		z-index:				10;
+
+		@media (min-width: 754px) {
+			width:				655px;
+		}
+
+		@media (min-width: 992px) {
+			width:				840px;
+		}
+
+		@media (min-width: 1200px) {
+			width:				990px;
+		}
+
+		&:after {
+			border-bottom: 		10px solid $white;
+			border-left: 		10px solid transparent;
+			border-right: 		10px solid transparent;
+			content:			"";
+			display:			block;
+			height: 			0;
+			left:				50%;
+			margin-left:		-10px;
+			position:			absolute;
+			top:				-10px;
+			width: 				0;
+		}
+	}
+
+	&-editoption-1 {
+		left:					0;
+
+		@media (min-width: 754px) {
+			left:				0px;
+		}
+
+		@media (min-width: 992px) {
+			left:				-93px;
+		}
+
+		@media (min-width: 1200px) {
+			left:				-335px;
+		}
+
+		&:after {
+
+			@media (min-width: 754px) {
+				left:			25%;
+			}
+
+			@media (min-width: 992px) {
+				left:			30%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			50%;
+			}
+
+		}
+	}
+
+	&-editoption-2 {
+		left:					0;
+
+		@media (min-width: 992px) {
+			left:				-84px;
+		}
+
+		@media (min-width: 1200px) {
+			left:				-168px;
+		}
+
+		&:after {
+
+			@media (min-width: 754px) {
+				left:			25%;
+			}
+
+			@media (min-width: 992px) {
+				left:			30%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			33.3%;
+			}
+
+		}
+	}
+
+	&-editoption-3 {
+		left:					0;
+
+		@media (min-width: 754px) {
+			left:				-335px;
+		}
+
+		@media (min-width: 992px) {
+			left:				-428px;
+		}
+
+		@media (min-width: 1200px) {
+			left:				-500px;
+		}
+
+		&:after {
+
+			@media (min-width: 754px) {
+				left:			75%;
+			}
+
+			@media (min-width: 992px) {
+				left:			70%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			66.6%;
+			}
+
+		}
+	}
+
+	&-editoption-4 {
+		left:					0;
+
+		@media (min-width: 754px) {
+			left:				-335px;
+		}
+
+		@media (min-width: 992px) {
+			left:				-427px;
+		}
+
+		@media (min-width: 1200px) {
+			left:				0px;
+		}
+
+		&:after {
+
+			@media (min-width: 754px) {
+				left:			75%;
+			}
+
+			@media (min-width: 992px) {
+				left:			70%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			16.65%;
+			}
+
+		}
+	}
+
+	&-editoption-5 {
+		left:					0;
+
+		@media (min-width: 754px) {
+			left:				-335px;
+		}
+
+		@media (min-width: 992px) {
+			left:				-427px;
+		}
+
+		@media (min-width: 1200px) {
+			left:				-670px;
+		}
+
+		&:after {
+
+			@media (min-width: 754px) {
+				left:			75%;
+			}
+
+			@media (min-width: 992px) {
+				left:			70%;
+			}
+
+			@media (min-width: 1200px) {
+				left:			83.25%;
+			}
+
+		}
+	}
+
+	&-option-details {
+		.panel-footer {
+			border-radius:		4px 4px 4px 4px;
+		}
+
+		&:after {
+			border-bottom: 		10px solid $light-grey-2;
 		}
 	}
 }

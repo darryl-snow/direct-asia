@@ -18,15 +18,15 @@
         </div>
         <div data-ng-show="driver.editing" data-ng-class="{'panel-editdriver-1': ($index % 4 == 1) &amp;&amp; (($parent.plan.additionalDrivers.length + 1) == ($index + 2)), 'panel-editdriver-2': (($index % 4 == 1) &amp;&amp; (($parent.plan.additionalDrivers.length + 1) &gt;= ($index + 3))) || (($index % 4 == 0) &amp;&amp; (($parent.plan.additionalDrivers.length + 1) == ($index + 2))), 'panel-editdriver-3': ($index % 4 == 2), 'panel-editdriver-4': ($index % 4 == 0) &amp;&amp; (($parent.plan.additionalDrivers.length + 1) == ($index + 3)), 'panel-editdriver-6': ($index % 4 == 0) &amp;&amp; (($parent.plan.additionalDrivers.length + 1) &gt;= ($index + 4)), 'panel-editdriver-7': ($index % 4 == 3)}" class="panel panel-editdriver align-left">
           <div class="panel-body">
-            <form name="editDriverForm[{{$index}}]" novalidate="novalidate" data-ng-submit="editDriverForm[$index].$valid &amp;&amp; saveChangesToDriver(driver)">
+            <form name="editDriverForm" novalidate="novalidate" data-ng-submit="editDriverForm.$valid &amp;&amp; saveChangesToDriver(driver)">
               <div class="row">
                 <div class="col-md-6 margin--top margin--bottom">
                   <label for="editDriver{{$index}}FirstName" translate="PC_4_4_1_1a" class="label--large">First Name</label>
-                  <input id="editDriver{{$index}}FirstName" name="editDriver{{$index}}FirstName" type="text" placeholder="enter first name" data-ng-model="driver.firstName" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(editDriverForm[$index].editDriver{{$index}}FirstName.$invalid &amp;&amp; editDriverForm[$index].editDriver{{$index}}FirstName.$dirty) || (editDriverForm[$index].editDriver{{$index}}FirstName.$invalid &amp;&amp; editDriverForm[$index].$submitted)"/>
+                  <input id="editDriver{{$index}}FirstName" name="editDriver{{$index}}FirstName" type="text" placeholder="enter first name" data-ng-model="driver.firstName" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(editDriverForm.editDriver{{$index}}FirstName.$invalid &amp;&amp; editDriverForm.editDriver{{$index}}FirstName.$dirty) || (editDriverForm.editDriver{{$index}}FirstName.$invalid &amp;&amp; editDriverForm.$submitted)"/>
                 </div>
                 <div class="col-md-6 margin--top margin--bottom">
                   <label for="editDriver{{$index}}LastName" translate="PC_4_4_1_1b" class="label--large">Last Name</label>
-                  <input id="editDriver{{$index}}LastName" name="editDriver{{$index}}LastName" type="text" placeholder="enter last name" data-ng-model="driver.lastName" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(editDriverForm[$index].editDriver{{$index}}LastName.$invalid &amp;&amp; editDriverForm[$index].editDriver{{$index}}LastName.$dirty) || (editDriverForm[$index].editDriver{{$index}}LastName.$invalid &amp;&amp; editDriverForm[$index].$submitted)"/>
+                  <input id="editDriver{{$index}}LastName" name="editDriver{{$index}}LastName" type="text" placeholder="enter last name" data-ng-model="driver.lastName" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(editDriverForm.editDriver{{$index}}LastName.$invalid &amp;&amp; editDriverForm.editDriver{{$index}}LastName.$dirty) || (editDriverForm.editDriver{{$index}}LastName.$invalid &amp;&amp; editDriverForm.$submitted)"/>
                 </div>
               </div>
               <div class="row">
@@ -35,24 +35,24 @@
                   <div class="form-inline">
                     <input id="editDriver{{$index}}DOBDay" min="1" max="31" name="editDriver{{$index}}DOBDay" placeholder="DD" type="number" data-ng-model="driver.dob.day" required="required" class="day"/>
                     <input id="editDriver{{$index}}DOBMonth" min="1" max="12" name="editDriver{{$index}}DOBMonth" placeholder="MM" type="number" data-ng-model="driver.dob.month" required="required" class="month"/>
-                    <input id="editDriver{{$index}}DOBYear" min="1900" max="2015" name="editDriver{{$index}}DOBYear" placeholder="YYYY" type="number" data-ng-model="driver.dob.year" required="required" class="year"/><img src="../../images/error.png" data-ng-show="((editDriverForm[$index].editDriver{{$index}}DOBDay.$invalid &amp;&amp; editDriverForm[$index].editDriver{{$index}}DOBDay.$dirty) || (editDriverForm[$index].editDriver{{$index}}DOBDay.$invalid &amp;&amp; editDriverForm[$index].$submitted)) || ((editDriverForm[$index].editDriver{{$index}}DOBMonth.$invalid &amp;&amp; editDriverForm[$index].editDriver{{$index}}DOBMonth.$dirty) || (editDriverForm[$index].editDriver{{$index}}DOBMonth.$invalid &amp;&amp; editDriverForm[$index].$submitted)) || ((editDriverForm[$index].editDriver{{$index}}DOBYear.$invalid &amp;&amp; editDriverForm[$index].editDriver{{$index}}DOBYear.$dirty) || (editDriverForm[$index].editDriver{{$index}}DOBYear.$invalid &amp;&amp; editDriverForm[$index].$submitted))"/>
+                    <input id="editDriver{{$index}}DOBYear" min="1900" max="2015" name="editDriver{{$index}}DOBYear" placeholder="YYYY" type="number" data-ng-model="driver.dob.year" required="required" class="year"/><img src="../../images/error.png" data-ng-show="((editDriverForm.editDriver{{$index}}DOBDay.$invalid &amp;&amp; editDriverForm.editDriver{{$index}}DOBDay.$dirty) || (editDriverForm.editDriver{{$index}}DOBDay.$invalid &amp;&amp; editDriverForm.$submitted)) || ((editDriverForm.editDriver{{$index}}DOBMonth.$invalid &amp;&amp; editDriverForm.editDriver{{$index}}DOBMonth.$dirty) || (editDriverForm.editDriver{{$index}}DOBMonth.$invalid &amp;&amp; editDriverForm.$submitted)) || ((editDriverForm.editDriver{{$index}}DOBYear.$invalid &amp;&amp; editDriverForm.editDriver{{$index}}DOBYear.$dirty) || (editDriverForm.editDriver{{$index}}DOBYear.$invalid &amp;&amp; editDriverForm.$submitted))"/>
                   </div>
                 </div>
                 <div class="col-md-6 margin--top margin--bottom">
                   <label translate="PC_4_4_1_1d" class="label--large">Gender</label>
                   <button type="button" ng-click="driver.gender='Male'" ng-class="{'active':driver.gender=='Male'}" class="btn btn-default random-margin margin--bottom"><span translate="PC_4_4_1_1d_1">Male</span><span class="glyphicon glyphicon-ok"></span></button>
-                  <button type="button" ng-click="driver.gender='Female'" ng-class="{'active':driver.gender=='Female'}" class="btn btn-default margin--bottom"><span translate="PC_4_4_1_1d_2">Female</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="!driver.gender &amp;&amp; editDriverForm[$index].$submitted"/>
+                  <button type="button" ng-click="driver.gender='Female'" ng-class="{'active':driver.gender=='Female'}" class="btn btn-default margin--bottom"><span translate="PC_4_4_1_1d_2">Female</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="!driver.gender &amp;&amp; editDriverForm.$submitted"/>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 margin--top margin--bottom">
                   <label translate="PC_4_4_1_1e" class="label--large">Marital Status</label>
                   <button type="button" ng-click="driver.maritalStatus = 'single'" ng-class="{'active':driver.maritalStatus=='single'}" class="btn btn-default random-margin margin--bottom">Single<span class="glyphicon glyphicon-ok"></span></button>
-                  <button type="button" ng-click="driver.maritalStatus = 'married'" ng-class="{'active':driver.maritalStatus=='married'}" class="btn btn-default margin--bottom">Married<span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="!driver.maritalStatus &amp;&amp; editDriverForm[$index].$submitted"/>
+                  <button type="button" ng-click="driver.maritalStatus = 'married'" ng-class="{'active':driver.maritalStatus=='married'}" class="btn btn-default margin--bottom">Married<span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="!driver.maritalStatus &amp;&amp; editDriverForm.$submitted"/>
                 </div>
                 <div class="col-md-6 margin--top margin--bottom">
                   <label for="editDriver{{$index}}Occupation" translate="PC_4_4_1_1f" class="label--large">Occupation</label>
-                  <input id="editDriver{{$index}}Occupation" name="editDriver{{$index}}Occupation" type="text" placeholder="enter occupation" data-ng-model="driver.occupation" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(editDriverForm[$index].editDriver{{$index}}Occupation.$invalid &amp;&amp; editDriverForm[$index].editDriver{{$index}}Occupation.$dirty) || (editDriverForm[$index].editDriver{{$index}}Occupation.$invalid &amp;&amp; editDriverForm[$index].$submitted)"/>
+                  <input id="editDriver{{$index}}Occupation" name="editDriver{{$index}}Occupation" type="text" placeholder="enter occupation" data-ng-model="driver.occupation" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(editDriverForm.editDriver{{$index}}Occupation.$invalid &amp;&amp; editDriverForm.editDriver{{$index}}Occupation.$dirty) || (editDriverForm.editDriver{{$index}}Occupation.$invalid &amp;&amp; editDriverForm.$submitted)"/>
                 </div>
               </div>
               <div class="row">
@@ -67,7 +67,7 @@
                     <div class="col-md-6">
                       <select id="editDriver{{$index}}-experience" name="editDriver{{$index}}-experience" data-ng-model="driver.drivingExperience" required="required">
                         <option selecter="selecter" label="Select number of years" value="{{n}}" data-ng-repeat="n in [] | range:100" selecter-target="#editDriver{{$parent.$index}}-experience" selecter-callback="select" property="plan.additionalDrivers[{{$parent.$index}}].drivingExperience" ng-selected="plan.additionalDrivers[{{$parent.$index}}].drivingExperience == n">{{n}}</option>
-                      </select><img src="../../images/error.png" data-ng-show="!editDriver{{$index}}.drivingExperience &amp;&amp; editDriverForm[$index].$submitted"/>
+                      </select><img src="../../images/error.png" data-ng-show="!editDriver{{$index}}.drivingExperience &amp;&amp; editDriverForm.$submitted"/>
                     </div>
                   </div>
                 </div>
@@ -79,7 +79,7 @@
                   <div class="row">
                     <div class="col-md-12">
                       <button type="button" ng-click="driver.offences = true" ng-class="{'active':driver.offences}" class="btn btn-default random-margin"><span translate="PC_4_4_1_3c">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
-                      <button type="button" ng-click="driver.offences = false" ng-class="{'active':driver.offences==false}" class="btn btn-default"><span translate="PC_4_4_1_3d">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="!driver.offences &amp;&amp; editDriverForm[$index].$submitted &amp;&amp; driver.offences != 0"/>
+                      <button type="button" ng-click="driver.offences = false" ng-class="{'active':driver.offences==false}" class="btn btn-default"><span translate="PC_4_4_1_3d">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="!driver.offences &amp;&amp; editDriverForm.$submitted &amp;&amp; driver.offences != 0"/>
                     </div>
                   </div>
                 </div>
@@ -90,10 +90,10 @@
                   <p translate="PC_4_4_1_4b">Please include all accidents, but you can exclude windscreen claims.</p>
                   <div class="row">
                     <div class="col-md-3">
-                      <input id="editDriver{{$index}}ClaimsAtFault" min="0" name="editDriver{{$index}}ClaimsAtFault" placeholder="0" type="number" data-ng-model="driver.accidents.atFault" required="required" class="claim"/><span translate="PC_4_4_1_4c">at fault</span><img src="../../images/error.png" data-ng-show="(editDriverForm[$index].editDriver{{$index}}ClaimsAtFault.$invalid &amp;&amp; editDriverForm[$index].editDriver{{$index}}ClaimsAtFault.$dirty) || (editDriverForm[$index].editDriver{{$index}}ClaimsAtFault.$invalid &amp;&amp; editDriverForm[$index].$submitted)"/>
+                      <input id="editDriver{{$index}}ClaimsAtFault" min="0" name="editDriver{{$index}}ClaimsAtFault" placeholder="0" type="number" data-ng-model="driver.accidents.atFault" required="required" class="claim"/><span translate="PC_4_4_1_4c">at fault</span><img src="../../images/error.png" data-ng-show="(editDriverForm.editDriver{{$index}}ClaimsAtFault.$invalid &amp;&amp; editDriverForm.editDriver{{$index}}ClaimsAtFault.$dirty) || (editDriverForm.editDriver{{$index}}ClaimsAtFault.$invalid &amp;&amp; editDriverForm.$submitted)"/>
                     </div>
                     <div class="col-md-3">
-                      <input id="editDriver{{$index}}ClaimsNotAtFault" min="0" name="editDriver{{$index}}ClaimsNotAtFault" placeholder="0" type="number" data-ng-model="driver.accidents.notAtFault" required="required" class="claim"/><span translate="PC_4_4_1_4d">not at fault</span><img src="../../images/error.png" data-ng-show="(editDriverForm[$index].editDriver{{$index}}ClaimsNotAtFault.$invalid &amp;&amp; editDriverForm[$index].editDriver{{$index}}ClaimsNotAtFault.$dirty) || (editDriverForm[$index].editDriver{{$index}}ClaimsNotAtFault.$invalid &amp;&amp; editDriverForm[$index].$submitted)"/>
+                      <input id="editDriver{{$index}}ClaimsNotAtFault" min="0" name="editDriver{{$index}}ClaimsNotAtFault" placeholder="0" type="number" data-ng-model="driver.accidents.notAtFault" required="required" class="claim"/><span translate="PC_4_4_1_4d">not at fault</span><img src="../../images/error.png" data-ng-show="(editDriverForm.editDriver{{$index}}ClaimsNotAtFault.$invalid &amp;&amp; editDriverForm.editDriver{{$index}}ClaimsNotAtFault.$dirty) || (editDriverForm.editDriver{{$index}}ClaimsNotAtFault.$invalid &amp;&amp; editDriverForm.$submitted)"/>
                     </div>
                   </div>
                 </div>
