@@ -15,7 +15,7 @@ section#quote3.section.section--blue.section--padded.section--centred(data-ng-sh
 						img(src="../../images/star-icon.png")
 						span(translate="PC_4_5_1") recommended
 					.panel
-						.panel-heading(data-ng-click="option.details=!option.details")
+						.panel-heading(data-ng-click="option.details=!option.details; option.editing=false")
 							h3 {{option.name}}
 							img.option-details-icon(src="../../images/down-arrow.png", data-ng-show="!option.details")
 							img.option-details-icon(src="../../images/up-arrow.png", data-ng-show="option.details")

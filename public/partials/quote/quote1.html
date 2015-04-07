@@ -326,7 +326,7 @@
           <div class="option-content">
             <div data-ng-if="option.recommended" class="recommended"><img src="../../images/star-icon.png"/><span translate="PC_4_5_1">recommended</span></div>
             <div class="panel">
-              <div data-ng-click="option.details=!option.details" class="panel-heading">
+              <div data-ng-click="option.details=!option.details; option.editing=false" class="panel-heading">
                 <h3>{{option.name}}</h3><img src="../../images/down-arrow.png" data-ng-show="!option.details" class="option-details-icon"/><img src="../../images/up-arrow.png" data-ng-show="option.details" class="option-details-icon"/>
               </div>
               <div class="panel-footer"><img data-ng-src="../../images/{{option.name | slugify}}-icon.png" class="option-icon"/><strong data-ng-show="!option.selected">S$ <span>{{option.cost}}</span></strong><strong data-ng-show="option.selected" translate="PC_4_5_1a" style="font-size:18px;">Included</strong>

@@ -8,23 +8,19 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-md-6">
-                <h1><img src="../../images/car-icon.png" class="pull-left" data-resource-id="PS 2.0a">
-                  <span translate="PS_2_0_1">Tell us about the car</span>
+                <h1><img src="../../images/car-icon.png" class="pull-left" data-resource-id="PS 2.0a">Tell us about the car
                   
                 </h1>
               </div>
               <div class="col-md-6">
 				<div style="text-align:right;">
-                    <div class="col-md-12 col-xs-10">
-                      <h2 style="margin: 5px 0px;" data-resource-id="GS 0.2a">
-                                            <span translate="GS_0_2a">Existing Customer?</span>
-                                            <div class="subtitle" data-resource-id="GS 0.2b" translate="GS_0_2b">Save time and retrieve your renewal quote</div>
-                                          </h2>
-                    </div>
-                    <div class="col-md-12 col-xs-2">
-                      <button style="margin: 10px 0;" type="button" class="btn btn-default" data-resource-id="GS 0.2c"><span translate="GS_0_2c">Login Now</span><span class="glyphicon glyphicon-ok"></span></button>
-                    </div>
-                  </div>
+				  <div class="col-md-12 col-xs-10">
+					  <h2 style="margin: 5px 0px;" data-resource-id="GS 0.2a">Existing Customer?</h2>
+				  </div>
+				  <div class="col-md-12 col-xs-2">
+					  <button style="margin: 10px 0;" type="button" class="btn btn-default" data-resource-id="GS 0.2c">Login Now<span class="glyphicon glyphicon-ok"></span></button>
+				  </div>
+				</div>
             </div>
             </div>
             
@@ -33,23 +29,34 @@
             <div class="custom-tooltip">
               <div class="row  hover-tooltip" data-toggle="popover" data-placement="right" popover="#driving-offence" popover-type="" data-original-title="" title="" style="width: 75%;">
               <div class="col-md-4">
-                <label for="year" data-resource-id="PS 2.0c"><span translate="PS_2_0_3">Year of Manufacture</span><img data-toggle="tooltip" data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document." class="show-tooltip" src="../../images/question-icon.png"></label>
-                <input class="form-control" type="text" placeholder="Enter year" name="year">
+                <label for="year" data-resource-id="PS 2.0c">Year of Manufacture<img data-toggle="tooltip" data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document." class="show-tooltip" src="../../images/question-icon.png"></label>
+                <div ng-class="{error:!car.year && proceed.no_content}">
+                  <img class="error-image" src="../../images/error.png">
+                  <input class="form-control" type="text" placeholder="Enter year" name="year">
+                </div>
               </div>
               <div class="col-md-4">
-                <label for="make" data-resource-id="PS 2.0d"><span translate="PS_2_0_4">Car Make</span><img src="../../images/question-icon.png" style="opacity:0;"></label>
-                <input class="form-control" type="text" placeholder="Enter make" name="make">
+                <label for="make" data-resource-id="PS 2.0d">Car Make<img src="../../images/question-icon.png" style="opacity:0;"></label>
+                <div ng-class="{error:!car.make && proceed.no_content}">
+                  <img class="error-image" src="../../images/error.png">
+                  <input class="form-control" type="text" placeholder="Enter make" name="make">
+                </div>
               </div>
               <div class="col-md-4">
-                <label for="model" data-resource-id="PS 2.0e"><span translate="PS_2_0_5">Car Model</span><img src="../../images/question-icon.png" style="opacity:0;"></label>
-                <select id="model" name="model">
-                  <option selecter label="Enter model" value="{{model}}" data-ng-repeat="model in models" selecter-target="#model" selecter-callback="select" property="model" ng-selected="model == selectedItem">{{model}}</option>
-                </select>
+                <label for="model" data-resource-id="PS 2.0e">Car Model<img src="../../images/question-icon.png" style="opacity:0;"></label>
+                <div ng-class="{error:!car.model && proceed.no_content}" style="width:270px;">
+                  <img class="error-image" src="../../images/error.png">
+                  <div style="width:240px">
+                    <select id="model" name="model">
+                      <option selecter label="Enter model" value="{{model}}" data-ng-repeat="model in models" selecter-target="#model" selecter-callback="select" property="model" ng-selected="model == selectedItem">{{model}}</option>
+                    </select>
+                  </div>
+                </div>
               </div>
               </div>
               <div id="driving-offence" class="popover right">
                   <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
-                  <div class="subtitle" data-resource-id="GS 0.2b" translate="PS_2_0_2">Please note that we do not cover cars used for commercial<br>purposes or for hire/reward</div>
+                  <div class="subtitle" data-resource-id="GS 0.2b">Please note that we do not cover cars used for commercial<br>purposes or for hire/reward</div>
               </div>
             </div>
           </div>
@@ -57,26 +64,29 @@
   
         <div class="container-fluid margin--bottom">
           <div class="container-fluid">
-            <h2 class="margin--bottom" data-resource-id="PS 2.1.2a" translate="PS_2_1_2_1">Is the vehicle privately owned or corporate owned?</h2>
-            <button type="button" ng-click="select('private', 0, 'ownership')" ng-class="{'active':car.ownership=='private'}" class="btn btn-default random-margin" data-resource-id="PS 2.1.2b"><span translate="PS_2_1_2_2">Private</span><span class="glyphicon glyphicon-ok"></span></button>
-            <button type="button" ng-click="select('corporate', 0, 'ownership')" ng-class="{'active':car.ownership=='corporate'}" class="btn btn-default" data-resource-id="PS 2.1.2c"><span translate="PS_2_1_2_3">Corporate</span><span class="glyphicon glyphicon-ok"></span></button>
+            <h2 class="margin--bottom" data-resource-id="PS 2.1.2a">Is the vehicle privately owned or corporate owned?</h2>
+            <div ng-class="{error:!car.ownership && proceed.no_content}" style="width:310px;">
+              <img class="error-image" src="../../images/error.png">
+              <button type="button" ng-click="select('private', 0, 'ownership')" ng-class="{'active':car.ownership=='private'}" class="btn btn-default random-margin" data-resource-id="PS 2.1.2b">Private<span class="glyphicon glyphicon-ok"></span></button>
+              <button type="button" ng-click="select('corporate', 0, 'ownership')" ng-class="{'active':car.ownership=='corporate'}" class="btn btn-default" data-resource-id="PS 2.1.2c">Corporate<span class="glyphicon glyphicon-ok"></span></button>
+            </div>
           </div>
         </div>       
         <div class="container-fluid margin--bottom margin--top">
           <div class="container-fluid margin--bottom">
-            <h2 class="margin--bottom" data-resource-id="PS 2.1.4a"><span translate="PS_2_1_4_a">Roughly how many kilometres do you drive per year?</span><img data-toggle="tooltip" data-placement="top" title="We ask how much you drive per year so we can recommend the right optional benefits for your policy." class="show-tooltip" src="../../images/question-icon.png"></h2>
+            <h2 class="margin--bottom" data-resource-id="PS 2.1.4a">Roughly how many kilometres do you drive per year?<img data-toggle="tooltip" data-placement="top" title="We ask how much you drive per year so we can recommend the right optional benefits for your policy." class="show-tooltip" src="../../images/question-icon.png"></h2>
             <div class="row">
               <div class="col-md-2">
-                <button type="button" ng-click="select('&lt; 8,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='&lt; 8,000'}" class="btn btn-default margin--bottom" data-resource-id="PS 2.1.4b"><span translate="PS_2_1_4_b">Less than<br>8,000 km</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button type="button" ng-click="select('&lt; 8,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='&lt; 8,000'}" class="btn btn-default margin--bottom" data-resource-id="PS 2.1.4b">Less than<br>8,000 km<span class="glyphicon glyphicon-ok"></span></button>
               </div>
               <div class="col-md-2">
-                <button type="button" ng-click="select('8,000 - 15,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='8,000 - 15,000'}" class="btn btn-default margin--bottom" data-resource-id="PS 2.1.4c"><span translate="PS_2_1_4_c">8,000 km -<br>15,000 km</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button type="button" ng-click="select('8,000 - 15,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='8,000 - 15,000'}" class="btn btn-default margin--bottom" data-resource-id="PS 2.1.4c">8,000 km -<br>15,000 km<span class="glyphicon glyphicon-ok"></span></button>
               </div>
               <div class="col-md-2">
-                <button type="button" ng-click="select('&gt; 15,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='&gt; 15,000'}" class="btn btn-default margin--bottom" data-resource-id="PS 2.1.4d"><span translate="PS_2_1_4_d">Over<br>15,000 km</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button type="button" ng-click="select('&gt; 15,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='&gt; 15,000'}" class="btn btn-default margin--bottom" data-resource-id="PS 2.1.4d">Over<br>15,000 km<span class="glyphicon glyphicon-ok"></span></button>
               </div>
               <div class="col-md-2">
-                <button type="button" ng-click="select('not sure', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='not sure'}" class="btn btn-default margin--bottom" data-resource-id="PS 2.1.4e"><span translate="PS_2_1_4_e">Not<br>sure</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button type="button" ng-click="select('not sure', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='not sure'}" class="btn btn-default margin--bottom" data-resource-id="PS 2.1.4e">Not<br>sure<span class="glyphicon glyphicon-ok"></span></button>
               </div>
             </div>
           </div>
@@ -86,19 +96,19 @@
             <div class="">
               <div style="left:407px;" class="arrow"></div>
               <div class="panel-body">
-                <h2 class="margin--bottom" data-resource-id="PS 2.1.4f" translate="PS_2_1_4_2_1">What do you use the car for?</h2>
+                <h2 class="margin--bottom" data-resource-id="PS 2.1.4f">What do you use the car for?</h2>
                 <div class="row margin--top">
                   <div class="col-md-4 centred"><img src="../../images/trolley-icon.png" data-toggle="tooltip" data-placement="top" title="If you are only using your car in the course of your private life and for leisure." class="margin--bottom show-tooltip">
-                    <button type="button" ng-click="select('personal use', 0, 'usage')" ng-class="{'active':car.usage=='personal use'}" class="btn btn-default btn-block" data-resource-id="PS 2.1.4h"><span translate="PS_2_1_4_2_3">Personal<br>use</span><span class="glyphicon glyphicon-ok"></span></button>
+                    <button type="button" ng-click="select('personal use', 0, 'usage')" ng-class="{'active':car.usage=='personal use'}" class="btn btn-default btn-block" data-resource-id="PS 2.1.4h">Personal<br>use<span class="glyphicon glyphicon-ok"></span></button>
                   </div>
                   <div class="col-md-4 centred"><img src="../../images/cityscape-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car in the course of your private life and to go to and from your workplace." class="margin--bottom show-tooltip">
-                    <button type="button" ng-click="select('personal use + commute', 0, 'usage')" ng-class="{'active':car.usage=='personal use + commute'}" class="btn btn-default btn-block" data-resource-id="PS 2.1.4i"><span translate="PS_2_1_4_2_4">Personal use<br>+ Commute</span><span class="glyphicon glyphicon-ok"></span></button>
+                    <button type="button" ng-click="select('personal use + commute', 0, 'usage')" ng-class="{'active':car.usage=='personal use + commute'}" class="btn btn-default btn-block" data-resource-id="PS 2.1.4i">Personal use<br>+ Commute<span class="glyphicon glyphicon-ok"></span></button>
                   </div>
                   <div class="col-md-4 centred"><img src="../../images/lanyard-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car to go to and from your workplace and for or during the course of your work." class="margin--bottom show-tooltip">
-                    <button type="button" ng-click="select('commute + during work', 0, 'usage')" ng-class="{'active':car.usage=='commute + during work'}" class="btn btn-default btn-block" data-resource-id="PS 2.1.4j"><span translate="PS_2_1_4_2_5">Commute +<br>During work</span><span class="glyphicon glyphicon-ok"></span></button>
+                    <button type="button" ng-click="select('commute + during work', 0, 'usage')" ng-class="{'active':car.usage=='commute + during work'}" class="btn btn-default btn-block" data-resource-id="PS 2.1.4j">Commute +<br>During work<span class="glyphicon glyphicon-ok"></span></button>
                   </div>
                 </div>
-                <p style="color:#777777" class="margin--top" data-resource-id="PS 2.1.4k" translate="PS_2_1_4_2_6">Do you sometimes use your car for commute or work? You can use your car up to 5 times per year outside the usage you declare. Simply email us at <a href="mailto:carusage@directasia.com">CarUsage@DirectAsia.com </a>before you drive, and you'll be covered in case something happens.</p>
+                <p style="color:#777777" class="margin--top" data-resource-id="PS 2.1.4k">Do you sometimes use your car for commute or work? You can use your car up to 5 times per year outside the usage you declare. Simply email us at <a href="mailto:carusage@directasia.com">CarUsage@DirectAsia.com </a>before you drive, and you'll be covered in case something happens.</p>
               </div>
             </div>
           </div>
@@ -106,24 +116,30 @@
         <div class="container-fluid margin--bottom margin--top">
           <div class="panel">
             <div class="panel-body">
-              <h2 translate="PS_2_1_4_3">When would you like the policy to start ?</h2>
+              <h2>When would you like the policy to start ?</h2>
             </div>
             <div class="panel-footer">
               <div class="row">
                 <div class="col-md-4">
-                  <p data-resource-id="PS 2.1.5a"><b translate="PS_2_1_5a">Policy start date:</b></p>
+                  <p data-resource-id="PS 2.1.5a"><b>Policy start date:</b></p>
                   <div class="form-inline">
+                    <div ng-class="{error:!car.policy_start_date_day && !car.policy_start_date_month && !car.policy_start_date_year && proceed.no_content}" style="width:280px;">
+                      <img class="error-image" src="../../images/error.png">
                       <input id="day2" placeholder="DD" type="number" min="1" max="31" class="day">
                       <input placeholder="MM" type="number" min="1" max="12" class="month">
                       <input placeholder="YYYY" type="number" min="1900" max="2015" class="year">
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <p data-resource-id="PS 2.1.5b"><b translate="PS_2_1_5b">Policy end date:</b></p>
+                  <p data-resource-id="PS 2.1.5b"><b>Policy end date:</b></p>
                   <div class="form-inline">
+                    <div ng-class="{error:!car.policy_end_date_day && !car.policy_end_date_month && !car.policy_end_date_year && proceed.no_content}" style="width:280px;">
+                      <img class="error-image" src="../../images/error.png">
                       <input id="day2" placeholder="DD" type="number" min="1" max="31" class="day">
                       <input placeholder="MM" type="number" min="1" max="12" class="month">
                       <input placeholder="YYYY" type="number" min="1900" max="2015" class="year">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -134,8 +150,8 @@
           <div class="container-fluid">
             <div style="margin-top:3em;" class="row">
               <div class="col-md-12">
-                <button type="button" class="btn btn-backward" style="float:left;"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_2_2_2">Back</span></button>
-                <button type="button" ng-click="proceed()" class="btn btn-forward btn-lg" style="float:right;"><span translate="PS_2_2_1">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+                <button type="button" class="btn btn-backward" style="float:left;"><span class="glyphicon glyphicon-arrow-left"></span>Back</button>
+                <button type="button" ng-click="proceed()" class="btn btn-forward btn-lg" style="float:right;">Proceed<span class="glyphicon glyphicon-arrow-right"></span></button>
               </div>
             </div>
             <div style="margin-top:1em;margin-bottom:12em;" class="row">
@@ -150,10 +166,10 @@
   <div class="panel">
     <button type="button" class="overlay-close-button"><span class="glyphicon glyphicon-remove"></span></button>
     <div class="panel-body">
-      <h2 translate="GS_0_3_1">Are you still there?</h2>
-      <p translate="GS_0_3_2">If we don't detect you clicking around, then we end your<br/> session to protect your personal information.</p>
-      <p><b translate="GS_0_3_3">your session will end in: [X]</b></p>
-      <button type="button" ng-click="proceed()" class="btn btn-forward btn-lg" translate="GS_0_3_4">Yes! Continue My Quote</button>
+      <h2>Are you still there?</h2>
+      <p>If we don't detect you clicking around, then we end your<br/> session to protect your personal information.</p>
+      <p><b>your session will end in: [X]</b></p>
+      <button type="button" ng-click="proceed()" class="btn btn-forward btn-lg">Yes! Continue My Quote</button>
     </div>
   </div>
 </div>

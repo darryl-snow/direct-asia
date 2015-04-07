@@ -72,7 +72,8 @@ gulp.task "lib", ->
 		Config.src + "lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
 		Config.src + "lib/bootstrap/dist/js/bootstrap.js",
 		Config.src + "lib/Selecter/jquery.fs.selecter.js",
-		Config.src + "lib/fsm-sticky-header/src/fsm-sticky-header.js"
+		Config.src + "lib/fsm-sticky-header/src/fsm-sticky-header.js",
+		Config.src + "lib/bootstrap-slider/dist/bootstrap-slider.min.js"
 	]
 	.pipe gulp.dest Config.build + "lib"
 
@@ -80,7 +81,8 @@ gulp.task "lib", ->
 
 	gulp.src [
 		Config.src + "lib/bootstrap/dist/css/bootstrap.css",
-		Config.src + "lib/Bootflat/bootflat/css/bootflat.css"
+		Config.src + "lib/Bootflat/bootflat/css/bootflat.css",
+		Config.src + "lib/bootstrap-slider/dist/css/bootstrap-slider.css"
 	]
 	.pipe gulp.dest Config.build + "lib"
 
@@ -323,7 +325,7 @@ gulp.task "watch", ->
 	gulp.watch [
 		Config.build + "scripts/**/*.js"
 		Config.build + "styles/**/*.css"
-		Config.build + "*.html"
+		Config.build + "**/*.html"
 		Config.build + "images/**/*.{jpg,png,gif,svg}"
 	], notifyLivereload
 
@@ -334,6 +336,7 @@ gulp.task "watch", ->
 	gulp.watch Config.src + "*", ["copy-files"]
 	gulp.watch Config.src + "images/favicons/*.xml", ["copy-files"]
 	gulp.watch Config.src + "content/**/*", ["copy-files"]
+	gulp.watch Config.src + "other-developers-stuff/**/*", ["copy-files"]
 
 # Run a test server
 
