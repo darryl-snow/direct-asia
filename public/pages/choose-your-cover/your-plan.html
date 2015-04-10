@@ -45,6 +45,7 @@
         <script src="../../lib/fsm-sticky-header.js"></script>
         <script src="../../scripts/main.js"></script>
         <script src="../../scripts/controllers/help/help.controller.js"></script>
+        <script src="../../scripts/directives/continue-button.directive.js"></script>
         <script src="../../scripts/directives/input-group.directive.js"></script>
         <script src="../../scripts/directives/popover.directive.js"></script>
         <script src="../../scripts/directives/selecter.directive.js"></script>
@@ -283,7 +284,7 @@
                           <input id="checkbox1" type="checkbox" ng-model="checked" class="ng-pristine ng-untouched ng-valid">
                           <div class="fake-checkbox"><span class="glyphicon glyphicon-ok" data-resource-id="PS 1.2a"></span></div><span translate="PS_1_2a">I Agree to the <a href="">privacy terms</a>, and to fully and honestly<br/>answer any questions needed to recieve a policy.</span>
                         </label>
-                        <button type="button" ng-click="proceed()" class="btn btn-forward btn-lg"  data-resource-id="PS 1.3"><span translate="PS_1_3">Get Your Quote</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+                        <button type="button" class="btn btn-forward btn-lg"  data-resource-id="PS 1.3" continue url="http://localhost:9000/cover" page-data="{{cover}}" next-page="http://localhost:9000/pages/car/car.html"><span translate="PS_1_3">Get Your Quote</span><span class="glyphicon glyphicon-arrow-right"></span></button>
                     </div>
                     <div class="space"></div>
                     <div class="space"></div>

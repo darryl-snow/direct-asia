@@ -44,6 +44,7 @@
         <script src="../../lib/fsm-sticky-header.js"></script>
         <script src="../../scripts/main.js"></script>
         <script src="../../scripts/controllers/help/help.controller.js"></script>
+        <script src="../../scripts/directives/continue-button.directive.js"></script>
         <script src="../../scripts/directives/input-group.directive.js"></script>
         <script src="../../scripts/directives/popover.directive.js"></script>
         <script src="../../scripts/directives/selecter.directive.js"></script>
@@ -482,7 +483,7 @@
 <div data-resource-id="PS 6.6">
 <div style="display: table; width: 100%;">
 <button type="button" class="btn btn-backward" style="float:left; padding: 5px 12px;"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_6_6_1">Back</span></button>
-<button type="button" ng-click="proceed()" class="btn btn-forward btn-lg" style="float:right;"><span translate="PS_5_6_2" class="ng-scope">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+<button type="button" class="btn btn-forward btn-lg" style="float:right;" continue next-page="http://localhost:9000/pages/thank-you/thank-you.html"><span translate="PS_5_6_2" class="ng-scope">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
 </div>
     <div class="save-for-later" data-resource-id="PC 4.1.2">
         <button type="button" class="popover-button btn btn-primary btn-action btn-sm"><span ng-hide="submit" translate="PS_6_6_2">Save for later</span><span ng-show="submit" translate="PS_6_6_3">Saved!</span></button>

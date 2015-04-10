@@ -212,7 +212,7 @@ angular.module "DirectAsia"
 
 			###
 
-			$scope.currentStep = 5
+			$scope.currentStep = 1
 
 			###
 			This indicates whether the recommended plan has been selected from the comparison

@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Tue Apr 07 2015 11:23:22 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Fri Apr 10 2015 11:42:18 GMT+0800 (CST) */
 
 /*
 
@@ -202,7 +202,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			This sets the current step as 'choose plan' so that only that section
     			will be displayed initially.
      */
-    $scope.currentStep = 5;
+    $scope.currentStep = 1;
 
     /*
     			This indicates whether the recommended plan has been selected from the comparison

@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Tue Apr 07 2015 11:23:22 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Fri Apr 10 2015 11:07:08 GMT+0800 (CST) */
 @font-face {
   font-family: Proxima;
   src: url("../fonts/ProximaNova/ProximaNova-Regular.otf") format("opentype"); }
@@ -66,7 +66,7 @@ label {
 .highlight {
   color: #d52b1e; }
 
-strong {
+strong, .strong {
   color: #000000;
   font-family: "ProximaSemiBold";
   font-weight: 600; }
@@ -74,12 +74,18 @@ strong {
 .strikethrough {
   text-decoration: line-through; }
 
+.small {
+  font-size: 0.7em; }
+
 body, html {
   background: #fafafa;
   color: #707070; }
 
 .block {
   display: block; }
+
+.inline-block {
+  display: inline-block; }
 
 .margin--bottom {
   margin-bottom: 1em !important; }
