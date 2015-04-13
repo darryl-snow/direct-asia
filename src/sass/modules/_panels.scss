@@ -18,6 +18,19 @@
 		}
 	}
 
+	&-close-button {
+		cursor:					pointer;
+		opacity:				0.6;
+		position:				absolute;
+		right:					1em;
+		top:					1em;
+		transition:				0.3s all ease-in-out;
+
+		@include ActiveFocusHover() {
+			opacity:			1;
+		}
+	}
+
 	&-header {
 		background:				$blue;
 		border-radius:			$border-radius $border-radius 0 0;
@@ -160,102 +173,102 @@
 		}
 	}
 
-	&-otherdriver {
-		width:					270px;
+	// &-otherdriver {
+	// 	width:					270px;
 
-		@media (min-width: 654px) {
-			width:				555px;
-		}
+	// 	@media (min-width: 654px) {
+	// 		width:				555px;
+	// 	}
 
-		@media (min-width: 992px) {
-			width:				838px;
-		}
+	// 	@media (min-width: 992px) {
+	// 		width:				838px;
+	// 	}
 
-		@media (min-width: 1200px) {
-			width:				1122px;
-		}
-	}
+	// 	@media (min-width: 1200px) {
+	// 		width:				1122px;
+	// 	}
+	// }
 
 
-	&-otherdriver-1 {
-		&:after {
-			border-bottom: 		10px solid $white;
-			border-left: 		10px solid transparent;
-			border-right: 		10px solid transparent;
-			content:			"";
-			display:			block;
-			height: 			0;
-			left:				50%;
-			margin-left:		-10px;
-			position:			absolute;
-			top:				-10px;
-			width: 				0;
-		}
-	}
+	// &-otherdriver-1 {
+	// 	&:after {
+	// 		border-bottom: 		10px solid $white;
+	// 		border-left: 		10px solid transparent;
+	// 		border-right: 		10px solid transparent;
+	// 		content:			"";
+	// 		display:			block;
+	// 		height: 			0;
+	// 		left:				50%;
+	// 		margin-left:		-10px;
+	// 		position:			absolute;
+	// 		top:				-10px;
+	// 		width: 				0;
+	// 	}
+	// }
 
-	&-otherdriver-2 {
-		&:after {
-			border-bottom: 		10px solid $white;
-			border-left: 		10px solid transparent;
-			border-right: 		10px solid transparent;
-			content:			"";
-			display:			block;
-			height: 			0;
-			left:				50%;
-			margin-left:		-10px;
-			position:			absolute;
-			top:				-10px;
-			width: 				0;
+	// &-otherdriver-2 {
+	// 	&:after {
+	// 		border-bottom: 		10px solid $white;
+	// 		border-left: 		10px solid transparent;
+	// 		border-right: 		10px solid transparent;
+	// 		content:			"";
+	// 		display:			block;
+	// 		height: 			0;
+	// 		left:				50%;
+	// 		margin-left:		-10px;
+	// 		position:			absolute;
+	// 		top:				-10px;
+	// 		width: 				0;
 
-			@media (min-width: 654px) {
-				left:			75%;
-			}
+	// 		@media (min-width: 654px) {
+	// 			left:			75%;
+	// 		}
 
-			@media (min-width: 769px) {
-				left:			62.5%;
-			}
-		}
-	}
+	// 		@media (min-width: 769px) {
+	// 			left:			62.5%;
+	// 		}
+	// 	}
+	// }
 
-	&-otherdriver-3 {
-		&:after {
-			border-bottom: 		10px solid $white;
-			border-left: 		10px solid transparent;
-			border-right: 		10px solid transparent;
-			content:			"";
-			display:			block;
-			height: 			0;
-			left:				50%;
-			margin-left:		-10px;
-			position:			absolute;
-			top:				-10px;
-			width: 				0;
+	// &-otherdriver-3 {
+	// 	&:after {
+	// 		border-bottom: 		10px solid $white;
+	// 		border-left: 		10px solid transparent;
+	// 		border-right: 		10px solid transparent;
+	// 		content:			"";
+	// 		display:			block;
+	// 		height: 			0;
+	// 		left:				50%;
+	// 		margin-left:		-10px;
+	// 		position:			absolute;
+	// 		top:				-10px;
+	// 		width: 				0;
 
-			@media (min-width: 654px) {
-				left:			75%;
-			}
-		}
-	}
+	// 		@media (min-width: 654px) {
+	// 			left:			75%;
+	// 		}
+	// 	}
+	// }
 
-	&-otherdriver-4 {
-		&:after {
-			border-bottom: 		10px solid $white;
-			border-left: 		10px solid transparent;
-			border-right: 		10px solid transparent;
-			content:			"";
-			display:			block;
-			height: 			0;
-			left:				50%;
-			margin-left:		-10px;
-			position:			absolute;
-			top:				-10px;
-			width: 				0;
+	// &-otherdriver-4 {
+	// 	&:after {
+	// 		border-bottom: 		10px solid $white;
+	// 		border-left: 		10px solid transparent;
+	// 		border-right: 		10px solid transparent;
+	// 		content:			"";
+	// 		display:			block;
+	// 		height: 			0;
+	// 		left:				50%;
+	// 		margin-left:		-10px;
+	// 		position:			absolute;
+	// 		top:				-10px;
+	// 		width: 				0;
 
-			@media (min-width: 654px) {
-				left:			87.5%;
-			}
-		}
-	}
+	// 		@media (min-width: 654px) {
+	// 			left:			87.5%;
+	// 		}
+	// 	}
+	// }
 
 	&-editdriver {
 		left:					0;
@@ -263,7 +276,7 @@
 		position:				absolute;
 		top:					255px;
 		width:					270px;
-		z-index:				10;
+		z-index:				5;
 
 		@media (min-width: 654px) {
 			width:				555px;
@@ -296,31 +309,8 @@
 	&-editdriver-1 {
 		left:					0;
 
-		@media (min-width: 654px) {
-			left:				-284px;
-		}
-
-		@media (min-width: 1200px) {
-			left:				-426px;
-		}
-
-		&:after {
-
-			@media (min-width: 654px) {
-				left:			75%;
-			}
-
-			@media (min-width: 992px) {
-				left:			50%;
-			}
-		}
-	}
-
-	&-editdriver-2 {
-		left:					0;
-
 		@media (min-width: 992px) {
-			left:				-568px;
+			left:				-142px;
 		}
 
 		@media (min-width: 1200px) {
@@ -334,7 +324,7 @@
 			}
 
 			@media (min-width: 992px) {
-				left:			83.25%;
+				left:			33.33%;
 			}
 
 			@media (min-width: 1200px) {
@@ -343,120 +333,19 @@
 		}
 	}
 
-	&-editdriver-3 {
-		left:					0;
-
-		@media (min-width: 654px) {
-			left:				0;
-		}
-
-		@media (min-width: 1200px) {
-			left:				-568px;
-		}
-
-		&:after {
-
-			@media (min-width: 654px) {
-				left:			25%;
-			}
-
-			@media (min-width: 992px) {
-				left:			16.65%;
-			}
-
-			@media (min-width: 1200px) {
-				left:			62.5%;
-			}
-		}
-	}
-
-	&-editdriver-4 {
-		left:					0;
-
-		@media (min-width: 1200px) {
-			left:				-142px;
-		}
-
-		&:after {
-
-			@media (min-width: 654px) {
-				left:			25%;
-			}
-
-			@media (min-width: 992px) {
-				left:			16.5%;
-			}
-
-			@media (min-width: 1200px) {
-				left:			25%;
-			}
-		}
-	}
-
-	&-editdriver-5 {
-		left:					0;
-
-		@media (min-width: 654px) {
-			left:				-142px;
-		}
-
-		@media (min-width: 992px) {
-			left:				-568px;
-			width:				838px;
-		}
-
-		&:after {
-
-			@media (min-width: 654px) {
-				left:			50%;
-			}
-
-			@media (min-width: 992px) {
-				left:			83.25%;
-			}
-
-			@media (min-width: 1200px) {
-				left:			82.5%;
-			}
-		}
-	}
-
-	&-editdriver-6 {
-		left:					0;
-
-		@media (min-width: 992px) {
-			left:				-284px;
-		}
-
-		@media (min-width: 1200px) {
-			left:				0px;
-		}
-
-		&:after {
-
-			@media (min-width: 654px) {
-				left:			25%;
-			}
-
-			@media (min-width: 992px) {
-				left:			50%;
-			}
-
-			@media (min-width: 1200px) {
-				left:			12.5%;
-			}
-		}
-	}
-
-	&-editdriver-7 {
+	&-editdriver-2 {
 		left:					0;
 
 		@media (min-width: 654px) {
 			left:				-284px;
 		}
 
+		@media (min-width: 992px) {
+			left:				-426px;
+		}
+
 		@media (min-width: 1200px) {
-			left:				-852px;
+			left:				-568px;
 		}
 
 		&:after {
@@ -466,14 +355,146 @@
 			}
 
 			@media (min-width: 992px) {
-				left:			50%;
+				left:			66.67%;
 			}
 
 			@media (min-width: 1200px) {
-				left:			87.5%;
+				left:			62.5%;
 			}
 		}
 	}
+
+	// &-editdriver-3 {
+	// 	left:					0;
+
+	// 	@media (min-width: 654px) {
+	// 		left:				0;
+	// 	}
+
+	// 	@media (min-width: 1200px) {
+	// 		left:				-568px;
+	// 	}
+
+	// 	&:after {
+
+	// 		@media (min-width: 654px) {
+	// 			left:			25%;
+	// 		}
+
+	// 		@media (min-width: 992px) {
+	// 			left:			16.65%;
+	// 		}
+
+	// 		@media (min-width: 1200px) {
+	// 			left:			62.5%;
+	// 		}
+	// 	}
+	// }
+
+	// &-editdriver-4 {
+	// 	left:					0;
+
+	// 	@media (min-width: 1200px) {
+	// 		left:				-142px;
+	// 	}
+
+	// 	&:after {
+
+	// 		@media (min-width: 654px) {
+	// 			left:			25%;
+	// 		}
+
+	// 		@media (min-width: 992px) {
+	// 			left:			16.5%;
+	// 		}
+
+	// 		@media (min-width: 1200px) {
+	// 			left:			25%;
+	// 		}
+	// 	}
+	// }
+
+	// &-editdriver-5 {
+	// 	left:					0;
+
+	// 	@media (min-width: 654px) {
+	// 		left:				-142px;
+	// 	}
+
+	// 	@media (min-width: 992px) {
+	// 		left:				-568px;
+	// 		width:				838px;
+	// 	}
+
+	// 	&:after {
+
+	// 		@media (min-width: 654px) {
+	// 			left:			50%;
+	// 		}
+
+	// 		@media (min-width: 992px) {
+	// 			left:			83.25%;
+	// 		}
+
+	// 		@media (min-width: 1200px) {
+	// 			left:			82.5%;
+	// 		}
+	// 	}
+	// }
+
+	// &-editdriver-6 {
+	// 	left:					0;
+
+	// 	@media (min-width: 992px) {
+	// 		left:				-284px;
+	// 	}
+
+	// 	@media (min-width: 1200px) {
+	// 		left:				0px;
+	// 	}
+
+	// 	&:after {
+
+	// 		@media (min-width: 654px) {
+	// 			left:			25%;
+	// 		}
+
+	// 		@media (min-width: 992px) {
+	// 			left:			50%;
+	// 		}
+
+	// 		@media (min-width: 1200px) {
+	// 			left:			12.5%;
+	// 		}
+	// 	}
+	// }
+
+	// &-editdriver-7 {
+	// 	left:					0;
+
+	// 	@media (min-width: 654px) {
+	// 		left:				-284px;
+	// 	}
+
+	// 	@media (min-width: 1200px) {
+	// 		left:				-852px;
+	// 	}
+
+	// 	&:after {
+
+	// 		@media (min-width: 654px) {
+	// 			left:			75%;
+	// 		}
+
+	// 		@media (min-width: 992px) {
+	// 			left:			50%;
+	// 		}
+
+	// 		@media (min-width: 1200px) {
+	// 			left:			87.5%;
+	// 		}
+	// 	}
+	// }
 
 	&-editoption,
 	&-option-details {

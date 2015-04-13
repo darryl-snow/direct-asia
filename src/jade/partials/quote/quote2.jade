@@ -63,7 +63,7 @@ section#quote1.container(data-ng-show="currentStep>=1")
 						h3(translate="PC_4_3_1_5") Recommended Optional Cover
 
 						.row
-							.col-md-4(data-ng-repeat="option in recommendedPlan.options")
+							.col-md-4(data-ng-repeat="option in recommendedPlan.options | limitTo:3")
 								.benefit
 									img.benefit-icon(data-ng-src="../../images/{{option.name | slugify}}-icon.png")
 									.benefit-details

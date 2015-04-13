@@ -5,7 +5,7 @@ script(src="../../scripts/controllers/quote/quote1.controller.js")
 
 section.section.section-quote(ng-controller="QuoteCtrl")
 
-	ul.side-pagination(role="tablist")
+	ul.side-pagination(role="tablist", data-ng-show="currentStep>1")
 		li(data-ng-class="{'active':currentStep>=1}")
 			a.internal-link(href="#quote1", data-toggle="tooltip", data-placement="left", title="Select Car Insurance Plan")
 		li(data-ng-class="{'active':currentStep>=2}")
@@ -17,7 +17,7 @@ section.section.section-quote(ng-controller="QuoteCtrl")
 		li(data-ng-class="{'active':currentStep>=5}")
 			a.internal-link(href="#quote5", data-toggle="tooltip", data-placement="left", title="See Your Car Insurance Summary")
 
-	.navbar-da(fsm-sticky-header, scroll-body="'.section-quote'", scroll-stop="0")
+	.navbar-da(fsm-sticky-header, scroll-body="'.section-quote'", scroll-stop="0", data-ng-style="{}", sticky-nav)
 		.container
 
 			nav(data-ng-class="{'notchosen':currentStep>1}")
@@ -34,7 +34,7 @@ section.section.section-quote(ng-controller="QuoteCtrl")
 							span(data-ng-bind="cover.baseCost / 12")
 							span(translate="PC_4_1_1_2") /mo
 
-			nav(data-ng-show="currentStep>1", data-ng-class="{'chosen':currentStep>1}")
+			nav(data-ng-show="currentStep > 1", data-ng-class="{'chosen':currentStep>1}")
 				li.active
 					a(href="#")
 						span.navbar-item(data-ng-cloak) {{plan.cover.name}}
@@ -53,7 +53,7 @@ section.section.section-quote(ng-controller="QuoteCtrl")
 				li
 					.navbar-info
 						span.navbar-item(translate="PC_4_3_5_1") Excess Policy
-						span.navbar-price(data-ng-cloak) S${{plan.excess  | number: 0}}
+						span.navbar-price(data-ng-cloak) S${{plan.excess | number: 0}}
 
 			.save-for-later
 				button.btn.btn-primary.btn-sm.btn-block(data-ng-click="saveForLater()", translate="PC_4_1_2_1") Save for Later
@@ -71,6 +71,6 @@ section.section.section-quote(ng-controller="QuoteCtrl")
 			e.preventDefault();
 			setTimeout(function() {
 				$("html, body").animate({scrollTop: $($(e.target).attr("href")).offset().top - 100});
-			}, 200);
+			}, 400);
 		});
 		$('[data-toggle="tooltip"]').tooltip();

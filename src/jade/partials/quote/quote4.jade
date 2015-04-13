@@ -1,81 +1,30 @@
-section#quote3.section.section--blue.section--padded.section--centred(data-ng-show="currentStep>=3")
+section#quote3.section.section--blue.section--padded.section--centred(data-ng-show="currentStep>=3", full-page-height)
 
 	.container
 
-		img(src="../../images/cover-icon3.png")
-		h2.margin--bottom
-			span(translate="PC_4_5a") Optional Cover
-			img(src="../../images/question-icon.png")
-			.subtitle(translate="PC_4_5b") Customise your coverage and save money by adding optional items
-
-		.options.clearfix
-			.option(data-ng-repeat="option in options.optionalCover", data-ng-class="{'selected': option.selected, 'editing':option.editing, 'details':option.details}")
-				.option-content
-					.recommended(data-ng-if="option.recommended")
-						img(src="../../images/star-icon.png")
-						span(translate="PC_4_5_1") recommended
-					.panel
-						.panel-heading(data-ng-click="option.details=!option.details; option.editing=false")
-							h3 {{option.name}}
-							img.option-details-icon(src="../../images/down-arrow.png", data-ng-show="!option.details")
-							img.option-details-icon(src="../../images/up-arrow.png", data-ng-show="option.details")
-						.panel-footer
-							img.option-icon(data-ng-src="../../images/{{option.name | slugify}}-icon.png")
-							strong(data-ng-show="!option.selected") S$ 
-								span {{option.cost}}
-							strong(data-ng-show="option.selected", translate="PC_4_5_1a", style="font-size:18px;") Included
-							.buttons
-								button.btn.btn-default(type="button", data-ng-click="editOption(option); option.editing=!option.editing;", data-ng-class="{'active': option.editing}", data-ng-show="option.editable && !option.selected", translate="PC_4_5d") Edit
-								button.btn.btn-default(type="button", data-ng-click="selectOption(option)", data-ng-show="!option.selected", translate="PC_4_5c") Select
-							.icon(data-ng-show="option.selected")
-								i.glyphicon.glyphicon-ok-sign
-
-				//- EDIT OPTION
-				.panel.panel-editoption.option-edit.align-left(data-ng-show="option.editing", data-ng-class="{'panel-editoption-1': (($index % 3 == 1) && ($parent.options.optionalCover.length >= ($index + 2))) || (($index % 3 == 0) && ($parent.options.optionalCover.length == ($index + 1))),'panel-editoption-2': ($index % 3 == 0) && ($parent.options.optionalCover.length == $index + 2),'panel-editoption-3': ($index % 3 == 1) && ($parent.options.optionalCover.length == ($index + 1)),'panel-editoption-4': ($index % 3 == 0) && ($parent.options.optionalCover.length >= ($index + 3)),'panel-editoption-5': $index % 3 == 2}")
-					.panel-body
-						h4 Select the modifications done on your car.
-						p Please note that these need to be 
-							span.highlight LTA compliant.
-
-						label.label-checkbox(for="checkbox1")
-							input#checkbox1(type="checkbox", data-ng-model="plan.car.modifications.bodykit")
-							.fake-checkbox
-								span.glyphicon.glyphicon-ok
-							span Body Kit
-
-						label.label-checkbox(for="checkbox2")
-							input#checkbox2(type="checkbox", data-ng-model="plan.car.modifications.rimstires")
-							.fake-checkbox
-								span.glyphicon.glyphicon-ok
-							span Rims / Tires
-
-						label.label-checkbox(for="checkbox3")
-							input#checkbox3(type="checkbox", data-ng-model="plan.car.modifications.suspensionstabiliser")
-							.fake-checkbox
-								span.glyphicon.glyphicon-ok
-							span Suspension / Stabiliser System
-
-						label.label-checkbox(for="checkbox4")
-							input#checkbox4(type="checkbox", data-ng-model="plan.car.modifications.airintakeexhaust")
-							.fake-checkbox
-								span.glyphicon.glyphicon-ok
-							span Air Intake / Exhaust System
-
-					.panel-footer
-						p Further details and description of what this optional cover is.
-						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh nisi, varius vitae mi vitae, porttitor sagittis tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin ac massa vitae justo lobortis placerat at vel dolor.
-
-				//- OPTION DETAILS
-				.panel.panel-option-details.option-edit.align-left(data-ng-show="option.details", data-ng-class="{'panel-editoption-1': (($index % 3 == 1) && ($parent.options.optionalCover.length >= ($index + 2))) || (($index % 3 == 0) && ($parent.options.optionalCover.length == ($index + 1))),'panel-editoption-2': ($index % 3 == 0) && ($parent.options.optionalCover.length == $index + 2),'panel-editoption-3': ($index % 3 == 1) && ($parent.options.optionalCover.length == ($index + 1)),'panel-editoption-4': ($index % 3 == 0) && ($parent.options.optionalCover.length >= ($index + 3)),'panel-editoption-5': $index % 3 == 2}")
-					.panel-footer
-						p Further details and description of what this optional cover is.
-						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh nisi, varius vitae mi vitae, porttitor sagittis tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin ac massa vitae justo lobortis placerat at vel dolor.
-						a(href="", title="") Optional link to more info.
-
+		img(src="../../images/policy-icon.png")
 
 		.row
+			.col-md-6.col-md-offset-3
+				h2.margin--bottom
+					span(translate="PC_4_6a") Policy Excess
+					.subtitle(translate="PC_4_6b") Policy excess is the amount that you'll pay out of your own pocket if you have a claim. If you choose a higher excess, you will have a lower the premium.
+
+		.row
+			.col-md-6.col-md-offset-3
+				h3.recommended-excess
+					span(translate="PC_4_6c") Recommended Excess:
+				p(translate="PC_4_6d") or Choose your excess
+
+		.row(style="margin-bottom:90px;")
+			.col-md-4.col-md-offset-4
+				.excess-selecter
+					select#excess(name="excess")
+						option(selecter, label="S${{recommendedPlan.excess | number: 0}}", value="{{excess | number:0}}", data-ng-repeat="excess in options.excesses", selecter-target="#excess", selecter-callback="select", property="plan.excess", ng-selected="plan.excess === selectedItem") S${{excess | number: 0}}
+
+		.row.margin--top(style="margin-bottom:30px;")
 			.col-md-12
 
 				a.btn.btn-continue.internal-link(href="#quote4", title="", data-ng-click="continue(4)")
 					i.glyphicon.glyphicon-arrow-down
-					span(translate="PC_4_5_2") No Thanks, Continue
+					span(translate="PC_4_4_4") Continue

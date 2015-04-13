@@ -37,7 +37,7 @@
           <div data-ng-if="recommendedPlan.options.length != 0">
             <h3 translate="PC_4_3_1_5">Recommended Optional Cover</h3>
             <div class="row">
-              <div data-ng-repeat="option in recommendedPlan.options" class="col-md-4">
+              <div data-ng-repeat="option in recommendedPlan.options | limitTo:3" class="col-md-4">
                 <div class="benefit"><img data-ng-src="../../images/{{option.name | slugify}}-icon.png" class="benefit-icon"/>
                   <div class="benefit-details">
                     <h4><a data-ng-click="showDescription=!showDescription" data-ng-cloak="data-ng-cloak" class="clearfix"><span>{{option.name}}</span><img src="../../images/down-arrow.png" data-ng-show="!showDescription"/><img src="../../images/up-arrow.png" data-ng-show="showDescription"/></a></h4>

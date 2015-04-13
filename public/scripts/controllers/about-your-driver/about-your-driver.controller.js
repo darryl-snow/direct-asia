@@ -1,30 +1,20 @@
-/* direct-asia : 0.0.0 : Mon Mar 30 2015 01:01:54 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 13 2015 16:14:41 GMT+0800 (CST) */
 angular.module("DirectAsia").controller("aboutYourDriverController", [
   "$scope", function($scope) {
     $scope.driver = {
       own_car: "",
-      date_of_birth_day: "",
-      date_of_birth_month: "",
-      date_of_birth_year: "",
+      date_of_birth: "",
       gender: "",
       status: "",
       occupation: "",
-      discount: "",
+      discount: "50%",
       residential: "",
-      drivingLicense: "",
+      valid_driving: "",
       demerit_points: "",
       refused_insurance: "",
-      faultAccidents: "",
-      notfaultAccidents: "",
+      accidents: "",
       additional_drivers: "",
       additional_drivers_accidents: ""
-    };
-    $scope.proceed = {
-      no_content: false
-    };
-
-    $scope.proceed.click = function() {
-      $scope.proceed.no_content = true;
     };
     $scope.helps = {
       name: "",

@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Apr 10 2015 11:42:18 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 13 2015 16:14:41 GMT+0800 (CST) */
 
 /*
 
@@ -169,7 +169,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			savedPlan = in case the user wants to save the plan for later or switch
     			to the recommended plan and then switch back
      */
-    var calculateTotalCost, getDataFromAPI, getOption, getRecommendedOptions, getRecommendedPlan, saveCurrentPlan, selectPreviousOptions, selectRecommendedOptions, setupData;
+    var calculateTotalCost, getDataFromAPI, getOption, getRecommendedOptions, getRecommendedPlan, i, saveCurrentPlan, selectPreviousOptions, selectRecommendedOptions, setupData, _i;
     $scope.plan = new InsurancePlan();
     $scope.recommendedPlan = new InsurancePlan();
     $scope.savedPlan = new InsurancePlan();
@@ -209,7 +209,15 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			section at the bottom of the page
      */
     $scope.selectRecommendedPlan = false;
-    $scope.addnewdriver = false;
+
+    /*
+    			This is a container object for the information about up to 4 additional drivers
+    			the user may wish to add.
+     */
+    $scope.additionalDrivers = [];
+    for (i = _i = 0; _i <= 3; i = ++_i) {
+      $scope.additionalDrivers.push(new AdditionalDriver);
+    }
 
     /*
     			This private function fetches data from the back-end to be used on the page
@@ -315,7 +323,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			user has selected
      */
     getRecommendedPlan = function() {
-      var i, matched, option, _i, _len, _ref;
+      var matched, option, _j, _len, _ref;
       $scope.recommendedPlan.car = $scope.plan.car;
       $scope.recommendedPlan.driver = $scope.plan.driver;
       $scope.recommendedPlan.cover = $scope.plan.cover;
@@ -325,7 +333,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       				set recommended optional benefits
        */
       _ref = $scope.options.optionalCover;
-      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      for (i = _j = 0, _len = _ref.length; _j < _len; i = ++_j) {
         option = _ref[i];
         option.recommended = false;
         matched = $scope.recommendedPlan.options.filter(function(recommendedOption) {
@@ -447,7 +455,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     /*
     			This function is a toggle  for selecting/deselecting an optional
     			benefit to add to the plan. If the plan isn't already selected it
-    			will be added to the list. If the plan is already selected it will
+    			will be added to the list. If the option is already selected it will
     			be removed. After changing the selected benefits, the plan's total
     			cost should be recalculated.
      */
@@ -470,11 +478,11 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			for showing a breakdown in the summary section.
      */
     $scope.calculateOptionsCost = function(plan) {
-      var option, optionsCost, _i, _len, _ref;
+      var option, optionsCost, _j, _len, _ref;
       optionsCost = 0;
       _ref = plan.options;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        option = _ref[_i];
+      for (_j = 0, _len = _ref.length; _j < _len; _j++) {
+        option = _ref[_j];
         optionsCost += option.cost;
       }
       return optionsCost;
@@ -523,6 +531,9 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			field value changes the corresponding scope variable is updated.
      */
     $scope.select = function(value, index, property) {
+      if (value === -1) {
+        value = 0;
+      }
       return eval("$scope." + property + "='" + value + "'");
     };
 
@@ -538,11 +549,11 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			private function called only from within functions in this controller.
      */
     selectRecommendedOptions = function() {
-      var matched, option, _i, _len, _ref, _results;
+      var matched, option, _j, _len, _ref, _results;
       _ref = $scope.options.optionalCover;
       _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        option = _ref[_i];
+      for (_j = 0, _len = _ref.length; _j < _len; _j++) {
+        option = _ref[_j];
         option.selected = false;
         matched = $scope.recommendedPlan.options.filter(function(recommendedOption) {
           return recommendedOption.name === option.name;
@@ -567,11 +578,11 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			private function called only from within functions in this controller.
      */
     selectPreviousOptions = function() {
-      var matched, option, _i, _len, _ref, _results;
+      var matched, option, _j, _len, _ref, _results;
       _ref = $scope.options.optionalCover;
       _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        option = _ref[_i];
+      for (_j = 0, _len = _ref.length; _j < _len; _j++) {
+        option = _ref[_j];
         option.selected = false;
         matched = $scope.savedPlan.options.filter(function(previousOption) {
           return previousOption.name === option.name;
@@ -631,55 +642,91 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       $scope.selectRecommendedPlan = false;
       return $scope.compare = false;
     };
-    $scope.showNewDriverForm = function() {
-      var d, _i, _len, _ref;
-      _ref = $scope.plan.additionalDrivers;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        d = _ref[_i];
-        d.editing = false;
-      }
-      $scope.newDriver = new AdditionalDriver;
-      return $scope.addnewdriver = true;
-    };
-    $scope.addNewDriver = function() {
-      $scope.plan.additionalDrivers.push($scope.newDriver);
-      $scope.newDriver = {};
-      $scope.addnewdriver = false;
-      $scope.newDriverForm.$setPristine();
-      return setTimeout(function() {
-        return $("#newDriver-experience").val("").trigger("change");
-      }, 1000);
 
-      /*
-      				synch data with server
-       */
+    /*
+    			First hide any other forms that may be showing for the other additional
+    			drivers. Reset the fake select boxes for new drivers. Then show the
+    			form.
+     */
+    $scope.showNewDriverForm = function(driver) {
+      var d, index, _j, _len, _ref;
+      _ref = $scope.additionalDrivers;
+      for (index = _j = 0, _len = _ref.length; _j < _len; index = ++_j) {
+        d = _ref[index];
+        d.editing = false;
+        if (!d.added) {
+          setTimeout(function() {
+            return $("#editDriver" + index + "-experience").val("").trigger("change");
+          }, 1000);
+        }
+      }
+      return driver.editing = true;
     };
-    $scope.removeAdditionalDriver = function(driver) {
+
+    /*
+    			Check if the additional driver has already been added to the plan. If
+    			so then return the index of that driver in the model's additional
+    			drivers array, otherwise return false.
+     */
+    $scope.wasDriverAdded = function(driver) {
+      var d, index, _j, _len, _ref;
+      _ref = $scope.plan.additionalDrivers;
+      for (index = _j = 0, _len = _ref.length; _j < _len; index = ++_j) {
+        d = _ref[index];
+        if (d === driver) {
+          return index;
+        }
+      }
+      return false;
+    };
+
+    /*
+    			Remove the additional driver from the model and then reset the
+    			driver information on the form. Synch data with the server.
+     */
+    $scope.removeAdditionalDriver = function(driver, index) {
       var additionalDrivers;
       additionalDrivers = $scope.plan.additionalDrivers.filter(function(ad) {
         return ad !== driver;
       });
-      return $scope.plan.additionalDrivers = additionalDrivers;
+      $scope.plan.additionalDrivers = additionalDrivers;
+      $scope.additionalDrivers[index] = new AdditionalDriver;
+
+      /*
+      				synch data with server
+       */
+      return console.table($scope.plan.additionalDrivers);
     };
+
+    /*
+    			Hide all additional driver forms then show the form for this driver.
+     */
     $scope.editAdditionalDriver = function(driver) {
-      var d, _i, _len, _ref;
-      $scope.addnewdriver = false;
-      _ref = $scope.plan.additionalDrivers;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        d = _ref[_i];
+      var d, _j, _len, _ref;
+      _ref = $scope.additionalDrivers;
+      for (_j = 0, _len = _ref.length; _j < _len; _j++) {
+        d = _ref[_j];
         d.editing = false;
       }
       return driver.editing = true;
     };
+
+    /*
+    			If the driver is new then add the driver's details to the model's
+    			additional drivers array. If not then update the model. Hide the
+    			forms, synch data to the server, and log the results.
+     */
     $scope.saveChangesToDriver = function(driver) {
-      var d, _i, _len, _ref;
+      var index;
       console.log("saving driver");
-      _ref = $scope.plan.additionalDrivers;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        d = _ref[_i];
-        d.editing = false;
-        delete d["editing"];
+      index = $scope.wasDriverAdded(driver);
+      if (index) {
+        $scope.plan.additionalDrivers[index] = driver;
+      } else {
+        $scope.plan.additionalDrivers.push(driver);
       }
+      driver.editing = false;
+      driver.added = true;
 
       /*
       				synch data with server

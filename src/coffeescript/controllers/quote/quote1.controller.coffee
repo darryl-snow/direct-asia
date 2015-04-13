@@ -221,7 +221,14 @@ angular.module "DirectAsia"
 
 			$scope.selectRecommendedPlan = false
 
-			$scope.addnewdriver = false
+			###
+			This is a container object for the information about up to 4 additional drivers
+			the user may wish to add.
+			###
+
+			$scope.additionalDrivers = []
+			for i in [0..3]
+				$scope.additionalDrivers.push new AdditionalDriver
 
 			###
 			This private function fetches data from the back-end to be used on the page
@@ -481,7 +488,7 @@ angular.module "DirectAsia"
 			###
 			This function is a toggle  for selecting/deselecting an optional
 			benefit to add to the plan. If the plan isn't already selected it
-			will be added to the list. If the plan is already selected it will
+			will be added to the list. If the option is already selected it will
 			be removed. After changing the selected benefits, the plan's total
 			cost should be recalculated.
 			###
@@ -559,6 +566,9 @@ angular.module "DirectAsia"
 			###
 
 			$scope.select = (value, index, property) ->
+
+				if value is -1 then value = 0
+
 				eval "$scope." + property + "='" + value + "'"
 
 			###
@@ -659,55 +669,82 @@ angular.module "DirectAsia"
 				$scope.selectRecommendedPlan = false
 				$scope.compare = false
 
+			###
+			First hide any other forms that may be showing for the other additional
+			drivers. Reset the fake select boxes for new drivers. Then show the
+			form.
+			###
+			$scope.showNewDriverForm = (driver) ->
 
-
-
-
-			$scope.showNewDriverForm = ->
-				for d in $scope.plan.additionalDrivers
+				for d, index in $scope.additionalDrivers
 					d.editing = false
 
-				$scope.newDriver = new AdditionalDriver
-				$scope.addnewdriver = true
+					if !d.added
+						# dirty hack!
+						setTimeout ->
+							$("#editDriver" + index + "-experience").val("").trigger("change");
+						, 1000
 
-			$scope.addNewDriver = ->
-				$scope.plan.additionalDrivers.push $scope.newDriver
-				$scope.newDriver = {}
-				$scope.addnewdriver = false
-				$scope.newDriverForm.$setPristine()
-				
-				# dirty hack!
-				setTimeout ->
-					$("#newDriver-experience").val("").trigger("change");
-				, 1000
+				driver.editing = true
 
-				###
-				synch data with server
-				###
+			###
+			Check if the additional driver has already been added to the plan. If
+			so then return the index of that driver in the model's additional
+			drivers array, otherwise return false.
+			###
+			$scope.wasDriverAdded = (driver) ->
 
-			$scope.removeAdditionalDriver = (driver) ->
+				for d, index in $scope.plan.additionalDrivers
+					if d is driver
+						return index
+
+				false
+
+			###
+			Remove the additional driver from the model and then reset the
+			driver information on the form. Synch data with the server.
+			###
+			$scope.removeAdditionalDriver = (driver, index) ->
 
 				additionalDrivers = $scope.plan.additionalDrivers.filter (ad) ->
 					ad isnt driver
 
 				$scope.plan.additionalDrivers = additionalDrivers
 
-			$scope.editAdditionalDriver = (driver) ->
-				$scope.addnewdriver = false
+				$scope.additionalDrivers[index] = new AdditionalDriver
 
-				for d in $scope.plan.additionalDrivers
+				###
+				synch data with server
+				###
+
+				console.table $scope.plan.additionalDrivers
+
+			###
+			Hide all additional driver forms then show the form for this driver.
+			###
+			$scope.editAdditionalDriver = (driver) ->
+
+				for d in $scope.additionalDrivers
 					d.editing = false
 
 				driver.editing = true
 
+			###
+			If the driver is new then add the driver's details to the model's
+			additional drivers array. If not then update the model. Hide the
+			forms, synch data to the server, and log the results.
+			###
 			$scope.saveChangesToDriver = (driver) ->
 
 				console.log "saving driver"
 
-				# remove 'editing' key from all drivers
-				for d in $scope.plan.additionalDrivers
-					d.editing = false
-					delete d["editing"]
+				index = $scope.wasDriverAdded driver
+
+				if index then $scope.plan.additionalDrivers[index] = driver
+				else $scope.plan.additionalDrivers.push driver
+
+				driver.editing = false
+				driver.added = true
 
 				###
 				synch data with server
