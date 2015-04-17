@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="DirectAsia">
+  <head>
+    <title>About Your Driver - Direct Asia Car Insurance</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Front-End templates for Direct Asia Car Insurance">
+    <meta name="keywords" content="bootstrap angularJS bootflat">
+    <meta name="author" content="Darryl Snow">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../lib/bootstrap.css">
+    <link rel="stylesheet" href="../../lib/bootflat.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <!--if lt IE 9
+    script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
+    
+    -->
+    <link rel="apple-touch-icon" sizes="57x57" href="../../images/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../images/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../../images/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../images/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="../../images/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../images/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="../../images/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="../../images/favicon-192x192.png" sizes="192x192">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../../images/mstile-144x144.png">
+    <meta name="msapplication-config" content="../../images/browserconfig.xml">
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+    <script src="../../lib/jquery.js"></script>
+    <script src="../../lib/angular.js"></script>
+    <script src="../../lib/angular-translate.js"></script>
+    <script src="../../lib/angular-translate-loader-static-files.js"></script>
+    <script src="../../lib/bootstrap.js"></script>
+    <script src="../../lib/jquery.fs.selecter.js"></script>
+    <script src="../../lib/fsm-sticky-header.js"></script>
+    <script src="../../scripts/main.js"></script>
+    <script src="../../scripts/controllers/help/help.controller.js"></script>
+    <script src="../../scripts/directives/continue-button.directive.js"></script>
+    <script src="../../scripts/directives/full-page-height.directive.js"></script>
+    <script src="../../scripts/directives/input-group.directive.js"></script>
+    <script src="../../scripts/directives/popover.directive.js"></script>
+    <script src="../../scripts/directives/selecter.directive.js"></script>
+    <script src="../../scripts/directives/sticky-navbar.directive.js"></script>
+    <script src="../../scripts/directives/toggle-buttons.directive.js"></script>
+    <script src="../../scripts/directives/tooltip.directive.js"></script>
+    <script src="../../scripts/services/AdditionalDriver.factory.js"></script>
+    <script src="../../scripts/services/Car.factory.js"></script>
+    <script src="../../scripts/services/InsurancePlan.factory.js"></script>
+    <script src="../../scripts/services/MainDriver.factory.js"></script>
+    <script src="../../scripts/filters/age.filter.js"></script>
+    <script src="../../scripts/filters/range.filter.js"></script>
+    <script src="../../scripts/filters/slugify.filter.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar navbar-default">
+        <div class="navbar-header"><a href="/" class="navbar-brand"><img src="../../images/direct-asia-logo.png"></a></div>
+        <div class="navbar-title">Car Insurance</div>
+        <ol class="breadcrumb breadcrumb-arrow">
+          <li class="active"><a href="#">Your Car &amp; Drivers</a></li>
+          <li><span>Your Quote</span></li>
+          <li><span>Purchase</span></li>
+        </ol>
+        <div class="navbar-telephone pull-right">Call our Singapore Team on<span class="navbar-telephone-number">9854 4345</span></div>
+      </div>
+      <link rel="stylesheet" href="../../lib/bootstrap-slider.css">
+      <script src="../../lib/bootstrap-slider.min.js"></script>
+      <script src="../../scripts/controllers/about-your-driver/about-your-driver.controller.js"></script>
+      <section data-ng-controller="aboutYourDriverCtrl" class="section section-plan">
+        <form name="driverForm" novalidate>
+          <div class="container">
+            <div class="panel">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h1><img src="../../images/person-icon.png" class="pull-left"><span translate="PS_3_0a">Tell Us About the Main Driver</span>
+                      <div translate="PS_3_0b" class="subtitle">it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.</div>
+                    </h1>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="col-md-12 col-xs-10">
+                      <h2><span translate="GS_0_2a">Existing Customer?</span>
+                        <div translate="GS_0_2b" class="subtitle">Save time and retrieve your renewal quote</div>
+                      </h2>
+                    </div>
+                    <div class="col-md-12 col-xs-2">
+                      <button type="button" class="btn btn-default"><span translate="GS_0_2c">Login Now</span><span class="glyphicon glyphicon-ok"></span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="panel1">
+                  <div class="container-fluid">
+                    <h2 data-toggle="tooltip" data-placement="top" title="The main driver is the person who uses the car most frequently. They do not need to be the car owner (policyholder)." class="show-tooltip"><span translate="PS_3_0c">Does the main driver own the car?</span><img src="../../images/question-icon.png"></h2>
+                    <button id="ownCar" name="ownCar" type="button" data-ng-class="{'active': driver.ownership}" data-ng-click="driver.ownership = true" class="btn btn-default random-margin"><span translate="PS_3_0d">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                    <button name="ownCar" type="button" data-ng-class="{'active': driver.ownership}" data-ng-click="driver.ownership = false" class="btn btn-default"><span translate="PS_3_0e">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="!driver.ownership &amp;&amp; driverForm.$submitted">
+                    <h2 translate="PS_3_0f">Date of Birth</h2>
+                    <div class="custom-tooltip">
+                      <div data-toggle="popover" data-placement="right" popover="#popover2" popover-type data-original-title title class="form-inline hover-tooltip">
+                        <input id="driverDOBDay" name="driverDOBDay" data-ng-model="driver.dob.day" placeholder="DD" type="number" min="1" max="31" required class="day">
+                        <input id="driverDOBMonth" name="driverDOBMonth" data-ng-model="driver.dob.month" placeholder="MM" type="number" min="1" max="12" required class="month">
+                        <input id="driverDOBYear" name="driverDOBYear" data-ng-model="driver.dob.year" placeholder="YYYY" type="number" min="1900" max="2015" required class="year"><img src="../../images/error.png" data-ng-show="(driverForm.driverDOBDay.$invalid &amp;&amp; driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid &amp;&amp; driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid &amp;&amp; driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) &amp;&amp; driverForm.$submitted)">
+                      </div>
+                      <div id="popover2" class="popover right">
+                        <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button><span translate="PS_3_0f_1">The main driver should be less than 70 year old</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h2 translate="PS_3_0g">Gender</h2>
+                        <button name="gender" type="button" data-ng-class="{'active': driver.gender == 'male'}" data-ng-click="driver.gender = 'male'" class="btn btn-default random-margin"><span translate="PS_3_0g_1">Male</span><span class="glyphicon glyphicon-ok"></span></button>
+                        <button name="gender" type="button" data-ng-class="{'active': driver.gender == 'female'}" data-ng-click="driver.gender = 'female'" class="btn btn-default"><span translate="PS_3_0g_2">Female</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="driverForm.$submitted &amp;&amp; !driver.gender">
+                      </div>
+                      <div class="col-md-6">
+                        <h2 translate="PS_3_0h">Marital Status</h2>
+                        <button name="status" type="button" data-ng-class="{'active': driver.maritalStatus == 'single'}" data-ng-click="driver.maritalStatus = 'single'" class="btn btn-default random-margin"><span translate="PS_3_0i">Single</span><span class="glyphicon glyphicon-ok"></span></button>
+                        <button name="status" type="button" data-ng-class="{'active': driver.maritalStatus == 'married'}" data-ng-click="driver.maritalStatus = 'married'" class="btn btn-default"><span translate="PS_3_0j">Married</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="driverForm.$submitted &amp;&amp; !driver.maritalStatus">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h2 translate="PS_3_0k">Occupation</h2>
+                        <select id="occupation" name="occupation" data-ng-model="driver.occupation" required>
+                          <option selecter label="Enter Occupation" value="{{occupation}}" data-ng-repeat="occupation in occupations" selecter-target="#occupation" selecter-callback="select" property="occupation" data-ng-selected="occupation == selectedItem">{{occupation}}</option>
+                        </select><img src="../../images/error.png" data-ng-show="(driverForm.occupation.$invalid &amp;&amp; driverForm.occupation.$dirty) || (driverForm.occupation.$invalid &amp;&amp; driverForm.$submitted)">
+                      </div>
+                      <div class="col-md-6">
+                        <h2 translate="PS_3_0l">Residential District</h2>
+                        <select id="residential" name="residential" data-ng-model="driver.residentialDistrict" required>
+                          <option selecter label="Enter Residential District" value="{{residential}}" data-ng-repeat="residential in residentials" selecter-target="#residential" selecter-callback="select" property="residential" data-ng-selected="residential == selectedItem">{{residential}}</option>
+                        </select><img src="../../images/error.png" data-ng-show="(driverForm.residential.$invalid &amp;&amp; driverForm.residential.$dirty) || (driverForm.residential.$invalid &amp;&amp; driverForm.$submitted)">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container-fluid">
+                    <h2 translate="PS_3_1_1a">Years of valid driving license</h2>
+                    <div class="custom-tooltip">
+                      <div data-toggle="popover" data-placement="right" popover="#driving-experience" popover-type data-original-title title class="hover-tooltip">
+                        <select id="drivingExperience" name="drivingExperience" data-ng-model="driver.drivingExperience" required>
+                          <option selecter label="Enter Driving License" value="{{drivingExperience}}" data-ng-repeat="drivingExperience in drivingExperiences" selecter-target="#drivingExperience" selecter-callback="select" property="drivingExperience" data-ng-selected="drivingExperience == selectedItem">{{drivingExperience}}</option>
+                        </select><img src="../../images/error.png" data-ng-show="(driverForm.drivingExperience.$invalid &amp;&amp; driverForm.drivingExperience.$dirty) || (driverForm.drivingExperience.$invalid &amp;&amp; driverForm.$submitted)">
+                      </div>
+                      <div id="driving-experience" class="popover right">
+                        <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button><span translate="PS_3_1_1b">We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container-fluid">
+                    <h2><span translate="PS_3_1_2a">No Claims Discount</span>
+                      <div translate="PS_3_1_2b" class="subtitle">You will find on the renewal notice you recieved from your insurer</div>
+                    </h2>
+                    <input id="discount" type="text" data-ng-model="driver.noClaimsDiscount">
+                    <script type="text/javascript">
+                      $("#discount").slider({
+                      	ticks: [0, 10, 20, 30, 40],
+                      	ticks_labels: ["0%", "20%", "30%", "40%", "50%"],
+                      	ticks_snap_bounds: 30
+                      });
+                      
+                    </script>
+                    <div data-ng-show="!driver.noClaimsDiscount">
+                      <h2 translate="PS_3_1_2_1a">Why does the main driver have 0% NCD?</h2>
+                      <label for="checkbox1" class="label-checkbox">
+                        <input id="checkbox1" type="checkbox">
+                        <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1b">Never been insured</span>
+                      </label>
+                      <label for="checkbox2" class="label-checkbox">
+                        <input id="checkbox2" type="checkbox">
+                        <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1c">Insured in the past, but not in the last 12 months</span>
+                      </label>
+                      <label for="checkbox3" class="label-checkbox">
+                        <input id="checkbox3" type="checkbox">
+                        <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1d">Claims have been made in the last 12 months</span>
+                      </label>
+                      <label for="checkbox4" class="label-checkbox">
+                        <input id="checkbox4" type="checkbox">
+                        <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1e">Insured as a named driver on another policy</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="container-fluid">
+                    <h2><span translate="PC_3_1_3a">Did the main driver have any driving offence points in the last 2 years?</span></h2>
+                    <div class="custom-tooltip">
+                      <div data-toggle="popover" data-placement="right" popover="#driving-offence" popover-type data-original-title title class="hover-tooltip">
+                        <button id="offences-yes" name="offences" type="button" data-ng-class="{'active': driver.offences}" data-ng-click="driver.offences = true" class="btn btn-default random-margin"><span translate="PC_3_1_3c">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                        <button id="offences-no" name="offences" type="button" data-ng-class="{'active': !driver.offences}" data-ng-click="driver.offences = false" class="btn btn-default"><span translate="PC_3_1_3d">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="driverForm.$submitted &amp;&amp; driver.offences == null">
+                      </div>
+                      <div id="driving-offence" class="popover right">
+                        <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button><span translate="PC_3_1_3b">If you‘re unsure, <a href="http://www.police.gov.hk/ppp_en/05_traffic_matters/tcr.html">click here</a> to get this information. Please note that drivers must have less than 12 offence points.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container-fluid">
+                    <h2 translate="PC_3_1_5a">Has insurance been refused or cancelled in the past 3 years?</h2>
+                    <button name="refusedInsurance" type="button" data-ng-class="{'active': driver.refusals == 'yes'}" data-ng-click="driver.refusals = 'yes'" class="btn btn-default random-margin"><span translate="PC_3_1_5b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                    <button name="refusedInsurance" type="button" data-ng-class="{'active': driver.refusals == 'no'}" data-ng-click="driver.refusals = 'no'" class="btn btn-default"><span translate="PC_3_1_5c">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="driverForm.$submitted &amp;&amp; driver.refusals == null">
+                  </div>
+                  <div class="container-fluid">
+                    <h2><span translate="PC_3_1_4a">In the past 3 years (36 months), how many accidents and/or claims where made?</span>
+                      <div translate="PC_3_1_4b" class="subtitle">You should include all accidents and/or claims, but you can exclude windscreen claims.</div>
+                    </h2>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <label translate="PC_4_4_1_4c">at Fault</label>
+                        <select id="fault" name="fault" data-ng-model="driver.accidents.atFault" required>
+                          <option selecter label="at Fault" value="{{fault}}" data-ng-repeat="fault in faults" selecter-target="#fault" selecter-callback="select" property="fault" data-ng-selected="fault == selectedItem">{{fault}}</option>
+                        </select><img src="../../images/error.png" data-ng-show="(driverForm.fault.$invalid &amp;&amp; driverForm.fault.$dirty) || (driverForm.fault.$invalid &amp;&amp; driverForm.$submitted)">
+                      </div>
+                      <div class="col-xs-6">
+                        <label translate="PC_4_4_1_4d">Not at Fault</label>
+                        <select id="notFault" name="notFault" data-ng-model="driver.accidents.notAtFault" required>
+                          <option selecter label="Not at Fault" value="{{notFault}}" data-ng-repeat="notFault in notFaults" selecter-target="#notFault" selecter-callback="select" property="notFault" data-ng-selected="notFault == selectedItem">{{notFault}}</option>
+                        </select><img src="../../images/error.png" data-ng-show="(driverForm.notFault.$invalid &amp;&amp; driverForm.notFault.$dirty) || (driverForm.notFault.$invalid &amp;&amp; driverForm.$submitted)">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button type="button" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_3_3_1">Back</span></button>
+                      <button type="submit" continue url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid" class="btn btn-forward btn-lg pull-right"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+      <div class="overlay">
+        <div class="panel">
+          <button type="button" class="overlay-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+          <div class="panel-body">
+            <h2 translate="PC_3_3_3">Sorry, but we‘d like to speak with you about your policy</h2>
+            <p><strong translate="PC_3_3_4">What to do next:</strong></p>
+            <p translate="PC_3_3_5">Call our [Country] based team and provide your reference number and we‘ll help you complete your policy</p>
+            <p><strong><span translate="PC_3_3_6">Your Reference Number:</span> XXXXX</strong></p>
+            <p><span translate="GS_0_0_2a">Call us on</span> +852 2884 8888<span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="page-footer">
+      <div class="container">
+        <button ng-click="switchLanguage('zh_CN')" data-ng-show="currentLanguage=='en_GB'" class="btn btn-sm btn-icon btn-icon--chinese pull-right">Chinese</button>
+        <button ng-click="switchLanguage('en_GB')" data-ng-show="currentLanguage=='zh_CN'" class="btn btn-sm btn-icon btn-icon--english pull-right">English</button>
+      </div>
+    </footer>
+    <script>
+      //- function loadCSS(e,t,n){"use strict";var i=window.document.createElement("link");var o=t||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";o.parentNode.insertBefore(i,o);setTimeout(function(){i.media=n||"all"})}
+      //- loadCSS("styles/main.css");
+      
+      //- var _gaq = _gaq || [];
+      //- _gaq.push(["_setAccount", "UA-XXXXXXXX-X"]);
+      //- _gaq.push(["_trackPageview"]);
+      
+      //- (function() {
+      //- 	var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+      //- 	ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+      //- 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      //- })();
+      
+    </script>
+  </body>
+</html>

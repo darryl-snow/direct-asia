@@ -8,6 +8,10 @@ shown on mouseover
 angular.module "DirectAsia"
 	.directive "showTooltip", ->
 		restrict: "C"
+		scope:
+			text: "@"
+			title: "@"
 		link: (scope, element, attrs) ->
 
-			element.tooltip()
+			element.tooltip
+				title: if scope.text then encodeURI(scope.text) else encodeURI(scope.title)

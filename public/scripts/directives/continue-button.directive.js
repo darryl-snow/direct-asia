@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon Apr 13 2015 16:14:41 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Sat Apr 18 2015 03:30:34 GMT+0800 (CST) */
 
 /*
 Directive for continue buttons - buttons at the bottom of
@@ -20,6 +20,10 @@ to this directive:
 * url -						the URL of the API that data should
 * 							be sent to
 *
+* valid -					a parent scope variable indicating
+* 							whether the page/form is ok for the
+* 							user to leave (i.e. forms are valid)
+*
 * e.g.
 * <button continue url="http://myAPIurl:port/plans" page-data="{{plan}}"
 *  next-page="thankyou.html">Continue</button>
@@ -34,23 +38,26 @@ angular.module("DirectAsia").directive("continue", [
       scope: {
         pageData: "@",
         nextPage: "@",
-        url: "@"
+        url: "@",
+        valid: "="
       },
       link: function(scope, element, attrs) {
         return element.on("click", function() {
-          if (scope.data && scope.url) {
-            return $http({
-              method: "POST",
-              url: scope.url,
-              cache: true,
-              data: scope.pageData
-            }).success(function(response) {
+          if (scope.valid) {
+            if (scope.data && scope.url) {
+              return $http({
+                method: "POST",
+                url: scope.url,
+                cache: true,
+                data: scope.pageData
+              }).success(function(response) {
+                return $window.location.href = scope.nextPage;
+              }).error(function(response, status) {
+                return console.error("The request failed with response " + response + " and status code " + status);
+              });
+            } else {
               return $window.location.href = scope.nextPage;
-            }).error(function(response, status) {
-              return console.error("The request failed with response " + response + " and status code " + status);
-            });
-          } else {
-            return $window.location.href = scope.nextPage;
+            }
           }
         });
       }

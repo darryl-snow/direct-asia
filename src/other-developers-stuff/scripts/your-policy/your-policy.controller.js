@@ -1,7 +1,7 @@
-/* direct-asia : 0.0.0 : Mon Mar 30 2015 01:01:54 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 13 2015 16:14:41 GMT+0800 (CST) */
 angular.module("DirectAsia").controller("yourPolicy", [
   "$scope", function($scope) {
-  	    $scope.policy = {
+  	$scope.policy = {
         registration_number: '',
         car_chassis_number: '',
         NCD: '',
@@ -25,13 +25,6 @@ angular.module("DirectAsia").controller("yourPolicy", [
         driver_relationship_with_policyholder: '',
     };
 
-    $scope.proceed = {
-        no_content: false
-    };
-
-    $scope.proceed.click = function() {
-            $scope.proceed.no_content = true;
-    };
     $scope.select = function(value, property) {
         return $scope.policy[property] = value;
     };

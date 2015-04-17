@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="DirectAsia">
+	<head>
+			<title>Car Insurance - Direct Asia Car Insurance</title>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="description" content="Front-End templates for Direct Asia Car Insurance">
+			<meta name="keywords" content="bootstrap angularJS bootflat">
+			<meta name="author" content="Darryl Snow">
+			<meta name="viewport" content="width=device-width,initial-scale=1">
+			<meta name="msapplication-TileColor" content="#ffffff" />
+			<meta name="msapplication-TileImage" content="../../images/mstile-144x144.png" />
+			<meta name="msapplication-config" content="../../images/browserconfig.xml" />
+
+			<link rel="stylesheet" href="../../lib/bootstrap.css">
+			<link rel="stylesheet" href="../../lib/bootflat.css">
+			<link rel="stylesheet" href="../../styles/main.css">
+			<!--if lt IE 9
+			script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
+			
+			-->
+			<link rel="apple-touch-icon" sizes="57x57" href="../../images/apple-touch-icon-57x57.png">
+			<link rel="apple-touch-icon" sizes="114x114" href="../../images/apple-touch-icon-114x114.png">
+			<link rel="apple-touch-icon" sizes="72x72" href="../../images/apple-touch-icon-72x72.png">
+			<link rel="apple-touch-icon" sizes="144x144" href="../../images/apple-touch-icon-144x144.png">
+			<link rel="apple-touch-icon" sizes="60x60" href="../../images/apple-touch-icon-60x60.png">
+			<link rel="apple-touch-icon" sizes="120x120" href="../../images/apple-touch-icon-120x120.png">
+			<link rel="apple-touch-icon" sizes="76x76" href="../../images/apple-touch-icon-76x76.png">
+			<link rel="apple-touch-icon" sizes="152x152" href="../../images/apple-touch-icon-152x152.png">
+			<link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon-180x180.png">
+			<link rel="icon" type="image/png" href="../../images/favicon-16x16.png" sizes="16x16">
+			<link rel="icon" type="image/png" href="../../images/favicon-32x32.png" sizes="32x32">
+			<link rel="icon" type="image/png" href="../../images/favicon-96x96.png" sizes="96x96">
+			<link rel="icon" type="image/png" href="../../images/favicon-160x160.png" sizes="160x160">
+			<link rel="icon" type="image/png" href="../../images/favicon-192x192.png" sizes="192x192">
+
+			<link rel="shortcut icon" href="../../images/favicon.ico">
+			<script src="../../lib/jquery.js"></script>
+			<script src="../../lib/angular.js"></script>
+			<script src="../../lib/angular-translate.js"></script>
+			<script src="../../lib/angular-translate-loader-static-files.js"></script>
+			<script src="../../lib/bootstrap.js"></script>
+			<script src="../../lib/jquery.fs.selecter.js"></script>
+			<script src="../../lib/fsm-sticky-header.js"></script>
+			<script src="../../scripts/main.js"></script>
+			<script src="../../scripts/controllers/help/help.controller.js"></script>
+			<script src="../../scripts/directives/continue-button.directive.js"></script>
+			<script src="../../scripts/directives/input-group.directive.js"></script>
+			<script src="../../scripts/directives/popover.directive.js"></script>
+			<script src="../../scripts/directives/selecter.directive.js"></script>
+			<script src="../../scripts/directives/toggle-buttons.directive.js"></script>
+			<script src="../../scripts/directives/tooltip.directive.js"></script>
+			<script src="../../scripts/services/AdditionalDriver.factory.js"></script>
+			<script src="../../scripts/services/Car.factory.js"></script>
+			<script src="../../scripts/services/InsurancePlan.factory.js"></script>
+			<script src="../../scripts/services/MainDriver.factory.js"></script>
+			<script src="../../scripts/filters/age.filter.js"></script>
+			<script src="../../scripts/filters/range.filter.js"></script>
+			<script src="../../scripts/filters/slugify.filter.js"></script>
+
+	</head>
+	<body>
+
+		<div class="need-help" ng-controller="helpController">
+			<button type="button" class="popover-button btn btn-primary btn-action btn-sm" translate="GS_0_0_1a">Need Help?</button>
+			<div id="popover" class="popover left help-div">
+				<div class="arrow"></div>
+					<form>
+						<button type="button" class="popover-close-button">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						<div ng-hide="helps.submit">
+							<p>
+								<b translate="PS_3_0_1">Let us call you. Provide your details below and someone from our HK customer care team will get back to you.</b>
+							</p>
+							<div ng-class="{error:!helps.name && helps.no_content}">
+								<img src="../../images/error.png">
+								<input class="form-control" type="text" placeholder="Enter Name" name="name" ng-model="helps.name">
+							</div>
+							<div ng-class="{error:!helps.email && helps.no_content}">
+								<img src="../../images/error.png">
+								<input class="form-control" type="email" placeholder="Enter Email Address" name="email" ng-model="helps.email">
+							</div>
+							<div ng-class="{error:!helps.number && helps.no_content}">
+								<img src="../../images/error.png">
+								<input class="form-control" type="tel" placeholder="Enter Phone Number" name="phone" ng-model="helps.number">
+							</div>
+							<button type="button" class="btn btn-forward" ng-click="helps.click()" translate="PS_3_0_2">Send Now</button>
+						</div>
+						<div class="on-submit" ng-show="helps.submit">
+							<h2>
+								<span translate="PS_3_0_3">Message Sent</span>
+								<div class="subtitle" translate="PS_3_0_4">Thank you for your message. We will respond to you with 24 hours.</div>
+							</h2>
+						</div>
+						<div class="space"></div>
+						<p>
+							<span translate="GS_0_0_2a">Call us on </span>+852 2884 8888<br/>
+							<span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span>
+						</p>
+						<p>
+							<span translate="GS_0_0_3a">Email us at</span>
+							<a href="">enquiries@directasia.com.hk</a>
+						</p>                 
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+
+			<div class="navbar navbar-default">
+				<div class="navbar-header">
+					<a href="/" class="navbar-brand">
+						<img src="../../images/direct-asia-logo.png">
+					</a>
+				</div>
+				<div class="navbar-title" translate="GS_0_0_1">Car Insurance</div>
+				<ol class="breadcrumb breadcrumb-arrow">
+					<li class="active"><a href="#" translate="GC_0_1_1">Your Car &amp; Drivers</a></li>
+					<li><a href="#" translate="GC_0_1_2">Your Quote</a></li>
+					<li><span translate="GC_0_1_3">Purchase</span></li>
+				</ol>
+				<div class="navbar-telephone pull-right">
+					<span translate="GS_0_0_2">Need help? Speak with Our Hong Kong Team</span>
+					<span class="navbar-telephone-number">2884 8888</span>
+					<span translate="GS_0_0_3">Mon - Fri 8am - 8pm | Sat 9am - 6pm</span>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- PAGE START -->
+
+		<script src="../../scripts/controllers/car/car.controller.js"></script>
+
+		<div class="container">
+
+			<section class="section section-car" ng-controller="CarCtrl">
+
+				<form name="carForm" novalidate>
+
+					<div class="panel">
+
+						<div class="panel-body">
+
+							<div class="row">
+
+								<div class="col-md-6">
+									<h1>
+										<img src="../../images/car-icon.png" class="pull-left">
+										<span translate="PS_2_0_1">Tell us about the car</span>
+									</h1>
+								</div>
+
+								<div class="col-md-6">
+
+									<div class="col-md-12 col-xs-10">
+										<h2>
+											<span translate="GS_0_2a">Existing Customer?</span>
+											<div class="subtitle" translate="GS_0_2b">Save time and retrieve your renewal quote</div>
+										</h2>
+									</div>
+
+									<div class="col-md-12 col-xs-2">
+										<button type="button" class="btn btn-default">
+											<span translate="GS_0_2c">Login Now</span>
+											<span class="glyphicon glyphicon-ok"></span>
+										</button>
+									</div>
+
+								</div>
+
+							</div>
+						
+						</div>
+
+						<div class="panel-footer">
+
+							<div class="custom-tooltip">
+
+								<div class="row hover-tooltip" data-toggle="popover" data-placement="right" popover="#driving-offence" popover-type="" data-original-title="" title="">
+
+								<div class="col-md-4">
+
+									<label for="year">
+										<span translate="PS_2_0_3">Year of Manufacture</span>
+										<img data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document." class="show-tooltip" src="../../images/question-icon.png">
+									</label>
+
+									<input id="carYear" name="carYear" ng-model="car.year" class="form-control" type="number" min="1980" max="2015" placeholder="Enter year" name="year" required>
+
+									<img class="error-input-image" src="../../images/error.png" data-ng-show="(carForm.carYear.$invalid && carForm.carYear.$dirty) || (carForm.carYear.$invalid && carForm.$submitted)">
+
+								</div>
+
+								<div class="col-md-4">
+
+									<label for="make">
+										<span translate="PS_2_0_4">Car Make</span>
+										<img src="../../images/question-icon.png">
+									</label>
+
+									<input id="carMake" name="carMake" ng-model="car.make" class="form-control" type="text" placeholder="Enter make" name="make" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required>
+
+									<img class="error-input-image" src="../../images/error.png" data-ng-show="(carForm.carMake.$invalid && carForm.carMake.$dirty) || (carForm.carMake.$invalid && carForm.$submitted)">
+
+								</div>
+
+								<div class="col-md-4">
+
+									<label for="model">
+										<span translate="PS_2_0_5">Car Model</span>
+										<img src="../../images/question-icon.png">
+									</label>
+
+									<select id="model" name="model" ng-model="car.model" required>
+										<option selecter label="Enter model" value="{{model}}" data-ng-repeat="model in models" selecter-target="#model" selecter-callback="select" property="model" ng-selected="model == selectedItem">{{model}}</option>
+									</select>
+
+									<img class="error-input-image" src="../../images/error.png" data-ng-show="(carForm.model.$invalid && carForm.model.$dirty) || (carForm.model.$invalid && carForm.$submitted)" style="position:absolute; right: 15px; bottom: 3px;">
+
+								</div>
+
+								<div id="driving-offence" class="popover right">
+
+									<button type="button" class="popover-close-button">
+										<span class="glyphicon glyphicon-remove"></span>
+									</button>
+
+									<div class="subtitle" translate="PS_2_0_2">Please note that we do not cover cars used for commercial purposes or for hire/reward</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+	
+					<div class="container-fluid margin--bottom">
+
+						<div class="container-fluid">
+
+							<h2 class="margin--bottom" translate="PS_2_1_2_1">Is the vehicle privately owned or corporate owned?</h2>
+
+							<button name="carOwnership" type="button" ng-click="select('private', 0, 'ownership')" ng-class="{'active':car.ownership=='private'}" class="btn btn-default random-margin">
+								<span translate="PS_2_1_2_2">Private</span>
+								<span class="glyphicon glyphicon-ok"></span>
+							</button>
+
+							<button name="carOwnership" type="button" ng-click="select('corporate', 0, 'ownership')" ng-class="{'active':car.ownership=='corporate'}" class="btn btn-default">
+								<span translate="PS_2_1_2_3">Corporate</span>
+								<span class="glyphicon glyphicon-ok"></span>
+							</button>
+
+							<img src="../../images/error.png" data-ng-show="carForm.$submitted && !car.ownership">
+
+						</div>
+
+					</div>
+
+					<div class="container-fluid margin--bottom margin--top">
+
+						<div class="container-fluid margin--bottom">
+
+							<h2 class="margin--bottom">
+								<span translate="PS_2_1_4_a">Roughly how many kilometres do you drive per year?</span>
+								<img data-toggle="tooltip" data-placement="top" title="We ask how much you drive per year so we can recommend the right optional benefits for your policy." class="show-tooltip" src="../../images/question-icon.png">
+							</h2>
+
+							<div class="row">
+
+								<div class="col-md-2">
+
+									<button type="button" ng-click="select('&lt; 8,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='&lt; 8,000'}" class="btn btn-default margin--bottom">
+										<span translate="PS_2_1_4_b">Less than 8,000 km</span>
+										<span class="glyphicon glyphicon-ok"></span>
+									</button>
+
+								</div>
+
+								<div class="col-md-2">
+
+									<button type="button" ng-click="select('8,000 - 15,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='8,000 - 15,000'}" class="btn btn-default margin--bottom">
+										<span translate="PS_2_1_4_c">8,000 km - 15,000 km</span>
+										<span class="glyphicon glyphicon-ok"></span>
+									</button>
+
+								</div>
+
+								<div class="col-md-2">
+
+									<button type="button" ng-click="select('&gt; 15,000', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='&gt; 15,000'}" class="btn btn-default margin--bottom">
+										<span translate="PS_2_1_4_d">Over 15,000 km</span>
+										<span class="glyphicon glyphicon-ok"></span>
+									</button>
+
+								</div>
+
+								<div class="col-md-2">
+
+									<button type="button" ng-click="select('not sure', 0, 'kmsperyear')" ng-class="{'active':car.kmsperyear=='not sure'}" class="btn btn-default margin--bottom">
+										<span translate="PS_2_1_4_e">Not sure</span>
+										<span class="glyphicon glyphicon-ok"></span>
+									</button>
+
+								</div>
+
+								<div class="col-md-1">
+									<img src="../../images/error.png" data-ng-show="carForm.$submitted && !car.kmsperyear">
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="row">
+
+						<div class="col-md-8">
+
+							<div class="arrow"></div>
+
+							<div class="panel-body">
+
+								<h2 class="margin--bottom">
+									<span translate="PS_2_1_4_2_1">What do you use the car for?</span>
+									<img src="../../images/error.png" data-ng-show="carForm.$submitted && !car.usage">
+								</h2>
+
+								<div class="row margin--top">
+
+									<div class="col-md-4 centred">
+
+										<img src="../../images/trolley-icon.png" data-toggle="tooltip" data-placement="top" title="If you are only using your car in the course of your private life and for leisure." class="margin--bottom show-tooltip">
+
+										<button type="button" ng-click="select('personal use', 0, 'usage')" ng-class="{'active':car.usage=='personal use'}" class="btn btn-default btn-block">
+											<span translate="PS_2_1_4_2_3">Personal use</span>
+											<span class="glyphicon glyphicon-ok"></span>
+										</button>
+
+									</div>
+
+									<div class="col-md-4 centred">
+
+										<img src="../../images/cityscape-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car in the course of your private life and to go to and from your workplace." class="margin--bottom show-tooltip">
+
+										<button type="button" ng-click="select('personal use + commute', 0, 'usage')" ng-class="{'active':car.usage=='personal use + commute'}" class="btn btn-default btn-block">
+											<span translate="PS_2_1_4_2_4">Personal use + Commute</span>
+											<span class="glyphicon glyphicon-ok"></span>
+										</button>
+
+									</div>
+
+									<div class="col-md-4 centred">
+
+										<img src="../../images/lanyard-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car to go to and from your workplace and for or during the course of your work." class="margin--bottom show-tooltip">
+
+										<button type="button" ng-click="select('commute + during work', 0, 'usage')" ng-class="{'active':car.usage=='commute + during work'}" class="btn btn-default btn-block">
+											<span translate="PS_2_1_4_2_5">Commute + During work</span>
+											<span class="glyphicon glyphicon-ok"></span>
+										</button>
+
+									</div>
+
+								</div>
+
+								<p class="margin--top" translate="PS_2_1_4_2_6">Do you sometimes use your car for commute or work? You can use your car up to 5 times per year outside the usage you declare. Simply email us at <a href="mailto:carusage@directasia.com">CarUsage@DirectAsia.com</a> before you drive, and you'll be covered in case something happens.</p>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="container-fluid margin--bottom margin--top">
+
+						<div class="panel">
+
+							<div class="panel-body">
+
+								<h2 translate="PS_2_1_4_3">When would you like the policy to start ?</h2>
+
+							</div>
+
+							<div class="panel-footer">
+
+								<div class="row">
+
+									<div class="col-md-4">
+
+										<p>
+											<strong translate="PS_2_1_5a">Policy start date:</strong>
+										</p>
+
+										<div class="form-inline">
+
+											<input id="policyStartDay" name="policyStartDay" ng-model="car.policy.start.day" placeholder="DD" type="number" min="1" max="31" class="day" required>
+
+											<input id="policyStartMonth" name="policyStartMonth" ng-model="car.policy.start.month" placeholder="MM" type="number" min="1" max="12" class="month" required>
+
+											<input id="policyStartYear" name="policyStartYear" ng-model="car.policy.start.year" placeholder="YYYY" type="number" min="1900" max="2015" class="year" required>
+
+											<img src="../../images/error.png" data-ng-show="(carForm.policyStartDay.$invalid && carForm.policyStartDay.$dirty) || 
+											(carForm.policyStartMonth.$invalid && carForm.policyStartMonth.$dirty) || 
+											(carForm.policyStartYear.$invalid && carForm.policyStartYear.$dirty) || 
+											(carForm.policyStartDay.$invalid && carForm.policyStartMonth.$invalid && carForm.policyStartYear.$invalid && carForm.$submitted)">
+
+										</div>
+
+									</div>
+
+									<div class="col-md-4">
+
+										<p>
+											<strong translate="PS_2_1_5b">Policy end date:</strong>
+										</p>
+
+										<div class="form-inline">
+
+											<input id="policyEndDay" name="policyEndDay" ng-model="car.policy.end.day" placeholder="DD" type="number" min="1" max="31" class="day" required>
+
+											<input id="policyEndMonth" name="policyEndMonth" ng-model="car.policy.end.month" placeholder="MM" type="number" min="1" max="12" class="month" required>
+
+											<input id="policyEndYear" name="policyEndYear" ng-model="car.policy.end.year" placeholder="YYYY" type="number" min="1900" max="2015" class="year" required>
+
+											<img src="../../images/error.png" data-ng-show="(carForm.policyEndDay.$invalid && carForm.policyEndDay.$dirty) ||
+											(carForm.policyEndMonth.$invalid && carForm.policyEndMonth.$dirty) ||
+											(carForm.policyEndYear.$invalid && carForm.policyEndYear.$dirty) ||
+											(carForm.policyEndDay.$invalid && carForm.policyEndMonth.$invalid && carForm.policyEndYear.$invalid && carForm.$submitted)">
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="container-fluid">
+
+						<div class="row">
+
+							<div class="col-md-12">
+
+								<button type="button" class="btn btn-backward">
+									<span class="glyphicon glyphicon-arrow-left"></span>
+									<span translate="PS_2_2_2">Back</span>
+								</button>
+
+								<button type="submit" class="btn btn-forward btn-lg pull-right margin--bottom" valid="carForm.$valid" continue url="http://localhost:9000/car" page-data="{{car}}" next-page="http://localhost:9000/pages/about-your-driver/your-driver.html" valid="carForm.$valid">
+									<span translate="PS_2_2_1">Proceed</span>
+									<span class="glyphicon glyphicon-arrow-right"></span>
+								</button>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</form>
+
+			</section>
+
+		</div>
+
+
+		<div class="overlay">
+
+			<div class="panel">
+
+				<button type="button" class="overlay-close-button">
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
+
+				<div class="panel-body">
+					<h2 translate="GS_0_3_1">Are you still there?</h2>
+					<p translate="GS_0_3_2">If we don't detect you clicking around, then we end your session to protect your personal information.</p>
+					<p>
+						<strong translate="GS_0_3_3">your session will end in: [X]</strong>
+					</p>
+					<button type="button" ng-click="proceed()" class="btn btn-forward btn-lg" translate="GS_0_3_4">Yes! Continue My Quote</button>
+				</div>
+
+			</div>
+
+		</div>
+
+		<script>
+			//- function loadCSS(e,t,n){"use strict";var i=window.document.createElement("link");var o=t||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";o.parentNode.insertBefore(i,o);setTimeout(function(){i.media=n||"all"})}
+			//- loadCSS("styles/main.css");
+			
+			//- var _gaq = _gaq || [];
+			//- _gaq.push(["_setAccount", "UA-XXXXXXXX-X"]);
+			//- _gaq.push(["_trackPageview"]);
+			
+			//- (function() {
+			//- 	var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+			//- 	ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+			//- 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			//- })();
+			
+		</script>
+	</body>
+</html>

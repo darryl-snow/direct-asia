@@ -19,6 +19,15 @@ class Car
 		@kmsperyear = null
 		@lowmileageoption = null
 		@usage = null
+		@policy =
+			start:
+				day: null
+				month: null
+				year: null
+			end:
+				day: null
+				month: null
+				year: null
 
 ###
 Using an Angular factory allows us to use dependency injection in the controller

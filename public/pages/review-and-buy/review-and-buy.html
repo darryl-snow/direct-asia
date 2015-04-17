@@ -58,6 +58,8 @@
         <script src="../../scripts/filters/range.filter.js"></script>
         <script src="../../scripts/filters/slugify.filter.js"></script>
 
+        <script src="../../scripts/controllers/review-and-buy/review-and-buy.controller.js"></script>
+
     </head>
     <body >
         <div class="need-help" ng-controller="helpController">
@@ -98,6 +100,7 @@
             </div>
         </div>
             <section class="section section-plan">
+                <form name="reviewForm" novalidate>
                 <div class="container">
                     <div class="navbar navbar-default" data-resource-id="GS 0.0">
                         <div class="navbar-header"><a href="/" class="navbar-brand"><img src="../../images/direct-asia-logo.png"></a></div>
@@ -406,39 +409,45 @@
                     <div class="col-md-6">
                         <div class="space"></div>
                         <p translate="PS_6_3_2">How would you like to pay?</p>
-                        <button type="button" class="btn btn-default random-margin" ng-class="{active:mont_anual === false}" ng-click="mont_anual = false"><span translate="PS_6_3_2_1">Monthly</span><span class="glyphicon glyphicon-ok"></span></button>
-                        <button type="button" class="btn btn-default" ng-class="{active:mont_anual === true}" ng-click="mont_anual = true"><span translate="PS_6_3_2_2">Annually</span><span class="glyphicon glyphicon-ok"></span></button>
+                        <button name="payment" type="button" class="btn btn-default random-margin" ng-class="{active:review.payment === false}" ng-click="review.payment = false"><span translate="PS_6_3_2_1">Monthly</span><span class="glyphicon glyphicon-ok"></span></button>
+                        <button name="payment" type="button" class="btn btn-default" ng-class="{active:review.payment === true}" ng-click="review.payment = true"><span translate="PS_6_3_2_2">Annually</span><span class="glyphicon glyphicon-ok"></span></button>
+                        <img class="error-image" src="../../images/error.png" data-ng-show="carForm.$submitted && review.payment == '' ">
                     </div>
                     <div class="col-md-6">
                         <div class="space"></div>
                         <p translate="PS_6_3_3">Using Bank</p>
-                        <input class="form-control" type="text"  name="bank_name">
+                        <img class="error-input-image" src="../../images/error.png" data-ng-show="(reviewForm.bank_name.$invalid && reviewForm.bank_name.$dirty) || (reviewForm.bank_name.$invalid && carForm.$submitted)">
+                        <input id="bank_name" ng-model="review.bank" class="form-control" type="text"  name="bank_name" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="space"></div>
                         <p translate="PS_6_3_3">Cardholder Name</p>
-                        <input class="form-control" type="text" placeholder="name as it appears on the card" name="card_name">
+                        <img class="error-input-image" src="../../images/error.png" data-ng-show="(reviewForm.card_name.$invalid && reviewForm.card_name.$dirty) || (reviewForm.card_name.$invalid && carForm.$submitted)">
+                        <input id="card_name" ng-model="card_name" class="form-control" type="text" placeholder="name as it appears on the card" name="card_name" required>
                     </div>
                     <div class="col-md-6">
                         <div class="space"></div>
                         <p translate="PS_6_3_3">Credit Card Number</p>
-                        <input class="form-control" type="text" placeholder="enter credit card number" name="card_number">
+                        <img class="error-input-image" src="../../images/error.png" data-ng-show="(reviewForm.card_number.$invalid && reviewForm.card_number.$dirty) || (reviewForm.card_number.$invalid && carForm.$submitted)">
+                        <input id="card_number" ng-model="card_number" class="form-control" type="text" placeholder="enter credit card number" name="card_number" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="space"></div>
                         <p translate="PS_6_3_3">Verification Number</p>
-                        <input class="form-control" type="text" name="verification_number">
+                        <img class="error-input-image" src="../../images/error.png" data-ng-show="(reviewForm.verification_number.$invalid && reviewForm.verification_number.$dirty) || (reviewForm.verification_number.$invalid && carForm.$submitted)">
+                        <input id="verification_number" ng-model="verification_number" class="form-control" type="text" name="verification_number" required>
                     </div>
                     <div class="col-md-6">
                         <div class="space"></div>
                         <p translate="PS_6_3_3">Expiry Date</p>
                         <div class="form-inline">
-                            <input placeholder="MM" type="number" min="1" max="12" class="month">
-                            <input placeholder="YYYY" type="number" min="1900" max="2015" class="year">
+                            <input name="review_month" ng-model="review_month" placeholder="MM" type="number" min="1" max="12" class="month">
+                            <input name="review_year" ng-model="review_year" placeholder="YYYY" type="number" min="1900" max="2015" class="year">
+                            <img class="error-input-image" src="../../images/error.png" data-ng-show="(reviewForm.review_month.$invalid && reviewForm.review_month.$dirty) || (reviewForm.review_year.$invalid && reviewForm.review_year.$dirty) || (reviewForm.review_month.$invalid && reviewForm.review_year.$invalid && carForm.$submitted)">
                         </div>
                     </div>
                 </div>
@@ -483,7 +492,8 @@
 <div data-resource-id="PS 6.6">
 <div style="display: table; width: 100%;">
 <button type="button" class="btn btn-backward" style="float:left; padding: 5px 12px;"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_6_6_1">Back</span></button>
-<button type="button" class="btn btn-forward btn-lg" style="float:right;" continue next-page="http://localhost:9000/pages/thank-you/thank-you.html"><span translate="PS_5_6_2" class="ng-scope">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+<button type="submit" class="btn btn-forward btn-lg" style="float:right;" valid="reviewForm.$valid"><span translate="PS_5_6_2" class="ng-scope">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+<!-- <button type="submit" class="btn btn-forward btn-lg" style="float:right;" continue next-page="http://localhost:9000/pages/thank-you/thank-you.html"><span translate="PS_5_6_2" class="ng-scope">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button> -->
 </div>
     <div class="save-for-later" data-resource-id="PC 4.1.2">
         <button type="button" class="popover-button btn btn-primary btn-action btn-sm"><span ng-hide="submit" translate="PS_6_6_2">Save for later</span><span ng-show="submit" translate="PS_6_6_3">Saved!</span></button>
@@ -507,7 +517,8 @@
     </div>
 </div>
 
-                </div>                        
+                </div>
+                </form>                   
             </section>
     <footer class="page-footer">
       <div class="container">

@@ -18,6 +18,10 @@ to this directive:
 * url -						the URL of the API that data should
 * 							be sent to
 *
+* valid -					a parent scope variable indicating
+* 							whether the page/form is ok for the
+* 							user to leave (i.e. forms are valid)
+*
 * e.g.
 * <button continue url="http://myAPIurl:port/plans" page-data="{{plan}}"
 *  next-page="thankyou.html">Continue</button>
@@ -33,26 +37,29 @@ angular.module "DirectAsia"
 			pageData: "@"
 			nextPage: "@"
 			url: "@"
+			valid: "="
 		link: (scope, element, attrs) ->
 			
 			element.on "click", ->
 
-				if scope.data and scope.url
+				if scope.valid
 
-					$http
-						method: "POST"
-						url: scope.url
-						cache: true
-						data: scope.pageData
-					.success (response) ->
-						# go to next page
+					if scope.data and scope.url
+
+						$http
+							method: "POST"
+							url: scope.url
+							cache: true
+							data: scope.pageData
+						.success (response) ->
+							# go to next page
+							$window.location.href = scope.nextPage
+						.error (response, status) ->
+							console.error "The request failed with response " +
+							 response + " and status code " + status
+
+					else
+
 						$window.location.href = scope.nextPage
-					.error (response, status) ->
-						console.error "The request failed with response " +
-						 response + " and status code " + status
-
-				else
-
-					$window.location.href = scope.nextPage
 
 	]

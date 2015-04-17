@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon Apr 13 2015 16:14:41 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Sat Apr 18 2015 03:30:34 GMT+0800 (CST) */
 
 /*
 Directive for showing Bootstrap tooltips
@@ -9,8 +9,14 @@ shown on mouseover
 angular.module("DirectAsia").directive("showTooltip", function() {
   return {
     restrict: "C",
+    scope: {
+      text: "@",
+      title: "@"
+    },
     link: function(scope, element, attrs) {
-      return element.tooltip();
+      return element.tooltip({
+        title: scope.text ? encodeURI(scope.text) : encodeURI(scope.title)
+      });
     }
   };
 });

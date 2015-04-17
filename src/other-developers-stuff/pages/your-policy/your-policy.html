@@ -311,6 +311,7 @@
                     </div>
                 </div>
             </div>
+            <form name="policyForm" novalidate>
             <div class="row">
                 <div class="col-md-8">
                     <div class="container-fluid">
@@ -324,31 +325,25 @@
                                 <div class="space"></div>
                                 <div class="input-content">
                                     <label data-resource-id="PS 5.3b" translate="PS_5_3b">Registration Number</label><br />
-                                    <div ng-class="{error:!policy.registation_number && proceed.no_content}">
-                                        <img class="error-image" src="../../images/error.png">
-                                        <input ng-model="policy.registration_number" class="form-control" type="text" placeHolder="enter registration number" name="car_details_registration_number">
-                                    </div>
+                                        <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.car_details_registration_number.$invalid && policyForm.car_details_registration_number.$dirty) || (policyForm.car_details_registration_number.$invalid && policyForm.$submitted)">
+                                        <input id="car_details_registration_number" ng-model="policy.registration_number" class="form-control" type="text" placeHolder="enter registration number" name="car_details_registration_number" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="space"></div>
                                 <div class="input-content">
                                     <label data-resource-id="PS 5.3c" translate="PS_5_3c">Car Chassis Number </label><br />
-                                    <div ng-class="{error:!policy.car_chassis_number && proceed.no_content}">
-                                        <img class="error-image" src="../../images/error.png">
-                                        <input ng-model="policy.car_chassis_number" class="form-control" type="text" placeHolder="enter car chassis number" name="car_details_chassis_number">
-                                    </div>
+                                        <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.car_details_chassis_number.$invalid && policyForm.car_details_chassis_number.$dirty) || (policyForm.car_details_chassis_number.$invalid && policyForm.$submitted)">
+                                        <input ng-model="policy.car_chassis_number" class="form-control" type="text" placeHolder="enter car chassis number" name="car_details_chassis_number" required>
                                     <span style="position: absolute; width: 150%;" translate="PS_5_3c_1">(You can obtain your chassis number by logging onto LTA's website.)</span>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="space"></div>
 								<p data-resource-id="PS 5.3d"><b translate="PS_5_3d">Are you transfering your NCD from another car?</b></p>
-								<div ng-class="{error:!policy.NCD && proceed.no_content}" style="width:220px;">
-                                    <img class="error-image" src="../../images/error.png">
-									<button type="button" class="btn btn-default random-margin"  ng-class="{active:policy.NCD == 'yes'}" ng-click="select('yes', 'NCD')"  data-resource-id="PS 5.3e"><span translate="PS_5_3e">Yes</span> <span class="glyphicon glyphicon-ok"></span></button>
-									<button type="button" class="btn btn-default" ng-class="{active:policy.NCD == 'no'}" ng-click="select('no', 'NCD')" data-resource-id="PS 5.3f"><span translate="PS_5_3f">No</span> <span class="glyphicon glyphicon-ok"></span></button>
-							    </div>
+									<button name="policyNCD" type="button" class="btn btn-default random-margin"  ng-class="{active:policy.NCD == 'yes'}" ng-click="select('yes', 'NCD')"  data-resource-id="PS 5.3e"><span translate="PS_5_3e">Yes</span> <span class="glyphicon glyphicon-ok"></span></button>
+									<button name="policyNCD" type="button" class="btn btn-default" ng-class="{active:policy.NCD == 'no'}" ng-click="select('no', 'NCD')" data-resource-id="PS 5.3f"><span translate="PS_5_3f">No</span> <span class="glyphicon glyphicon-ok"></span></button>
+                                    <img class="error-image" src="../../images/error.png" data-ng-show="policyForm.$submitted && policy.NCD == '' ">
                             </div>
                         </div>
                     </div>
@@ -358,18 +353,14 @@
                             <h2 data-resource-id="PS 5.3.1a" translate="PS_5_3_1a">Previous vehicle registration?</h2>
                             <p data-resource-id="PS 5.3.1b" translate="PS_5_3_1b">We need the name of the previous insurer to validate the NCD that you have declared.</p>
                             <div class="input-content">
-                                <div ng-class="{error:!policy.previous_insurer && proceed.no_content}">
-                                    <img class="error-image" src="../../images/error.png">
-                                    <input ng-model="policy.previous_insurer" class="form-control" type="text" placeHolder="enter previous Insurer" name="previous_insurer">
-                                </div>
+                                    <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.previous_insurer.$invalid && policyForm.previous_insurer.$dirty) || (policyForm.previous_insurer.$invalid && policyForm.$submitted)">
+                                    <input id="previous_insurer" ng-model="policy.previous_insurer" class="form-control" type="text" placeHolder="enter previous Insurer" name="previous_insurer" required>
                             </div>
                             <div class="space"></div>
                             <p data-resource-id="PS 5.3.1c" translate="PS_5_3_1c">We need your previous car registration number to validate the NCD that you have declared</p>
                             <div class="input-content">
-                                <div ng-class="{error:!policy.previous_vehicle && proceed.no_content}">
-                                    <img class="error-image" src="../../images/error.png">
-                                    <input ng-model="policy.previous_vehicle" class="form-control" type="text" placeHolder="enter previous vehicle registration" name="previous_vehicle_registration">
-                                </div>
+                                    <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.previous_vehicle_registration.$invalid && policyForm.previous_vehicle_registration.$dirty) || (policyForm.previous_vehicle_registration.$invalid && policyForm.$submitted)">
+                                    <input id="previous_vehicle_registration" ng-model="policy.previous_vehicle" class="form-control" type="text" placeHolder="enter previous vehicle registration" name="previous_vehicle_registration" required>
                             </div>
                         </div>
                     </div>
@@ -392,30 +383,24 @@
                                         <div class="space"></div>
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.2c" translate="PS_5_2c">First Name</label><br />
-                                            <div ng-class="{error:!policy.policyholder_first_name && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.policyholder_first_name" class="form-control" type="text" placeHolder="enter first name" name="policy_holder_firstname">
-                                            </div>
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.policy_holder_firstname.$invalid && policyForm.policy_holder_firstname.$dirty) || (policyForm.policy_holder_firstname.$invalid && policyForm.$submitted)">
+                                                <input id="policy_holder_firstname" ng-model="policy.policyholder_first_name" class="form-control" type="text" placeHolder="enter first name" name="policy_holder_firstname" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6" >
                                         <div class="space"></div>
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.2d" translate="PS_5_2d">Surname</label><br />
-                                            <div ng-class="{error:!policy.policyholder_surename && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.policyholder_surename" class="form-control" type="text" placeHolder="enter surname" name="policy_holder_surname">
-                                            </div>
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.policy_holder_surname.$invalid && policyForm.policy_holder_surname.$dirty) || (policyForm.policy_holder_surname.$invalid && policyForm.$submitted)">
+                                                <input id="policy_holder_surname" ng-model="policy.policyholder_surename" class="form-control" type="text" placeHolder="enter surname" name="policy_holder_surname" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="space"></div>
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.2e" translate="PS_5_2e">Email</label><br />
-                                            <div ng-class="{error:!policy.policyholder_email && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.policyholder_email" class="form-control" type="text" placeHolder="enter email" name="policy_holder_email">
-                                            </div>
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.policy_holder_email.$invalid && policyForm.policy_holder_email.$dirty) || (policyForm.policy_holder_email.$invalid && policyForm.$submitted)">
+                                                <input id="policy_holder_email" ng-model="policy.policyholder_email" class="form-control" type="text" placeHolder="enter email" name="policy_holder_email" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -423,8 +408,8 @@
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.2f" translate="PS_5_2f">Confirm Email</label><br />
                                             <div ng-class="{error:!policy.policyholder_confirm_email && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.policyholder_confirm_email" class="form-control" type="text" placeHolder="enter email again" name="policy_holder_confirm_email">
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.policy_holder_confirm_email.$invalid && policyForm.policy_holder_confirm_email.$dirty) || (policyForm.policy_holder_confirm_email.$invalid && policyForm.$submitted)">
+                                                <input id="policy_holder_confirm_email" ng-model="policy.policyholder_confirm_email" class="form-control" type="text" placeHolder="enter email again" name="policy_holder_confirm_email" required>
                                             </div>
                                         </div>
                                     </div>
@@ -433,8 +418,8 @@
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.2g" translate="PS_5_2g">Mobile Number</label><br />
                                             <div ng-class="{error:!policy.policyholder_mobile_number && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.policyholder_mobile_number" class="form-control" type="text" placeHolder="enter contact number" name="policy_holder_contact_number">
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.policy_holder_contact_number.$invalid && policyForm.policy_holder_contact_number.$dirty) || (policyForm.policy_holder_contact_number.$invalid && policyForm.$submitted)">
+                                                <input id="policy_holder_contact_number" ng-model="policy.policyholder_mobile_number" class="form-control" type="text" placeHolder="enter contact number" name="policy_holder_contact_number" required>
                                             </div>
                                         </div>
                                     </div>                                    
@@ -451,8 +436,8 @@
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.2i" translate="PS_5_2i">Address Line 1</label><br />
                                             <div ng-class="{error:!policy.residential_address_line_1 && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.residential_address_line_1" class="form-control" type="text" placeHolder="enter address line 1" name="residential_address_1">
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.residential_address_1.$invalid && policyForm.residential_address_1.$dirty) || (policyForm.residential_address_1.$invalid && policyForm.$submitted)">
+                                                <input id="residential_address_1" ng-model="policy.residential_address_line_1" class="form-control" type="text" placeHolder="enter address line 1" name="residential_address_1" required>
                                             </div>
                                         </div>
                                     </div>
@@ -461,8 +446,8 @@
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.2j" translate="PS_5_2j">Address Line 2</label><br />
                                             <div ng-class="{error:!policy.residential_address_line_2 && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.residential_address_line_2" class="form-control" type="text" placeHolder="enter address line 2" name="residential_address_2">
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.residential_address_2.$invalid && policyForm.residential_address_2.$dirty) || (policyForm.residential_address_2.$invalid && policyForm.$submitted)">
+                                                <input id="residential_address_2" ng-model="policy.residential_address_line_2" class="form-control" type="text" placeHolder="enter address line 2" name="residential_address_2" required>
                                             </div>
                                         </div>
                                     </div>
@@ -471,8 +456,8 @@
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.2k" translate="PS_5_2k">Residential District</label><br />
                                             <div ng-class="{error:!policy.residential_district && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.residential_district" class="form-control" type="text" placeHolder="enter District" name="residential_district">
+                                                <img class="error-image" src="../../images/error.png" data-ng-show="(policyForm.residential_district.$invalid && policyForm.residential_district.$dirty) || (policyForm.residential_district.$invalid && policyForm.$submitted)">
+                                                <input id="residential_district" ng-model="policy.residential_district" class="form-control" type="text" placeHolder="enter District" name="residential_district" required>
                                             </div>
                                         </div>
                                     </div>
@@ -482,8 +467,8 @@
                                             <label data-resource-id="PS 5.2l" translate="PS_5_2l">Residential Status</label><br />
                                             <div>
                                                 <div ng-class="{error:!policy.residential_status && proceed.no_content}">
-                                                    <img class="error-image" src="../../images/error.png" style="right: -20px;">
-                                                    <select id="residential1" name="residential" ng-model="policy.residential_status">
+                                                    <img class="error-input-image" src="../../images/error.png" style="right: -5px;"  data-ng-show="(policyForm.residential.$invalid && policyForm.residential.$dirty) || (policyForm.residential.$invalid && policyForm.$submitted)">
+                                                    <select id="residential1" name="residential" ng-model="policy.residential_status" required>
                                                         <option selecter label="Enter Driving License" value="{{residential}}" data-ng-repeat="residential in residentials" selecter-target="#residential1" selecter-callback="select" property="residential" ng-selected="year == selectedItem">{{residential}}</option>
                                                     </select>
                                                 </div>
@@ -494,10 +479,8 @@
                                         <div class="space"></div>
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.2m" translate="PS_5_2m">HKID</label><br />
-                                            <div ng-class="{error:!policy.residential_hkid && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.residential_hkid" class="form-control" type="text" placeHolder="enter HKID" name="main_driver_hkid">
-                                            </div>
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.main_driver_hkid.$invalid && policyForm.main_driver_hkid.$dirty) || (policyForm.main_driver_hkid.$invalid && policyForm.$submitted)">
+                                                <input id="main_driver_hkid" ng-model="policy.residential_hkid" class="form-control" type="text" placeHolder="enter HKID" name="main_driver_hkid" required>
                                         </div>
                                     </div>
                                 </div>
@@ -543,20 +526,16 @@
                                         <div class="space"></div>
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.4c" translate="PS_5_4c">First Name</label><br />
-                                            <div ng-class="{error:!policy.driver_first_name && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.driver_first_name" class="form-control" type="text" placeHolder="enter first name" name="main_driver_firstname">
-                                            </div>
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.main_driver_firstname.$invalid && policyForm.main_driver_firstname.$dirty) || (policyForm.main_driver_firstname.$invalid && policyForm.$submitted)">
+                                                <input id="main_driver_firstname" ng-model="policy.driver_first_name" class="form-control" type="text" placeHolder="enter first name" name="main_driver_firstname" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="space"></div>
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.4d" translate="PS_5_4d">Surname</label><br />
-                                            <div ng-class="{error:!policy.driver_surename && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.driver_surename" class="form-control" type="text" placeHolder="enter surname" name="main_driver_surname">
-                                            </div>
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.main_driver_surname.$invalid && policyForm.main_driver_surname.$dirty) || (policyForm.main_driver_surname.$invalid && policyForm.$submitted)">
+                                                <input id="main_driver_surname" ng-model="policy.driver_surename" class="form-control" type="text" placeHolder="enter surname" name="main_driver_surname" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -565,8 +544,8 @@
                                             <label data-resource-id="PS 5.4f" translate="PS_5_4f">Residential Status</label><br />
                                             <div>
                                                 <div ng-class="{error:!policy.driver_residential_status && proceed.no_content}">
-                                                    <img class="error-image" src="../../images/error.png" style="right: -20px;">
-                                                    <select id="residential" name="residential" ng-model="policy.driver_residential_status">
+                                                    <img class="error-input-image" src="../../images/error.png" style="right: -5px;" data-ng-show="(policyForm.residential.$invalid && policyForm.residential.$dirty) || (policyForm.residential.$invalid && policyForm.$submitted)">
+                                                    <select id="residential" name="residential" ng-model="policy.driver_residential_status" required>
                                                         <option selecter label="Enter Driving License" value="{{residential}}" data-ng-repeat="residential in residentials" selecter-target="#residential" selecter-callback="select" property="residential" ng-selected="year == selectedItem">{{residential}}</option>
                                                     </select>
                                                 </div>
@@ -578,8 +557,8 @@
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.4g" translate="PS_5_4g">HKID</label><br />
                                             <div ng-class="{error:!policy.driver_hkid && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.driver_hkid" class="form-control" type="text" placeHolder="enter HKID" name="main_driver_HKID2">
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.main_driver_HKID2.$invalid && policyForm.main_driver_HKID2.$dirty) || (policyForm.main_driver_HKID2.$invalid && policyForm.$submitted)">
+                                                <input id="main_driver_HKID2" ng-model="policy.driver_hkid" class="form-control" type="text" placeHolder="enter HKID" name="main_driver_HKID2" required>
                                             </div>
                                         </div>
                                     </div>
@@ -587,10 +566,8 @@
                                         <div class="space"></div>
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.4d" translate="PS_5_5i">Contact Number</label><br />
-                                            <div ng-class="{error:!policy.driver_contact_number && proceed.no_content}">
-                                                <img class="error-image" src="../../images/error.png">
-                                                <input ng-model="policy.driver_contact_number" class="form-control" type="text" placeHolder="enter contact number" name="main_driver_contact_number">
-                                            </div>
+                                                <img class="error-input-image" src="../../images/error.png" data-ng-show="(policyForm.main_driver_contact_number.$invalid && policyForm.main_driver_contact_number.$dirty) || (policyForm.main_driver_contact_number.$invalid && policyForm.$submitted)">
+                                                <input id="main_driver_contact_number" ng-model="policy.driver_contact_number" class="form-control" type="text" placeHolder="enter contact number" name="main_driver_contact_number" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -598,12 +575,10 @@
                                         <div class="input-content">
                                             <label data-resource-id="PS 5.4e" translate="PS_5_4c" translate="PS_5_5f">Relationship with Policyholder</label><br />
                                             <div>
-                                                <div ng-class="{error:!policy.driver_relationship_with_policyholder && proceed.no_content}">
-                                                    <img class="error-image" src="../../images/error.png" style="right:-20px;">
-                                                    <select id="policyholder" name="policyholder" ng-model="policy.driver_relationship_with_policyholder">
+                                                    <img class="error-input-image" src="../../images/error.png" style="right:-5px;" data-ng-show="(policyForm.policyholder.$invalid && policyForm.policyholder.$dirty) || (policyForm.policyholder.$invalid && policyForm.$submitted)">
+                                                    <select id="policyholder" name="policyholder" ng-model="policy.driver_relationship_with_policyholder" required>
                                                         <option selecter label="Enter Driving License" value="{{policyholder}}" data-ng-repeat="policyholder in policyholders" selecter-target="#policyholder" selecter-callback="select" property="policyholder" ng-selected="year == selectedItem">{{policyholder}}</option>
                                                     </select>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -778,7 +753,8 @@
 						<div data-resource-id="PS 5.6" style="margin-top:3em;" class="row">
 							<div class="col-md-12">
 								<button type="button" class="btn btn-backward" style="float:left; padding: 5px 12px;"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_5_6_1">Back</span></button>
-								<button type="button" class="btn btn-forward btn-lg" style="float:right;" continue url="http://localhost:9000/policy" page-data="{{policy}}" next-page="http://localhost:9000/pages/review-and-buy/review-and-buy.html"><span translate="PS_5_6_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+								<button type="submit" class="btn btn-forward btn-lg" style="float:right;" valid="policyForm.$valid"><span translate="PS_5_6_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+                                <!-- <button type="button" class="btn btn-forward btn-lg" style="float:right;" continue url="http://localhost:9000/policy" page-data="{{policy}}" next-page="http://localhost:9000/pages/review-and-buy/review-and-buy.html" valid="policyForm.$valid"><span translate="PS_5_6_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button> -->
 							</div>
 						</div>
 						<div data-resource-id="PS 5.6" style="margin-top: 1em;margin-bottom: 1em;" class="row">
@@ -809,6 +785,7 @@
                     <div class="space"></div>                    
                 </div>
             </div>
+            </form>
         </div>
     <footer class="page-footer">
       <div class="container">

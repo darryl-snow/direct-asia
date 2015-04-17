@@ -32,16 +32,17 @@
 }
 
 .ng-submitted {
-	.selecter {
-		display:			inline-block;
-		vertical-align: 	middle;
-		width:				calc(100% - 33px);
 
-		.ng-invalid + .selecter-selected {
-			border:			1px solid $red;
-		}
-
+	.ng-invalid + .selecter-selected {
+		border:				1px solid $red;
+		width:				calc(100% - 37px);
 	}
+
+}
+
+.ng-invalid:not(.ng-pristine) + .selecter-selected {
+	border:					1px solid $red;
+	width:					calc(100% - 37px);
 }
 
 .selecter .selecter-options {
@@ -66,7 +67,7 @@ input[type="number"]{
 	&.ng-invalid.ng-dirty:not(.year):not(.month):not(.day):not(.claim) {
 		border:				1px solid $red;
 		display:			inline-block;
-		width:				calc(100% - 33px);
+		width:				calc(100% - 37px);
 	}
 }
 
@@ -74,7 +75,7 @@ input[type="number"]{
 	.ng-invalid:not(.year):not(.month):not(.day):not(.claim) {
 		border:				1px solid $red;
 		display:			inline-block;
-		width:				calc(100% - 33px);
+		width:				calc(100% - 37px);
 	}
 }
 
