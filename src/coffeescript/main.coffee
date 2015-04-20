@@ -17,7 +17,7 @@ padding: 5px;
 Define main module
 ###
 
-angular.module "DirectAsia", ["fsm", "pascalprecht.translate"]
+angular.module "DirectAsia", ["fsm", "pascalprecht.translate", "ui.bootstrap-slider"]
 	.config ($translateProvider) ->
 
 		###

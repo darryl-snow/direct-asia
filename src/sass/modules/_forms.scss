@@ -40,11 +40,6 @@
 
 }
 
-.ng-invalid:not(.ng-pristine) + .selecter-selected {
-	border:					1px solid $red;
-	width:					calc(100% - 37px);
-}
-
 .selecter .selecter-options {
 	border: 				1px solid $blue;
 	border-top:				none;
@@ -55,6 +50,12 @@
 	.placeholder {
 		display:			none;
 	}
+}
+
+.ng-invalid:not(.ng-pristine) + .selecter-selected,
+.ng-invalid:not(.ng-pristine) ~ .selecter-options {
+	border:					1px solid $red;
+	width:					calc(100% - 37px);
 }
 
 input[type="text"],

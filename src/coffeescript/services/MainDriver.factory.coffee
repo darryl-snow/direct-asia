@@ -16,7 +16,8 @@ class MainDriver
 		@occupation = null
 		@residentialDistrict = null
 		@drivingExperience = null
-		@noClaimsDiscount = null
+		@noClaimsDiscount = 0
+		@whyNoClaimsDiscount = null
 		@offences = null
 		@refusals = null
 		@accidents =

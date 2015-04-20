@@ -404,6 +404,7 @@ angular.module "DirectAsia"
 				$scope.mainDriver.residentialDistrict = data.mainDriver.residentialDistrict
 				$scope.mainDriver.drivingExperience = data.mainDriver.drivingExperience
 				$scope.mainDriver.noClaimsDiscount = data.mainDriver.noClaimsDiscount
+				$scope.mainDriver.whyNoClaimsDiscount = data.mainDriver.whyNoClaimsDiscount
 				$scope.mainDriver.offences = data.mainDriver.offences
 				$scope.mainDriver.refusals = data.mainDriver.refusals
 				$scope.mainDriver.accidents =

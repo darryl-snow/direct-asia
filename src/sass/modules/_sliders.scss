@@ -1,0 +1,14 @@
+.slider {
+	margin-bottom: 			10px !important;
+
+	&-labels {
+		margin-left: 		-10px;
+		width:				250px;
+
+		span {
+			display:		inline-block;
+			font-weight:	600;
+			width:			16.66%;
+		}
+	}
+}

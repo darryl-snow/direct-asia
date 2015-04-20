@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon Apr 20 2015 17:53:00 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 20 2015 20:53:44 GMT+0800 (CST) */
 
 /*
 The controller ties together the view with the model.
@@ -17,8 +17,22 @@ angular.module("DirectAsia").controller("helpCtrl", [
       email: "",
       number: ""
     };
-    $scope.showPopover = false;
+    $scope.open = false;
     $scope.sent = false;
+
+    /*
+    		Show the help popover
+     */
+    $scope.showPopover = function() {
+      return $scope.open = true;
+    };
+
+    /*
+    		Hide the help popover
+     */
+    $scope.hidePopover = function() {
+      return $scope.open = false;
+    };
 
     /*
     		Submit the support request to the server

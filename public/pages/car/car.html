@@ -40,6 +40,8 @@
     <script src="../../lib/bootstrap.js"></script>
     <script src="../../lib/jquery.fs.selecter.js"></script>
     <script src="../../lib/fsm-sticky-header.js"></script>
+    <script src="../../lib/bootstrap-slider.min.js"></script>
+    <script src="../../lib/slider.js"></script>
     <script src="../../scripts/main.js"></script>
     <script src="../../scripts/controllers/help/help.controller.js"></script>
     <script src="../../scripts/directives/continue-button.directive.js"></script>
@@ -71,11 +73,11 @@
         <div class="navbar-telephone pull-right">Call our Singapore Team on<span class="navbar-telephone-number">9854 4345</span></div>
         <script src="../../scripts/controllers/help/help.controller.js"></script>
         <div data-ng-controller="helpCtrl" class="help">
-          <button type="button" translate="GS_0_0_2a" data-ng-click="showPopover = !showPopover" class="btn btn-primary btn-sm help-button">Need Help?</button>
-          <div id="popover" data-ng-show="showPopover" class="fake-popover">
+          <button type="button" translate="GS_0_0_2a" data-ng-click="showPopover()" class="btn btn-primary btn-sm help-button">Need Help?</button>
+          <div id="popover" data-ng-show="open" class="fake-popover">
             <div class="arrow"></div>
             <form name="helpForm" novalidate data-ng-submit="helpForm.$valid &amp;&amp; sendRequest()" data-ng-show="sent == false">
-              <button type="button" data-ng-click="showPopover = false" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+              <button type="button" data-ng-click="hidePopover()" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
               <p><b translate="PS_3_0_1">Let us call you. Provide your details below and someone from our HK customer care team will get back to you.</b></p>
               <div class="margin--bottom">
                 <input type="text" placeholder="Enter Name" name="name" data-ng-model="supportRequest.name" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required class="form-control"><img src="../../images/error.png" data-ng-show="(helpForm.name.$invalid &amp;&amp; helpForm.name.$dirty) || (helpForm.name.$invalid &amp;&amp; helpForm.$submitted)">

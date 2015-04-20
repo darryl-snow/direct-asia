@@ -1,6 +1,5 @@
 
 <link rel="stylesheet" href="../../lib/bootstrap-slider.css"/>
-<script src="../../lib/bootstrap-slider.min.js"></script>
 <script src="../../scripts/controllers/about-your-driver/about-your-driver.controller.js"></script>
 <div class="container">
   <section data-ng-controller="aboutYourDriverCtrl" class="section section-driver">
@@ -75,34 +74,27 @@
               <h2><span translate="PS_3_1_2a">No Claims Discount</span>
                 <div translate="PS_3_1_2b" class="subtitle">You will find on the renewal notice you recieved from your insurer</div>
               </h2>
-              <div class="col-md-12">
-                <input id="discount" type="text" data-ng-model="driver.noClaimsDiscount"/>
-                <script type="text/javascript">
-                  $("#discount").slider({
-                  	ticks: [0, 10, 20, 30, 40],
-                  	ticks_labels: ["0%", "20%", "30%", "40%", "50%"],
-                  	ticks_snap_bounds: 30
-                  });
-                  
-                </script>
+              <div class="col-md-12 margin--bottom">
+                <div class="slider-labels"><span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span><span>50%</span></div>
+                <slider data-ng-model="driver.noClaimsDiscount" min="0" step="10" max="50" value="0"></slider>
               </div>
-              <div data-ng-show="!driver.noClaimsDiscount">
+              <div data-ng-show="driver.noClaimsDiscount == 0">
                 <h2 translate="PS_3_1_2_1a">Why does the main driver have 0% NCD?</h2>
-                <label for="checkbox1" class="label-checkbox">
-                  <input id="checkbox1" type="checkbox"/>
-                  <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1b">Never been insured</span>
+                <label for="radio1" class="label-radio">
+                  <input id="radio1" type="radio" name="noncd" value="Never been insured" data-ng-model="driver.whyNoClaimsDiscount"/>
+                  <div class="fake-radio"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1b">Never been insured</span>
                 </label>
-                <label for="checkbox2" class="label-checkbox">
-                  <input id="checkbox2" type="checkbox"/>
-                  <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1c">Insured in the past, but not in the last 12 months</span>
+                <label for="radio2" class="label-radio">
+                  <input id="radio2" type="radio" name="noncd" value="Insured in the past, but not in the last 12 months" data-ng-model="driver.whyNoClaimsDiscount"/>
+                  <div class="fake-radio"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1c">Insured in the past, but not in the last 12 months</span>
                 </label>
-                <label for="checkbox3" class="label-checkbox">
-                  <input id="checkbox3" type="checkbox"/>
-                  <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1d">Claims have been made in the last 12 months</span>
+                <label for="radio3" class="label-radio">
+                  <input id="radio3" type="radio" name="noncd" value="Claims have been made in the last 12 months" data-ng-model="driver.whyNoClaimsDiscount"/>
+                  <div class="fake-radio"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1d">Claims have been made in the last 12 months</span>
                 </label>
-                <label for="checkbox4" class="label-checkbox">
-                  <input id="checkbox4" type="checkbox"/>
-                  <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1e">Insured as a named driver on another policy</span>
+                <label for="radio4" class="label-radio">
+                  <input id="radio4" type="radio" name="noncd" value="Insured as a named driver on another policy" data-ng-model="driver.whyNoClaimsDiscount"/>
+                  <div class="fake-radio"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1e">Insured as a named driver on another policy</span>
                 </label>
               </div>
             </div>
@@ -142,7 +134,7 @@
         </div>
         <div class="row">
           <div class="col-md-12 margin--top">
-            <button type="submit" continue="continue" url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid" class="btn btn-forward btn-lg margin--bottom margin--right"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+            <button type="submit" continue="continue" url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid &amp;&amp; driver.ownership == true" class="btn btn-forward btn-lg margin--bottom margin--right"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
             <button type="button" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_3_3_1">Back</span></button>
           </div>
         </div>

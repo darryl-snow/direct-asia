@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon Apr 20 2015 17:53:00 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 20 2015 20:53:44 GMT+0800 (CST) */
 
 /*
 
@@ -377,6 +377,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       $scope.mainDriver.residentialDistrict = data.mainDriver.residentialDistrict;
       $scope.mainDriver.drivingExperience = data.mainDriver.drivingExperience;
       $scope.mainDriver.noClaimsDiscount = data.mainDriver.noClaimsDiscount;
+      $scope.mainDriver.whyNoClaimsDiscount = data.mainDriver.whyNoClaimsDiscount;
       $scope.mainDriver.offences = data.mainDriver.offences;
       $scope.mainDriver.refusals = data.mainDriver.refusals;
       $scope.mainDriver.accidents = {

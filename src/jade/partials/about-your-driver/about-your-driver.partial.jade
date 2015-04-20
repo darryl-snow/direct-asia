@@ -1,5 +1,4 @@
 link(rel="stylesheet", href="../../lib/bootstrap-slider.css")
-script(src="../../lib/bootstrap-slider.min.js")
 script(src="../../scripts/controllers/about-your-driver/about-your-driver.controller.js")
 
 .container
@@ -123,42 +122,43 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 								span(translate="PS_3_1_2a") No Claims Discount
 								.subtitle(translate="PS_3_1_2b") You will find on the renewal notice you recieved from your insurer
 
-							.col-md-12
+							.col-md-12.margin--bottom
 
-								input#discount(type="text", data-ng-model="driver.noClaimsDiscount")
+								.slider-labels
+									span 0%
+									span 10%
+									span 20%
+									span 30%
+									span 40%
+									span 50%
 
-								script(type="text/javascript").
-									$("#discount").slider({
-										ticks: [0, 10, 20, 30, 40],
-										ticks_labels: ["0%", "20%", "30%", "40%", "50%"],
-										ticks_snap_bounds: 30
-									});
+								slider(data-ng-model="driver.noClaimsDiscount", min="0", step="10", max="50", value="0")
 
-							div(data-ng-show="!driver.noClaimsDiscount")
+							div(data-ng-show="driver.noClaimsDiscount == 0")
 
 								h2(translate="PS_3_1_2_1a") Why does the main driver have 0% NCD?
 
-								label.label-checkbox(for="checkbox1")
-									input#checkbox1(type="checkbox")
-									.fake-checkbox
+								label.label-radio(for="radio1")
+									input#radio1(type="radio", name="noncd", value="Never been insured", data-ng-model="driver.whyNoClaimsDiscount")
+									.fake-radio
 										span.glyphicon.glyphicon-ok
 									span(translate="PS_3_1_2_1b") Never been insured
 
-								label.label-checkbox(for="checkbox2")
-									input#checkbox2(type="checkbox")
-									.fake-checkbox
+								label.label-radio(for="radio2")
+									input#radio2(type="radio", name="noncd", value="Insured in the past, but not in the last 12 months", data-ng-model="driver.whyNoClaimsDiscount")
+									.fake-radio
 										span.glyphicon.glyphicon-ok
 									span(translate="PS_3_1_2_1c") Insured in the past, but not in the last 12 months
 
-								label.label-checkbox(for="checkbox3")
-									input#checkbox3(type="checkbox")
-									.fake-checkbox
+								label.label-radio(for="radio3")
+									input#radio3(type="radio", name="noncd", value="Claims have been made in the last 12 months", data-ng-model="driver.whyNoClaimsDiscount")
+									.fake-radio
 										span.glyphicon.glyphicon-ok
 									span(translate="PS_3_1_2_1d") Claims have been made in the last 12 months
 
-								label.label-checkbox(for="checkbox4")
-									input#checkbox4(type="checkbox")
-									.fake-checkbox
+								label.label-radio(for="radio4")
+									input#radio4(type="radio", name="noncd", value="Insured as a named driver on another policy", data-ng-model="driver.whyNoClaimsDiscount")
+									.fake-radio
 										span.glyphicon.glyphicon-ok
 									span(translate="PS_3_1_2_1e") Insured as a named driver on another policy
 
@@ -216,7 +216,7 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 				.row
 					.col-md-12.margin--top
 
-						button.btn.btn-forward.btn-lg.margin--bottom.margin--right(type="submit", continue, url="http://localhost:9000/driver", page-data="{{driver}}", next-page="http://localhost:9000/pages/quote/quote.html", valid="driverForm.$valid")
+						button.btn.btn-forward.btn-lg.margin--bottom.margin--right(type="submit", continue, url="http://localhost:9000/driver", page-data="{{driver}}", next-page="http://localhost:9000/pages/quote/quote.html", valid="driverForm.$valid && driver.ownership == true")
 							span(translate="PC_3_3_2") Proceed
 							span.glyphicon.glyphicon-arrow-right
 

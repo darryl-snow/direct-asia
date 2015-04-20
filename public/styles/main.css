@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon Apr 20 2015 17:53:00 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 20 2015 20:27:52 GMT+0800 (CST) */
 @media (min-width: 768px) {
   .pull-left-large {
     float: left; } }
@@ -94,6 +94,9 @@ body, html {
 
 .centred {
   text-align: center; }
+
+.hidden {
+  display: none; }
 
 .inline-block {
   display: inline-block; }
@@ -496,10 +499,6 @@ h1 img, h2 img {
   border: 1px solid #d52b1e;
   width: calc(100% - 37px); }
 
-.ng-invalid:not(.ng-pristine) + .selecter-selected {
-  border: 1px solid #d52b1e;
-  width: calc(100% - 37px); }
-
 .selecter .selecter-options {
   border: 1px solid #25a8e0;
   border-top: none;
@@ -508,6 +507,10 @@ h1 img, h2 img {
   text-align: left; }
   .selecter .selecter-options .placeholder {
     display: none; }
+
+.ng-invalid:not(.ng-pristine) + .selecter-selected, .ng-invalid:not(.ng-pristine) ~ .selecter-options {
+  border: 1px solid #d52b1e;
+  width: calc(100% - 37px); }
 
 input[type="text"], input[type="number"], input[type="tel"], input[type="email"] {
   border: 1px solid #aab2bd;
@@ -650,15 +653,18 @@ input[type="checkbox"]:disabled ~ span, input[type="radio"]:disabled ~ span {
 .help {
   height: 90px;
   position: fixed;
-  right: -35px;
+  right: 0;
   top: 100px;
   width: 90px;
   z-index: 1000000; }
   .help-button {
     border-radius: 4px 4px 0 0;
-    -webkit-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
-            transform: rotate(-90deg); }
+    -webkit-transform: rotate(-90deg) translateX(19px);
+        -ms-transform: rotate(-90deg) translateX(19px);
+            transform: rotate(-90deg) translateX(19px);
+    -webkit-transform-origin: 100% 100%;
+        -ms-transform-origin: 100% 100%;
+            transform-origin: 100% 100%; }
 
 .jumbotron {
   box-shadow: none;
@@ -1319,7 +1325,7 @@ input[type="checkbox"]:disabled ~ span, input[type="radio"]:disabled ~ span {
   border-color: #fcd900;
   border-radius: 6px;
   color: #333333;
-  left: -220px;
+  left: -180px;
   padding: 20px;
   position: absolute;
   top: -32px;
@@ -1401,6 +1407,16 @@ input[type="checkbox"]:disabled ~ span, input[type="radio"]:disabled ~ span {
   .side-pagination .tooltip-inner {
     max-width: none;
     width: 100%; }
+
+.slider {
+  margin-bottom: 10px !important; }
+  .slider-labels {
+    margin-left: -10px;
+    width: 250px; }
+    .slider-labels span {
+      display: inline-block;
+      font-weight: 600;
+      width: 16.66%; }
 
 .table-plain {
   margin-bottom: 0; }

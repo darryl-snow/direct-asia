@@ -64,7 +64,8 @@ is the $scope.driver variable.
 angular.module("DirectAsia").controller "aboutYourDriverCtrl", [
 	"$scope"
 	"MainDriver"
-	($scope, MainDriver) ->
+	"ageFilter"
+	($scope, MainDriver, ageFilter) ->
 
 		###
 		This private function fetches data from the back-end to be used on the page
@@ -94,6 +95,10 @@ angular.module("DirectAsia").controller "aboutYourDriverCtrl", [
 			$scope.discounts = data.discounts
 			$scope.faults = data.faults
 			$scope.notFaults = data.notFaults
+
+		$scope.$watchGroup ["driver.dob.day", "driver.dob.month", "driver.dob.year"], (newValues, oldValues, scope) ->
+			age = ageFilter newValues[2] + "/" + newValues[1] + "/" + newValues[0]
+			if !isNaN age and newValues[0] and newValues[1] and newValues[2] then $scope.driver.age = age
 
 		###
 		This function is required for the custom select fields to work. When the

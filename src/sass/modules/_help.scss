@@ -1,13 +1,14 @@
 .help {
-	height:				90px;
-	position:			fixed;
-	right:				-35px;
-	top:				100px;
-	width:				90px;
-	z-index:			1000000;
+	height:					90px;
+	position:				fixed;
+	right:					0;
+	top:					100px;
+	width:					90px;
+	z-index:				1000000;
 
 	&-button {
-		border-radius:	4px 4px 0 0;
-		transform:		rotate(-90deg);
+		border-radius:		4px 4px 0 0;
+		transform:			rotate(-90deg) translateX(19px);
+		transform-origin:	100% 100%;
 	}
 }

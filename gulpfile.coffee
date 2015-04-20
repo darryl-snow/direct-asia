@@ -73,7 +73,8 @@ gulp.task "lib", ->
 		Config.src + "lib/bootstrap/dist/js/bootstrap.js",
 		Config.src + "lib/Selecter/jquery.fs.selecter.js",
 		Config.src + "lib/fsm-sticky-header/src/fsm-sticky-header.js",
-		Config.src + "lib/bootstrap-slider/dist/bootstrap-slider.min.js"
+		Config.src + "lib/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js",
+		Config.src + "lib/angular-bootstrap-slider/slider.js"
 	]
 	.pipe gulp.dest Config.build + "lib"
 

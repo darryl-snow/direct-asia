@@ -44,6 +44,8 @@ angular.module "DirectAsia"
 
 				if scope.valid
 
+					# console.table scope.pageData
+
 					if scope.data and scope.url
 
 						$http

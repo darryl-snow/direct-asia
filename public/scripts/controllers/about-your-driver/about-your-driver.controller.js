@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon Apr 20 2015 17:53:00 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 20 2015 20:53:44 GMT+0800 (CST) */
 
 /*
 
@@ -37,7 +37,7 @@ is the $scope.driver variable.
  */
 
 angular.module("DirectAsia").controller("aboutYourDriverCtrl", [
-  "$scope", "MainDriver", function($scope, MainDriver) {
+  "$scope", "MainDriver", "ageFilter", function($scope, MainDriver, ageFilter) {
 
     /*
     		This private function fetches data from the back-end to be used on the page
@@ -70,6 +70,13 @@ angular.module("DirectAsia").controller("aboutYourDriverCtrl", [
       $scope.faults = data.faults;
       return $scope.notFaults = data.notFaults;
     };
+    $scope.$watchGroup(["driver.dob.day", "driver.dob.month", "driver.dob.year"], function(newValues, oldValues, scope) {
+      var age;
+      age = ageFilter(newValues[2] + "/" + newValues[1] + "/" + newValues[0]);
+      if (!isNaN(age && newValues[0] && newValues[1] && newValues[2])) {
+        return $scope.driver.age = age;
+      }
+    });
 
     /*
     		This function is required for the custom select fields to work. When the

@@ -2,15 +2,15 @@ script(src="../../scripts/controllers/help/help.controller.js")
 
 .help(data-ng-controller="helpCtrl")
 
-	button.btn.btn-primary.btn-sm.help-button(type="button", translate="GS_0_0_2a", data-ng-click="showPopover = !showPopover") Need Help?
+	button.btn.btn-primary.btn-sm.help-button(type="button", translate="GS_0_0_2a", data-ng-click="showPopover()") Need Help?
 
-	#popover.fake-popover(data-ng-show="showPopover")
+	#popover.fake-popover(data-ng-show="open")
 
 		.arrow
 
 		form(name="helpForm", novalidate, data-ng-submit="helpForm.$valid && sendRequest()", data-ng-show="sent == false")
 
-			button.popover-close-button(type="button", data-ng-click="showPopover = false")
+			button.popover-close-button(type="button", data-ng-click="hidePopover()")
 				span.glyphicon.glyphicon-remove
 
 			p

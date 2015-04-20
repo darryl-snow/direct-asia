@@ -17,8 +17,22 @@ angular.module "DirectAsia"
 			email: ""
 			number: ""
 
-		$scope.showPopover = false
+		$scope.open = false
 		$scope.sent = false
+
+		###
+		Show the help popover
+		###
+
+		$scope.showPopover = ->
+			$scope.open = true
+
+		###
+		Hide the help popover
+		###
+
+		$scope.hidePopover = ->
+			$scope.open = false
 
 		###
 		Submit the support request to the server
