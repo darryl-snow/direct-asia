@@ -136,7 +136,9 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 
 							div(data-ng-show="driver.noClaimsDiscount == 0")
 
-								h2(translate="PS_3_1_2_1a") Why does the main driver have 0% NCD?
+								h2
+									span(translate="PS_3_1_2_1a") Why does the main driver have 0% NCD?
+									img(src="../../images/error.png", data-ng-show="driver.noClaimsDiscount == 0 && driver.whyNoClaimsDiscount == null && driverForm.$submitted")
 
 								label.label-radio(for="radio1")
 									input#radio1(type="radio", name="noncd", value="Never been insured", data-ng-model="driver.whyNoClaimsDiscount")

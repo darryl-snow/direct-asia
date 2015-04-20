@@ -48,7 +48,7 @@ script(src="../../scripts/controllers/your-plan/your-plan.controller.js")
 											strong {{plan.name}}
 											.subtitle(data-ng-if="plan.tagline") {{plan.tagline}}
 										img.plan-option-status(data-ng-show="coverDetails.plan == plan", src="../../images/selected-icon.png")
-										button.btn.btn-default.plan-option-status(data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
+										button.btn.btn-default.plan-option-status(type="button", data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
 
 						.row.margin--bottom
 							.col-md-12
@@ -81,25 +81,25 @@ script(src="../../scripts/controllers/your-plan/your-plan.controller.js")
 											td
 											td.centred(data-ng-repeat="plan in plans", data-ng-class="{'active': coverDetails.plan == plan}")
 												img(data-ng-show="coverDetails.plan == plan", src="../../images/selected-icon.png")
-												button.btn.btn-default(data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
+												button.btn.btn-default(type="button", data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
 
 						.row.margin--bottom
 							.col-md-12
 
-								div(data-ng-show="coverDetails.plan == plans[0]")
+								h2
+									span(translate="PS_1_4a") Is the car financed?
+									img(src="../../images/error.png", data-ng-show="!!!coverDetails.financed && planForm.$submitted")
 
-									h2(translate="PS_1_4a") Is the car financed?
+								.row
+									.col-xs-6.col-md-2
+										button.btn.btn-default.btn-block(type="button", data-ng-class="{'active': coverDetails.financed}", data-ng-click="coverDetails.financed = true")
+											span(translate="PS_1_4b") Yes
+											span.glyphicon.glyphicon-ok
 
-									.row
-										.col-xs-6.col-md-2
-											button.btn.btn-default.btn-block(type="button", data-ng-class="{'active': coverDetails.financed}", data-ng-click="coverDetails.financed = true")
-												span(translate="PS_1_4b") Yes
-												span.glyphicon.glyphicon-ok
-
-										.col-xs-6.col-md-2
-											button.btn.btn-default.btn-block(type="button", data-ng-class="{'active': !coverDetails.financed}", data-ng-click="coverDetails.financed = false")
-												span(translate="PS_1_4c") No
-												span.glyphicon.glyphicon-ok
+									.col-xs-6.col-md-2
+										button.btn.btn-default.btn-block(type="button", data-ng-class="{'active': coverDetails.financed == false}", data-ng-click="coverDetails.financed = false")
+											span(translate="PS_1_4c") No
+											span.glyphicon.glyphicon-ok
 
 						.row.margin--bottom
 							.col-sm-12.col-md-4
@@ -112,7 +112,8 @@ script(src="../../scripts/controllers/your-plan/your-plan.controller.js")
 										| I Agree to the 
 										a(href="#", title="") privacy terms
 										| , and to fully and honestly answer any questions needed to recieve a policy.
+									img(src="../../images/error.png", data-ng-show="(coverDetails.agreed == false || coverDetails.agreed == null) && planForm.$submitted")
 
-						button.btn.btn-forward.btn-lg(type="button", continue, url="http://localhost:9000/api/cover", page-data="{{coverDetails}}", valid="planForm.$valid && coverDetails.agreed", data-ng-disabled="planForm.$invalid || !coverDetails.agreed", next-page="http://localhost:9000/pages/car/car.html")
+						button.btn.btn-forward.btn-lg(type="button", continue, url="http://localhost:9000/api/cover", page-data="{{coverDetails}}", valid="planForm.$valid && coverDetails.agreed && coverDetails.financed != null", data-ng-disabled="planForm.$invalid || !coverDetails.agreed || coverDetails.financed == null", next-page="http://localhost:9000/pages/car/car.html")
 							span(translate="PS_1_3") Get Your Quote
 							span.glyphicon.glyphicon-arrow-right

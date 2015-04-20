@@ -1,4 +1,15 @@
-/* direct-asia : 0.0.0 : Mon Apr 20 2015 20:53:44 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 20 2015 21:50:45 GMT+0800 (CST) */
+
+/*
+
+TESTING ONLY - can be deleted before production
+
+This function simply mocks data that would be returned
+from a back-end API. Data should include:
+
+- available cover plans, including all relevant information about each
+- avilable optional benefits, including descriptions of each
+ */
 var getMockData;
 
 getMockData = function() {
@@ -46,31 +57,62 @@ getMockData = function() {
   };
 };
 
+
+/*
+The controller ties together the view with the model.
+
+In this case the view is the partials/choose-your-cover/choose-your-cover file and the main model
+is the $scope.coverDetails variable.
+ */
+
 angular.module('DirectAsia').controller('yourPlanCtrl', [
   '$scope', function($scope) {
+
+    /*
+    		This private function fetches data from the back-end to be used on the page
+    
+    		(NOTE: This isn't used currently as the data is mocked by the
+    		function getMockData() above)
+     */
     var getDataFromAPI, setupData;
     getDataFromAPI = function() {
       var dataFromAPI;
       dataFromAPI = {};
       $http.get('http://api-url?lang=' + $rootScope.currentLanguage).success(function(data, status, headers, config) {
-        dataFromAPI = data;
+        return dataFromAPI = data;
       }).error(function(data, status, headers, config) {
-        console.error(data);
+        return console.error(data);
       });
       return dataFromAPI;
     };
+
+    /*
+    		This private function formats the data returned from the server so that it
+    		can be used on the page
+     */
     setupData = function(data) {
       $scope.plans = data.plans;
       $scope.covers = data.covers;
-      $scope.coverDetails = {
+      return $scope.coverDetails = {
         plan: $scope.plans[0],
-        financed: false,
-        agreed: true
+        financed: null,
+        agreed: false
       };
     };
+
+    /*
+    		This function is used to select a particular cover plan
+     */
     $scope.selectPlan = function(plan) {
-      $scope.coverDetails.plan = plan;
+      return $scope.coverDetails.plan = plan;
     };
+
+    /*
+    		This function checks whether an otional benefit is included in a
+    		specific cover plan in order to determine if a checkmark should
+    		be displayed in the table under the column for that plan and the
+    		row for that benefit.
+     */
     $scope.doesPlanIncludeCover = function(plan, cover) {
       var i;
       i = 0;
@@ -82,6 +124,14 @@ angular.module('DirectAsia').controller('yourPlanCtrl', [
       }
       return false;
     };
-    setupData(getMockData());
+
+    /*
+    		Setup the data on the page using that returned from the server or mocked.
+     */
+
+    /*
+    		setupData(getDataFromAPI());
+     */
+    return setupData(getMockData());
   }
 ]);
