@@ -1,33 +1,66 @@
-/* direct-asia : 0.0.0 : Sat Apr 18 2015 03:30:34 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 20 2015 17:53:00 GMT+0800 (CST) */
 
-/* direct-asia : 0.0.0 : Mon Apr 13 2015 16:14:41 GMT+0800 (CST) */
+/*
+
+TESTING ONLY - can be deleted before production
+
+This function simply mocks data that would be returned
+from a back-end API. Data should include:
+
+- available occupation options
+- avilable residential district options
+- available driving experience options
+- available NCD options
+- available at fault options
+- available not at fault options
+ */
 var getMockData;
 
 getMockData = function() {
   var data;
   return data = {
-    occupations: ['Taxi Driver', 'Truck Driver'],
-    residentials: ['Hong Kong', 'New Territories', 'Kowloon'],
-    drivingExperiences: ['1', '2', '3', '4', '5', 'more than 5'],
-    discounts: ['0%', '20%', '30%', '40%', '50%', '60%'],
-    faults: ['0', '1', '2', '2+'],
-    notFaults: ['0', '1', '2', '2+']
+    occupations: ["Taxi Driver", "Truck Driver"],
+    residentials: ["Hong Kong", "New Territories", "Kowloon"],
+    drivingExperiences: ["1", "2", "3", "4", "5", "more than 5"],
+    discounts: ["0%", "20%", "30%", "40%", "50%", "60%"],
+    faults: ["0", "1", "2", "2+"],
+    notFaults: ["0", "1", "2", "2+"]
   };
 };
 
-angular.module('DirectAsia').controller('aboutYourDriverCtrl', [
-  '$scope', 'MainDriver', function($scope, MainDriver) {
+
+/*
+The controller ties together the view with the model.
+
+In this case the view is the partials/about-your-driver/about-your-driver file and the main model
+is the $scope.driver variable.
+ */
+
+angular.module("DirectAsia").controller("aboutYourDriverCtrl", [
+  "$scope", "MainDriver", function($scope, MainDriver) {
+
+    /*
+    		This private function fetches data from the back-end to be used on the page
+    
+    		(NOTE: This isn't used currently as the data is mocked by the
+    		function getMockData() above)
+     */
     var getDataFromAPI, setupData;
     getDataFromAPI = function() {
       var dataFromAPI;
       dataFromAPI = {};
-      $http.get('http://api-url?lang=' + $rootScope.currentLanguage).success(function(data, status, headers, config) {
-        dataFromAPI = data;
+      $http.get("http://api-url?lang=" + $rootScope.currentLanguage).success(function(data, status, headers, config) {
+        return dataFromAPI = data;
       }).error(function(data, status, headers, config) {
-        console.error(data);
+        return console.error(data);
       });
       return dataFromAPI;
     };
+
+    /*
+    		This private function formats the data returned from the server so that it
+    		can be used on the page
+     */
     setupData = function(data) {
       $scope.driver = new MainDriver;
       $scope.occupations = data.occupations;
@@ -35,11 +68,24 @@ angular.module('DirectAsia').controller('aboutYourDriverCtrl', [
       $scope.drivingExperiences = data.drivingExperiences;
       $scope.discounts = data.discounts;
       $scope.faults = data.faults;
-      $scope.notFaults = data.notFaults;
+      return $scope.notFaults = data.notFaults;
     };
+
+    /*
+    		This function is required for the custom select fields to work. When the
+    		field value changes the corresponding scope variable is updated.
+     */
     $scope.select = function(value, property) {
       return $scope.driver[property] = value;
     };
-    setupData(getMockData());
+
+    /*
+    		Setup the data on the page using that returned from the server or mocked.
+     */
+
+    /*
+    		setupData(getDataFromAPI());
+     */
+    return setupData(getMockData());
   }
 ]);

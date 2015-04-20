@@ -3,32 +3,29 @@
 <div class="container">
   <section ng-controller="CarCtrl" class="section section-car">
     <form name="carForm" novalidate="novalidate">
-      <div class="panel">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-6">
-              <h1><img src="../../images/car-icon.png" class="pull-left"/><span translate="PS_2_0_1">Tell us about the car</span></h1>
-            </div>
-            <div class="col-md-6">
-              <div class="col-md-12 col-xs-10">
-                <h2><span translate="GS_0_2a">Existing Customer?</span>
-                  <div translate="GS_0_2b" class="subtitle">Save time and retrieve your renewal quote</div>
-                </h2>
+      <div class="container-fluid">
+        <div class="panel margin--bottom">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-2 centred margin--bottom"><img src="../../images/person-icon.png"/></div>
+              <div class="col-md-7 margin--bottom">
+                <h1><span translate="PS_3_0a">Tell Us About the Main Driver</span>
+                  <div translate="PS_3_0b" class="subtitle">it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.</div>
+                </h1>
               </div>
-              <div class="col-md-12 col-xs-2">
-                <button type="button" class="btn btn-default"><span translate="GS_0_2c">Login Now</span><span class="glyphicon glyphicon-ok"></span></button>
+              <div class="col-md-3"><strong translate="GS_0_2a">Existing Customer?</strong>
+                <p translate="GS_0_2b">Save time and retrieve your renewal quote</p>
+                <button type="button" class="btn btn-primary"><span translate="GS_0_2c">Login Now</span><span class="glyphicon glyphicon-ok"></span></button>
               </div>
             </div>
           </div>
-        </div>
-        <div class="panel-footer">
-          <div class="custom-tooltip">
-            <div data-toggle="popover" data-placement="right" popover="#driving-offence" popover-type="popover-type" data-original-title="data-original-title" title="" class="row hover-tooltip">
-              <div class="col-md-4">
+          <div class="panel-footer">
+            <div data-toggle="popover" data-placement="top" popover="#popover1" popover-type="popover--yellow" trigger="hover" class="row">
+              <div class="col-md-4 margin--bottom">
                 <label for="year"><span translate="PS_2_0_3">Year of Manufacture</span><img data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document." src="../../images/question-icon.png" class="show-tooltip"/></label>
                 <input id="carYear" name="carYear" data-ng-model="car.year" type="number" min="1980" max="2015" placeholder="Enter year" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(carForm.carYear.$invalid &amp;&amp; carForm.carYear.$dirty) || (carForm.carYear.$invalid &amp;&amp; carForm.$submitted)" class="error-input-image"/>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4 margin--bottom">
                 <label for="make"><span translate="PS_2_0_4">Car Make</span><img src="../../images/question-icon.png"/></label>
                 <input id="carMake" name="carMake" data-ng-model="car.make" type="text" placeholder="Enter make" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(carForm.carMake.$invalid &amp;&amp; carForm.carMake.$dirty) || (carForm.carMake.$invalid &amp;&amp; carForm.$submitted)" class="error-input-image"/>
               </div>
@@ -38,7 +35,7 @@
                   <option selecter="selecter" label="Enter model" value="{{model}}" data-ng-repeat="model in models" selecter-target="#model" selecter-callback="select" property="model" data-ng-selected="model == selectedItem">{{model}}</option>
                 </select><img src="../../images/error.png" data-ng-show="(carForm.model.$invalid &amp;&amp; carForm.model.$dirty) || (carForm.model.$invalid &amp;&amp; carForm.$submitted)" style="position:absolute; right: 15px; bottom: 3px;" class="error-input-image"/>
               </div>
-              <div id="driving-offence" class="popover right">
+              <div id="popover1" class="popover top">
                 <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
                 <div translate="PS_2_0_2" class="subtitle">Please note that we do not cover cars used for commercial purposes or for hire/reward</div>
               </div>
@@ -79,13 +76,13 @@
               <h2 class="margin--bottom"><span translate="PS_2_1_4_2_1">What do you use the car for?</span><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.usage"/></h2>
               <div class="row margin--top">
                 <div class="col-md-4 centred"><img src="../../images/trolley-icon.png" data-toggle="tooltip" data-placement="top" title="If you are only using your car in the course of your private life and for leisure." class="margin--bottom show-tooltip"/>
-                  <button type="button" data-ng-click="select('personal use', 0, 'usage')" data-ng-class="{'active':car.usage=='personal use'}" class="btn btn-default btn-block"><span translate="PS_2_1_4_2_3">Personal use</span><span class="glyphicon glyphicon-ok"></span></button>
+                  <button type="button" data-ng-click="select('personal use', 0, 'usage')" data-ng-class="{'active':car.usage=='personal use'}" class="btn btn-default btn-block margin--bottom"><span translate="PS_2_1_4_2_3">Personal use</span><span class="glyphicon glyphicon-ok"></span></button>
                 </div>
                 <div class="col-md-4 centred"><img src="../../images/cityscape-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car in the course of your private life and to go to and from your workplace." class="margin--bottom show-tooltip"/>
-                  <button type="button" data-ng-click="select('personal use + commute', 0, 'usage')" data-ng-class="{'active':car.usage=='personal use + commute'}" class="btn btn-default btn-block"><span translate="PS_2_1_4_2_4">Personal use + Commute</span><span class="glyphicon glyphicon-ok"></span></button>
+                  <button type="button" data-ng-click="select('personal use + commute', 0, 'usage')" data-ng-class="{'active':car.usage=='personal use + commute'}" class="btn btn-default btn-block margin--bottom"><span translate="PS_2_1_4_2_4">Personal use + Commute</span><span class="glyphicon glyphicon-ok"></span></button>
                 </div>
                 <div class="col-md-4 centred"><img src="../../images/lanyard-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car to go to and from your workplace and for or during the course of your work." class="margin--bottom show-tooltip"/>
-                  <button type="button" data-ng-click="select('commute + during work', 0, 'usage')" data-ng-class="{'active':car.usage=='commute + during work'}" class="btn btn-default btn-block"><span translate="PS_2_1_4_2_5">Commute + During work</span><span class="glyphicon glyphicon-ok"></span></button>
+                  <button type="button" data-ng-click="select('commute + during work', 0, 'usage')" data-ng-class="{'active':car.usage=='commute + during work'}" class="btn btn-default btn-block margin--bottom"><span translate="PS_2_1_4_2_5">Commute + During work</span><span class="glyphicon glyphicon-ok"></span></button>
                 </div>
               </div>
               <p translate="PS_2_1_4_2_6" class="margin--top">Do you sometimes use your car for commute or work? You can use your car up to 5 times per year outside the usage you declare. Simply email us at <a href="mailto:carusage@directasia.com">CarUsage@DirectAsia.com</a> before you drive, and you‘ll be covered in case something happens.</p>
@@ -122,18 +119,20 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
-              <button type="button" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_2_2_2">Back</span></button>
-              <button type="submit" valid="carForm.$valid" continue="continue" url="http://localhost:9000/car" page-data="{{car}}" next-page="http://localhost:9000/pages/about-your-driver/your-driver.html" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_2_2_1">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+              <button type="button" class="btn btn-backward margin--bottom"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_2_2_2">Back</span></button>
+              <button type="submit" valid="carForm.$valid" continue="continue" url="http://localhost:9000/car" page-data="{{car}}" next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_2_2_1">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
             </div>
           </div>
         </div>
       </div>
     </form>
   </section>
-  <div class="overlay">
-    <div class="panel">
-      <button type="button" class="overlay-close-button"><span class="glyphicon glyphicon-remove"></span></button>
-      <div class="panel-body">
+</div>
+<div id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+      <div class="modal-body">
         <h2 translate="GS_0_3_1">Are you still there?</h2>
         <p translate="GS_0_3_2">If we don‘t detect you clicking around, then we end your session to protect your personal information.</p>
         <p><strong translate="GS_0_3_3">your session will end in: [X]</strong></p>
@@ -142,3 +141,4 @@
     </div>
   </div>
 </div>
+<script>$('#modal').modal();</script>

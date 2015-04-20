@@ -6,39 +6,36 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 		form(name="carForm", novalidate)
 
-			.panel
+			.container-fluid
 
-				.panel-body
+				.panel.margin--bottom
 
-					.row
+					.panel-body
 
-						.col-md-6
+						.row
 
-							h1
-								img.pull-left(src="../../images/car-icon.png")
-								span(translate="PS_2_0_1") Tell us about the car
+							.col-md-2.centred.margin--bottom
+								img(src="../../images/person-icon.png")
 
-						.col-md-6
+							.col-md-7.margin--bottom
 
-							.col-md-12.col-xs-10
+								h1
+									span(translate="PS_3_0a") Tell Us About the Main Driver
+									.subtitle(translate="PS_3_0b") it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.
 
-								h2
-									span(translate="GS_0_2a") Existing Customer?
-									.subtitle(translate="GS_0_2b") Save time and retrieve your renewal quote
+							.col-md-3
 
-							.col-md-12.col-xs-2
-
-								button.btn.btn-default(type="button")
+								strong(translate="GS_0_2a") Existing Customer?
+								p(translate="GS_0_2b") Save time and retrieve your renewal quote
+								button.btn.btn-primary(type="button")
 									span(translate="GS_0_2c") Login Now
 									span.glyphicon.glyphicon-ok
 
-				.panel-footer
+					.panel-footer
 
-					.custom-tooltip
+						.row(data-toggle="popover", data-placement="top", popover="#popover1", popover-type="popover--yellow", trigger="hover")
 
-						.row.hover-tooltip(data-toggle="popover", data-placement="right", popover="#driving-offence", popover-type, data-original-title, title="")
-
-							.col-md-4
+							.col-md-4.margin--bottom
 
 								label(for="year")
 									span(translate="PS_2_0_3") Year of Manufacture
@@ -48,7 +45,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 								img.error-input-image(src="../../images/error.png", data-ng-show="(carForm.carYear.$invalid && carForm.carYear.$dirty) || (carForm.carYear.$invalid && carForm.$submitted)")
 
-							.col-md-4
+							.col-md-4.margin--bottom
 
 								label(for="make")
 									span(translate="PS_2_0_4") Car Make
@@ -69,7 +66,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 								img.error-input-image(src="../../images/error.png", data-ng-show="(carForm.model.$invalid && carForm.model.$dirty) || (carForm.model.$invalid && carForm.$submitted)", style="position:absolute; right: 15px; bottom: 3px;")
 
-							#driving-offence.popover.right
+							#popover1.popover.top
 								button.popover-close-button(type="button")
 									span.glyphicon.glyphicon-remove
 								.subtitle(translate="PS_2_0_2") Please note that we do not cover cars used for commercial purposes or for hire/reward
@@ -143,21 +140,21 @@ script(src="../../scripts/controllers/car/car.controller.js")
 								.col-md-4.centred
 
 									img.margin--bottom.show-tooltip(src="../../images/trolley-icon.png", data-toggle="tooltip", data-placement="top", title="If you are only using your car in the course of your private life and for leisure.")
-									button.btn.btn-default.btn-block(type="button", data-ng-click="select('personal use', 0, 'usage')", data-ng-class="{'active':car.usage=='personal use'}")
+									button.btn.btn-default.btn-block.margin--bottom(type="button", data-ng-click="select('personal use', 0, 'usage')", data-ng-class="{'active':car.usage=='personal use'}")
 										span(translate="PS_2_1_4_2_3") Personal use
 										span.glyphicon.glyphicon-ok
 
 								.col-md-4.centred
 
 									img.margin--bottom.show-tooltip(src="../../images/cityscape-icon.png", data-toggle="tooltip", data-placement="top", title="If you are using your car in the course of your private life and to go to and from your workplace.")
-									button.btn.btn-default.btn-block(type="button", data-ng-click="select('personal use + commute', 0, 'usage')", data-ng-class="{'active':car.usage=='personal use + commute'}")
+									button.btn.btn-default.btn-block.margin--bottom(type="button", data-ng-click="select('personal use + commute', 0, 'usage')", data-ng-class="{'active':car.usage=='personal use + commute'}")
 										span(translate="PS_2_1_4_2_4") Personal use + Commute
 										span.glyphicon.glyphicon-ok
 
 								.col-md-4.centred
 
 									img.margin--bottom.show-tooltip(src="../../images/lanyard-icon.png", data-toggle="tooltip", data-placement="top", title="If you are using your car to go to and from your workplace and for or during the course of your work.")
-									button.btn.btn-default.btn-block(type="button", data-ng-click="select('commute + during work', 0, 'usage')", data-ng-class="{'active':car.usage=='commute + during work'}")
+									button.btn.btn-default.btn-block.margin--bottom(type="button", data-ng-click="select('commute + during work', 0, 'usage')", data-ng-class="{'active':car.usage=='commute + during work'}")
 										span(translate="PS_2_1_4_2_5") Commute + During work
 										span.glyphicon.glyphicon-ok
 
@@ -208,20 +205,23 @@ script(src="../../scripts/controllers/car/car.controller.js")
 					.row
 						.col-md-12
 
-							button.btn.btn-backward(type="button")
+							button.btn.btn-backward.margin--bottom(type="button")
 								span.glyphicon.glyphicon-arrow-left
 								span(translate="PS_2_2_2") Back
 
-							button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", valid="carForm.$valid", continue, url="http://localhost:9000/car", page-data="{{car}}", next-page="http://localhost:9000/pages/about-your-driver/your-driver.html")
+							button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", valid="carForm.$valid", continue, url="http://localhost:9000/car", page-data="{{car}}", next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html")
 								span(translate="PS_2_2_1") Proceed
 								span.glyphicon.glyphicon-arrow-right
-	.overlay
-		.panel
 
-			button.overlay-close-button(type="button")
-				span.glyphicon.glyphicon-remove
 
-			.panel-body
+#modal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalLabel", aria-hidden="false")
+	.modal-dialog
+		.modal-content
+
+			button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+				span(aria-hidden="true") ×
+
+			.modal-body
 
 				h2(translate="GS_0_3_1") Are you still there?
 
@@ -230,3 +230,6 @@ script(src="../../scripts/controllers/car/car.controller.js")
 					strong(translate="GS_0_3_3") your session will end in: [X]
 
 				button.btn.btn-forward.btn-lg(type="button", data-ng-click="proceed()", translate="GS_0_3_4") Yes! Continue My Quote
+
+script.
+	$('#modal').modal();

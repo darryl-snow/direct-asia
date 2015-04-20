@@ -1,8 +1,8 @@
 // Popover styles
 
 .popover {
-	background-color: 		$dark-grey-2;
-	border-color: 			$dark-grey-2;
+	background-color:		$dark-grey-2;
+	border-color:			$dark-grey-2;
 	box-shadow:				none;
 	padding:				1em;
 
@@ -10,8 +10,22 @@
 		margin-top:			20px;
 	}
 
+	&.left {
+		margin-right:		70px;
+	}
+
 	&.right {
 		margin-left:		20px;
+	}
+
+	&.top {
+		margin-bottom:		20px;
+
+		.arrow {
+			bottom:			auto;
+			overflow:		hidden;
+			top:			100%;
+		}
 	}
 
 	&.bottom .arrow,
@@ -19,13 +33,23 @@
 		border-bottom-color: $dark-grey-2;
 	}
 
+	&.left .arrow,
+	&.left .arrow:after {
+		border-left-color: $dark-grey-2;
+	}
+
 	&.right .arrow,
 	&.right .arrow:after {
 		border-right-color: $dark-grey-2;
 	}
 
+	&.top .arrow,
+	&.top .arrow:after {
+		border-top-color:	$dark-grey-2;
+	}
+
 	.btn {
-		box-shadow: 		none;
+		box-shadow:			none;
 		margin-top:			1em;
 	}
 
@@ -35,7 +59,7 @@
 		height:				4em;
 		line-height:		5;
 		margin:				1em auto;
-		text-align: 		center;
+		text-align:			center;
 		width:				4em;
 
 		.glyphicon {
@@ -44,15 +68,58 @@
 	}
 
 	&--yellow {
-		background-color: 	$yellow;
-		border-color: 		$yellow;
+		background-color:	$yellow;
+		border-color:		$yellow;
 		color:				$dark-grey-2;
 		padding:			0.5em;
+
+		&.bottom .arrow,
+		&.bottom .arrow:after {
+			border-bottom-color: $yellow;
+		}
+
+		&.left .arrow,
+		&.left .arrow:after {
+			border-left-color: $yellow;
+		}
 
 		&.right .arrow,
 		&.right .arrow:after {
 			border-right-color: $yellow;
 		}
+
+		&.top .arrow,
+		&.top .arrow:after {
+			border-top-color: $yellow;
+		}
+	}
+}
+
+.fake-popover {
+	background-color:		$yellow;
+	border-color:			$yellow;
+	border-radius:			6px;
+	color:					$dark-grey-2;
+	left:					-220px;
+	padding:				20px;
+	position:				absolute;
+	top:					-32px;
+	white-space:			normal;
+	width:					230px;
+
+	&:after {
+		border-color:		transparent;
+		border-left-color:	$yellow;
+		border-style:		solid;
+		border-width:		10px;
+		border-right-width:	0;
+		content:			"";
+		display:			block;
+		height:				0;
+		position:			absolute;
+		right:				-10px;
+		top:				10%;
+		width:				0;
 	}
 }
 

@@ -1,0 +1,29 @@
+
+<script src="../../scripts/controllers/help/help.controller.js"></script>
+<div data-ng-controller="helpCtrl" class="help">
+  <button type="button" translate="GS_0_0_2a" data-ng-click="showPopover = !showPopover" class="btn btn-primary btn-sm help-button">Need Help?</button>
+  <div id="popover" data-ng-show="showPopover" class="fake-popover">
+    <div class="arrow"></div>
+    <form name="helpForm" novalidate="novalidate" data-ng-submit="helpForm.$valid &amp;&amp; sendRequest()" data-ng-show="sent == false">
+      <button type="button" data-ng-click="showPopover = false" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+      <p><b translate="PS_3_0_1">Let us call you. Provide your details below and someone from our HK customer care team will get back to you.</b></p>
+      <div class="margin--bottom">
+        <input type="text" placeholder="Enter Name" name="name" data-ng-model="supportRequest.name" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(helpForm.name.$invalid &amp;&amp; helpForm.name.$dirty) || (helpForm.name.$invalid &amp;&amp; helpForm.$submitted)"/>
+      </div>
+      <div class="margin--bottom">
+        <input type="email" placeholder="Enter Email Address" name="email" data-ng-model="supportRequest.email" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(helpForm.email.$invalid &amp;&amp; helpForm.email.$dirty) || (helpForm.email.$invalid &amp;&amp; helpForm.$submitted)"/>
+      </div>
+      <div class="margin--bottom">
+        <input type="tel" placeholder="Enter Phone Number" name="phone" data-ng-model="supportRequest.number" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(helpForm.phone.$invalid &amp;&amp; helpForm.phone.$dirty) || (helpForm.phone.$invalid &amp;&amp; helpForm.$submitted)"/>
+      </div>
+      <button type="submit" translate="PS_3_0_2" class="btn btn-forward margin--bottom">Send Now</button>
+    </form>
+    <div data-ng-show="sent" class="on-submit margin--bottom">
+      <h2><span translate="PS_3_0_3">Message Sent</span>
+        <div translate="PS_3_0_4" class="subtitle">Thank you for your message. We will respond to you with 24 hours.</div>
+      </h2>
+    </div>
+    <p><span translate="GS_0_0_2b">Call us on </span>+852 2884 8888<br/><span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
+    <p><span translate="GS_0_0_3a">Email us at </span><a href="" style="display:block;">enquiries@directasia.com.hk</a></p>
+  </div>
+</div>

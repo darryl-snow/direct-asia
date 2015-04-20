@@ -210,9 +210,9 @@ gulp.task "coffeescript", ->
 # Compile Stylus
 
 gulp.task "sass", ->
-	gulp.src [Config.src + "sass/main.scss", Config.src + "other-developers-stuff/styles/custom.css"]
+	gulp.src Config.src + "sass/main.scss"
 	.pipe plugins.plumber()
-	.pipe plugins.concat "main.css"
+	# .pipe plugins.concat "main.css"
 	# .pipe plugins.sourcemaps.init()
 	.pipe plugins.sass()
 	# .pipe plugins.sourcemaps.write "./sourcemaps"

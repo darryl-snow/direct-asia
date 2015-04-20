@@ -1,5 +1,22 @@
 .plan {
 
+	&-option {
+		height:				220px;
+		position:			relative;
+		text-align:			center;
+
+		&-status {
+			bottom:			20px;
+			left:			50%;
+			position:		absolute;
+			transform:		translateX(-50%);
+		}
+
+		&.selected {
+			background:		$yellow;
+		}
+	}
+
 	&-left,
 	&-right {
 		display:			inline-block;

@@ -1,10 +1,8 @@
-/* direct-asia : 0.0.0 : Sat Apr 18 2015 03:30:34 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 20 2015 17:53:00 GMT+0800 (CST) */
 
 /*
 Lovely welcome message
  */
-var section, utility;
-
 console.log("%c Welcome to Direct Asia Car Insurance ", "background: #3498db;\ncolor: #ffffff;\nfont-size: 18px;\nfont-family: 'Helvetica Neue';\nfont-weight: 300;\nline-height: 30px;\nheight: 30px;\npadding: 5px;");
 
 
@@ -55,34 +53,3 @@ angular.module("DirectAsia", ["fsm", "pascalprecht.translate"]).config(function(
     };
   }
 ]);
-
-section = {};
-
-(function($) {
-  return $(document).ready(function() {
-    section.sections = $("body > .outer-wrap > section");
-    $(".popover-close-button").click(function() {
-      $(this).parent().parent().parent().find(".popover").removeClass("fade in");
-      return $(this).parent().parent().parent().find(".popover").css("display", "none");
-    });
-    $(".popover-button").click(function() {
-      if ($(this).parent().find(".popover").hasClass("fade")) {
-        $(this).parent().find(".popover").removeClass("fade in");
-        return $(this).parent().find(".popover").css("display", "none");
-      } else {
-        $(this).parent().find(".popover").addClass("fade in");
-        return $(this).parent().find(".popover").css("display", "block");
-      }
-    });
-    $(".hover-tooltip").hover(function() {
-      if (!$(this).attr("aria-describedby")) {
-        return $(this).trigger("click");
-      }
-    });
-    return $(".overlay .overlay-close-button").click(function() {
-      return $(".overlay").css("display", "none");
-    });
-  });
-})(jQuery);
-
-utility = {};

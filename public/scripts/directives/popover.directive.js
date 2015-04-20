@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Sat Apr 18 2015 03:30:34 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 20 2015 17:53:00 GMT+0800 (CST) */
 
 /*
 Directive for showing Bootstrap popovers
@@ -15,8 +15,14 @@ angular.module("DirectAsia").directive("popover", function() {
       			We have different types of popovers, which we specify in the element's
       			'popoverType' attribute
        */
-      var el, type;
+      var el, trigger, type;
       type = attrs.popoverType ? attrs.popoverType : "";
+
+      /*
+      			Popovers may be triggered by click (default), hover, focus, or any combination
+      			of these, which we specified in the element's 'trigger' attribute
+       */
+      trigger = attrs.trigger ? attrs.trigger : "click";
 
       /*
       			In the 'popover' attribute, we specify the element containing
@@ -29,6 +35,7 @@ angular.module("DirectAsia").directive("popover", function() {
        */
       element.popover({
         html: true,
+        trigger: trigger,
         template: "<div class='popover " + type + "' role='tooltip'><div class='arrow'></div>" + "<h3 class='popover-title'></h3><div class='popover-content'></div></div>",
         content: function() {
 
@@ -36,6 +43,10 @@ angular.module("DirectAsia").directive("popover", function() {
           					create an element from the popover html
            */
           return angular.element(el).html();
+        },
+        delay: {
+          show: 50,
+          hide: 2000
         }
       });
 

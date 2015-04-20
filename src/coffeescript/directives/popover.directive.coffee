@@ -17,6 +17,12 @@ angular.module "DirectAsia"
 			type = if attrs.popoverType then attrs.popoverType else ""
 
 			###
+			Popovers may be triggered by click (default), hover, focus, or any combination
+			of these, which we specified in the element's 'trigger' attribute
+			###
+			trigger = if attrs.trigger then attrs.trigger else "click"
+
+			###
 			In the 'popover' attribute, we specify the element containing
 			the popover's HTML
 			###
@@ -27,6 +33,7 @@ angular.module "DirectAsia"
 			###
 			element.popover
 				html: true
+				trigger: trigger
 				template: "<div class='popover " + type +
 				 "' role='tooltip'><div class='arrow'></div>" +
 				 "<h3 class='popover-title'></h3><div class='popover-content'></div></div>"
@@ -35,6 +42,9 @@ angular.module "DirectAsia"
 					create an element from the popover html
 					###
 					angular.element(el).html()
+				delay:
+					show: 50
+					hide: 2000
 
 			###
 			add an event listener on the popover's close button so that

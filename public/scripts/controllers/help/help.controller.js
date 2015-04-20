@@ -1,19 +1,50 @@
-/* direct-asia : 0.0.0 : Mon Apr 13 2015 16:14:41 GMT+0800 (CST) */
-angular.module("DirectAsia").controller("helpController", [
-  "$scope", function($scope) {
-    $scope.helps = {
+/* direct-asia : 0.0.0 : Mon Apr 20 2015 17:53:00 GMT+0800 (CST) */
+
+/*
+The controller ties together the view with the model.
+
+In this case the view is the partials/help/help file and the main model
+is the $scope.supportRequest variable.
+ */
+angular.module("DirectAsia").controller("helpCtrl", [
+  "$scope", "$http", function($scope, $http) {
+
+    /*
+    		Setup scope variables
+     */
+    $scope.supportRequest = {
       name: "",
       email: "",
-      number: "",
-      no_content: false,
-      submit: false
+      number: ""
     };
-    return $scope.helps.click = function() {
-      if (!$scope.helps.name || !$scope.helps.email || !$scope.helps.number) {
-        return $scope.helps.no_content = true;
-      } else {
-        return $scope.helps.submit = true;
-      }
+    $scope.showPopover = false;
+    $scope.sent = false;
+
+    /*
+    		Submit the support request to the server
+     */
+    return $scope.sendRequest = function() {
+      return $http({
+        method: "POST",
+        url: "http://api:port/support",
+        data: $scope.supportRequest
+      }).success(function(response) {
+
+        /*
+        				Hide the form and show the success message.
+        				After 4 seconds hide the popover.
+         */
+        $scope.sent = true;
+        return setTimeout(function() {
+          return $scope.showPopover = false;
+        }, 4000);
+      }).error(function(response, status) {
+
+        /*
+        				The data could not be sent - log the error to the console
+         */
+        return console.error("The request failed with response " + response + " and status code " + status);
+      });
     };
   }
 ]);

@@ -31,4 +31,10 @@
 	&--centred {
 		text-align: 		center;
 	}
+
+	&-driver,
+	&-car,
+	&-cover {
+		margin:				$base-spacing-unit 0;
+	}
 }

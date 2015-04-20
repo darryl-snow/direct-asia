@@ -2,44 +2,40 @@ link(rel="stylesheet", href="../../lib/bootstrap-slider.css")
 script(src="../../lib/bootstrap-slider.min.js")
 script(src="../../scripts/controllers/about-your-driver/about-your-driver.controller.js")
 
-section.section.section-plan(data-ng-controller="aboutYourDriverCtrl")
+.container
 
-	form(name="driverForm", novalidate)
+	section.section.section-driver(data-ng-controller="aboutYourDriverCtrl")
 
-		.container
+		form(name="driverForm", novalidate)
 
-			.panel
+			.container-fluid
 
-				.panel-body
+				.panel
 
-					.row
+					.panel-body
 
-						.col-md-6
+						.row
 
-							h1
-								img.pull-left(src="../../images/person-icon.png")
-								span(translate="PS_3_0a") Tell Us About the Main Driver
-								.subtitle(translate="PS_3_0b") it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.
+							.col-md-2.centred.margin--bottom
+								img(src="../../images/person-icon.png")
 
-						.col-md-6
+							.col-md-7.margin--bottom
 
-							.col-md-12.col-xs-10
+								h1
+									span(translate="PS_3_0a") Tell Us About the Main Driver
+									.subtitle(translate="PS_3_0b") it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.
 
-								h2
-									span(translate="GS_0_2a") Existing Customer?
-									.subtitle(translate="GS_0_2b") Save time and retrieve your renewal quote
+							.col-md-3
 
-							.col-md-12.col-xs-2
-
-								button.btn.btn-default(type="button")
+								strong(translate="GS_0_2a") Existing Customer?
+								p(translate="GS_0_2b") Save time and retrieve your renewal quote
+								button.btn.btn-primary(type="button")
 									span(translate="GS_0_2c") Login Now
 									span.glyphicon.glyphicon-ok
 
-			.row
+				.row.margin--bottom
 
-				.col-md-8
-
-					.panel1
+					.col-md-10.margin--bottom
 
 						.container-fluid
 
@@ -51,7 +47,7 @@ section.section.section-plan(data-ng-controller="aboutYourDriverCtrl")
 								span(translate="PS_3_0d") Yes
 								span.glyphicon.glyphicon-ok
 
-							button.btn.btn-default(name="ownCar", type="button", data-ng-class="{'active': driver.ownership}", data-ng-click="driver.ownership = false")
+							button.btn.btn-default(name="ownCar", type="button", data-ng-class="{'active': driver.ownership == false}", data-ng-click="driver.ownership = false")
 								span(translate="PS_3_0e") No
 								span.glyphicon.glyphicon-ok
 
@@ -59,20 +55,15 @@ section.section.section-plan(data-ng-controller="aboutYourDriverCtrl")
 
 							h2(translate="PS_3_0f") Date of Birth
 
-							.custom-tooltip
+							.form-inline(data-toggle="popover", data-placement="right", popover="#popover1", popover-type="popover--yellow", trigger="hover", style="display:inline-block;")
 
-								.form-inline.hover-tooltip(data-toggle="popover", data-placement="right", popover="#popover2", popover-type, data-original-title, title)
+								input#driverDOBDay.day(name="driverDOBDay", data-ng-model="driver.dob.day", placeholder="DD", type="number", min="1", max="31", required)
+								input#driverDOBMonth.month(name="driverDOBMonth", data-ng-model="driver.dob.month", placeholder="MM", type="number", min="1", max="12", required)
+								input#driverDOBYear.year(name="driverDOBYear", data-ng-model="driver.dob.year", placeholder="YYYY", type="number", min="1900", max="2015", required)
+								img(src="../../images/error.png", data-ng-show="(driverForm.driverDOBDay.$invalid && driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid && driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid && driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) && driverForm.$submitted)")
 
-									input#driverDOBDay.day(name="driverDOBDay", data-ng-model="driver.dob.day", placeholder="DD", type="number", min="1", max="31", required)
-									input#driverDOBMonth.month(name="driverDOBMonth", data-ng-model="driver.dob.month", placeholder="MM", type="number", min="1", max="12", required)
-									input#driverDOBYear.year(name="driverDOBYear", data-ng-model="driver.dob.year", placeholder="YYYY", type="number", min="1900", max="2015", required)
-									img(src="../../images/error.png", data-ng-show="(driverForm.driverDOBDay.$invalid && driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid && driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid && driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) && driverForm.$submitted)")
-
-								#popover2.popover.right
-
-									button.popover-close-button(type="button")
-										span.glyphicon.glyphicon-remove
-									span(translate="PS_3_0f_1") The main driver should be less than 70 year old
+							#popover1.popover.right
+								span(translate="PS_3_0f_1") The main driver should be less than 70 year old
 
 							.row
 
@@ -105,33 +96,26 @@ section.section.section-plan(data-ng-controller="aboutYourDriverCtrl")
 									h2(translate="PS_3_0k") Occupation
 									select#occupation(name="occupation", data-ng-model="driver.occupation", required)
 										option(selecter, label="Enter Occupation", value="{{occupation}}", data-ng-repeat="occupation in occupations", selecter-target="#occupation", selecter-callback="select", property="occupation", data-ng-selected="occupation == selectedItem") {{occupation}}
-									img(src="../../images/error.png", data-ng-show="(driverForm.occupation.$invalid && driverForm.occupation.$dirty) || (driverForm.occupation.$invalid && driverForm.$submitted)")
+									img(src="../../images/error.png", data-ng-show="(driverForm.occupation.$invalid && driverForm.occupation.$dirty) || (driverForm.occupation.$invalid && driverForm.$submitted)", style="bottom: 3px; position: absolute; right: 15px;")
 
 								.col-md-6
 
 									h2(translate="PS_3_0l") Residential District
 									select#residential(name="residential", data-ng-model="driver.residentialDistrict", required)
 										option(selecter, label="Enter Residential District", value="{{residential}}", data-ng-repeat="residential in residentials", selecter-target="#residential", selecter-callback="select", property="residential", data-ng-selected="residential == selectedItem") {{residential}}
-									img(src="../../images/error.png", data-ng-show="(driverForm.residential.$invalid && driverForm.residential.$dirty) || (driverForm.residential.$invalid && driverForm.$submitted)")
+									img(src="../../images/error.png", data-ng-show="(driverForm.residential.$invalid && driverForm.residential.$dirty) || (driverForm.residential.$invalid && driverForm.$submitted)", style="bottom: 3px; position: absolute; right: 15px;")
 
 						.container-fluid
 
 							h2(translate="PS_3_1_1a") Years of valid driving license
 
-							.custom-tooltip
+							.form-inline(data-toggle="popover", data-placement="right", popover="#popover2", popover-type="popover--yellow", trigger="hover", style="display:inline-block; position: relative; width: 48%;")
+								select#drivingExperience(name="drivingExperience", data-ng-model="driver.drivingExperience", required)
+									option(selecter, label="Enter Driving License", value="{{drivingExperience}}", data-ng-repeat="drivingExperience in drivingExperiences", selecter-target="#drivingExperience", selecter-callback="select", property="drivingExperience", data-ng-selected="drivingExperience == selectedItem") {{drivingExperience}}
+								img(src="../../images/error.png", data-ng-show="(driverForm.drivingExperience.$invalid && driverForm.drivingExperience.$dirty) || (driverForm.drivingExperience.$invalid && driverForm.$submitted)", style="bottom: 3px; position: absolute; right: 0;")
 
-								.hover-tooltip(data-toggle="popover", data-placement="right", popover="#driving-experience", popover-type, data-original-title, title)
-
-									select#drivingExperience(name="drivingExperience", data-ng-model="driver.drivingExperience", required)
-										option(selecter, label="Enter Driving License", value="{{drivingExperience}}", data-ng-repeat="drivingExperience in drivingExperiences", selecter-target="#drivingExperience", selecter-callback="select", property="drivingExperience", data-ng-selected="drivingExperience == selectedItem") {{drivingExperience}}
-									img(src="../../images/error.png", data-ng-show="(driverForm.drivingExperience.$invalid && driverForm.drivingExperience.$dirty) || (driverForm.drivingExperience.$invalid && driverForm.$submitted)")
-
-								#driving-experience.popover.right
-
-									button.popover-close-button(type="button")
-										span.glyphicon.glyphicon-remove
-									span(translate="PS_3_1_1b")
-										| We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.
+							#popover2.popover.right
+								span(translate="PS_3_1_1b") We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.
 
 						.container-fluid
 
@@ -139,14 +123,16 @@ section.section.section-plan(data-ng-controller="aboutYourDriverCtrl")
 								span(translate="PS_3_1_2a") No Claims Discount
 								.subtitle(translate="PS_3_1_2b") You will find on the renewal notice you recieved from your insurer
 
-							input#discount(type="text", data-ng-model="driver.noClaimsDiscount")
+							.col-md-12
 
-							script(type="text/javascript").
-								$("#discount").slider({
-									ticks: [0, 10, 20, 30, 40],
-									ticks_labels: ["0%", "20%", "30%", "40%", "50%"],
-									ticks_snap_bounds: 30
-								});
+								input#discount(type="text", data-ng-model="driver.noClaimsDiscount")
+
+								script(type="text/javascript").
+									$("#discount").slider({
+										ticks: [0, 10, 20, 30, 40],
+										ticks_labels: ["0%", "20%", "30%", "40%", "50%"],
+										ticks_snap_bounds: 30
+									});
 
 							div(data-ng-show="!driver.noClaimsDiscount")
 
@@ -181,23 +167,19 @@ section.section.section-plan(data-ng-controller="aboutYourDriverCtrl")
 							h2
 								span(translate="PC_3_1_3a") Did the main driver have any driving offence points in the last 2 years?
 
-							.custom-tooltip
+							div(data-toggle="popover", data-placement="right", popover="#driving-offence", popover-type="popover--yellow", trigger="hover", style="display: inline-block;")
+								button#offences-yes.btn.btn-default.random-margin(name="offences", type="button", data-ng-class="{'active': driver.offences}", data-ng-click="driver.offences = true")
+									span(translate="PC_3_1_3c") Yes
+									span.glyphicon.glyphicon-ok
+								button#offences-no.btn.btn-default(name="offences", type="button", data-ng-class="{'active': driver.offences == false}", data-ng-click="driver.offences = false")
+									span(translate="PC_3_1_3d") No
+									span.glyphicon.glyphicon-ok
+								img(src="../../images/error.png", data-ng-show="driverForm.$submitted && driver.offences == null")
 
-								.hover-tooltip(data-toggle="popover", data-placement="right", popover="#driving-offence", popover-type, data-original-title, title)
-									button#offences-yes.btn.btn-default.random-margin(name="offences", type="button", data-ng-class="{'active': driver.offences}", data-ng-click="driver.offences = true")
-										span(translate="PC_3_1_3c") Yes
-										span.glyphicon.glyphicon-ok
-									button#offences-no.btn.btn-default(name="offences", type="button", data-ng-class="{'active': !driver.offences}", data-ng-click="driver.offences = false")
-										span(translate="PC_3_1_3d") No
-										span.glyphicon.glyphicon-ok
-									img(src="../../images/error.png", data-ng-show="driverForm.$submitted && driver.offences == null")
-
-								#driving-offence.popover.right
-									button.popover-close-button(type="button")
-										span.glyphicon.glyphicon-remove
-									span(translate="PC_3_1_3b") If you‘re unsure, 
-										a(href="http://www.police.gov.hk/ppp_en/05_traffic_matters/tcr.html") click here
-										|  to get this information. Please note that drivers must have less than 12 offence points.
+							#driving-offence.popover.right
+								span(translate="PC_3_1_3b") If you‘re unsure, 
+									a(href="http://www.police.gov.hk/ppp_en/05_traffic_matters/tcr.html") click here
+									|  to get this information. Please note that drivers must have less than 12 offence points.
 
 						.container-fluid
 
@@ -223,44 +205,47 @@ section.section.section-plan(data-ng-controller="aboutYourDriverCtrl")
 									label(translate="PC_4_4_1_4c") at Fault
 									select#fault(name="fault", data-ng-model="driver.accidents.atFault", required)
 										option(selecter, label="at Fault", value="{{fault}}", data-ng-repeat="fault in faults", selecter-target="#fault", selecter-callback="select", property="fault", data-ng-selected="fault == selectedItem") {{fault}}
-									img(src="../../images/error.png", data-ng-show="(driverForm.fault.$invalid && driverForm.fault.$dirty) || (driverForm.fault.$invalid && driverForm.$submitted)")
+									img(src="../../images/error.png", data-ng-show="(driverForm.fault.$invalid && driverForm.fault.$dirty) || (driverForm.fault.$invalid && driverForm.$submitted)", style="bottom: 3px; position: absolute; right: 15px;")
 
 								.col-xs-6
 									label(translate="PC_4_4_1_4d") Not at Fault
 									select#notFault(name="notFault", data-ng-model="driver.accidents.notAtFault", required)
 										option(selecter, label="Not at Fault", value="{{notFault}}", data-ng-repeat="notFault in notFaults", selecter-target="#notFault", selecter-callback="select", property="notFault", data-ng-selected="notFault == selectedItem") {{notFault}}
-									img(src="../../images/error.png", data-ng-show="(driverForm.notFault.$invalid && driverForm.notFault.$dirty) || (driverForm.notFault.$invalid && driverForm.$submitted)")
+									img(src="../../images/error.png", data-ng-show="(driverForm.notFault.$invalid && driverForm.notFault.$dirty) || (driverForm.notFault.$invalid && driverForm.$submitted)", style="bottom: 3px; position: absolute; right: 15px;")
 
-						.row
+				.row
+					.col-md-12.margin--top
 
-							.col-md-12
+						button.btn.btn-forward.btn-lg.margin--bottom.margin--right(type="submit", continue, url="http://localhost:9000/driver", page-data="{{driver}}", next-page="http://localhost:9000/pages/quote/quote.html", valid="driverForm.$valid")
+							span(translate="PC_3_3_2") Proceed
+							span.glyphicon.glyphicon-arrow-right
 
-								button.btn.btn-backward(type="button")
-									span.glyphicon.glyphicon-arrow-left
-									span(translate="PC_3_3_1") Back
+						button.btn.btn-backward(type="button")
+							span.glyphicon.glyphicon-arrow-left
+							span(translate="PC_3_3_1") Back
 
-								button.btn.btn-forward.btn-lg.pull-right(type="submit", continue, url="http://localhost:9000/driver", page-data="{{driver}}", next-page="http://localhost:9000/pages/quote/quote.html", valid="driverForm.$valid")
-									span(translate="PC_3_3_2") Proceed
-									span.glyphicon.glyphicon-arrow-right
 
-.overlay
+#modal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalLabel", aria-hidden="false")
+	.modal-dialog
+		.modal-content
 
-	.panel
+			button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+				span(aria-hidden="true") ×
 
-		button.overlay-close-button(type="button")
-			span.glyphicon.glyphicon-remove
+			.modal-body
 
-		.panel-body
+				h2#modalLabel(translate="PC_3_3_3") Sorry, but we‘d like to speak with you about your policy
+				p
+					strong(translate="PC_3_3_4") What to do next:
+				p(translate="PC_3_3_5") Call our [Country] based team and provide your reference number and we‘ll help you complete your policy
+				p
+					strong
+						span(translate="PC_3_3_6") Your Reference Number:
+						|  XXXXX
+				p
+					span(translate="GS_0_0_2a") Call us on
+					|  +852 2884 8888
+					span(translate="GS_0_0_3") Mon - Fri 8am, Sat 9am - 6pm
 
-			h2(translate="PC_3_3_3") Sorry, but we‘d like to speak with you about your policy
-			p
-				strong(translate="PC_3_3_4") What to do next:
-			p(translate="PC_3_3_5") Call our [Country] based team and provide your reference number and we‘ll help you complete your policy
-			p
-				strong
-					span(translate="PC_3_3_6") Your Reference Number:
-					|  XXXXX
-			p
-				span(translate="GS_0_0_2a") Call us on
-				|  +852 2884 8888
-				span(translate="GS_0_0_3") Mon - Fri 8am, Sat 9am - 6pm
+script.
+	$('#modal').modal();

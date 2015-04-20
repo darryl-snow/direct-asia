@@ -1,0 +1,46 @@
+script(src="../../scripts/controllers/help/help.controller.js")
+
+.help(data-ng-controller="helpCtrl")
+
+	button.btn.btn-primary.btn-sm.help-button(type="button", translate="GS_0_0_2a", data-ng-click="showPopover = !showPopover") Need Help?
+
+	#popover.fake-popover(data-ng-show="showPopover")
+
+		.arrow
+
+		form(name="helpForm", novalidate, data-ng-submit="helpForm.$valid && sendRequest()", data-ng-show="sent == false")
+
+			button.popover-close-button(type="button", data-ng-click="showPopover = false")
+				span.glyphicon.glyphicon-remove
+
+			p
+				b(translate="PS_3_0_1") Let us call you. Provide your details below and someone from our HK customer care team will get back to you.
+
+			.margin--bottom
+				input.form-control(type="text", placeholder="Enter Name", name="name", data-ng-model="supportRequest.name", data-ng-pattern="/^[a-zA-Z0-9_ -]*$/", required)
+				img(src="../../images/error.png", data-ng-show="(helpForm.name.$invalid && helpForm.name.$dirty) || (helpForm.name.$invalid && helpForm.$submitted)")
+
+			.margin--bottom
+				input.form-control(type="email", placeholder="Enter Email Address", name="email", data-ng-model="supportRequest.email", required)
+				img(src="../../images/error.png", data-ng-show="(helpForm.email.$invalid && helpForm.email.$dirty) || (helpForm.email.$invalid && helpForm.$submitted)")
+
+			.margin--bottom
+				input.form-control(type="tel", placeholder="Enter Phone Number", name="phone", data-ng-model="supportRequest.number", required)
+				img(src="../../images/error.png", data-ng-show="(helpForm.phone.$invalid && helpForm.phone.$dirty) || (helpForm.phone.$invalid && helpForm.$submitted)")
+
+			button.btn.btn-forward.margin--bottom(type="submit", translate="PS_3_0_2") Send Now
+
+		.on-submit.margin--bottom(data-ng-show="sent")
+			h2
+				span(translate="PS_3_0_3") Message Sent
+				.subtitle(translate="PS_3_0_4") Thank you for your message. We will respond to you with 24 hours.
+
+		p
+			span(translate="GS_0_0_2b") Call us on 
+			| +852 2884 8888
+			br
+			span(translate="GS_0_0_3") Mon - Fri 8am, Sat 9am - 6pm
+
+		p
+			span(translate="GS_0_0_3a") Email us at 
+			a(href="", style="display:block;") enquiries@directasia.com.hk

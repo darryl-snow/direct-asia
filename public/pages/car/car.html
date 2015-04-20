@@ -69,151 +69,179 @@
           <li><span>Purchase</span></li>
         </ol>
         <div class="navbar-telephone pull-right">Call our Singapore Team on<span class="navbar-telephone-number">9854 4345</span></div>
-      </div>
-      <script src="../../scripts/controllers/car/car.controller.js"></script>
-      <div class="container">
-        <section ng-controller="CarCtrl" class="section section-car">
-          <form name="carForm" novalidate>
-            <div class="panel">
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-md-6">
-                    <h1><img src="../../images/car-icon.png" class="pull-left"><span translate="PS_2_0_1">Tell us about the car</span></h1>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="col-md-12 col-xs-10">
-                      <h2><span translate="GS_0_2a">Existing Customer?</span>
-                        <div translate="GS_0_2b" class="subtitle">Save time and retrieve your renewal quote</div>
-                      </h2>
-                    </div>
-                    <div class="col-md-12 col-xs-2">
-                      <button type="button" class="btn btn-default"><span translate="GS_0_2c">Login Now</span><span class="glyphicon glyphicon-ok"></span></button>
-                    </div>
-                  </div>
-                </div>
+        <script src="../../scripts/controllers/help/help.controller.js"></script>
+        <div data-ng-controller="helpCtrl" class="help">
+          <button type="button" translate="GS_0_0_2a" data-ng-click="showPopover = !showPopover" class="btn btn-primary btn-sm help-button">Need Help?</button>
+          <div id="popover" data-ng-show="showPopover" class="fake-popover">
+            <div class="arrow"></div>
+            <form name="helpForm" novalidate data-ng-submit="helpForm.$valid &amp;&amp; sendRequest()" data-ng-show="sent == false">
+              <button type="button" data-ng-click="showPopover = false" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+              <p><b translate="PS_3_0_1">Let us call you. Provide your details below and someone from our HK customer care team will get back to you.</b></p>
+              <div class="margin--bottom">
+                <input type="text" placeholder="Enter Name" name="name" data-ng-model="supportRequest.name" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required class="form-control"><img src="../../images/error.png" data-ng-show="(helpForm.name.$invalid &amp;&amp; helpForm.name.$dirty) || (helpForm.name.$invalid &amp;&amp; helpForm.$submitted)">
               </div>
-              <div class="panel-footer">
-                <div class="custom-tooltip">
-                  <div data-toggle="popover" data-placement="right" popover="#driving-offence" popover-type data-original-title title="" class="row hover-tooltip">
-                    <div class="col-md-4">
-                      <label for="year"><span translate="PS_2_0_3">Year of Manufacture</span><img data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document." src="../../images/question-icon.png" class="show-tooltip"></label>
-                      <input id="carYear" name="carYear" data-ng-model="car.year" type="number" min="1980" max="2015" placeholder="Enter year" required class="form-control"><img src="../../images/error.png" data-ng-show="(carForm.carYear.$invalid &amp;&amp; carForm.carYear.$dirty) || (carForm.carYear.$invalid &amp;&amp; carForm.$submitted)" class="error-input-image">
-                    </div>
-                    <div class="col-md-4">
-                      <label for="make"><span translate="PS_2_0_4">Car Make</span><img src="../../images/question-icon.png"></label>
-                      <input id="carMake" name="carMake" data-ng-model="car.make" type="text" placeholder="Enter make" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required class="form-control"><img src="../../images/error.png" data-ng-show="(carForm.carMake.$invalid &amp;&amp; carForm.carMake.$dirty) || (carForm.carMake.$invalid &amp;&amp; carForm.$submitted)" class="error-input-image">
-                    </div>
-                    <div class="col-md-4">
-                      <label for="model"><span translate="PS_2_0_5">Car Model</span><img src="../../images/question-icon.png"></label>
-                      <select id="model" name="model" data-ng-model="car.model" required>
-                        <option selecter label="Enter model" value="{{model}}" data-ng-repeat="model in models" selecter-target="#model" selecter-callback="select" property="model" data-ng-selected="model == selectedItem">{{model}}</option>
-                      </select><img src="../../images/error.png" data-ng-show="(carForm.model.$invalid &amp;&amp; carForm.model.$dirty) || (carForm.model.$invalid &amp;&amp; carForm.$submitted)" style="position:absolute; right: 15px; bottom: 3px;" class="error-input-image">
-                    </div>
-                    <div id="driving-offence" class="popover right">
-                      <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
-                      <div translate="PS_2_0_2" class="subtitle">Please note that we do not cover cars used for commercial purposes or for hire/reward</div>
-                    </div>
-                  </div>
-                </div>
+              <div class="margin--bottom">
+                <input type="email" placeholder="Enter Email Address" name="email" data-ng-model="supportRequest.email" required class="form-control"><img src="../../images/error.png" data-ng-show="(helpForm.email.$invalid &amp;&amp; helpForm.email.$dirty) || (helpForm.email.$invalid &amp;&amp; helpForm.$submitted)">
               </div>
-              <div class="container-fluid margin--bottom">
-                <div class="container-fluid">
-                  <h2 translate="PS_2_1_2_1" class="margin--bottom">Is the vehicle privately owned or corporate owned?</h2>
-                  <button name="carOwnership" type="button" data-ng-click="select('private', 0, 'ownership')" data-ng-class="{'active':car.ownership=='private'}" class="btn btn-default random-margin"><span translate="PS_2_1_2_2">Private</span><span class="glyphicon glyphicon-ok"></span></button>
-                  <button name="carOwnership" type="button" data-ng-click="select('corporate', 0, 'ownership')" data-ng-class="{'active':car.ownership=='corporate'}" class="btn btn-default"><span translate="PS_2_1_2_3">Corporate</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.ownership">
-                </div>
+              <div class="margin--bottom">
+                <input type="tel" placeholder="Enter Phone Number" name="phone" data-ng-model="supportRequest.number" required class="form-control"><img src="../../images/error.png" data-ng-show="(helpForm.phone.$invalid &amp;&amp; helpForm.phone.$dirty) || (helpForm.phone.$invalid &amp;&amp; helpForm.$submitted)">
               </div>
-              <div class="container-fluid margin--bottom margin--top">
-                <div class="container-fluid margin--bottom">
-                  <h2 class="margin--bottom"><span translate="PS_2_1_4_a">Roughly how many kilometres do you drive per year?</span><img data-toggle="tooltip" data-placement="top" title="We ask how much you drive per year so we can recommend the right optional benefits for your policy." src="../../images/question-icon.png" class="show-tooltip"></h2>
-                  <div class="row">
-                    <div class="col-md-2">
-                      <button type="button" data-ng-click="select('&lt; 8,000', 0, 'kmsperyear')" data-ng-class="{'active':car.kmsperyear=='&lt; 8,000'}" class="btn btn-default margin--bottom"><span translate="PS_2_1_4_b">Less than 8,000 km</span><span class="glyphicon glyphicon-ok"></span></button>
-                    </div>
-                    <div class="col-md-2">
-                      <button type="button" data-ng-click="select('8,000 - 15,000', 0, 'kmsperyear')" data-ng-class="{'active':car.kmsperyear=='8,000 - 15,000'}" class="btn btn-default margin--bottom"><span translate="PS_2_1_4_c">8,000 km - 15,000 km</span><span class="glyphicon glyphicon-ok"></span></button>
-                    </div>
-                    <div class="col-md-2">
-                      <button type="button" data-ng-click="select('&gt; 15,000', 0, 'kmsperyear')" data-ng-class="{'active':car.kmsperyear=='&gt; 15,000'}" class="btn btn-default margin--bottom"><span translate="PS_2_1_4_d">Over 15,000 km</span><span class="glyphicon glyphicon-ok"></span></button>
-                    </div>
-                    <div class="col-md-2">
-                      <button type="button" data-ng-click="select('not sure', 0, 'kmsperyear')" data-ng-class="{'active':car.kmsperyear=='not sure'}" class="btn btn-default margin--bottom"><span translate="PS_2_1_4_e">Not sure</span><span class="glyphicon glyphicon-ok"></span></button>
-                    </div>
-                    <div class="col-md-1"><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.kmsperyear"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-8">
-                  <div class="arrow"></div>
-                  <div class="panel-body">
-                    <h2 class="margin--bottom"><span translate="PS_2_1_4_2_1">What do you use the car for?</span><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.usage"></h2>
-                    <div class="row margin--top">
-                      <div class="col-md-4 centred"><img src="../../images/trolley-icon.png" data-toggle="tooltip" data-placement="top" title="If you are only using your car in the course of your private life and for leisure." class="margin--bottom show-tooltip">
-                        <button type="button" data-ng-click="select('personal use', 0, 'usage')" data-ng-class="{'active':car.usage=='personal use'}" class="btn btn-default btn-block"><span translate="PS_2_1_4_2_3">Personal use</span><span class="glyphicon glyphicon-ok"></span></button>
-                      </div>
-                      <div class="col-md-4 centred"><img src="../../images/cityscape-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car in the course of your private life and to go to and from your workplace." class="margin--bottom show-tooltip">
-                        <button type="button" data-ng-click="select('personal use + commute', 0, 'usage')" data-ng-class="{'active':car.usage=='personal use + commute'}" class="btn btn-default btn-block"><span translate="PS_2_1_4_2_4">Personal use + Commute</span><span class="glyphicon glyphicon-ok"></span></button>
-                      </div>
-                      <div class="col-md-4 centred"><img src="../../images/lanyard-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car to go to and from your workplace and for or during the course of your work." class="margin--bottom show-tooltip">
-                        <button type="button" data-ng-click="select('commute + during work', 0, 'usage')" data-ng-class="{'active':car.usage=='commute + during work'}" class="btn btn-default btn-block"><span translate="PS_2_1_4_2_5">Commute + During work</span><span class="glyphicon glyphicon-ok"></span></button>
-                      </div>
-                    </div>
-                    <p translate="PS_2_1_4_2_6" class="margin--top">Do you sometimes use your car for commute or work? You can use your car up to 5 times per year outside the usage you declare. Simply email us at <a href="mailto:carusage@directasia.com">CarUsage@DirectAsia.com</a> before you drive, and you‘ll be covered in case something happens.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="container-fluid margin--bottom margin--top">
-                <div class="panel">
-                  <div class="panel-body">
-                    <h2 translate="PS_2_1_4_3">When would you like the policy to start ?</h2>
-                  </div>
-                  <div class="panel-footer">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <p><strong translate="PS_2_1_5a">Policy start date:</strong></p>
-                        <div class="form-inline">
-                          <input id="policyStartDay" name="policyStartDay" data-ng-model="car.policy.start.day" placeholder="DD" type="number" min="1" max="31" required class="day">
-                          <input id="policyStartMonth" name="policyStartMonth" data-ng-model="car.policy.start.month" placeholder="MM" type="number" min="1" max="12" required class="month">
-                          <input id="policyStartYear" name="policyStartYear" data-ng-model="car.policy.start.year" placeholder="YYYY" type="number" min="1900" max="2015" required class="year"><img src="../../images/error.png" data-ng-show="(carForm.policyStartDay.$invalid &amp;&amp; carForm.policyStartDay.$dirty) || (carForm.policyStartMonth.$invalid &amp;&amp; carForm.policyStartMonth.$dirty) || (carForm.policyStartYear.$invalid &amp;&amp; carForm.policyStartYear.$dirty) || (carForm.policyStartDay.$invalid &amp;&amp; carForm.policyStartMonth.$invalid &amp;&amp; carForm.policyStartYear.$invalid &amp;&amp; carForm.$submitted)">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <p><strong translate="PS_2_1_5b">Policy end date:</strong></p>
-                        <div class="form-inline">
-                          <input id="policyEndDay" name="policyEndDay" data-ng-model="car.policy.end.day" placeholder="DD" type="number" min="1" max="31" required class="day">
-                          <input id="policyEndMonth" name="policyEndMonth" data-ng-model="car.policy.end.month" placeholder="MM" type="number" min="1" max="12" required class="month">
-                          <input id="policyEndYear" name="policyEndYear" data-ng-model="car.policy.end.year" placeholder="YYYY" type="number" min="1900" max="2015" required class="year"><img src="../../images/error.png" data-ng-show="(carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndDay.$dirty) || (carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndMonth.$dirty) || (carForm.policyEndYear.$invalid &amp;&amp; carForm.policyEndYear.$dirty) || (carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndYear.$invalid &amp;&amp; carForm.$submitted)">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-12">
-                    <button type="button" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_2_2_2">Back</span></button>
-                    <button type="submit" valid="carForm.$valid" continue url="http://localhost:9000/car" page-data="{{car}}" next-page="http://localhost:9000/pages/about-your-driver/your-driver.html" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_2_2_1">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
-                  </div>
-                </div>
-              </div>
+              <button type="submit" translate="PS_3_0_2" class="btn btn-forward margin--bottom">Send Now</button>
+            </form>
+            <div data-ng-show="sent" class="on-submit margin--bottom">
+              <h2><span translate="PS_3_0_3">Message Sent</span>
+                <div translate="PS_3_0_4" class="subtitle">Thank you for your message. We will respond to you with 24 hours.</div>
+              </h2>
             </div>
-          </form>
-        </section>
-        <div class="overlay">
-          <div class="panel">
-            <button type="button" class="overlay-close-button"><span class="glyphicon glyphicon-remove"></span></button>
-            <div class="panel-body">
-              <h2 translate="GS_0_3_1">Are you still there?</h2>
-              <p translate="GS_0_3_2">If we don‘t detect you clicking around, then we end your session to protect your personal information.</p>
-              <p><strong translate="GS_0_3_3">your session will end in: [X]</strong></p>
-              <button type="button" data-ng-click="proceed()" translate="GS_0_3_4" class="btn btn-forward btn-lg">Yes! Continue My Quote</button>
-            </div>
+            <p><span translate="GS_0_0_2b">Call us on </span>+852 2884 8888<br><span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
+            <p><span translate="GS_0_0_3a">Email us at </span><a href="" style="display:block;">enquiries@directasia.com.hk</a></p>
           </div>
         </div>
       </div>
     </div>
+    <script src="../../scripts/controllers/car/car.controller.js"></script>
+    <div class="container">
+      <section ng-controller="CarCtrl" class="section section-car">
+        <form name="carForm" novalidate>
+          <div class="container-fluid">
+            <div class="panel margin--bottom">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-2 centred margin--bottom"><img src="../../images/person-icon.png"></div>
+                  <div class="col-md-7 margin--bottom">
+                    <h1><span translate="PS_3_0a">Tell Us About the Main Driver</span>
+                      <div translate="PS_3_0b" class="subtitle">it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.</div>
+                    </h1>
+                  </div>
+                  <div class="col-md-3"><strong translate="GS_0_2a">Existing Customer?</strong>
+                    <p translate="GS_0_2b">Save time and retrieve your renewal quote</p>
+                    <button type="button" class="btn btn-primary"><span translate="GS_0_2c">Login Now</span><span class="glyphicon glyphicon-ok"></span></button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <div data-toggle="popover" data-placement="top" popover="#popover1" popover-type="popover--yellow" trigger="hover" class="row">
+                  <div class="col-md-4 margin--bottom">
+                    <label for="year"><span translate="PS_2_0_3">Year of Manufacture</span><img data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document." src="../../images/question-icon.png" class="show-tooltip"></label>
+                    <input id="carYear" name="carYear" data-ng-model="car.year" type="number" min="1980" max="2015" placeholder="Enter year" required class="form-control"><img src="../../images/error.png" data-ng-show="(carForm.carYear.$invalid &amp;&amp; carForm.carYear.$dirty) || (carForm.carYear.$invalid &amp;&amp; carForm.$submitted)" class="error-input-image">
+                  </div>
+                  <div class="col-md-4 margin--bottom">
+                    <label for="make"><span translate="PS_2_0_4">Car Make</span><img src="../../images/question-icon.png"></label>
+                    <input id="carMake" name="carMake" data-ng-model="car.make" type="text" placeholder="Enter make" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required class="form-control"><img src="../../images/error.png" data-ng-show="(carForm.carMake.$invalid &amp;&amp; carForm.carMake.$dirty) || (carForm.carMake.$invalid &amp;&amp; carForm.$submitted)" class="error-input-image">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="model"><span translate="PS_2_0_5">Car Model</span><img src="../../images/question-icon.png"></label>
+                    <select id="model" name="model" data-ng-model="car.model" required>
+                      <option selecter label="Enter model" value="{{model}}" data-ng-repeat="model in models" selecter-target="#model" selecter-callback="select" property="model" data-ng-selected="model == selectedItem">{{model}}</option>
+                    </select><img src="../../images/error.png" data-ng-show="(carForm.model.$invalid &amp;&amp; carForm.model.$dirty) || (carForm.model.$invalid &amp;&amp; carForm.$submitted)" style="position:absolute; right: 15px; bottom: 3px;" class="error-input-image">
+                  </div>
+                  <div id="popover1" class="popover top">
+                    <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+                    <div translate="PS_2_0_2" class="subtitle">Please note that we do not cover cars used for commercial purposes or for hire/reward</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid margin--bottom">
+              <div class="container-fluid">
+                <h2 translate="PS_2_1_2_1" class="margin--bottom">Is the vehicle privately owned or corporate owned?</h2>
+                <button name="carOwnership" type="button" data-ng-click="select('private', 0, 'ownership')" data-ng-class="{'active':car.ownership=='private'}" class="btn btn-default random-margin"><span translate="PS_2_1_2_2">Private</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button name="carOwnership" type="button" data-ng-click="select('corporate', 0, 'ownership')" data-ng-class="{'active':car.ownership=='corporate'}" class="btn btn-default"><span translate="PS_2_1_2_3">Corporate</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.ownership">
+              </div>
+            </div>
+            <div class="container-fluid margin--bottom margin--top">
+              <div class="container-fluid margin--bottom">
+                <h2 class="margin--bottom"><span translate="PS_2_1_4_a">Roughly how many kilometres do you drive per year?</span><img data-toggle="tooltip" data-placement="top" title="We ask how much you drive per year so we can recommend the right optional benefits for your policy." src="../../images/question-icon.png" class="show-tooltip"></h2>
+                <div class="row">
+                  <div class="col-md-2">
+                    <button type="button" data-ng-click="select('&lt; 8,000', 0, 'kmsperyear')" data-ng-class="{'active':car.kmsperyear=='&lt; 8,000'}" class="btn btn-default margin--bottom"><span translate="PS_2_1_4_b">Less than 8,000 km</span><span class="glyphicon glyphicon-ok"></span></button>
+                  </div>
+                  <div class="col-md-2">
+                    <button type="button" data-ng-click="select('8,000 - 15,000', 0, 'kmsperyear')" data-ng-class="{'active':car.kmsperyear=='8,000 - 15,000'}" class="btn btn-default margin--bottom"><span translate="PS_2_1_4_c">8,000 km - 15,000 km</span><span class="glyphicon glyphicon-ok"></span></button>
+                  </div>
+                  <div class="col-md-2">
+                    <button type="button" data-ng-click="select('&gt; 15,000', 0, 'kmsperyear')" data-ng-class="{'active':car.kmsperyear=='&gt; 15,000'}" class="btn btn-default margin--bottom"><span translate="PS_2_1_4_d">Over 15,000 km</span><span class="glyphicon glyphicon-ok"></span></button>
+                  </div>
+                  <div class="col-md-2">
+                    <button type="button" data-ng-click="select('not sure', 0, 'kmsperyear')" data-ng-class="{'active':car.kmsperyear=='not sure'}" class="btn btn-default margin--bottom"><span translate="PS_2_1_4_e">Not sure</span><span class="glyphicon glyphicon-ok"></span></button>
+                  </div>
+                  <div class="col-md-1"><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.kmsperyear"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="arrow"></div>
+                <div class="panel-body">
+                  <h2 class="margin--bottom"><span translate="PS_2_1_4_2_1">What do you use the car for?</span><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.usage"></h2>
+                  <div class="row margin--top">
+                    <div class="col-md-4 centred"><img src="../../images/trolley-icon.png" data-toggle="tooltip" data-placement="top" title="If you are only using your car in the course of your private life and for leisure." class="margin--bottom show-tooltip">
+                      <button type="button" data-ng-click="select('personal use', 0, 'usage')" data-ng-class="{'active':car.usage=='personal use'}" class="btn btn-default btn-block margin--bottom"><span translate="PS_2_1_4_2_3">Personal use</span><span class="glyphicon glyphicon-ok"></span></button>
+                    </div>
+                    <div class="col-md-4 centred"><img src="../../images/cityscape-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car in the course of your private life and to go to and from your workplace." class="margin--bottom show-tooltip">
+                      <button type="button" data-ng-click="select('personal use + commute', 0, 'usage')" data-ng-class="{'active':car.usage=='personal use + commute'}" class="btn btn-default btn-block margin--bottom"><span translate="PS_2_1_4_2_4">Personal use + Commute</span><span class="glyphicon glyphicon-ok"></span></button>
+                    </div>
+                    <div class="col-md-4 centred"><img src="../../images/lanyard-icon.png" data-toggle="tooltip" data-placement="top" title="If you are using your car to go to and from your workplace and for or during the course of your work." class="margin--bottom show-tooltip">
+                      <button type="button" data-ng-click="select('commute + during work', 0, 'usage')" data-ng-class="{'active':car.usage=='commute + during work'}" class="btn btn-default btn-block margin--bottom"><span translate="PS_2_1_4_2_5">Commute + During work</span><span class="glyphicon glyphicon-ok"></span></button>
+                    </div>
+                  </div>
+                  <p translate="PS_2_1_4_2_6" class="margin--top">Do you sometimes use your car for commute or work? You can use your car up to 5 times per year outside the usage you declare. Simply email us at <a href="mailto:carusage@directasia.com">CarUsage@DirectAsia.com</a> before you drive, and you‘ll be covered in case something happens.</p>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid margin--bottom margin--top">
+              <div class="panel">
+                <div class="panel-body">
+                  <h2 translate="PS_2_1_4_3">When would you like the policy to start ?</h2>
+                </div>
+                <div class="panel-footer">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p><strong translate="PS_2_1_5a">Policy start date:</strong></p>
+                      <div class="form-inline">
+                        <input id="policyStartDay" name="policyStartDay" data-ng-model="car.policy.start.day" placeholder="DD" type="number" min="1" max="31" required class="day">
+                        <input id="policyStartMonth" name="policyStartMonth" data-ng-model="car.policy.start.month" placeholder="MM" type="number" min="1" max="12" required class="month">
+                        <input id="policyStartYear" name="policyStartYear" data-ng-model="car.policy.start.year" placeholder="YYYY" type="number" min="1900" max="2015" required class="year"><img src="../../images/error.png" data-ng-show="(carForm.policyStartDay.$invalid &amp;&amp; carForm.policyStartDay.$dirty) || (carForm.policyStartMonth.$invalid &amp;&amp; carForm.policyStartMonth.$dirty) || (carForm.policyStartYear.$invalid &amp;&amp; carForm.policyStartYear.$dirty) || (carForm.policyStartDay.$invalid &amp;&amp; carForm.policyStartMonth.$invalid &amp;&amp; carForm.policyStartYear.$invalid &amp;&amp; carForm.$submitted)">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <p><strong translate="PS_2_1_5b">Policy end date:</strong></p>
+                      <div class="form-inline">
+                        <input id="policyEndDay" name="policyEndDay" data-ng-model="car.policy.end.day" placeholder="DD" type="number" min="1" max="31" required class="day">
+                        <input id="policyEndMonth" name="policyEndMonth" data-ng-model="car.policy.end.month" placeholder="MM" type="number" min="1" max="12" required class="month">
+                        <input id="policyEndYear" name="policyEndYear" data-ng-model="car.policy.end.year" placeholder="YYYY" type="number" min="1900" max="2015" required class="year"><img src="../../images/error.png" data-ng-show="(carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndDay.$dirty) || (carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndMonth.$dirty) || (carForm.policyEndYear.$invalid &amp;&amp; carForm.policyEndYear.$dirty) || (carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndYear.$invalid &amp;&amp; carForm.$submitted)">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-backward margin--bottom"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_2_2_2">Back</span></button>
+                  <button type="submit" valid="carForm.$valid" continue url="http://localhost:9000/car" page-data="{{car}}" next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_2_2_1">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+    <div id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <div class="modal-body">
+            <h2 translate="GS_0_3_1">Are you still there?</h2>
+            <p translate="GS_0_3_2">If we don‘t detect you clicking around, then we end your session to protect your personal information.</p>
+            <p><strong translate="GS_0_3_3">your session will end in: [X]</strong></p>
+            <button type="button" data-ng-click="proceed()" translate="GS_0_3_4" class="btn btn-forward btn-lg">Yes! Continue My Quote</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>$('#modal').modal();</script>
     <footer class="page-footer">
       <div class="container">
         <button ng-click="switchLanguage('zh_CN')" data-ng-show="currentLanguage=='en_GB'" class="btn btn-sm btn-icon btn-icon--chinese pull-right">Chinese</button>

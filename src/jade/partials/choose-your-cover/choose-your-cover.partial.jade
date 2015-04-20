@@ -1,102 +1,118 @@
 script(src="../../scripts/controllers/your-plan/your-plan.controller.js")
 
-.container(data-ng-controller="yourPlanCtrl")
+.container
 
-	.panel
-		.panel-body
+	section.section.section-cover(data-ng-controller="yourPlanCtrl")
 
-			.row
+		.container-fluid
 
-				.col-md-8
-					img(src="../../images/clock-icon.png")
+			.panel
 
-					h1
-						span(translate="PS_1_0a") Get an Instant Quote &amp; Buy Online
-						.subtitle(translate="PS_1_0b") Save up to 25% with a flexible &amp; customisable plan
-
-				.col-md-4
+				.panel-body
 
 					.row
-						.col-md-12.col-xs-10
-							h2
-								span(translate="GS_0_2a") Existing Customer?
-								.subtitle(translate="GS_0_2b") Save time and retrieve your renewal quote
 
-						.col-md-12.col-xs-2
-							button.btn.btn-default(type="button")
+						.col-md-2.centred.margin--bottom
+							img(src="../../images/person-icon.png")
+
+						.col-md-7.margin--bottom
+
+							h1
+								span(translate="PS_3_0a") Tell Us About the Main Driver
+								.subtitle(translate="PS_3_0b") it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.
+
+						.col-md-3
+
+							strong(translate="GS_0_2a") Existing Customer?
+							p(translate="GS_0_2b") Save time and retrieve your renewal quote
+							button.btn.btn-primary(type="button")
 								span(translate="GS_0_2c") Login Now
 								span.glyphicon.glyphicon-ok
 
-	form(name="planForm", novalidate)
+		.container-fluid
 
-		.row
-
-			.col-md-8
-				h2(translate="PS_1_1a") Choose you car cover
+			form(name="planForm", novalidate)
 
 				.row
 
-					.col-md-4(data-ng-repeat="plan in plans")
-						.panel.plan(data-ng-class="{'selected':coverDetails.plan == plan}")
-							.panel-body
-								img(data-ng-src="{{plan.image}}")
-								h2
-									strong {{plan.name}}
-									.subtitle(data-ng-if="plan.tagline") {{plan.tagline}}
-								img(data-ng-show="coverDetails.plan == plan", src="../../images/selected-icon.png")
-								button.btn.btn-default.btn-sm(data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
+					.col-md-12
+						h2(translate="PS_1_1a") Choose you car cover
 
-				h2(data-ng-click="compare = !compare")
-					span(translate="PS_1_1_1") Compare these cover options
-					img(data-ng-show="!compare", src="../../images/down-arrow.png")
-					img(data-ng-show="compare", src="../../images/up-arrow.png")
+						.row.margin--bottom
 
-				table.compare-plans.table.table-bordered.table-striped(data-ng-show="compare")
+							.col-md-3(data-ng-repeat="plan in plans")
+								.panel.plan-option(data-ng-class="{'selected':coverDetails.plan == plan}")
+									.panel-body
+										img.margin--bottom(data-ng-src="{{plan.image}}")
+										h2.margin--bottom
+											strong {{plan.name}}
+											.subtitle(data-ng-if="plan.tagline") {{plan.tagline}}
+										img.plan-option-status(data-ng-show="coverDetails.plan == plan", src="../../images/selected-icon.png")
+										button.btn.btn-default.plan-option-status(data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
 
-					thead
-						tr
-							td
-							td(data-ng-repeat="plan in plans", data-ng-class="{'active': coverDetails.plan == plan}") {{plan.name}}
+						.row.margin--bottom
+							.col-md-12
 
-					tbody
-						tr(data-ng-repeat="cover in covers")
-							td {{cover.name}}
-								img.show-tooltip(data-toggle="tooltip", data-placement="top", text="cover.description", src="../../images/question-icon.png")
+								h2(data-ng-click="compare = !compare", style="cursor: pointer;")
+									span(translate="PS_1_1_1") Compare these cover options
+									img(data-ng-show="!compare", src="../../images/down-arrow.png")
+									img(data-ng-show="compare", src="../../images/up-arrow.png")
 
-							td(data-ng-repeat="plan in plans", data-ng-class="{'active': coverDetails.plan == plan}")
-								img(src="../../images/green-check.png", data-ng-show="doesPlanIncludeCover(plan, cover)")
+								table.compare-plans.table.table-striped(data-ng-show="compare")
 
-					tfoot
-						tr
-							td
-							td(data-ng-repeat="plan in plans", data-ng-class="{'active': coverDetails.plan == plan}")
-								img(data-ng-show="coverDetails.plan == plan", src="../../images/selected-icon.png")
-								button.btn.btn-default.btn-sm(data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
+									thead
+										tr
+											td
+											td.centred(data-ng-repeat="plan in plans", data-ng-class="{'active': coverDetails.plan == plan}")
+												strong {{plan.name}}
+												div(data-ng-if="plan.tagline") {{plan.tagline}}
 
-				div(data-ng-show="coverDetails.plan == plans[0]")
+									tbody
+										tr(data-ng-repeat="cover in covers")
+											td
+												strong {{cover.name}}
+												img.show-tooltip(data-toggle="tooltip", data-placement="top", text="cover.description", src="../../images/question-icon.png")
 
-					h2(translate="PS_1_4a") Is the car financed?
+											td.centred(data-ng-repeat="plan in plans", data-ng-class="{'active': coverDetails.plan == plan}")
+												img(src="../../images/green-check.png", data-ng-show="doesPlanIncludeCover(plan, cover)")
 
-					.row
-						.col-xs-2
-							button.btn.btn-default.btn-block(type="button", data-ng-class="{'active': coverDetails.financed}", data-ng-click="coverDetails.financed = true")
-								span(translate="PS_1_4b") Yes
-								span.glyphicon.glyphicon-ok
+									tfoot
+										tr
+											td
+											td.centred(data-ng-repeat="plan in plans", data-ng-class="{'active': coverDetails.plan == plan}")
+												img(data-ng-show="coverDetails.plan == plan", src="../../images/selected-icon.png")
+												button.btn.btn-default(data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
 
-						.col-xs-2
-							button.btn.btn-default.btn-block(type="button", data-ng-class="{'active': !coverDetails.financed}", data-ng-click="coverDetails.financed = false")
-								span(translate="PS_1_4c") No
-								span.glyphicon.glyphicon-ok
+						.row.margin--bottom
+							.col-md-12
 
-				label.label-checkbox(for="checkbox1")
-					input#checkbox1(type="checkbox", data-ng-model="coverDetails.agreed")
-					.fake-checkbox
-						span.glyphicon.glyphicon-ok
-					span(translate="PS_1_2a")
-						| I Agree to the 
-						a(href="#", title="") privacy terms
-						| , and to fully and honestly answer any questions needed to recieve a policy.
+								div(data-ng-show="coverDetails.plan == plans[0]")
 
-				button.btn.btn-forward.btn-lg(type="button", continue, url="http://localhost:9000/api/cover", page-data="{{coverDetails}}", valid="planForm.$valid && coverDetails.agreed", data-ng-disabled="planForm.$invalid || !coverDetails.agreed", next-page="http://localhost:9000/pages/car/car.html")
-					span(translate="PS_1_3") Get Your Quote
-					span.glyphicon.glyphicon-arrow-right
+									h2(translate="PS_1_4a") Is the car financed?
+
+									.row
+										.col-xs-6.col-md-2
+											button.btn.btn-default.btn-block(type="button", data-ng-class="{'active': coverDetails.financed}", data-ng-click="coverDetails.financed = true")
+												span(translate="PS_1_4b") Yes
+												span.glyphicon.glyphicon-ok
+
+										.col-xs-6.col-md-2
+											button.btn.btn-default.btn-block(type="button", data-ng-class="{'active': !coverDetails.financed}", data-ng-click="coverDetails.financed = false")
+												span(translate="PS_1_4c") No
+												span.glyphicon.glyphicon-ok
+
+						.row.margin--bottom
+							.col-sm-12.col-md-4
+
+								label.label-checkbox.margin--bottom(for="checkbox1")
+									input#checkbox1(type="checkbox", data-ng-model="coverDetails.agreed")
+									.fake-checkbox
+										span.glyphicon.glyphicon-ok
+									span(translate="PS_1_2a")
+										| I Agree to the 
+										a(href="#", title="") privacy terms
+										| , and to fully and honestly answer any questions needed to recieve a policy.
+
+						button.btn.btn-forward.btn-lg(type="button", continue, url="http://localhost:9000/api/cover", page-data="{{coverDetails}}", valid="planForm.$valid && coverDetails.agreed", data-ng-disabled="planForm.$invalid || !coverDetails.agreed", next-page="http://localhost:9000/pages/car/car.html")
+							span(translate="PS_1_3") Get Your Quote
+							span.glyphicon.glyphicon-arrow-right

@@ -117,7 +117,7 @@
     <script src="../scripts/filters/slugify.filter.js"></script>
   </head>
   <body>
-    <script src="../scripts/controllers/car/car1.controller.js"></script>
+    <script src="../scripts/controllers/car/car.controller.js"></script>
     <div class="container">
       <section ng-controller="CarCtrl" class="section section-car">
         <div class="row">
@@ -267,7 +267,7 @@
         </div>
         <div class="row">
           <div class="col-md-4 centred">
-            <button type="button" data-toggle="popover" data-placement="bottom" popover="#popover1" popover-type="" class="btn btn-primary btn-action btn-sm"><span class="btn-action-default">Save for later</span><span class="btn-action-alt">Saved!</span><span class="glyphicon glyphicon-ok"></span></button>
+            <button type="button" data-toggle="popover" data-placement="bottom" popover="#popover1" popover-type="" trigger="click" class="btn btn-primary btn-action btn-sm"><span class="btn-action-default">Save for later</span><span class="btn-action-alt">Saved!</span><span class="glyphicon glyphicon-ok"></span></button>
             <div id="popover1" class="popover bottom">
               <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
               <p>Please provide your email address so we can send you a copy of your quotation.</p>
@@ -277,14 +277,14 @@
             </div>
           </div>
           <div class="col-md-4 centred">
-            <button type="button" data-toggle="popover" data-placement="bottom" popover="#popover2" popover-type="" class="btn btn-primary btn-action done btn-sm active"><span class="btn-action-default">Save for later</span><span class="btn-action-alt">Saved!</span><span class="glyphicon glyphicon-ok"></span></button>
+            <button type="button" data-toggle="popover" data-placement="bottom" popover="#popover2" popover-type="" trigger="click" class="btn btn-primary btn-action done btn-sm active"><span class="btn-action-default">Save for later</span><span class="btn-action-alt">Saved!</span><span class="glyphicon glyphicon-ok"></span></button>
             <div id="popover2" class="popover bottom">
               <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
               <div class="success-icon"><span class="glyphicon glyphicon-ok"></span></div>
               <p class="centred">Your quote has been successfully stored. An email has been sent to you with a link to your saved quote.</p>
             </div>
           </div>
-          <div class="col-md-4"><span href="" data-toggle="popover" data-placement="right" popover="#popover3" popover-type="popover--yellow" class="glyphicon glyphicon-ok"></span>
+          <div class="col-md-4"><span href="" data-toggle="popover" data-placement="right" popover="#popover3" popover-type="popover--yellow" trigger="click" class="glyphicon glyphicon-ok"></span>
             <div id="popover3" class="popover right">
               <p>This refers to the car's original year of registration in Singapore. You'll find this on your vehicle registration document,</p>
             </div>

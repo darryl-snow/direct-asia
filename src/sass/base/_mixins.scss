@@ -41,8 +41,28 @@
 	float: 		left;
 }
 
+@mixin left-large {
+	@media (min-width: 768px) {
+		float:	left;
+	}
+}
+
+.pull-left-large {
+	@include left-large();
+}
+
 @mixin right {
 	float: 		right;
+}
+
+@mixin right-large {
+	@media (min-width: 768px) {
+		float:	right;
+	}
+}
+
+.pull-right-large {
+	@include right-large();
 }
 
 // TYPOGRAPHY

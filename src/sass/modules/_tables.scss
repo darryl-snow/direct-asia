@@ -34,3 +34,58 @@ td {
 		box-shadow:			-2px 0 0 rgba($black,0.1);
 	}
 }
+
+.table-striped > tbody > tr:nth-child(odd) > td {
+	background:				$light-grey-2;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+	border-top:				none;
+}
+
+.table > thead > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tfoot > tr > td {
+	background:				$light-grey-1;
+}
+
+.table > thead > tr > td.active,
+.table > tbody > tr > td.active,
+.table > tfoot > tr > td.active,
+.table > thead > tr > th.active,
+.table > tbody > tr > th.active,
+.table > tfoot > tr > th.active,
+.table > thead > tr.active > td,
+.table > tbody > tr.active > td,
+.table > tfoot > tr.active > td,
+.table > thead > tr.active > th,
+.table > tbody > tr.active > th,
+.table > tfoot > tr.active > th {
+	background-color: 		$yellow;
+}
+
+.table > tbody > tr:nth-child(odd) > td.active,
+.table > tfoot > tr:nth-child(odd) > td.active,
+.table > tbody > tr:nth-child(odd) > th.active,
+.table > tfoot > tr:nth-child(odd) > th.active,
+.table > tbody > tr.active:nth-child(odd) > td,
+.table > tfoot > tr.active:nth-child(odd) > td,
+.table > tbody > tr.active:nth-child(odd) > th,
+.table > tfoot > tr.active:nth-child(odd) > th {
+	background:				darken(#fcd900, 2%);
+
+}
+
+.table > thead > tr:nth-child(odd) > td.active,
+.table > thead > tr:nth-child(odd) > th.active,
+.table > thead > tr.active:nth-child(odd) > td,
+.table > thead > tr.active:nth-child(odd) > th {
+	background:				darken(#fcd900, 4%);
+
+}

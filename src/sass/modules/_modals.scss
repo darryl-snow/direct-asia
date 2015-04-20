@@ -1,0 +1,14 @@
+.modal-content {
+	padding: 		$base-spacing-unit;
+
+	h2 {
+		margin-top:	0;
+	}
+
+	.close {
+		position:	absolute;
+		right:		0.5 * $base-spacing-unit;
+		top:		0.5 * $base-spacing-unit;
+		z-index:	1000000;
+	}
+}

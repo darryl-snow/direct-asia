@@ -1,10 +1,13 @@
-/* direct-asia : 0.0.0 : Sat Apr 18 2015 03:30:34 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon Apr 20 2015 17:53:00 GMT+0800 (CST) */
 
 /*
-The controller ties together the view with the model.
 
-In this case the view is the components/car file and the model
-is the $scope.car variable.
+TESTING ONLY - can be deleted before production
+
+This function simply mocks data that would be returned
+from a back-end API. Data should include:
+
+- available car models
  */
 var getMockData;
 
@@ -15,22 +18,42 @@ getMockData = function() {
   };
 };
 
+
+/*
+The controller ties together the view with the model.
+
+In this case the view is the partials/car/car file and the main model
+is the $scope.car variable.
+ */
+
 angular.module('DirectAsia').controller('CarCtrl', [
   '$scope', 'Car', function($scope, Car) {
+
+    /*
+    		This private function fetches data from the back-end to be used on the page
+    
+    		(NOTE: This isn't used currently as the data is mocked by the
+    		function getMockData() above)
+     */
     var getDataFromAPI, setupData;
     getDataFromAPI = function() {
       var dataFromAPI;
       dataFromAPI = {};
       $http.get('http://api-url?lang=' + $rootScope.currentLanguage).success(function(data, status, headers, config) {
-        dataFromAPI = data;
+        return dataFromAPI = data;
       }).error(function(data, status, headers, config) {
-        console.error(data);
+        return console.error(data);
       });
       return dataFromAPI;
     };
+
+    /*
+    		This private function formats the data returned from the server so that it
+    		can be used on the page
+     */
     setupData = function(data) {
       $scope.car = new Car;
-      $scope.models = data.models;
+      return $scope.models = data.models;
     };
 
     /*
@@ -48,6 +71,14 @@ angular.module('DirectAsia').controller('CarCtrl', [
     $scope.select = function(value, index, property) {
       return $scope.car[property] = value;
     };
-    setupData(getMockData());
+
+    /*
+    		Setup the data on the page using that returned from the server or mocked.
+     */
+
+    /*
+    		setupData(getDataFromAPI());
+     */
+    return setupData(getMockData());
   }
 ]);
