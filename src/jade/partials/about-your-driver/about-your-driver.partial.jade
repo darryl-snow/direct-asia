@@ -56,10 +56,10 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 
 							.form-inline(data-toggle="popover", data-placement="right", popover="#popover1", popover-type="popover--yellow", trigger="hover", style="display:inline-block;")
 
-								input#driverDOBDay.day(name="driverDOBDay", data-ng-model="driver.dob.day", placeholder="DD", type="number", min="1", max="31", required)
-								input#driverDOBMonth.month(name="driverDOBMonth", data-ng-model="driver.dob.month", placeholder="MM", type="number", min="1", max="12", required)
-								input#driverDOBYear.year(name="driverDOBYear", data-ng-model="driver.dob.year", placeholder="YYYY", type="number", min="1900", max="2015", required)
-								img(src="../../images/error.png", data-ng-show="(driverForm.driverDOBDay.$invalid && driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid && driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid && driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) && driverForm.$submitted)")
+								input#driverDOBDay.day(name="driverDOBDay", data-ng-model="driver.dob.day", placeholder="DD", type="number", min="1", max="31", required, data-ng-class="{'ng-invalid': !isValidAge() && driverForm.$submitted}")
+								input#driverDOBMonth.month(name="driverDOBMonth", data-ng-model="driver.dob.month", placeholder="MM", type="number", min="1", max="12", required, data-ng-class="{'ng-invalid': !isValidAge() && driverForm.$submitted}")
+								input#driverDOBYear.year(name="driverDOBYear", data-ng-model="driver.dob.year", placeholder="YYYY", type="number", min="1900", max="2015", required, data-ng-class="{'ng-invalid': !isValidAge() && driverForm.$submitted}")
+								img(src="../../images/error.png", data-ng-show="(!isValidAge() && driverForm.$submitted) || (driverForm.driverDOBDay.$invalid && driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid && driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid && driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) && driverForm.$submitted)")
 
 							#popover1.popover.right
 								span(translate="PS_3_0f_1") The main driver should be less than 70 year old
@@ -164,6 +164,22 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 										span.glyphicon.glyphicon-ok
 									span(translate="PS_3_1_2_1e") Insured as a named driver on another policy
 
+							div(data-ng-show="driver.whyNoClaimsDiscount == 'Insured as a named driver on another policy' && driver.noClaimsDiscount == 0")
+
+								h2
+									span(translate="PS_3_1_2_1f") What is your NCD on the other car?
+									img(src="../../images/error.png", data-ng-show="driver.whyNoClaimsDiscount == 'Insured as a named driver on another policy' && driver.otherCarNoClaimsDiscount == null && driverForm.$submitted")
+
+								.slider-labels
+									span 0%
+									span 10%
+									span 20%
+									span 30%
+									span 40%
+									span 50%
+
+								slider(data-ng-model="driver.otherCarNoClaimsDiscount", min="0", step="10", max="50", value="0")
+
 						.container-fluid
 
 							h2
@@ -218,7 +234,7 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 				.row
 					.col-md-12.margin--top
 
-						button.btn.btn-forward.btn-lg.margin--bottom.margin--right(type="submit", continue, url="http://localhost:9000/driver", page-data="{{driver}}", next-page="http://localhost:9000/pages/quote/quote.html", valid="driverForm.$valid && driver.ownership == true")
+						button.btn.btn-forward.btn-lg.margin--bottom.margin--right(type="submit", continue, url="http://localhost:9000/driver", page-data="{{driver}}", next-page="http://localhost:9000/pages/quote/quote.html", valid="driverForm.$valid && driver.ownership == true && isValidAge()")
 							span(translate="PC_3_3_2") Proceed
 							span.glyphicon.glyphicon-arrow-right
 

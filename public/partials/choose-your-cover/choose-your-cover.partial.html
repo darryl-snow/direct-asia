@@ -22,18 +22,16 @@
     </div>
     <div class="container-fluid">
       <form name="planForm" novalidate="novalidate">
-        <div class="row">
+        <div class="row centred">
           <div class="col-md-12">
             <h2 translate="PS_1_1a">Choose you car cover</h2>
-            <div class="row margin--bottom">
-              <div data-ng-repeat="plan in plans" class="col-md-3">
-                <div data-ng-class="{'selected':coverDetails.plan == plan}" class="panel plan-option">
-                  <div class="panel-body"><img data-ng-src="{{plan.image}}" class="margin--bottom"/>
-                    <h2 class="margin--bottom"><strong>{{plan.name}}</strong>
-                      <div data-ng-if="plan.tagline" class="subtitle">{{plan.tagline}}</div>
-                    </h2><img data-ng-show="coverDetails.plan == plan" src="../../images/selected-icon.png" class="plan-option-status"/>
-                    <button type="button" data-ng-show="coverDetails.plan != plan" data-ng-click="selectPlan(plan)" translate="PC_4_5c" class="btn btn-default plan-option-status">Select</button>
-                  </div>
+            <div class="margin--bottom">
+              <div data-ng-class="{'selected':coverDetails.plan == plan}" data-ng-repeat="plan in plans" class="panel plan-option">
+                <div class="panel-body"><img data-ng-src="{{plan.image}}" class="margin--bottom"/>
+                  <h2 class="margin--bottom"><strong>{{plan.name}}</strong>
+                    <div data-ng-if="plan.tagline" class="subtitle">{{plan.tagline}}</div>
+                  </h2><img data-ng-show="coverDetails.plan == plan" src="../../images/selected-icon.png" class="plan-option-status"/>
+                  <button type="button" data-ng-show="coverDetails.plan != plan" data-ng-click="selectPlan(plan)" translate="PC_4_5c" class="btn btn-default plan-option-status">Select</button>
                 </div>
               </div>
             </div>
@@ -51,7 +49,7 @@
                   </thead>
                   <tbody>
                     <tr data-ng-repeat="cover in covers">
-                      <td><strong>{{cover.name}}</strong><img data-toggle="tooltip" data-placement="top" text="cover.description" src="../../images/question-icon.png" class="show-tooltip"/></td>
+                      <td class="align-left"><strong>{{cover.name}}</strong><img data-toggle="tooltip" data-placement="top" text="cover.description" src="../../images/question-icon.png" class="show-tooltip"/></td>
                       <td data-ng-repeat="plan in plans" data-ng-class="{'active': coverDetails.plan == plan}" class="centred"><img src="../../images/green-check.png" data-ng-show="doesPlanIncludeCover(plan, cover)"/></td>
                     </tr>
                   </tbody>
@@ -69,18 +67,12 @@
             <div class="row margin--bottom">
               <div class="col-md-12">
                 <h2><span translate="PS_1_4a">Is the car financed?</span><img src="../../images/error.png" data-ng-show="!!!coverDetails.financed &amp;&amp; planForm.$submitted"/></h2>
-                <div class="row">
-                  <div class="col-xs-6 col-md-2">
-                    <button type="button" data-ng-class="{'active': coverDetails.financed}" data-ng-click="coverDetails.financed = true" class="btn btn-default btn-block"><span translate="PS_1_4b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
-                  </div>
-                  <div class="col-xs-6 col-md-2">
-                    <button type="button" data-ng-class="{'active': coverDetails.financed == false}" data-ng-click="coverDetails.financed = false" class="btn btn-default btn-block"><span translate="PS_1_4c">No</span><span class="glyphicon glyphicon-ok"></span></button>
-                  </div>
-                </div>
+                <button type="button" data-ng-class="{'active': coverDetails.financed}" data-ng-click="coverDetails.financed = true" class="btn btn-default"><span translate="PS_1_4b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button type="button" data-ng-class="{'active': coverDetails.financed == false}" data-ng-click="coverDetails.financed = false" class="btn btn-default"><span translate="PS_1_4c">No</span><span class="glyphicon glyphicon-ok"></span></button>
               </div>
             </div>
             <div class="row margin--bottom">
-              <div class="col-sm-12 col-md-4">
+              <div class="col-md-12">
                 <label for="checkbox1" class="label-checkbox margin--bottom">
                   <input id="checkbox1" type="checkbox" data-ng-model="coverDetails.agreed"/>
                   <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_1_2a">I Agree to the <a href="#" title="">privacy terms</a>, and to fully and honestly answer any questions needed to recieve a policy.</span><img src="../../images/error.png" data-ng-show="(coverDetails.agreed == false || coverDetails.agreed == null) &amp;&amp; planForm.$submitted"/>

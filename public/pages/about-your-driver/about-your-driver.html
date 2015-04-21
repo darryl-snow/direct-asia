@@ -131,9 +131,9 @@
                   <button name="ownCar" type="button" data-ng-class="{'active': driver.ownership == false}" data-ng-click="driver.ownership = false" class="btn btn-default"><span translate="PS_3_0e">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="!driver.ownership &amp;&amp; driverForm.$submitted">
                   <h2 translate="PS_3_0f">Date of Birth</h2>
                   <div data-toggle="popover" data-placement="right" popover="#popover1" popover-type="popover--yellow" trigger="hover" style="display:inline-block;" class="form-inline">
-                    <input id="driverDOBDay" name="driverDOBDay" data-ng-model="driver.dob.day" placeholder="DD" type="number" min="1" max="31" required class="day">
-                    <input id="driverDOBMonth" name="driverDOBMonth" data-ng-model="driver.dob.month" placeholder="MM" type="number" min="1" max="12" required class="month">
-                    <input id="driverDOBYear" name="driverDOBYear" data-ng-model="driver.dob.year" placeholder="YYYY" type="number" min="1900" max="2015" required class="year"><img src="../../images/error.png" data-ng-show="(driverForm.driverDOBDay.$invalid &amp;&amp; driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid &amp;&amp; driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid &amp;&amp; driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) &amp;&amp; driverForm.$submitted)">
+                    <input id="driverDOBDay" name="driverDOBDay" data-ng-model="driver.dob.day" placeholder="DD" type="number" min="1" max="31" required data-ng-class="{'ng-invalid': !isValidAge() &amp;&amp; driverForm.$submitted}" class="day">
+                    <input id="driverDOBMonth" name="driverDOBMonth" data-ng-model="driver.dob.month" placeholder="MM" type="number" min="1" max="12" required data-ng-class="{'ng-invalid': !isValidAge() &amp;&amp; driverForm.$submitted}" class="month">
+                    <input id="driverDOBYear" name="driverDOBYear" data-ng-model="driver.dob.year" placeholder="YYYY" type="number" min="1900" max="2015" required data-ng-class="{'ng-invalid': !isValidAge() &amp;&amp; driverForm.$submitted}" class="year"><img src="../../images/error.png" data-ng-show="(!isValidAge() &amp;&amp; driverForm.$submitted) || (driverForm.driverDOBDay.$invalid &amp;&amp; driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid &amp;&amp; driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid &amp;&amp; driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) &amp;&amp; driverForm.$submitted)">
                   </div>
                   <div id="popover1" class="popover right"><span translate="PS_3_0f_1">The main driver should be less than 70 year old</span></div>
                   <div class="row">
@@ -199,6 +199,11 @@
                       <div class="fake-radio"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_3_1_2_1e">Insured as a named driver on another policy</span>
                     </label>
                   </div>
+                  <div data-ng-show="driver.whyNoClaimsDiscount == 'Insured as a named driver on another policy' &amp;&amp; driver.noClaimsDiscount == 0">
+                    <h2><span translate="PS_3_1_2_1f">What is your NCD on the other car?</span><img src="../../images/error.png" data-ng-show="driver.whyNoClaimsDiscount == 'Insured as a named driver on another policy' &amp;&amp; driver.otherCarNoClaimsDiscount == null &amp;&amp; driverForm.$submitted"></h2>
+                    <div class="slider-labels"><span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span><span>50%</span></div>
+                    <slider data-ng-model="driver.otherCarNoClaimsDiscount" min="0" step="10" max="50" value="0"></slider>
+                  </div>
                 </div>
                 <div class="container-fluid">
                   <h2><span translate="PC_3_1_3a">Did the main driver have any driving offence points in the last 2 years?</span></h2>
@@ -236,7 +241,7 @@
             </div>
             <div class="row">
               <div class="col-md-12 margin--top">
-                <button type="submit" continue url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid &amp;&amp; driver.ownership == true" class="btn btn-forward btn-lg margin--bottom margin--right"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+                <button type="submit" continue url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid &amp;&amp; driver.ownership == true &amp;&amp; isValidAge()" class="btn btn-forward btn-lg margin--bottom margin--right"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
                 <button type="button" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_3_3_1">Back</span></button>
               </div>
             </div>

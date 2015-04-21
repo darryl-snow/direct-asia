@@ -178,13 +178,13 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 									.form-inline
 
-										input#policyStartDay.day(name="policyStartDay", data-ng-model="car.policy.start.day", placeholder="DD", type="number", min="1", max="31", required)
+										input#policyStartDay.day(name="policyStartDay", data-ng-model="car.policy.start.day", placeholder="DD", type="number", min="1", max="31", required, data-ng-class="{'ng-invalid': !startDateWithin3Months() && carForm.$submitted}")
 
-										input#policyStartMonth.month(name="policyStartMonth", data-ng-model="car.policy.start.month", placeholder="MM", type="number", min="1", max="12", required)
+										input#policyStartMonth.month(name="policyStartMonth", data-ng-model="car.policy.start.month", placeholder="MM", type="number", min="1", max="12", required, data-ng-class="{'ng-invalid': !startDateWithin3Months() && carForm.$submitted}")
 
-										input#policyStartYear.year(name="policyStartYear", data-ng-model="car.policy.start.year", placeholder="YYYY", type="number", min="1900", max="2015", required)
+										input#policyStartYear.year(name="policyStartYear", data-ng-model="car.policy.start.year", placeholder="YYYY", type="number", min="1900", max="2015", required, data-ng-class="{'ng-invalid': !startDateWithin3Months() && carForm.$submitted}")
 
-										img(src="../../images/error.png", data-ng-show="(carForm.policyStartDay.$invalid && carForm.policyStartDay.$dirty) || (carForm.policyStartMonth.$invalid && carForm.policyStartMonth.$dirty) || (carForm.policyStartYear.$invalid && carForm.policyStartYear.$dirty) || (carForm.policyStartDay.$invalid && carForm.policyStartMonth.$invalid && carForm.policyStartYear.$invalid && carForm.$submitted)")
+										img(src="../../images/error.png", data-ng-show="(carForm.policyStartDay.$invalid && carForm.policyStartDay.$dirty) || (carForm.policyStartMonth.$invalid && carForm.policyStartMonth.$dirty) || (carForm.policyStartYear.$invalid && carForm.policyStartYear.$dirty) || (carForm.policyStartDay.$invalid && carForm.policyStartMonth.$invalid && carForm.policyStartYear.$invalid && carForm.$submitted) || (!startDateWithin3Months() && carForm.$submitted)")
 
 								.col-md-4
 
@@ -209,7 +209,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 								span.glyphicon.glyphicon-arrow-left
 								span(translate="PS_2_2_2") Back
 
-							button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", valid="carForm.$valid", continue, url="http://localhost:9000/car", page-data="{{car}}", next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html")
+							button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", valid="carForm.$valid && startDateWithin3Months()", continue, url="http://localhost:9000/car", page-data="{{car}}", next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html")
 								span(translate="PS_2_2_1") Proceed
 								span.glyphicon.glyphicon-arrow-right
 

@@ -42,6 +42,8 @@ angular.module "DirectAsia"
 			
 			element.on "click", ->
 
+				# console.table scope.pageData
+
 				if scope.valid
 
 					# console.table scope.pageData

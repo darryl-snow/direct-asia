@@ -96,9 +96,41 @@ angular.module("DirectAsia").controller "aboutYourDriverCtrl", [
 			$scope.faults = data.faults
 			$scope.notFaults = data.notFaults
 
+		###
+		This is an Angular watch function that calculates and saves the driver's age when
+		they enter their DOB
+		###
+
 		$scope.$watchGroup ["driver.dob.day", "driver.dob.month", "driver.dob.year"], (newValues, oldValues, scope) ->
 			age = ageFilter newValues[2] + "/" + newValues[1] + "/" + newValues[0]
 			if !isNaN age and newValues[0] and newValues[1] and newValues[2] then $scope.driver.age = age
+
+		###
+		This is an Angular watch function that removes values for why no NCD and NCD on
+		other car when the NCD selected is not 0
+		###
+
+		$scope.$watch "driver.noClaimsDiscount", (newValue, oldValue) ->
+			if newValue isnt 0
+				$scope.driver.whyNoClaimsDiscount = null
+				$scope.driver.otherCarNoClaimsDiscount = null
+
+		###
+		This is an Angular watch function that removes the value for NCD on
+		other car when the reason for 0% NCD is not that the driver is insured
+		on another policy
+		###
+
+		$scope.$watch "driver.whyNoClaimsDiscount", (newValue, oldValue) ->
+			if newValue isnt "Insured as a named driver on another policy"
+				$scope.driver.otherCarNoClaimsDiscount = null
+
+		###
+		This function is used for validating whether the driver's age is between 18 and 69
+		###
+
+		$scope.isValidAge = ->
+			$scope.driver.age >= 18 and $scope.driver.age < 70
 
 		###
 		This function is required for the custom select fields to work. When the

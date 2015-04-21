@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon Apr 20 2015 21:50:45 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Tue Apr 21 2015 11:54:47 GMT+0800 (CST) */
 
 /*
 This is a class for instantiating main drivers, as used on the quote page
@@ -21,6 +21,7 @@ MainDriver = (function() {
     this.drivingExperience = null;
     this.noClaimsDiscount = 0;
     this.whyNoClaimsDiscount = null;
+    this.otherCarNoClaimsDiscount = null;
     this.offences = null;
     this.refusals = null;
     this.accidents = {

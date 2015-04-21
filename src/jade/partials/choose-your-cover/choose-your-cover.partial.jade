@@ -33,22 +33,20 @@ script(src="../../scripts/controllers/your-plan/your-plan.controller.js")
 
 			form(name="planForm", novalidate)
 
-				.row
+				.row.centred
 
 					.col-md-12
 						h2(translate="PS_1_1a") Choose you car cover
 
-						.row.margin--bottom
-
-							.col-md-3(data-ng-repeat="plan in plans")
-								.panel.plan-option(data-ng-class="{'selected':coverDetails.plan == plan}")
-									.panel-body
-										img.margin--bottom(data-ng-src="{{plan.image}}")
-										h2.margin--bottom
-											strong {{plan.name}}
-											.subtitle(data-ng-if="plan.tagline") {{plan.tagline}}
-										img.plan-option-status(data-ng-show="coverDetails.plan == plan", src="../../images/selected-icon.png")
-										button.btn.btn-default.plan-option-status(type="button", data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
+						.margin--bottom
+							.panel.plan-option(data-ng-class="{'selected':coverDetails.plan == plan}", data-ng-repeat="plan in plans")
+								.panel-body
+									img.margin--bottom(data-ng-src="{{plan.image}}")
+									h2.margin--bottom
+										strong {{plan.name}}
+										.subtitle(data-ng-if="plan.tagline") {{plan.tagline}}
+									img.plan-option-status(data-ng-show="coverDetails.plan == plan", src="../../images/selected-icon.png")
+									button.btn.btn-default.plan-option-status(type="button", data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
 
 						.row.margin--bottom
 							.col-md-12
@@ -69,7 +67,7 @@ script(src="../../scripts/controllers/your-plan/your-plan.controller.js")
 
 									tbody
 										tr(data-ng-repeat="cover in covers")
-											td
+											td.align-left
 												strong {{cover.name}}
 												img.show-tooltip(data-toggle="tooltip", data-placement="top", text="cover.description", src="../../images/question-icon.png")
 
@@ -90,19 +88,16 @@ script(src="../../scripts/controllers/your-plan/your-plan.controller.js")
 									span(translate="PS_1_4a") Is the car financed?
 									img(src="../../images/error.png", data-ng-show="!!!coverDetails.financed && planForm.$submitted")
 
-								.row
-									.col-xs-6.col-md-2
-										button.btn.btn-default.btn-block(type="button", data-ng-class="{'active': coverDetails.financed}", data-ng-click="coverDetails.financed = true")
-											span(translate="PS_1_4b") Yes
-											span.glyphicon.glyphicon-ok
+								button.btn.btn-default(type="button", data-ng-class="{'active': coverDetails.financed}", data-ng-click="coverDetails.financed = true")
+									span(translate="PS_1_4b") Yes
+									span.glyphicon.glyphicon-ok
 
-									.col-xs-6.col-md-2
-										button.btn.btn-default.btn-block(type="button", data-ng-class="{'active': coverDetails.financed == false}", data-ng-click="coverDetails.financed = false")
-											span(translate="PS_1_4c") No
-											span.glyphicon.glyphicon-ok
+								button.btn.btn-default(type="button", data-ng-class="{'active': coverDetails.financed == false}", data-ng-click="coverDetails.financed = false")
+									span(translate="PS_1_4c") No
+									span.glyphicon.glyphicon-ok
 
 						.row.margin--bottom
-							.col-sm-12.col-md-4
+							.col-md-12
 
 								label.label-checkbox.margin--bottom(for="checkbox1")
 									input#checkbox1(type="checkbox", data-ng-model="coverDetails.agreed")

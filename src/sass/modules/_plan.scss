@@ -1,9 +1,12 @@
 .plan {
 
 	&-option {
+		display:			inline-block;
 		height:				220px;
+		margin:				$base-spacing-unit;
 		position:			relative;
 		text-align:			center;
+		vertical-align: 	top;
 
 		&-status {
 			bottom:			20px;

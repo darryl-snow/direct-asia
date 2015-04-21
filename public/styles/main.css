@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon Apr 20 2015 21:01:09 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Tue Apr 21 2015 10:48:20 GMT+0800 (CST) */
 @media (min-width: 768px) {
   .pull-left-large {
     float: left; } }
@@ -1229,9 +1229,12 @@ input[type="checkbox"]:disabled ~ span, input[type="radio"]:disabled ~ span {
     border-bottom: 10px solid #f2f2f2; }
 
 .plan-option {
+  display: inline-block;
   height: 220px;
+  margin: 2em;
   position: relative;
-  text-align: center; }
+  text-align: center;
+  vertical-align: top; }
   .plan-option-status {
     bottom: 20px;
     left: 50%;

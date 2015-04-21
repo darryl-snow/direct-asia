@@ -44,13 +44,42 @@ angular.module('DirectAsia').controller 'CarCtrl', [
 			dataFromAPI
 
 		###
+		This is a private function to get tomorrow's date for the default
+		plan start date
+		###
+
+		getTomorrowsDate = ->
+			today = new Date()
+			tomorrow = new Date today.getFullYear(), (today.getMonth() + 1), (today.getDate() + 1)
+
+		###
 		This private function formats the data returned from the server so that it
 		can be used on the page
 		###
 
 		setupData = (data) ->
 			$scope.car = new Car
+
+			tomorrow = getTomorrowsDate()
+
+			$scope.car.policy.start.day = tomorrow.getDate()
+			$scope.car.policy.start.month = tomorrow.getMonth()
+			$scope.car.policy.start.year = tomorrow.getFullYear()
+
 			$scope.models = data.models
+
+		###
+		This function is used for validating whether the selected start date is more
+		more than 3 months in the future
+		###
+
+		$scope.startDateWithin3Months = ->
+			today = new Date()
+			startDate = new Date $scope.car.policy.start.year, ($scope.car.policy.start.month - 1), $scope.car.policy.start.day
+			months = (startDate.getFullYear() - today.getFullYear()) * 12
+			months -= today.getMonth() + 1
+			months += startDate.getMonth() + 1
+			months <= 3
 
 		###
 		A scope function to manually update the model from the view.
