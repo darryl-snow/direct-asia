@@ -72,6 +72,7 @@ html(lang="en", ng-app="DirectAsia")
 		script(src="../../scripts/directives/continue-button.directive.js")
 		script(src="../../scripts/directives/full-page-height.directive.js")
 		script(src="../../scripts/directives/input-group.directive.js")
+		script(src="../../scripts/directives/modal.directive.js")
 		script(src="../../scripts/directives/popover.directive.js")
 		script(src="../../scripts/directives/selecter.directive.js")
 		script(src="../../scripts/directives/sticky-navbar.directive.js")
@@ -100,17 +101,18 @@ html(lang="en", ng-app="DirectAsia")
 					a.navbar-brand(href="/")
 						img(src="../../images/direct-asia-logo.png")
 
-				.navbar-title Car Insurance
+				.navbar-title(translate="GS_0_0_1") Car Insurance
 
 				ol.breadcrumb.breadcrumb-arrow
 					li.active
-						a(href="#") Your Car &amp; Drivers
+						a(href="#", translate="GC_0_1_1") Your Car &amp; Drivers
 					li
-						span Your Quote
+						span(translate="GC_0_1_2") Your Quote
 					li
-						span Purchase
+						span(translate="GC_0_1_3") Purchase
 
-				.navbar-telephone.pull-right Call our Singapore Team on
+				.navbar-telephone.pull-right
+					span(translate="GS_0_0_2c") Call our Singapore Team on
 					span.navbar-telephone-number 9854 4345
 
 				include ../partials/help.partial.jade

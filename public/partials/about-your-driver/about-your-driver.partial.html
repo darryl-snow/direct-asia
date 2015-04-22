@@ -31,7 +31,7 @@
               <div data-toggle="popover" data-placement="right" popover="#popover1" popover-type="popover--yellow" trigger="hover" style="display:inline-block;" class="form-inline">
                 <input id="driverDOBDay" name="driverDOBDay" data-ng-model="driver.dob.day" placeholder="DD" type="number" min="1" max="31" required="required" data-ng-class="{'ng-invalid': !isValidAge() &amp;&amp; driverForm.$submitted}" class="day"/>
                 <input id="driverDOBMonth" name="driverDOBMonth" data-ng-model="driver.dob.month" placeholder="MM" type="number" min="1" max="12" required="required" data-ng-class="{'ng-invalid': !isValidAge() &amp;&amp; driverForm.$submitted}" class="month"/>
-                <input id="driverDOBYear" name="driverDOBYear" data-ng-model="driver.dob.year" placeholder="YYYY" type="number" min="1900" max="2015" required="required" data-ng-class="{'ng-invalid': !isValidAge() &amp;&amp; driverForm.$submitted}" class="year"/><img src="../../images/error.png" data-ng-show="(!isValidAge() &amp;&amp; driverForm.$submitted) || (driverForm.driverDOBDay.$invalid &amp;&amp; driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid &amp;&amp; driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid &amp;&amp; driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) &amp;&amp; driverForm.$submitted)"/>
+                <input id="driverDOBYear" name="driverDOBYear" data-ng-model="driver.dob.year" placeholder="YYYY" type="number" min="1900" max="2015" required="required" data-ng-class="{'ng-invalid': !isValidAge() &amp;&amp; driverForm.$submitted}" class="year"/><img src="../../images/error.png" data-ng-show="(!isValidAge() &amp;&amp; driverForm.$submitted) || (driverForm.driverDOBDay.$invalid &amp;&amp; driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid &amp;&amp; driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid &amp;&amp; driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.age &lt; 20)"/>
               </div>
               <div id="popover1" class="popover right"><span translate="PS_3_0f_1">The main driver should be less than 70 year old</span></div>
               <div class="row">
@@ -66,7 +66,7 @@
               <div data-toggle="popover" data-placement="right" popover="#popover2" popover-type="popover--yellow" trigger="hover" style="display:inline-block; position: relative; width: 48%;" class="form-inline">
                 <select id="drivingExperience" name="drivingExperience" data-ng-model="driver.drivingExperience" required="required">
                   <option selecter="selecter" label="Enter Driving License" value="{{drivingExperience}}" data-ng-repeat="drivingExperience in drivingExperiences" selecter-target="#drivingExperience" selecter-callback="select" property="drivingExperience" data-ng-selected="drivingExperience == selectedItem">{{drivingExperience}}</option>
-                </select><img src="../../images/error.png" data-ng-show="(driverForm.drivingExperience.$invalid &amp;&amp; driverForm.drivingExperience.$dirty) || (driverForm.drivingExperience.$invalid &amp;&amp; driverForm.$submitted)" style="bottom: 3px; position: absolute; right: 0;"/>
+                </select><img src="../../images/error.png" data-ng-show="(driverForm.drivingExperience.$invalid &amp;&amp; driverForm.drivingExperience.$dirty) || (driverForm.drivingExperience.$invalid &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.drivingExperience == '1')" style="bottom: 3px; position: absolute; right: 0;"/>
               </div>
               <div id="popover2" class="popover right"><span translate="PS_3_1_1b">We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.</span></div>
             </div>
@@ -114,7 +114,7 @@
             <div class="container-fluid">
               <h2 translate="PC_3_1_5a">Has insurance been refused or cancelled in the past 3 years?</h2>
               <button name="refusedInsurance" type="button" data-ng-class="{'active': driver.refusals == 'yes'}" data-ng-click="driver.refusals = 'yes'" class="btn btn-default random-margin"><span translate="PC_3_1_5b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
-              <button name="refusedInsurance" type="button" data-ng-class="{'active': driver.refusals == 'no'}" data-ng-click="driver.refusals = 'no'" class="btn btn-default"><span translate="PC_3_1_5c">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="driverForm.$submitted &amp;&amp; driver.refusals == null"/>
+              <button name="refusedInsurance" type="button" data-ng-class="{'active': driver.refusals == 'no'}" data-ng-click="driver.refusals = 'no'" class="btn btn-default"><span translate="PC_3_1_5c">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="(driverForm.$submitted &amp;&amp; driver.refusals == null) || (modalShown &amp;&amp; driver.refusals == 'yes')"/>
             </div>
             <div class="container-fluid">
               <h2><span translate="PC_3_1_4a">In the past 3 years (36 months), how many accidents and/or claims where made?</span>
@@ -125,7 +125,7 @@
                   <label translate="PC_4_4_1_4c">at Fault</label>
                   <select id="fault" name="fault" data-ng-model="driver.accidents.atFault" required="required">
                     <option selecter="selecter" label="at Fault" value="{{fault}}" data-ng-repeat="fault in faults" selecter-target="#fault" selecter-callback="select" property="fault" data-ng-selected="fault == selectedItem">{{fault}}</option>
-                  </select><img src="../../images/error.png" data-ng-show="(driverForm.fault.$invalid &amp;&amp; driverForm.fault.$dirty) || (driverForm.fault.$invalid &amp;&amp; driverForm.$submitted)" style="bottom: 3px; position: absolute; right: 15px;"/>
+                  </select><img src="../../images/error.png" data-ng-show="(driverForm.fault.$invalid &amp;&amp; driverForm.fault.$dirty) || (driverForm.fault.$invalid &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.accidents.atFault == '2+')" style="bottom: 3px; position: absolute; right: 15px;"/>
                 </div>
                 <div class="col-xs-6">
                   <label translate="PC_4_4_1_4d">Not at Fault</label>
@@ -139,26 +139,25 @@
         </div>
         <div class="row">
           <div class="col-md-12 margin--top">
-            <button type="submit" continue="continue" url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid &amp;&amp; driver.ownership == true &amp;&amp; isValidAge()" class="btn btn-forward btn-lg margin--bottom margin--right"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+            <button type="button" continue="continue" modal="#modal" modal-conditions="driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1" url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid &amp;&amp; driver.ownership == true &amp;&amp; isValidAge()" data-ng-disabled="modalShown &amp;&amp; (driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1)" class="btn btn-forward btn-lg margin--bottom margin--right"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
             <button type="button" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_3_3_1">Back</span></button>
           </div>
         </div>
       </div>
     </form>
+    <modal id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" shown="modalShown" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <div class="modal-body">
+            <h2 id="modalLabel" translate="PC_3_3_3">Sorry, but we‘d like to speak with you about your policy</h2>
+            <p><strong translate="PC_3_3_4">What to do next:</strong></p>
+            <p translate="PC_3_3_5">Call our [Country] based team and provide your reference number and we‘ll help you complete your policy</p>
+            <p><strong><span translate="PC_3_3_6">Your Reference Number:</span> XXXXX</strong></p>
+            <p><span translate="GS_0_0_2a">Call us on</span> +852 2884 8888<span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
+          </div>
+        </div>
+      </div>
+    </modal>
   </section>
 </div>
-<div id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-      <div class="modal-body">
-        <h2 id="modalLabel" translate="PC_3_3_3">Sorry, but we‘d like to speak with you about your policy</h2>
-        <p><strong translate="PC_3_3_4">What to do next:</strong></p>
-        <p translate="PC_3_3_5">Call our [Country] based team and provide your reference number and we‘ll help you complete your policy</p>
-        <p><strong><span translate="PC_3_3_6">Your Reference Number:</span> XXXXX</strong></p>
-        <p><span translate="GS_0_0_2a">Call us on</span> +852 2884 8888<span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
-      </div>
-    </div>
-  </div>
-</div>
-<script>$('#modal').modal();</script>

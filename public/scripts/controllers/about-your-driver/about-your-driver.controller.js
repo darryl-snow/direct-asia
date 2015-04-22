@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Tue Apr 21 2015 11:54:47 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Wed Apr 22 2015 13:21:00 GMT+0800 (CST) */
 
 /*
 
@@ -68,7 +68,8 @@ angular.module("DirectAsia").controller("aboutYourDriverCtrl", [
       $scope.drivingExperiences = data.drivingExperiences;
       $scope.discounts = data.discounts;
       $scope.faults = data.faults;
-      return $scope.notFaults = data.notFaults;
+      $scope.notFaults = data.notFaults;
+      return $scope.modalShown = false;
     };
 
     /*

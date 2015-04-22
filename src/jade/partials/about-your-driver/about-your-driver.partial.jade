@@ -59,7 +59,7 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 								input#driverDOBDay.day(name="driverDOBDay", data-ng-model="driver.dob.day", placeholder="DD", type="number", min="1", max="31", required, data-ng-class="{'ng-invalid': !isValidAge() && driverForm.$submitted}")
 								input#driverDOBMonth.month(name="driverDOBMonth", data-ng-model="driver.dob.month", placeholder="MM", type="number", min="1", max="12", required, data-ng-class="{'ng-invalid': !isValidAge() && driverForm.$submitted}")
 								input#driverDOBYear.year(name="driverDOBYear", data-ng-model="driver.dob.year", placeholder="YYYY", type="number", min="1900", max="2015", required, data-ng-class="{'ng-invalid': !isValidAge() && driverForm.$submitted}")
-								img(src="../../images/error.png", data-ng-show="(!isValidAge() && driverForm.$submitted) || (driverForm.driverDOBDay.$invalid && driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid && driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid && driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) && driverForm.$submitted)")
+								img(src="../../images/error.png", data-ng-show="(!isValidAge() && driverForm.$submitted) || (driverForm.driverDOBDay.$invalid && driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid && driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid && driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) && driverForm.$submitted) || (modalShown && driver.age < 20)")
 
 							#popover1.popover.right
 								span(translate="PS_3_0f_1") The main driver should be less than 70 year old
@@ -111,7 +111,7 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 							.form-inline(data-toggle="popover", data-placement="right", popover="#popover2", popover-type="popover--yellow", trigger="hover", style="display:inline-block; position: relative; width: 48%;")
 								select#drivingExperience(name="drivingExperience", data-ng-model="driver.drivingExperience", required)
 									option(selecter, label="Enter Driving License", value="{{drivingExperience}}", data-ng-repeat="drivingExperience in drivingExperiences", selecter-target="#drivingExperience", selecter-callback="select", property="drivingExperience", data-ng-selected="drivingExperience == selectedItem") {{drivingExperience}}
-								img(src="../../images/error.png", data-ng-show="(driverForm.drivingExperience.$invalid && driverForm.drivingExperience.$dirty) || (driverForm.drivingExperience.$invalid && driverForm.$submitted)", style="bottom: 3px; position: absolute; right: 0;")
+								img(src="../../images/error.png", data-ng-show="(driverForm.drivingExperience.$invalid && driverForm.drivingExperience.$dirty) || (driverForm.drivingExperience.$invalid && driverForm.$submitted) || (modalShown && driver.drivingExperience == '1')", style="bottom: 3px; position: absolute; right: 0;")
 
 							#popover2.popover.right
 								span(translate="PS_3_1_1b") We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.
@@ -208,7 +208,7 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 							button.btn.btn-default(name="refusedInsurance", type="button", data-ng-class="{'active': driver.refusals == 'no'}", data-ng-click="driver.refusals = 'no'")
 								span(translate="PC_3_1_5c") No
 								span.glyphicon.glyphicon-ok
-							img(src="../../images/error.png", data-ng-show="driverForm.$submitted && driver.refusals == null")
+							img(src="../../images/error.png", data-ng-show="(driverForm.$submitted && driver.refusals == null) || (modalShown && driver.refusals == 'yes')")
 
 						.container-fluid
 
@@ -223,7 +223,7 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 									label(translate="PC_4_4_1_4c") at Fault
 									select#fault(name="fault", data-ng-model="driver.accidents.atFault", required)
 										option(selecter, label="at Fault", value="{{fault}}", data-ng-repeat="fault in faults", selecter-target="#fault", selecter-callback="select", property="fault", data-ng-selected="fault == selectedItem") {{fault}}
-									img(src="../../images/error.png", data-ng-show="(driverForm.fault.$invalid && driverForm.fault.$dirty) || (driverForm.fault.$invalid && driverForm.$submitted)", style="bottom: 3px; position: absolute; right: 15px;")
+									img(src="../../images/error.png", data-ng-show="(driverForm.fault.$invalid && driverForm.fault.$dirty) || (driverForm.fault.$invalid && driverForm.$submitted) || (modalShown && driver.accidents.atFault == '2+')", style="bottom: 3px; position: absolute; right: 15px;")
 
 								.col-xs-6
 									label(translate="PC_4_4_1_4d") Not at Fault
@@ -234,7 +234,7 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 				.row
 					.col-md-12.margin--top
 
-						button.btn.btn-forward.btn-lg.margin--bottom.margin--right(type="submit", continue, url="http://localhost:9000/driver", page-data="{{driver}}", next-page="http://localhost:9000/pages/quote/quote.html", valid="driverForm.$valid && driver.ownership == true && isValidAge()")
+						button.btn.btn-forward.btn-lg.margin--bottom.margin--right(type="button", continue, modal="#modal", modal-conditions="driver.age < 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1", url="http://localhost:9000/driver", page-data="{{driver}}", next-page="http://localhost:9000/pages/quote/quote.html", valid="driverForm.$valid && driver.ownership == true && isValidAge()", data-ng-disabled="modalShown && (driver.age < 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1)")
 							span(translate="PC_3_3_2") Proceed
 							span.glyphicon.glyphicon-arrow-right
 
@@ -243,27 +243,24 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 							span(translate="PC_3_3_1") Back
 
 
-#modal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalLabel", aria-hidden="false")
-	.modal-dialog
-		.modal-content
+		modal#modal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalLabel", aria-hidden="false", shown="modalShown")
+			.modal-dialog
+				.modal-content
 
-			button(type="button", class="close", data-dismiss="modal", aria-label="Close")
-				span(aria-hidden="true") ×
+					button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+						span(aria-hidden="true") ×
 
-			.modal-body
+					.modal-body
 
-				h2#modalLabel(translate="PC_3_3_3") Sorry, but we‘d like to speak with you about your policy
-				p
-					strong(translate="PC_3_3_4") What to do next:
-				p(translate="PC_3_3_5") Call our [Country] based team and provide your reference number and we‘ll help you complete your policy
-				p
-					strong
-						span(translate="PC_3_3_6") Your Reference Number:
-						|  XXXXX
-				p
-					span(translate="GS_0_0_2a") Call us on
-					|  +852 2884 8888
-					span(translate="GS_0_0_3") Mon - Fri 8am, Sat 9am - 6pm
-
-script.
-	$('#modal').modal();
+						h2#modalLabel(translate="PC_3_3_3") Sorry, but we‘d like to speak with you about your policy
+						p
+							strong(translate="PC_3_3_4") What to do next:
+						p(translate="PC_3_3_5") Call our [Country] based team and provide your reference number and we‘ll help you complete your policy
+						p
+							strong
+								span(translate="PC_3_3_6") Your Reference Number:
+								|  XXXXX
+						p
+							span(translate="GS_0_0_2a") Call us on
+							|  +852 2884 8888
+							span(translate="GS_0_0_3") Mon - Fri 8am, Sat 9am - 6pm

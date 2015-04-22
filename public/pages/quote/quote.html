@@ -47,6 +47,7 @@
     <script src="../../scripts/directives/continue-button.directive.js"></script>
     <script src="../../scripts/directives/full-page-height.directive.js"></script>
     <script src="../../scripts/directives/input-group.directive.js"></script>
+    <script src="../../scripts/directives/modal.directive.js"></script>
     <script src="../../scripts/directives/popover.directive.js"></script>
     <script src="../../scripts/directives/selecter.directive.js"></script>
     <script src="../../scripts/directives/sticky-navbar.directive.js"></script>
@@ -64,13 +65,13 @@
     <div class="container">
       <div class="navbar navbar-default">
         <div class="navbar-header"><a href="/" class="navbar-brand"><img src="../../images/direct-asia-logo.png"></a></div>
-        <div class="navbar-title">Car Insurance</div>
+        <div translate="GS_0_0_1" class="navbar-title">Car Insurance</div>
         <ol class="breadcrumb breadcrumb-arrow">
-          <li><a href="#"><span class="glyphicon glyphicon-ok"></span>Your Car &amp; Drivers</a></li>
-          <li class="active"><a href="#">Your Quote</a></li>
-          <li><span>Purchase</span></li>
+          <li><a href="#"><span class="glyphicon glyphicon-ok"></span><span translate="GC_0_1_1">Your Car &amp; Drivers</span></a></li>
+          <li class="active"><a href="#" translate="GC_0_1_2">Your Quote</a></li>
+          <li><span translate="GC_0_1_3">Purchase</span></li>
         </ol>
-        <div class="navbar-telephone pull-right">Need help? Speak with Our Hong Kong Team<span class="navbar-telephone-number">2884 8888</span>Mon - Fri 8am - 8pm | Sat 9am - 6pm</div>
+        <div class="navbar-telephone pull-right"><span translate="GS_0_0_2">Need help? Speak with Our Hong Kong Team</span><span class="navbar-telephone-number">2884 8888</span><span translate="GS_0_0_3">Mon - Fri 8am - 8pm | Sat 9am - 6pm</span></div>
         <script src="../../scripts/controllers/help/help.controller.js"></script>
         <div data-ng-controller="helpCtrl" class="help">
           <button type="button" translate="GS_0_0_2a" data-ng-click="showPopover()" class="btn btn-primary btn-sm help-button">Need Help?</button>

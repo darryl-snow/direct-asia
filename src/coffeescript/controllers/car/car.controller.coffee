@@ -28,6 +28,8 @@ angular.module('DirectAsia').controller 'CarCtrl', [
 	'Car'
 	($scope, Car) ->
 
+		thisYear = (new Date()).getFullYear()
+
 		###
 		This private function fetches data from the back-end to be used on the page
 
@@ -68,6 +70,14 @@ angular.module('DirectAsia').controller 'CarCtrl', [
 
 			$scope.models = data.models
 
+			$scope.age = 0
+
+			$scope.modalShown = false
+
+		$scope.$watch "car.year", ->
+			age = thisYear - $scope.car.year
+			if !isNaN age then $scope.age = age
+
 		###
 		This function is used for validating whether the selected start date is more
 		more than 3 months in the future
@@ -80,6 +90,15 @@ angular.module('DirectAsia').controller 'CarCtrl', [
 			months -= today.getMonth() + 1
 			months += startDate.getMonth() + 1
 			months <= 3
+
+		###
+		This function is used for validating that the selected end date is after the start date
+		###
+
+		$scope.endDateAfterStartDate = ->
+			startDate = new Date $scope.car.policy.start.year, ($scope.car.policy.start.month - 1), $scope.car.policy.start.day
+			endDate = new Date $scope.car.policy.end.year, ($scope.car.policy.end.month - 1), $scope.car.policy.end.day
+			endDate - startDate > 0
 
 		###
 		A scope function to manually update the model from the view.

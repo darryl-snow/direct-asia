@@ -96,6 +96,8 @@ angular.module("DirectAsia").controller "aboutYourDriverCtrl", [
 			$scope.faults = data.faults
 			$scope.notFaults = data.notFaults
 
+			$scope.modalShown = false
+
 		###
 		This is an Angular watch function that calculates and saves the driver's age when
 		they enter their DOB

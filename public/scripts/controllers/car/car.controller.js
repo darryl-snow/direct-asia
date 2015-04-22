@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Tue Apr 21 2015 11:54:47 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Wed Apr 22 2015 13:21:00 GMT+0800 (CST) */
 
 /*
 
@@ -28,6 +28,8 @@ is the $scope.car variable.
 
 angular.module('DirectAsia').controller('CarCtrl', [
   '$scope', 'Car', function($scope, Car) {
+    var getDataFromAPI, getTomorrowsDate, setupData, thisYear;
+    thisYear = (new Date()).getFullYear();
 
     /*
     		This private function fetches data from the back-end to be used on the page
@@ -35,7 +37,6 @@ angular.module('DirectAsia').controller('CarCtrl', [
     		(NOTE: This isn't used currently as the data is mocked by the
     		function getMockData() above)
      */
-    var getDataFromAPI, getTomorrowsDate, setupData;
     getDataFromAPI = function() {
       var dataFromAPI;
       dataFromAPI = {};
@@ -68,8 +69,17 @@ angular.module('DirectAsia').controller('CarCtrl', [
       $scope.car.policy.start.day = tomorrow.getDate();
       $scope.car.policy.start.month = tomorrow.getMonth();
       $scope.car.policy.start.year = tomorrow.getFullYear();
-      return $scope.models = data.models;
+      $scope.models = data.models;
+      $scope.age = 0;
+      return $scope.modalShown = false;
     };
+    $scope.$watch("car.year", function() {
+      var age;
+      age = thisYear - $scope.car.year;
+      if (!isNaN(age)) {
+        return $scope.age = age;
+      }
+    });
 
     /*
     		This function is used for validating whether the selected start date is more
@@ -83,6 +93,16 @@ angular.module('DirectAsia').controller('CarCtrl', [
       months -= today.getMonth() + 1;
       months += startDate.getMonth() + 1;
       return months <= 3;
+    };
+
+    /*
+    		This function is used for validating that the selected end date is after the start date
+     */
+    $scope.endDateAfterStartDate = function() {
+      var endDate, startDate;
+      startDate = new Date($scope.car.policy.start.year, $scope.car.policy.start.month - 1, $scope.car.policy.start.day);
+      endDate = new Date($scope.car.policy.end.year, $scope.car.policy.end.month - 1, $scope.car.policy.end.day);
+      return endDate - startDate > 0;
     };
 
     /*

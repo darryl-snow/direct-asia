@@ -72,6 +72,7 @@ html(lang="en", ng-app="DirectAsia")
 		script(src="../../scripts/directives/continue-button.directive.js")
 		script(src="../../scripts/directives/full-page-height.directive.js")
 		script(src="../../scripts/directives/input-group.directive.js")
+		script(src="../../scripts/directives/modal.directive.js")
 		script(src="../../scripts/directives/popover.directive.js")
 		script(src="../../scripts/directives/selecter.directive.js")
 		script(src="../../scripts/directives/sticky-navbar.directive.js")
@@ -99,21 +100,22 @@ html(lang="en", ng-app="DirectAsia")
 					a.navbar-brand(href="/")
 						img(src="../../images/direct-asia-logo.png")
 
-				.navbar-title Car Insurance
+				.navbar-title(translate="GS_0_0_1") Car Insurance
 
 				ol.breadcrumb.breadcrumb-arrow
 					li
 						a(href="#")
 							span.glyphicon.glyphicon-ok
-							| Your Car &amp; Drivers
+							span(translate="GC_0_1_1") Your Car &amp; Drivers
 					li.active
-						a(href="#") Your Quote
+						a(href="#", translate="GC_0_1_2") Your Quote
 					li
-						span Purchase
+						span(translate="GC_0_1_3") Purchase
 
-				.navbar-telephone.pull-right Need help? Speak with Our Hong Kong Team
+				.navbar-telephone.pull-right
+					span(translate="GS_0_0_2") Need help? Speak with Our Hong Kong Team
 					span.navbar-telephone-number 2884 8888
-					| Mon - Fri 8am - 8pm | Sat 9am - 6pm
+					span(translate="GS_0_0_3") Mon - Fri 8am - 8pm | Sat 9am - 6pm
 
 				include ../partials/help.partial.jade
 

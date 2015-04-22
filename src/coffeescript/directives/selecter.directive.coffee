@@ -61,3 +61,5 @@ angular.module "DirectAsia"
 					plugin on the select element
 					###
 					angular.element(attrs.selecterTarget).selecter selecterConfig
+
+				, 500

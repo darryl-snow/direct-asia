@@ -23,17 +23,17 @@
             <div data-toggle="popover" data-placement="top" popover="#popover1" popover-type="popover--yellow" trigger="hover" class="row">
               <div class="col-md-4 margin--bottom">
                 <label for="year"><span translate="PS_2_0_3">Year of Manufacture</span><img data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document." src="../../images/question-icon.png" class="show-tooltip"/></label>
-                <input id="carYear" name="carYear" data-ng-model="car.year" type="number" min="1980" max="2015" placeholder="Enter year" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(carForm.carYear.$invalid &amp;&amp; carForm.carYear.$dirty) || (carForm.carYear.$invalid &amp;&amp; carForm.$submitted)" class="error-input-image"/>
+                <input id="carYear" name="carYear" data-ng-model="car.year" type="number" min="1980" max="2015" placeholder="Enter year" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(carForm.carYear.$invalid &amp;&amp; carForm.carYear.$dirty) || (carForm.carYear.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; age &gt; 10)" class="error-input-image"/>
               </div>
               <div class="col-md-4 margin--bottom">
                 <label for="make"><span translate="PS_2_0_4">Car Make</span><img src="../../images/question-icon.png"/></label>
-                <input id="carMake" name="carMake" data-ng-model="car.make" type="text" placeholder="Enter make" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(carForm.carMake.$invalid &amp;&amp; carForm.carMake.$dirty) || (carForm.carMake.$invalid &amp;&amp; carForm.$submitted)" class="error-input-image"/>
+                <input id="carMake" name="carMake" data-ng-model="car.make" type="text" placeholder="Enter make" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(carForm.carMake.$invalid &amp;&amp; carForm.carMake.$dirty) || (carForm.carMake.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; car.make == 'xxxx')" class="error-input-image"/>
               </div>
               <div class="col-md-4">
                 <label for="model"><span translate="PS_2_0_5">Car Model</span><img src="../../images/question-icon.png"/></label>
                 <select id="model" name="model" data-ng-model="car.model" required="required">
                   <option selecter="selecter" label="Enter model" value="{{model}}" data-ng-repeat="model in models" selecter-target="#model" selecter-callback="select" property="model" data-ng-selected="model == selectedItem">{{model}}</option>
-                </select><img src="../../images/error.png" data-ng-show="(carForm.model.$invalid &amp;&amp; carForm.model.$dirty) || (carForm.model.$invalid &amp;&amp; carForm.$submitted)" style="position:absolute; right: 15px; bottom: 3px;" class="error-input-image"/>
+                </select><img src="../../images/error.png" data-ng-show="(carForm.model.$invalid &amp;&amp; carForm.model.$dirty) || (carForm.model.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; car.model == 'ZZZZ')" style="position:absolute; right: 15px; bottom: 3px;" class="error-input-image"/>
               </div>
               <div id="popover1" class="popover top">
                 <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
@@ -109,7 +109,7 @@
                   <div class="form-inline">
                     <input id="policyEndDay" name="policyEndDay" data-ng-model="car.policy.end.day" placeholder="DD" type="number" min="1" max="31" required="required" class="day"/>
                     <input id="policyEndMonth" name="policyEndMonth" data-ng-model="car.policy.end.month" placeholder="MM" type="number" min="1" max="12" required="required" class="month"/>
-                    <input id="policyEndYear" name="policyEndYear" data-ng-model="car.policy.end.year" placeholder="YYYY" type="number" min="1900" max="2015" required="required" class="year"/><img src="../../images/error.png" data-ng-show="(carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndDay.$dirty) || (carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndMonth.$dirty) || (carForm.policyEndYear.$invalid &amp;&amp; carForm.policyEndYear.$dirty) || (carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndYear.$invalid &amp;&amp; carForm.$submitted)"/>
+                    <input id="policyEndYear" name="policyEndYear" data-ng-model="car.policy.end.year" placeholder="YYYY" type="number" min="2015" max="2025" required="required" class="year"/><img src="../../images/error.png" data-ng-show="(carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndDay.$dirty) || (carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndMonth.$dirty) || (carForm.policyEndYear.$invalid &amp;&amp; carForm.policyEndYear.$dirty) || (carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndYear.$invalid &amp;&amp; carForm.$submitted) || (!endDateAfterStartDate() &amp;&amp; carForm.policyStartDay.$dirty &amp;&amp; carForm.policyStartMonth.$dirty &amp;&amp; carForm.policyStartYear.$dirty &amp;&amp; carForm.policyEndDay.$dirty &amp;&amp; carForm.policyEndMonth.$dirty &amp;&amp; carForm.policyEndYear.$dirty)"/>
                   </div>
                 </div>
               </div>
@@ -120,25 +120,38 @@
           <div class="row">
             <div class="col-md-12">
               <button type="button" class="btn btn-backward margin--bottom"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_2_2_2">Back</span></button>
-              <button type="submit" valid="carForm.$valid &amp;&amp; startDateWithin3Months()" continue="continue" url="http://localhost:9000/car" page-data="{{car}}" next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_2_2_1">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+              <button type="button" valid="carForm.$valid &amp;&amp; startDateWithin3Months() &amp;&amp; endDateAfterStartDate()" continue="continue" url="http://localhost:9000/car" page-data="{{car}}" next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html" modal="#modal-problem" modal-conditions="age &gt; 10 || car.make == 'xxxx' || car.model == 'ZZZZ'" data-ng-disabled="modalShown &amp;&amp; (age &gt; 10 || car.make == 'xxxx' || car.model == 'ZZZZ')" success-modal="#modal-success" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_2_2_1">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
             </div>
           </div>
         </div>
       </div>
     </form>
-  </section>
-</div>
-<div id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-      <div class="modal-body">
-        <h2 translate="GS_0_3_1">Are you still there?</h2>
-        <p translate="GS_0_3_2">If we don‘t detect you clicking around, then we end your session to protect your personal information.</p>
-        <p><strong translate="GS_0_3_3">your session will end in: [X]</strong></p>
-        <button type="button" data-ng-click="proceed()" translate="GS_0_3_4" class="btn btn-forward btn-lg">Yes! Continue My Quote</button>
+    <modal id="modal-success" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" shown="modalShown" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h2 translate="GS_0_3_1">Are you still there?</h2>
+            <p translate="GS_0_3_2">If we don‘t detect you clicking around, then we end your session to protect your personal information.</p>
+            <p><strong translate="GS_0_3_3">your session will end in: [X]</strong></p>
+            <button type="button" data-dismiss="modal" translate="GS_0_3_4" class="btn btn-forward btn-lg">Yes! Continue My Quote</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </modal>
+    <modal id="modal-problem" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" shown="modalShown" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <div class="modal-body">
+            <h2 id="modalLabel" translate="PC_3_3_3">Sorry, but we‘d like to speak with you about your policy</h2>
+            <p><strong translate="PC_3_3_4">What to do next:</strong></p>
+            <p translate="PC_3_3_5">Call our [Country] based team and provide your reference number and we‘ll help you complete your policy</p>
+            <p><strong><span translate="PC_3_3_6">Your Reference Number:</span> XXXXX</strong></p>
+            <p><span translate="GS_0_0_2a">Call us on</span> +852 2884 8888<span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
+          </div>
+        </div>
+      </div>
+    </modal>
+  </section>
 </div>
 <script>$('#modal').modal();</script>
