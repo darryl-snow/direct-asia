@@ -66,7 +66,7 @@
             </div>
             <div class="row margin--bottom">
               <div class="col-md-12">
-                <h2><span translate="PS_1_4a">Is the car financed?</span><img src="../../images/error.png" data-ng-show="!!!coverDetails.financed &amp;&amp; planForm.$submitted"/></h2>
+                <h2><span translate="PS_1_4a">Is the car financed?</span><img src="../../images/error.png" data-ng-show="coverDetails.financed === null &amp;&amp; planForm.$submitted"/></h2>
                 <button type="button" data-ng-class="{'active': coverDetails.financed}" data-ng-click="coverDetails.financed = true" class="btn btn-default"><span translate="PS_1_4b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
                 <button type="button" data-ng-class="{'active': coverDetails.financed == false}" data-ng-click="coverDetails.financed = false" class="btn btn-default"><span translate="PS_1_4c">No</span><span class="glyphicon glyphicon-ok"></span></button>
               </div>
@@ -79,7 +79,7 @@
                 </label>
               </div>
             </div>
-            <button type="button" continue="continue" url="http://localhost:9000/api/cover" page-data="{{coverDetails}}" valid="planForm.$valid &amp;&amp; coverDetails.agreed &amp;&amp; coverDetails.financed != null" data-ng-disabled="planForm.$invalid || !coverDetails.agreed || coverDetails.financed == null" next-page="http://localhost:9000/pages/car/car.html" class="btn btn-forward btn-lg"><span translate="PS_1_3">Get Your Quote</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+            <button type="submit" continue="continue" url="http://localhost:9000/api/cover" page-data="{{coverDetails}}" valid="planForm.$valid &amp;&amp; coverDetails.agreed &amp;&amp; coverDetails.financed !== null" data-ng-disabled="planForm.$invalid || !coverDetails.agreed || coverDetails.financed === null" next-page="http://localhost:9000/pages/car/car.html" class="btn btn-forward btn-lg"><span translate="PS_1_3">Get Your Quote</span><span class="glyphicon glyphicon-arrow-right"></span></button>
           </div>
         </div>
       </form>

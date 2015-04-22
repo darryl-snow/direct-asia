@@ -108,6 +108,10 @@ angular.module "DirectAsia"
 
 								, 500
 
+							else
+								
+								$window.location.href = scope.nextPage
+
 							###
 
 							

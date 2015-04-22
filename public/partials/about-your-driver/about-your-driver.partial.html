@@ -11,6 +11,7 @@
               <div class="col-md-2 centred margin--bottom"><img src="../../images/person-icon.png"/></div>
               <div class="col-md-7 margin--bottom">
                 <h1><span translate="PS_3_0a">Tell Us About the Main Driver</span>
+                  <p>{{driverForm.$submitted}}</p>
                   <div translate="PS_3_0b" class="subtitle">it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.</div>
                 </h1>
               </div>
@@ -139,7 +140,7 @@
         </div>
         <div class="row">
           <div class="col-md-12 margin--top">
-            <button type="button" continue="continue" modal="#modal" modal-conditions="driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1" url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid &amp;&amp; driver.ownership == true &amp;&amp; isValidAge()" data-ng-disabled="modalShown &amp;&amp; (driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1)" class="btn btn-forward btn-lg margin--bottom margin--right"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+            <button type="submit" continue="continue" modal="#modal" modal-conditions="driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1" url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid &amp;&amp; driver.ownership == true &amp;&amp; isValidAge()" data-ng-disabled="modalShown &amp;&amp; (driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1)" class="btn btn-forward btn-lg margin--bottom margin--right"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
             <button type="button" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_3_3_1">Back</span></button>
           </div>
         </div>

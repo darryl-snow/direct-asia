@@ -209,7 +209,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 								span.glyphicon.glyphicon-arrow-left
 								span(translate="PS_2_2_2") Back
 
-							button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="button", valid="carForm.$valid && startDateWithin3Months() && endDateAfterStartDate()", continue, url="http://localhost:9000/car", page-data="{{car}}", next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html", modal="#modal-problem", modal-conditions="age > 10 || car.make == 'xxxx' || car.model == 'ZZZZ'", data-ng-disabled="modalShown && (age > 10 || car.make == 'xxxx' || car.model == 'ZZZZ')", success-modal="#modal-success")
+							button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", valid="carForm.$valid && startDateWithin3Months() && endDateAfterStartDate()", continue, url="http://localhost:9000/car", page-data="{{car}}", next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html", modal="#modal-problem", modal-conditions="age > 10 || car.make == 'xxxx' || car.model == 'ZZZZ'", data-ng-disabled="modalShown && (age > 10 || car.make == 'xxxx' || car.model == 'ZZZZ')", success-modal="#modal-success")
 								span(translate="PS_2_2_1") Proceed
 								span.glyphicon.glyphicon-arrow-right
 

@@ -120,7 +120,7 @@
           <div class="row">
             <div class="col-md-12">
               <button type="button" class="btn btn-backward margin--bottom"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_2_2_2">Back</span></button>
-              <button type="button" valid="carForm.$valid &amp;&amp; startDateWithin3Months() &amp;&amp; endDateAfterStartDate()" continue="continue" url="http://localhost:9000/car" page-data="{{car}}" next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html" modal="#modal-problem" modal-conditions="age &gt; 10 || car.make == 'xxxx' || car.model == 'ZZZZ'" data-ng-disabled="modalShown &amp;&amp; (age &gt; 10 || car.make == 'xxxx' || car.model == 'ZZZZ')" success-modal="#modal-success" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_2_2_1">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+              <button type="submit" valid="carForm.$valid &amp;&amp; startDateWithin3Months() &amp;&amp; endDateAfterStartDate()" continue="continue" url="http://localhost:9000/car" page-data="{{car}}" next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html" modal="#modal-problem" modal-conditions="age &gt; 10 || car.make == 'xxxx' || car.model == 'ZZZZ'" data-ng-disabled="modalShown &amp;&amp; (age &gt; 10 || car.make == 'xxxx' || car.model == 'ZZZZ')" success-modal="#modal-success" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_2_2_1">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
             </div>
           </div>
         </div>
