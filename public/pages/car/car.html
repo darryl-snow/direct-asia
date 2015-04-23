@@ -112,8 +112,8 @@
                 <div class="row">
                   <div class="col-md-2 centred margin--bottom"><img src="../../images/person-icon.png"></div>
                   <div class="col-md-7 margin--bottom">
-                    <h1><span translate="PS_3_0a">Tell Us About the Main Driver</span>
-                      <div translate="PS_3_0b" class="subtitle">it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.</div>
+                    <h1><span translate="PS_2_0_1">Tell us about the car</span>
+                      <div translate="PS_2_0_2" class="subtitle">Please note that we do not cover cars used for commercial<br>purposes or for hire/reward</div>
                     </h1>
                   </div>
                   <div class="col-md-3"><strong translate="GS_0_2a">Existing Customer?</strong>
@@ -126,17 +126,19 @@
                 <div data-toggle="popover" data-placement="top" popover="#popover1" popover-type="popover--yellow" trigger="hover" class="row">
                   <div class="col-md-4 margin--bottom">
                     <label for="year"><span translate="PS_2_0_3">Year of Manufacture</span><img data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document." src="../../images/question-icon.png" class="show-tooltip"></label>
-                    <input id="carYear" name="carYear" data-ng-model="car.year" type="number" min="1980" max="2015" placeholder="Enter year" required class="form-control"><img src="../../images/error.png" data-ng-show="(carForm.carYear.$invalid &amp;&amp; carForm.carYear.$dirty) || (carForm.carYear.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; age &gt; 10)" class="error-input-image">
+                    <input id="carYear" name="carYear" data-ng-model="car.year" type="number" min="1980" max="2015" placeholder="Enter year" required class="form-control"><img src="../../images/error.png" data-ng-show="(carForm.carYear.$invalid &amp;&amp; carForm.carYear.$dirty) || (carForm.carYear.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; age &gt; 10)">
                   </div>
                   <div class="col-md-4 margin--bottom">
                     <label for="make"><span translate="PS_2_0_4">Car Make</span><img src="../../images/question-icon.png"></label>
-                    <input id="carMake" name="carMake" data-ng-model="car.make" type="text" placeholder="Enter make" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required class="form-control"><img src="../../images/error.png" data-ng-show="(carForm.carMake.$invalid &amp;&amp; carForm.carMake.$dirty) || (carForm.carMake.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; car.make == 'xxxx')" class="error-input-image">
+                    <select id="carMake" name="carMake" data-ng-model="car.make" required>
+                      <option selecter label="Enter make" value="{{make}}" data-ng-repeat="make in makes" selecter-target="#carMake" selecter-callback="select" property="make" data-ng-selected="make == selectedItem">{{make}}</option>
+                    </select><img src="../../images/error.png" data-ng-show="(carForm.carMake.$invalid &amp;&amp; carForm.carMake.$dirty) || (carForm.carMake.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; car.make == 'xxxx')" style="position:absolute; right: 15px; bottom: 3px;">
                   </div>
                   <div class="col-md-4">
                     <label for="model"><span translate="PS_2_0_5">Car Model</span><img src="../../images/question-icon.png"></label>
                     <select id="model" name="model" data-ng-model="car.model" required>
                       <option selecter label="Enter model" value="{{model}}" data-ng-repeat="model in models" selecter-target="#model" selecter-callback="select" property="model" data-ng-selected="model == selectedItem">{{model}}</option>
-                    </select><img src="../../images/error.png" data-ng-show="(carForm.model.$invalid &amp;&amp; carForm.model.$dirty) || (carForm.model.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; car.model == 'ZZZZ')" style="position:absolute; right: 15px; bottom: 3px;" class="error-input-image">
+                    </select><img src="../../images/error.png" data-ng-show="(carForm.model.$invalid &amp;&amp; carForm.model.$dirty) || (carForm.model.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; car.model == 'ZZZZ')" style="position:absolute; right: 15px; bottom: 3px;">
                   </div>
                   <div id="popover1" class="popover top">
                     <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
@@ -204,7 +206,7 @@
                       <div class="form-inline">
                         <input id="policyStartDay" name="policyStartDay" data-ng-model="car.policy.start.day" placeholder="DD" type="number" min="1" max="31" required data-ng-class="{'ng-invalid': !startDateWithin3Months() &amp;&amp; carForm.$submitted}" class="day">
                         <input id="policyStartMonth" name="policyStartMonth" data-ng-model="car.policy.start.month" placeholder="MM" type="number" min="1" max="12" required data-ng-class="{'ng-invalid': !startDateWithin3Months() &amp;&amp; carForm.$submitted}" class="month">
-                        <input id="policyStartYear" name="policyStartYear" data-ng-model="car.policy.start.year" placeholder="YYYY" type="number" min="1900" max="2015" required data-ng-class="{'ng-invalid': !startDateWithin3Months() &amp;&amp; carForm.$submitted}" class="year"><img src="../../images/error.png" data-ng-show="(carForm.policyStartDay.$invalid &amp;&amp; carForm.policyStartDay.$dirty) || (carForm.policyStartMonth.$invalid &amp;&amp; carForm.policyStartMonth.$dirty) || (carForm.policyStartYear.$invalid &amp;&amp; carForm.policyStartYear.$dirty) || (carForm.policyStartDay.$invalid &amp;&amp; carForm.policyStartMonth.$invalid &amp;&amp; carForm.policyStartYear.$invalid &amp;&amp; carForm.$submitted) || (!startDateWithin3Months() &amp;&amp; carForm.$submitted)">
+                        <input id="policyStartYear" name="policyStartYear" data-ng-model="car.policy.start.year" placeholder="YYYY" type="number" min="1900" max="2015" required data-ng-class="{'ng-invalid': !startDateWithin3Months() &amp;&amp; carForm.$submitted}" class="year"><img src="../../images/error.png" data-ng-show="(carForm.policyStartDay.$invalid &amp;&amp; carForm.policyStartDay.$dirty) || (carForm.policyStartMonth.$invalid &amp;&amp; carForm.policyStartMonth.$dirty) || (carForm.policyStartYear.$invalid &amp;&amp; carForm.policyStartYear.$dirty) || (carForm.policyStartDay.$invalid &amp;&amp; carForm.policyStartMonth.$invalid &amp;&amp; carForm.policyStartYear.$invalid &amp;&amp; carForm.$submitted) || (!startDateWithin3Months() &amp;&amp; carForm.$submitted) || (!startDateOnOrAfterTomorrow() &amp;&amp; carForm.$submitted)">
                       </div>
                     </div>
                     <div class="col-md-4">
@@ -212,7 +214,7 @@
                       <div class="form-inline">
                         <input id="policyEndDay" name="policyEndDay" data-ng-model="car.policy.end.day" placeholder="DD" type="number" min="1" max="31" required class="day">
                         <input id="policyEndMonth" name="policyEndMonth" data-ng-model="car.policy.end.month" placeholder="MM" type="number" min="1" max="12" required class="month">
-                        <input id="policyEndYear" name="policyEndYear" data-ng-model="car.policy.end.year" placeholder="YYYY" type="number" min="2015" max="2025" required class="year"><img src="../../images/error.png" data-ng-show="(carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndDay.$dirty) || (carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndMonth.$dirty) || (carForm.policyEndYear.$invalid &amp;&amp; carForm.policyEndYear.$dirty) || (carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndYear.$invalid &amp;&amp; carForm.$submitted) || (!endDateAfterStartDate() &amp;&amp; carForm.policyStartDay.$dirty &amp;&amp; carForm.policyStartMonth.$dirty &amp;&amp; carForm.policyStartYear.$dirty &amp;&amp; carForm.policyEndDay.$dirty &amp;&amp; carForm.policyEndMonth.$dirty &amp;&amp; carForm.policyEndYear.$dirty)">
+                        <input id="policyEndYear" name="policyEndYear" data-ng-model="car.policy.end.year" placeholder="YYYY" type="number" min="2015" max="2025" required class="year"><img src="../../images/error.png" data-ng-show="(carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndDay.$dirty) || (carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndMonth.$dirty) || (carForm.policyEndYear.$invalid &amp;&amp; carForm.policyEndYear.$dirty) || (carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndYear.$invalid &amp;&amp; carForm.$submitted) || (!endDateAfterStartDate() &amp;&amp; carForm.policyEndDay.$dirty &amp;&amp; carForm.policyEndMonth.$dirty &amp;&amp; carForm.policyEndYear.$dirty) || (!endDateWithin7And18MonthsAfterStartDate() &amp;&amp; carForm.policyEndDay.$dirty &amp;&amp; carForm.policyEndMonth.$dirty &amp;&amp; carForm.policyEndYear.$dirty)">
                       </div>
                     </div>
                   </div>
@@ -223,7 +225,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" class="btn btn-backward margin--bottom"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_2_2_2">Back</span></button>
-                  <button type="submit" valid="carForm.$valid &amp;&amp; startDateWithin3Months() &amp;&amp; endDateAfterStartDate()" continue url="http://localhost:9000/car" page-data="{{car}}" next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html" modal="#modal-problem" modal-conditions="age &gt; 10 || car.make == 'xxxx' || car.model == 'ZZZZ'" data-ng-disabled="modalShown &amp;&amp; (age &gt; 10 || car.make == 'xxxx' || car.model == 'ZZZZ')" success-modal="#modal-success" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_2_2_1">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+                  <button type="submit" valid="carForm.$valid &amp;&amp; startDateWithin3Months() &amp;&amp; startDateOnOrAfterTomorrow() &amp;&amp; endDateAfterStartDate() &amp;&amp; endDateWithin7And18MonthsAfterStartDate()" continue url="http://localhost:9000/car" page-data="{{car}}" next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html" modal="#modal-problem" modal-conditions="age &gt; 10 || car.make == 'xxxx' || car.model == 'ZZZZ'" data-ng-disabled="modalShown &amp;&amp; (age &gt; 10 || car.make == 'xxxx' || car.model == 'ZZZZ')" success-modal="#modal-success" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_2_2_1">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
                 </div>
               </div>
             </div>

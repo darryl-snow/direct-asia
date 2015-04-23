@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Wed Apr 22 2015 14:06:31 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Thu Apr 23 2015 12:33:45 GMT+0800 (CST) */
 
 /*
 
@@ -14,7 +14,8 @@ var getMockData;
 getMockData = function() {
   var data;
   return data = {
-    models: ['Golf', 'Micra', 'Sera']
+    makes: ["Volkswagon", "Nissan", "Toyota"],
+    models: ["Golf", "Micra", "Sera"]
   };
 };
 
@@ -26,8 +27,8 @@ In this case the view is the partials/car/car file and the main model
 is the $scope.car variable.
  */
 
-angular.module('DirectAsia').controller('CarCtrl', [
-  '$scope', 'Car', function($scope, Car) {
+angular.module("DirectAsia").controller("CarCtrl", [
+  "$scope", "Car", function($scope, Car) {
     var getDataFromAPI, getTomorrowsDate, setupData, thisYear;
     thisYear = (new Date()).getFullYear();
 
@@ -40,7 +41,7 @@ angular.module('DirectAsia').controller('CarCtrl', [
     getDataFromAPI = function() {
       var dataFromAPI;
       dataFromAPI = {};
-      $http.get('http://api-url?lang=' + $rootScope.currentLanguage).success(function(data, status, headers, config) {
+      $http.get("http://api-url?lang=" + $rootScope.currentLanguage).success(function(data, status, headers, config) {
         return dataFromAPI = data;
       }).error(function(data, status, headers, config) {
         return console.error(data);
@@ -55,7 +56,7 @@ angular.module('DirectAsia').controller('CarCtrl', [
     getTomorrowsDate = function() {
       var today, tomorrow;
       today = new Date();
-      return tomorrow = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate() + 1);
+      return tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
     };
 
     /*
@@ -67,8 +68,9 @@ angular.module('DirectAsia').controller('CarCtrl', [
       $scope.car = new Car;
       tomorrow = getTomorrowsDate();
       $scope.car.policy.start.day = tomorrow.getDate();
-      $scope.car.policy.start.month = tomorrow.getMonth();
+      $scope.car.policy.start.month = tomorrow.getMonth() + 1;
       $scope.car.policy.start.year = tomorrow.getFullYear();
+      $scope.makes = data.makes;
       $scope.models = data.models;
       $scope.age = 0;
       return $scope.modalShown = false;
@@ -80,6 +82,17 @@ angular.module('DirectAsia').controller('CarCtrl', [
         return $scope.age = age;
       }
     });
+
+    /*
+    		This function is used to validate whether the selected start date is on
+    		or after tomorrow
+     */
+    $scope.startDateOnOrAfterTomorrow = function() {
+      var startDate, tomorrow;
+      tomorrow = getTomorrowsDate();
+      startDate = new Date($scope.car.policy.start.year, $scope.car.policy.start.month - 1, $scope.car.policy.start.day);
+      return (startDate - tomorrow) >= 0;
+    };
 
     /*
     		This function is used for validating whether the selected start date is more
@@ -102,7 +115,21 @@ angular.module('DirectAsia').controller('CarCtrl', [
       var endDate, startDate;
       startDate = new Date($scope.car.policy.start.year, $scope.car.policy.start.month - 1, $scope.car.policy.start.day);
       endDate = new Date($scope.car.policy.end.year, $scope.car.policy.end.month - 1, $scope.car.policy.end.day);
-      return endDate - startDate > 0;
+      return (endDate - startDate) > 0;
+    };
+
+    /*
+    		This function is used for validating that the selected end date is within 7 and 18 months
+    		after the selected start date
+     */
+    $scope.endDateWithin7And18MonthsAfterStartDate = function() {
+      var endDate, months, startDate;
+      startDate = new Date($scope.car.policy.start.year, $scope.car.policy.start.month - 1, $scope.car.policy.start.day);
+      endDate = new Date($scope.car.policy.end.year, $scope.car.policy.end.month - 1, $scope.car.policy.end.day);
+      months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
+      months -= startDate.getMonth() + 1;
+      months += endDate.getMonth() + 1;
+      return months >= 7 && months <= 18;
     };
 
     /*

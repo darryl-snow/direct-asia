@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Wed Apr 22 2015 14:06:31 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Thu Apr 23 2015 12:33:45 GMT+0800 (CST) */
 
 /*
 Directive for replacing default `select` inputs with fancy ones

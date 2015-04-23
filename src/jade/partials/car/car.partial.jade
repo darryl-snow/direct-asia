@@ -20,8 +20,8 @@ script(src="../../scripts/controllers/car/car.controller.js")
 							.col-md-7.margin--bottom
 
 								h1
-									span(translate="PS_3_0a") Tell Us About the Main Driver
-									.subtitle(translate="PS_3_0b") it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.
+									span(translate="PS_2_0_1") Tell us about the car
+									.subtitle(translate="PS_2_0_2") Please note that we do not cover cars used for commercial<br>purposes or for hire/reward
 
 							.col-md-3
 
@@ -43,7 +43,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 								input#carYear.form-control(name="carYear", data-ng-model="car.year", type="number", min="1980", max="2015", placeholder="Enter year", required)
 
-								img.error-input-image(src="../../images/error.png", data-ng-show="(carForm.carYear.$invalid && carForm.carYear.$dirty) || (carForm.carYear.$invalid && carForm.$submitted) || (modalShown && age > 10)")
+								img(src="../../images/error.png", data-ng-show="(carForm.carYear.$invalid && carForm.carYear.$dirty) || (carForm.carYear.$invalid && carForm.$submitted) || (modalShown && age > 10)")
 
 							.col-md-4.margin--bottom
 
@@ -51,9 +51,10 @@ script(src="../../scripts/controllers/car/car.controller.js")
 									span(translate="PS_2_0_4") Car Make
 									img(src="../../images/question-icon.png")
 
-								input#carMake.form-control(name="carMake", data-ng-model="car.make", type="text", placeholder="Enter make", data-ng-pattern="/^[a-zA-Z0-9_ -]*$/", required)
+								select#carMake(name="carMake", data-ng-model="car.make", required)
+									option(selecter, label="Enter make", value="{{make}}", data-ng-repeat="make in makes", selecter-target="#carMake", selecter-callback="select", property="make", data-ng-selected="make == selectedItem") {{make}}
 
-								img.error-input-image(src="../../images/error.png", data-ng-show="(carForm.carMake.$invalid && carForm.carMake.$dirty) || (carForm.carMake.$invalid && carForm.$submitted) || (modalShown && car.make == 'xxxx')")
+								img(src="../../images/error.png", data-ng-show="(carForm.carMake.$invalid && carForm.carMake.$dirty) || (carForm.carMake.$invalid && carForm.$submitted) || (modalShown && car.make == 'xxxx')", style="position:absolute; right: 15px; bottom: 3px;")
 
 							.col-md-4
 
@@ -64,7 +65,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 								select#model(name="model", data-ng-model="car.model", required)
 									option(selecter, label="Enter model", value="{{model}}", data-ng-repeat="model in models", selecter-target="#model", selecter-callback="select", property="model", data-ng-selected="model == selectedItem") {{model}}
 
-								img.error-input-image(src="../../images/error.png", data-ng-show="(carForm.model.$invalid && carForm.model.$dirty) || (carForm.model.$invalid && carForm.$submitted) || (modalShown && car.model == 'ZZZZ')", style="position:absolute; right: 15px; bottom: 3px;")
+								img(src="../../images/error.png", data-ng-show="(carForm.model.$invalid && carForm.model.$dirty) || (carForm.model.$invalid && carForm.$submitted) || (modalShown && car.model == 'ZZZZ')", style="position:absolute; right: 15px; bottom: 3px;")
 
 							#popover1.popover.top
 								button.popover-close-button(type="button")
@@ -184,7 +185,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 										input#policyStartYear.year(name="policyStartYear", data-ng-model="car.policy.start.year", placeholder="YYYY", type="number", min="1900", max="2015", required, data-ng-class="{'ng-invalid': !startDateWithin3Months() && carForm.$submitted}")
 
-										img(src="../../images/error.png", data-ng-show="(carForm.policyStartDay.$invalid && carForm.policyStartDay.$dirty) || (carForm.policyStartMonth.$invalid && carForm.policyStartMonth.$dirty) || (carForm.policyStartYear.$invalid && carForm.policyStartYear.$dirty) || (carForm.policyStartDay.$invalid && carForm.policyStartMonth.$invalid && carForm.policyStartYear.$invalid && carForm.$submitted) || (!startDateWithin3Months() && carForm.$submitted)")
+										img(src="../../images/error.png", data-ng-show="(carForm.policyStartDay.$invalid && carForm.policyStartDay.$dirty) || (carForm.policyStartMonth.$invalid && carForm.policyStartMonth.$dirty) || (carForm.policyStartYear.$invalid && carForm.policyStartYear.$dirty) || (carForm.policyStartDay.$invalid && carForm.policyStartMonth.$invalid && carForm.policyStartYear.$invalid && carForm.$submitted) || (!startDateWithin3Months() && carForm.$submitted) || (!startDateOnOrAfterTomorrow() && carForm.$submitted)")
 
 								.col-md-4
 
@@ -199,7 +200,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 										input#policyEndYear.year(name="policyEndYear", data-ng-model="car.policy.end.year", placeholder="YYYY", type="number", min="2015", max="2025", required)
 
-										img(src="../../images/error.png", data-ng-show="(carForm.policyEndDay.$invalid && carForm.policyEndDay.$dirty) || (carForm.policyEndMonth.$invalid && carForm.policyEndMonth.$dirty) || (carForm.policyEndYear.$invalid && carForm.policyEndYear.$dirty) || (carForm.policyEndDay.$invalid && carForm.policyEndMonth.$invalid && carForm.policyEndYear.$invalid && carForm.$submitted) || (!endDateAfterStartDate() && carForm.policyStartDay.$dirty && carForm.policyStartMonth.$dirty && carForm.policyStartYear.$dirty && carForm.policyEndDay.$dirty && carForm.policyEndMonth.$dirty && carForm.policyEndYear.$dirty)")
+										img(src="../../images/error.png", data-ng-show="(carForm.policyEndDay.$invalid && carForm.policyEndDay.$dirty) || (carForm.policyEndMonth.$invalid && carForm.policyEndMonth.$dirty) || (carForm.policyEndYear.$invalid && carForm.policyEndYear.$dirty) || (carForm.policyEndDay.$invalid && carForm.policyEndMonth.$invalid && carForm.policyEndYear.$invalid && carForm.$submitted) || (!endDateAfterStartDate() && carForm.policyEndDay.$dirty && carForm.policyEndMonth.$dirty && carForm.policyEndYear.$dirty) || (!endDateWithin7And18MonthsAfterStartDate() && carForm.policyEndDay.$dirty && carForm.policyEndMonth.$dirty && carForm.policyEndYear.$dirty)")
 				.container-fluid
 
 					.row
@@ -209,7 +210,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 								span.glyphicon.glyphicon-arrow-left
 								span(translate="PS_2_2_2") Back
 
-							button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", valid="carForm.$valid && startDateWithin3Months() && endDateAfterStartDate()", continue, url="http://localhost:9000/car", page-data="{{car}}", next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html", modal="#modal-problem", modal-conditions="age > 10 || car.make == 'xxxx' || car.model == 'ZZZZ'", data-ng-disabled="modalShown && (age > 10 || car.make == 'xxxx' || car.model == 'ZZZZ')", success-modal="#modal-success")
+							button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", valid="carForm.$valid && startDateWithin3Months() && startDateOnOrAfterTomorrow() && endDateAfterStartDate() && endDateWithin7And18MonthsAfterStartDate()", continue, url="http://localhost:9000/car", page-data="{{car}}", next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html", modal="#modal-problem", modal-conditions="age > 10 || car.make == 'xxxx' || car.model == 'ZZZZ'", data-ng-disabled="modalShown && (age > 10 || car.make == 'xxxx' || car.model == 'ZZZZ')", success-modal="#modal-success")
 								span(translate="PS_2_2_1") Proceed
 								span.glyphicon.glyphicon-arrow-right
 

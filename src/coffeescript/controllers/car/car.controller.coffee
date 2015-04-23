@@ -10,11 +10,17 @@ from a back-end API. Data should include:
 ###
 
 getMockData = ->
-	data = models: [
-		'Golf'
-		'Micra'
-		'Sera'
-	]
+	data = 
+		makes: [
+			"Volkswagon"
+			"Nissan"
+			"Toyota"
+		], 
+		models: [
+			"Golf"
+			"Micra"
+			"Sera"
+		]
 
 ###
 The controller ties together the view with the model.
@@ -23,9 +29,9 @@ In this case the view is the partials/car/car file and the main model
 is the $scope.car variable.
 ###
 
-angular.module('DirectAsia').controller 'CarCtrl', [
-	'$scope'
-	'Car'
+angular.module("DirectAsia").controller "CarCtrl", [
+	"$scope"
+	"Car"
 	($scope, Car) ->
 
 		thisYear = (new Date()).getFullYear()
@@ -39,7 +45,7 @@ angular.module('DirectAsia').controller 'CarCtrl', [
 
 		getDataFromAPI = ->
 			dataFromAPI = {}
-			$http.get('http://api-url?lang=' + $rootScope.currentLanguage).success((data, status, headers, config) ->
+			$http.get("http://api-url?lang=" + $rootScope.currentLanguage).success((data, status, headers, config) ->
 				dataFromAPI = data
 			).error (data, status, headers, config) ->
 				console.error data
@@ -52,7 +58,7 @@ angular.module('DirectAsia').controller 'CarCtrl', [
 
 		getTomorrowsDate = ->
 			today = new Date()
-			tomorrow = new Date today.getFullYear(), (today.getMonth() + 1), (today.getDate() + 1)
+			tomorrow = new Date today.getFullYear(), today.getMonth(), (today.getDate() + 1)
 
 		###
 		This private function formats the data returned from the server so that it
@@ -65,9 +71,10 @@ angular.module('DirectAsia').controller 'CarCtrl', [
 			tomorrow = getTomorrowsDate()
 
 			$scope.car.policy.start.day = tomorrow.getDate()
-			$scope.car.policy.start.month = tomorrow.getMonth()
+			$scope.car.policy.start.month = tomorrow.getMonth() + 1
 			$scope.car.policy.start.year = tomorrow.getFullYear()
 
+			$scope.makes = data.makes
 			$scope.models = data.models
 
 			$scope.age = 0
@@ -77,6 +84,18 @@ angular.module('DirectAsia').controller 'CarCtrl', [
 		$scope.$watch "car.year", ->
 			age = thisYear - $scope.car.year
 			if !isNaN age then $scope.age = age
+
+		###
+		This function is used to validate whether the selected start date is on
+		or after tomorrow
+		###
+
+		$scope.startDateOnOrAfterTomorrow = ->
+
+			tomorrow = getTomorrowsDate()
+			startDate = new Date $scope.car.policy.start.year, ($scope.car.policy.start.month - 1), $scope.car.policy.start.day
+
+			(startDate - tomorrow) >= 0
 
 		###
 		This function is used for validating whether the selected start date is more
@@ -98,7 +117,20 @@ angular.module('DirectAsia').controller 'CarCtrl', [
 		$scope.endDateAfterStartDate = ->
 			startDate = new Date $scope.car.policy.start.year, ($scope.car.policy.start.month - 1), $scope.car.policy.start.day
 			endDate = new Date $scope.car.policy.end.year, ($scope.car.policy.end.month - 1), $scope.car.policy.end.day
-			endDate - startDate > 0
+			(endDate - startDate) > 0
+
+		###
+		This function is used for validating that the selected end date is within 7 and 18 months
+		after the selected start date
+		###
+
+		$scope.endDateWithin7And18MonthsAfterStartDate = ->
+			startDate = new Date $scope.car.policy.start.year, ($scope.car.policy.start.month - 1), $scope.car.policy.start.day
+			endDate = new Date $scope.car.policy.end.year, ($scope.car.policy.end.month - 1), $scope.car.policy.end.day
+			months = (endDate.getFullYear() - startDate.getFullYear()) * 12
+			months -= startDate.getMonth() + 1
+			months += endDate.getMonth() + 1
+			months >= 7 && months <= 18
 
 		###
 		A scope function to manually update the model from the view.
