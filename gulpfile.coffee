@@ -313,12 +313,12 @@ gulp.task "copy-files", ->
 	# .pipe gulp.dest Config.build
 
 	# copy other developers' stuff
-	gulp.src Config.src + "other-developers-stuff/pages/**/*"
-	.pipe gulp.dest Config.build + "pages"
-	gulp.src Config.src + "other-developers-stuff/partials/**/*"
-	.pipe gulp.dest Config.build + "partials"
-	gulp.src Config.src + "other-developers-stuff/scripts/**/*"
-	.pipe gulp.dest Config.build + "scripts/controllers"
+	# gulp.src Config.src + "other-developers-stuff/pages/**/*"
+	# .pipe gulp.dest Config.build + "pages"
+	# gulp.src Config.src + "other-developers-stuff/partials/**/*"
+	# .pipe gulp.dest Config.build + "partials"
+	# gulp.src Config.src + "other-developers-stuff/scripts/**/*"
+	# .pipe gulp.dest Config.build + "scripts/controllers"
 
 # Watch for changes to files
 
@@ -337,7 +337,7 @@ gulp.task "watch", ->
 	gulp.watch Config.src + "*", ["copy-files"]
 	gulp.watch Config.src + "images/favicons/*.xml", ["copy-files"]
 	gulp.watch Config.src + "content/**/*", ["copy-files"]
-	gulp.watch Config.src + "other-developers-stuff/**/*", ["copy-files"]
+	# gulp.watch Config.src + "other-developers-stuff/**/*", ["copy-files"]
 
 # Run a test server
 

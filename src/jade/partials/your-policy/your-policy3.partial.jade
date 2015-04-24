@@ -1,0 +1,211 @@
+.panel
+
+	.panel-body
+
+		.row
+
+			.col-md-12
+
+				img.pull-left.margin-right(src="../../images/driver-icon2.png")
+
+				h2.section-title
+					span(translate="PS_5_5a") Additional Drivers
+					.subtitle(translate="PS_5_5b") The main driver is the person who uses the car most frequently. They do not need to be the car owner(policy holder)
+
+		.panel-footer
+
+			.row
+
+				.col-md-12
+
+					h2.section-title
+						span(translate="PS_5_5c") Additional Driver
+
+			.row
+
+				.col-md-6
+
+					.input-content
+
+						label(translate="PS_5_5d", for="additionalDriver1FirstName") First Name
+						input#additionalDriver1FirstName.form-control(type="text", placeholder="Enter first name", name="additionalDriver1FirstName", data-ng-model="additionalDrivers.driver1.firstName", required, data-ng-pattern="/^[a-zA-Z0-9_ -]*$/")
+						img(src="../../images/error.png", data-ng-show="(policyForm.$submitted && policyForm.additionalDriver1FirstName.$invalid) || (policyForm.additionalDriver1FirstName.$invalid && policyForm.additionalDriver1FirstName.$dirty)")
+
+				.col-md-6
+
+					.input-content
+
+						label(translate="PS_5_5e", for="") Last name
+						input#additionalDriver1LastName.form-control(type="text", placeholder="Enter last name", name="additionalDriver1LastName", data-ng-model="additionalDrivers.driver1.lastName", required, data-ng-pattern="/^[a-zA-Z0-9_ -]*$/")
+						img(src="../../images/error.png", data-ng-show="(policyForm.$submitted && policyForm.additionalDriver1LastName.$invalid) || (policyForm.additionalDriver1LastName.$invalid && policyForm.additionalDriver1LastName.$dirty)")
+
+				.col-md-6
+
+					.input-content
+
+						label(translate="PS_5_5g", for="") Residential Status
+						select#additionalDriver1ResidentialStatus(name="additionalDriver1ResidentialStatus")
+							option(selecter, label="Enter Driving License", value="{{residential}}", data-ng-repeat="residential in driver1residentials", selecter-target="#additionalDriver1ResidentialStatus", selecter-callback="select", property="additionalDrivers.driver1.residentialStatus", ng-selected="year == selectedItem") {{residential}}
+						img(src="../../images/error.png", data-ng-show="(policyForm.$submitted && policyForm.additionalDriver1LastName.$invalid) || (policyForm.additionalDriver1LastName.$invalid && policyForm.additionalDriver1LastName.$dirty)")
+
+				.col-md-6
+
+					.input-content
+
+						label(translate="PS_5_5h", for="additionalDriver1HKID") HKID
+						input#additionalDriver1HKID.form-control(type="text", placeholder="Enter HKID", name="additionalDriver1HKID", , data-ng-model="additionalDrivers.driver1.NRIC", required, data-ng-pattern="/^[a-zA-Z0-9_ -]*$/")
+						img(src="../../images/error.png", data-ng-show="(policyForm.$submitted && policyForm.additionalDriver1HKID.$invalid) || (policyForm.additionalDriver1HKID.$invalid && policyForm.additionalDriver1HKID.$dirty)")
+
+				.col-md-6
+
+					.input-content
+
+						label(translate="PS_5_5f", for="additionalDriverRelationshipWithPolicyHolder") Relationship with Policyholder
+						select#additionalDriverRelationshipWithPolicyHolder(name="additionalDriver1rRelationshipWithPolicyHolder")
+							option(selecter, label="Enter Driving License", value="{{driver1policyholder}}", data-ng-repeat="driver1policyholder in driver1policyholders", selecter-target="#driver1policyholder", selecter-callback="select", property="driver1policyholder", ng-selected="year == selectedItem") {{driver1policyholder}}
+
+			.row
+
+				.col-md-12
+
+					h2.section-title
+						span(translate="PS_5_5c") Additional Driver
+
+			.row
+
+				.col-md-6
+
+					.input-content
+
+						label(translate="PS_5_5d", for="additionalDriver2FirstName") First Name
+						input#additionalDriver2FirstName.form-control(type="text", placeholder="Enter first name", name="additionalDriver2FirstName", data-ng-model="additionalDrivers.driver1.firstName", required, data-ng-pattern="/^[a-zA-Z0-9_ -]*$/")
+						img(src="../../images/error.png", data-ng-show="(policyForm.$submitted && policyForm.additionalDriver2FirstName.$invalid) || (policyForm.additionalDriver2FirstName.$invalid && policyForm.additionalDriver2FirstName.$dirty)")
+
+				.col-md-6
+
+					.input-content
+
+						label(translate="PS_5_5e", for="") Last name
+						input#additionalDriver2LastName.form-control(type="text", placeholder="Enter last name", name="additionalDriver2LastName", data-ng-model="additionalDrivers.driver1.lastName", required, data-ng-pattern="/^[a-zA-Z0-9_ -]*$/")
+						img(src="../../images/error.png", data-ng-show="(policyForm.$submitted && policyForm.additionalDriver2LastName.$invalid) || (policyForm.additionalDriver2LastName.$invalid && policyForm.additionalDriver2LastName.$dirty)")
+
+				.col-md-6
+
+					.input-content
+
+						label(translate="PS_5_5g", for="") Residential Status
+						select#additionalDriver2ResidentialStatus(name="additionalDriver2ResidentialStatus")
+							option(selecter, label="Enter Driving License", value="{{residential}}", data-ng-repeat="residential in driver1residentials", selecter-target="#additionalDriver2ResidentialStatus", selecter-callback="select", property="additionalDrivers.driver1.residentialStatus", ng-selected="year == selectedItem") {{residential}}
+						img(src="../../images/error.png", data-ng-show="(policyForm.$submitted && policyForm.additionalDriver2LastName.$invalid) || (policyForm.additionalDriver2LastName.$invalid && policyForm.additionalDriver2LastName.$dirty)")
+
+				.col-md-6
+
+					.input-content
+
+						label(translate="PS_5_5h", for="additionalDriver2HKID") HKID
+						input#additionalDriver2HKID.form-control(type="text", placeholder="Enter HKID", name="additionalDriver2HKID", , data-ng-model="additionalDrivers.driver1.NRIC", required, data-ng-pattern="/^[a-zA-Z0-9_ -]*$/")
+						img(src="../../images/error.png", data-ng-show="(policyForm.$submitted && policyForm.additionalDriver2HKID.$invalid) || (policyForm.additionalDriver2HKID.$invalid && policyForm.additionalDriver2HKID.$dirty)")
+
+				.col-md-6
+
+					.input-content
+
+						label(translate="PS_5_5f", for="additionalDriverRelationshipWithPolicyHolder") Relationship with Policyholder
+						select#additionalDriverRelationshipWithPolicyHolder(name="additionalDriver2rRelationshipWithPolicyHolder")
+							option(selecter, label="Enter Driving License", value="{{driver1policyholder}}", data-ng-repeat="driver1policyholder in driver1policyholders", selecter-target="#driver1policyholder", selecter-callback="select", property="driver1policyholder", ng-selected="year == selectedItem") {{driver1policyholder}}
+
+	.row
+
+		.col-md-6
+
+			.panel
+
+				.panel-body
+
+					h2(translate="PC_5_7_1a") Policy Documents
+
+					.row
+
+						.col-xs-12
+
+							img.pull-left.margin--right(src="../../images/pdf-icon.png")
+							p.remove-margin.font-weight-bold.font-color-25a8e0(translate="PC_5_7_1b") Policy Summary
+							p(translate="PC_5_7_1c") A summary if the key features of your car insurance policy
+
+					.row
+
+						.col-xs-12
+
+							img.pull-left.margin--right(src="../../images/pdf-icon.png")
+							p.remove-margin.font-weight-bold.font-color-25a8e0(translate="PC_5_7_1d") Policy Wording
+							p(translate="PC_5_7_1e") The full terms and conditions of your car insurance policy
+
+		.col-md-6
+
+			.panel
+
+				.panel-body
+					h2(translate="PC_5_7_2a") Why customers choose Directasia.com
+
+				.panel-footer
+					ul
+						li
+							img.pull-left.margin--right(src="../../images/green-check.png")
+							p(translate="PC_5_7_2b") Voted the most popular online insurance company in Hong Kong
+						li
+							img.pull-left.margin--right(src="../../images/green-check.png")
+							p(translate="PC_5_7_2c") The first Hong Kong insurer to be awarded the ISO 10002:2004 Certification
+						li
+							img.pull-left.margin--right(src="../../images/green-check.png")
+							p(translate="PC_5_7_2d") 100% Owned by Hiscox Group
+
+	.row
+
+		.col-md-12
+
+			button.btn.btn-backward(type="button")
+				span.glyphicon.glyphicon-arrow-left
+				span(translate="PS_5_6_1") Back
+
+			button.btn.btn-forward.btn-lg(type="button", continue, url="http://localhost:9000/policy", page-data="{{policy}}", next-page="http://localhost:9000/pages/review-and-buy/review-and-buy.html", valid="policyForm.$valid")
+				span(translate="PS_5_6_2") Proceed
+				span.glyphicon.glyphicon-arrow-right
+
+	.row
+
+		.col-md-12
+
+			.save-for-later
+
+				button.popover-button.btn.btn-primary.btn-action.btn-sm(type="button")
+					span(ng-hide="submit", translate="PS_5_6_3") Save for later
+					span(ng-show="submit", translate="PS_5_6_4") Saved!
+
+				#popover1.popover.save-div.bottom
+
+					.arrow
+
+					button.popover-close-button(type="button")
+						span.glyphicon.glyphicon-remove
+
+					div(ng-hide="send")
+
+						p(translate="PC_4_1_2a") Please provide your email below and we‘ll send you a link to retrieve your quotation for up to 90 days.
+
+						input.form-control(type="email", placeholder="Enter email address")
+
+						p(translate="PS_6_6_4_1") Want us to help you finish? provide your phone number and we‘ll give you a call.
+
+						input.form-control(type="tel", placeholder="Enter phone number")
+
+						button.btn.btn-forward(type="button", ng-click="send = true", translate="PS_6_6_6") Send
+
+					.on-send(ng-show="send")
+
+						p(translate="PS_6_6_6_1") Your quote has been successfully saved. Please check your email, which contains a link to retrieve your quotation.
+
+						p(translate="PS_6_6_6_2") Share your current renewal premium so we can make sure we‘re giving you the best value
+
+						button.btn.btn-forward(type="button", ng-click="submit = true", translate="PS_6_6_6_3") Submit
+
+				p(translate="PS_6_6_7") Your details will be saved for 90 days so you can finish later

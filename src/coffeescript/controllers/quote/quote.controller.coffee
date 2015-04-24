@@ -561,6 +561,20 @@ angular.module "DirectAsia"
 				###
 				console.table $scope.plan
 
+				###
+				$http
+					method: "POST"
+					url: "http://api-url/plan"
+					data: $scope.plan
+				.success (response) ->
+
+					console.info "plan sent!"
+
+				.error (data, status, headers, config) ->
+
+					console.error data
+				###
+
 			###
 			This function is required for the custom select fields to work. When the
 			field value changes the corresponding scope variable is updated.
@@ -752,6 +766,29 @@ angular.module "DirectAsia"
 				###
 
 				console.table $scope.plan.additionalDrivers
+
+
+			###
+			Automatically send feedback to the server when the user
+			selects an option from the list
+			###
+
+			$scope.$watch "feedback", ->
+
+				if $scope.feedback && !$scope.feedbackSent
+
+					$http
+						method: "POST"
+						url: "http://api-url/feedback"
+						data: $scope.feedback
+					.success (response) ->
+
+						console.info "feedback sent!"
+						$scope.feedbackSent = true
+
+					.error (data, status, headers, config) ->
+
+						console.error data
 
 			###
 			Finally, now that all functions have been parsed, setup the data on the

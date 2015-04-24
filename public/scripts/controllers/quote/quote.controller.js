@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Apr 24 2015 20:37:10 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Sat Apr 25 2015 04:29:45 GMT+0800 (CST) */
 
 /*
 
@@ -525,6 +525,20 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       				- for now just log the plan to the console
        */
       return console.table($scope.plan);
+
+      /*
+      				$http
+      					method: "POST"
+      					url: "http://api-url/plan"
+      					data: $scope.plan
+      				.success (response) ->
+      
+      					console.info "plan sent!"
+      
+      				.error (data, status, headers, config) ->
+      
+      					console.error data
+       */
     };
 
     /*
@@ -734,6 +748,25 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
        */
       return console.table($scope.plan.additionalDrivers);
     };
+
+    /*
+    			Automatically send feedback to the server when the user
+    			selects an option from the list
+     */
+    $scope.$watch("feedback", function() {
+      if ($scope.feedback && !$scope.feedbackSent) {
+        return $http({
+          method: "POST",
+          url: "http://api-url/feedback",
+          data: $scope.feedback
+        }).success(function(response) {
+          console.info("feedback sent!");
+          return $scope.feedbackSent = true;
+        }).error(function(data, status, headers, config) {
+          return console.error(data);
+        });
+      }
+    });
 
     /*
     			Finally, now that all functions have been parsed, setup the data on the

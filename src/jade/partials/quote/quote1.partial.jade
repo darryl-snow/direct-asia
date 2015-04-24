@@ -3,7 +3,7 @@
 //- Angular Controllers
 script(src="../../scripts/controllers/quote/quote.controller.js")
 
-section.section.section-quote(ng-controller="QuoteCtrl")
+section.section.section-quote(data-ng-controller="QuoteCtrl")
 
 	ul.side-pagination(role="tablist", data-ng-show="currentStep>1")
 		li(data-ng-class="{'active':currentStep>=1}")
