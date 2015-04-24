@@ -1,0 +1,183 @@
+
+<script src="../../scripts/controllers/thank-you/thank-you.controller.js"></script>
+<section data-ng-controller="thankYouCtrl" class="section section-thankyou">
+  <div class="container">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-2 centred margin--bottom"><img src="../../images/help-us-icon2.png"/></div>
+          <div class="col-md-10">
+            <h1><span translate="PS_7_0_1" class="hidden-sm">You’re all done! We’re sending you a confirmation email so you have a copy of your policy details.</span><span translate="PS_7_0_1" class="visible-sm">You’re all done! Please look for the confirmation email with your policy details.</span>
+              <div translate="PS_7_0_3" class="subtitle">Please allow [x] mins to receive your confirmation email.</div>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-header clearfix panel-header--blue">
+        <h2 class="margin--bottom pull-left"><span translate="PS_7_1_1">Your Car Insurance Summary</span>
+          <div class="subtitle"><span translate="PS_7_1_2">Policy Number: </span><span data-ng-cloak="data-ng-cloak"> {{summary.policy.number}}</span></div>
+        </h2>
+        <div class="pull-right">
+          <h2 class="align-right"><span translate="PS_7_1_3">Total </span><span data-ng-cloak="data-ng-cloak"> S${{summary.policy.total | number}}</span><span translate="PS_7_1_4">/yr</span>
+            <div class="subtitle align-right"><span data-ng-cloak="data-ng-cloak">S${{summary.policy.total / 12 | number}}</span><span translate="PS_7_1_5">/mo</span></div>
+            <div class="subtitle subtitle-secondary align-right"><span translate="PS_7_1_6">Savings </span><span data-ng-cloak="data-ng-cloak"> S${{summary.policy.savings}}</span><span translate="PS_7_1_4">/yr</span></div>
+          </h2>
+        </div>
+      </div>
+      <div ng-hide="content" class="panel-body">
+        <h2 data-ng-cloak="data-ng-cloak">{{summary.policy.name}}</h2>
+        <p><span translate="PS_7_1_8">Excess amount: </span><span data-ng-cloak="data-ng-cloak"> S${{summary.policy.excess}}</span></p>
+        <p><span translate="PS_7_1_9">Optional Cover included: </span><span data-ng-repeat="cover in summary.cover">{{cover.name}}<span data-ng-if="!$last">, </span></span></p>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-2"><img src="../../images/car-icon2.png"/></div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-3"><strong translate="PC_4_8_1_1a">Car</strong></div>
+              <div class="col-md-8">
+                <div><span data-ng-cloak="data-ng-cloak">{{summary.car.year}}</span><span data-ng-cloak="data-ng-cloak">{{summary.car.make}}</span><span data-ng-cloak="data-ng-cloak">{{summary.car.model}}</span><span data-ng-show="summary.car.lowmileageoption">, Low Mileage</span></div>
+                <div data-ng-show="details">
+                  <p data-ng-show="summary.car.modifications.bodykit || summary.car.modifications.airintakeexhaust || summary.car.modifications.rimstires || summary.car.modifications.suspensionstabiliser">Modifications: <span data-ng-if="summary.car.modifications.bodykit">Body Kit, Rims / Tires </span><span data-ng-if="summary.car.modifications.airintakeexhaust">Air Intake/Exhaust </span><span data-ng-if="summary.car.modifications.rimstires">Rims &amp; Tires </span><span data-ng-if="summary.car.modifications.suspensionstabiliser">Suspension Stabiliser </span></p>
+                  <p><span data-ng-if="summary.car.financed">Financed</span><span data-ng-if="summary.car.ownership == 'private'">Privately Owned</span><span data-ng-show="summary.car.lowmileageoption">, Low Mileage</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-6"><a href="../car/car.html" title="Change car details" translate="PC_4_8_1_1b" class="btn btn-default btn-sm desktop">Edit</a></div>
+              <div class="col-md-6"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2"><img src="../../images/driver-icon.png"/></div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-3"><strong translate="PC_4_8_1_2">Driver</strong></div>
+              <div class="col-md-8">
+                <div><span data-ng-cloak="data-ng-cloak">{{summary.mainDriver.gender}}</span><span data-ng-cloak="data-ng-cloak">{{summary.mainDriver.age}} years old</span><span data-ng-cloak="data-ng-cloak">{{summary.mainDriver.noClaimsDiscount}} NCD</span><span data-ng-cloak="data-ng-cloak">Certificate of Merit</span><span data-ng-cloak="data-ng-cloak" data-ng-if="summary.mainDriver.accidents.atFault == 1">{{summary.mainDriver.accidents.atFault}} at fault claim</span><span data-ng-cloak="data-ng-cloak" data-ng-if="summary.mainDriver.accidents.atFault &gt; 1">{{summary.mainDriver.accidents.atFault}} at fault claims</span><span data-ng-cloak="data-ng-cloak" data-ng-if="summary.mainDriver.accidents.notAtFault == 1">{{summary.mainDriver.accidents.notAtFault}} at fault claim</span><span data-ng-cloak="data-ng-cloak" data-ng-if="summary.mainDriver.accidents.notAtFault &gt; 1">{{summary.mainDriver.accidents.notAtFault}} at fault claims</span></div>
+                <div ng-show="details"><span data-ng-cloak="data-ng-cloak">{{summary.mainDriver.occupation}}</span><span>[Postal Code]</span><span data-ng-cloak="data-ng-cloak">{{summary.mainDriver.drivingExperience}} years valid driving license,</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-6"><a href="../about-your-driver/about-your-driver.html" title="Edit the main driver details" translate="PC_4_8_1_1b" class="btn btn-default btn-sm desktop">Edit</a></div>
+              <div class="col-md-6">
+                <div class="align-right">S$45 <span translate="PC_4_8_1_2_2">/yr</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2"><img src="../../images/policy-icon2.png"/></div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-3"><strong translate="PC_4_8_1_3_1">Policy</strong></div>
+              <div class="col-md-8">
+                <div><span data-ng-cloak="data-ng-cloak">{{summary.policy.name}} , S${{summary.policy.excess}} </span><span translate="PC_4_8_1_3_2">policy excess</span></div>
+                <div ng-show="content">
+                  <p data-ng-repeat="cover in summary.policy.covers">{{cover}}<span data-ng-if="!$last">, </span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-6"><a href="../choose-your-cover/choose-your-cover.html" title="Edit policy details" translate="PC_4_8_1_3_3" class="btn btn-default btn-sm desktop">Edit</a></div>
+              <div class="col-md-6">
+                <div class="align-right">S$732 <span translate="PC_4_8_1_3_4">/yr</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2"><img src="../../images/cover-icon2.png"/></div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-3"><strong translate="PC_4_8_1_5_1">Cover</strong></div>
+              <div class="col-md-8">
+                <div><span data-ng-repeat="cover in summary.cover">{{cover.name}} <span data-ng-if="!$last">, </span></span></div>
+                <div ng-show="details"><span data-ng-repeat="cover in summary.cover">{{cover.description}}<span data-ng-if="!$last">, </span></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-md-6"><a href="../quote/quote.html" title="Change your cover options" translate="PC_4_8_1_5_2" class="btn btn-default btn-sm desktop">Edit</a></div>
+              <div class="col-md-6">
+                <p class="align-right">S$235 <span translate="PC_4_8_1_5_3">/yr</span></p>
+                <p style="text-decoration:line-through;" class="align-right strikethrough">S$261 <span translate="PC_4_8_1_5_3">/yr</span></p>
+                <p class="align-right highlight">(10% <span translate="PC_4_8_1_5_4">Discount</span>)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div data-ng-click="details = !details" style="cursor: pointer;" class="centred">
+          <div data-ng-show="!details">
+            <h2 translate="PC_4_8_2_1">Review Full Details</h2><img src="../../images/down-arrow.png"/>
+          </div>
+          <div data-ng-show="details">
+            <h2 translate="PC_4_8_2_2">See Summary</h2><img src="../../images/up-arrow.png"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <div class="panel">
+          <div class="panel-body"><img src="../../images/help-travel-icon.png" class="margin--bottom"/>
+            <h2 translate="PS_7_2_1">Want to add [Product Name]?</h2>
+            <p translate="PS_7_2_2">Customer&apos;s who buy car insurance through DirectAsia.com often buy [Product Name]. Get your [Product Name] quote online now.</p><a href="" title="" translate="PS_7_2_4" class="btn btn-default btn-sm">Get Started</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel">
+          <div class="panel-body"><img src="../../images/help-account-icon.png"/>
+            <h2 translate="PS_7_3_1">Your DirectAsia.com Account</h2>
+            <p translate="PS_7_3_2">We have automatically created a DirectAsia.com account for you! You can log in at any time to review your policy, manage claims or update your profile.</p><a href="" title="" translate="PS_7_3_3" class="btn btn-default btn-sm">Login Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div>
+      <h2 translate="PS_7_4_1">Connect With Us for Great Offers!</h2>
+      <p translate="PS_7_4_2">We want you to get to know the people in our customer care centre and those behind the website. Follow us on our social media accounts and stay up to date with DirectAsia.com&apos;s news and special offers.</p>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 col-xs-4"><img src="../../images/DA-facebook.png"/></div>
+        <div class="col-md-2 col-xs-4"><img src="../../images/DA-twitter.png"/></div>
+        <div class="col-md-2 col-xs-4"><img src="../../images/DA-google+.png"/></div>
+        <div class="col-md-2 col-xs-6"><img src="../../images/DA-linkedin.png"/></div>
+        <div class="col-md-2 col-xs-6"><img src="../../images/DA-youtube.png"/></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-body"><img src="../../images/help-us-icon.png" class="pull-left margin--right"/>
+        <h2 translate="PS_7_5_1">Help Us Improve</h2>
+        <p translate="PS_7_5_2">We love honest feedback so we can make a better business for our customers. If you have two minutes, please complete a short survey about your DirectAsia.com experience.</p>
+      </div>
+      <div class="panel-footer">
+        <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <p translate="PS_7_5_3">Rate and Review Us</p>
+        </div>
+        <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <p translate="PS_7_5_4">Refer a Friend and Get a $25 Voucher</p>
+        </div>
+        <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <p translate="PS_7_5_5">Refer a friend to us for their car insurance and receive a $25 voucher when they sign up with us!</p>
+        </div>
+        <button type="button" translate="PS_7_5_6" class="btn btn-default btn-sm">Learn More</button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,174 @@
+
+<section data-ng-controller="reviewAndBuyCtrl" class="section section-thankyou">
+  <div class="container">
+    <form name="paymentForm" novalidate="novalidate">
+      <h3 translate="PS_6_2_0">3 Easy Ways to Purchase</h3>
+      <div class="row">
+        <div class="col-sm-4">
+          <div data-ng-class="{active:review == 'book'}" class="panel">
+            <div class="panel-body centred"><img src="../../images/online-icon2.png" class="margin--bottom"/>
+              <h2 translate="PS_6_2_1a" class="margin--bottom">Book Online</h2>
+              <button type="button" data-ng-hide="review == 'book'" data-ng-click="review = 'book'" class="btn btn-default btn-sm">Select</button><img data-ng-show="review == 'book'" src="../../images/selected-icon.png"/>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div data-ng-class="{active:review == 'call'}" class="panel">
+            <div class="panel-body centred"><img src="../../images/call-icon2.png" class="margin--bottom"/>
+              <h2 translate="PS_6_2_1b" class="margin--bottom">Call Us</h2>
+              <button type="button" data-ng-hide="review == 'call'" data-ng-click="review = 'call'" class="btn btn-default btn-sm">Select</button><img data-ng-show="review == 'call'" src="../../images/selected-icon.png"/>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div data-ng-class="{active:review == 'centers'}" class="panel">
+            <div class="panel-body centred"><img src="../../images/store-icon2.png" class="margin--bottom"/>
+              <h2 translate="PS_6_2_1c" class="margin--bottom">Walk-In Centers</h2>
+              <button type="button" data-ng-hide="review == 'centers'" data-ng-click="review = 'centers'" class="btn btn-default btn-sm">Select</button><img data-ng-show="review == 'centers'" src="../../images/selected-icon.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-ng-show="review == 'book'" class="panel">
+        <div class="panel-body">
+          <h2 translate="PS_6_2_1_1_a">Your Quote Agreement</h2>
+          <p translate="PS_6_2_1_1_b">Please read the agreement below carefully before you purchasing. This is for your protection in the event of a claim.</p>
+          <p translate="PS_6_2_1_1_c">We are required by law to tell you that before we provide cover, you must fully and faithfully tell us everything you know or could reasonably be expected to know that is relevant to our decision to give you the insurance, otherwise you may receive no benefit from your policy or we may cancel your policy and treat it as never having existed.</p>
+        </div>
+        <div class="panel-footer">
+          <h2 translate="PS_6_2_1_1_d" class="margin--bottom">You are agreeing to the statements below:</h2>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_e">The car is not used for commercial purposes or for hire/reward.</p>
+          </div>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_f">The car is registered in Hong Kong.</p>
+          </div>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_g">The car is registered in Singapore and any modifications it may have are LTA compliant.</p>
+          </div>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_h">That the policyholder must be the registered owner of the vehicle.</p>
+          </div>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_i">That the drivers you wish to insure do not have 2 or more at-fault accidents/claims on this or another vehicle (excluding motorcycles) in the last 3 years.</p>
+          </div>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_j">You have read and agree to our Privacy Statement.</p>
+          </div>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_k">The main driver of the car is aged 70 and below and has a valid driving license of at least 2 years.</p>
+          </div>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_l">No driver has been refused insurance or had it terminated in the last 3 years.</p>
+          </div>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_m">No driver has had any class of license suspended or cancelled in the last 5 years</p>
+          </div>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_n">| All drivers have valid driving licenses with less than 12 driving offence points.</p>
+          </div>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_o">That the policyholder must be the registered owner of the vehicle.</p>
+          </div>
+          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+            <p translate="PS_6_2_1_1_p">You have read and understood the Policy summary and Policy wording</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <label for="checkbox1" class="label-checkbox margin--bottom">
+            <input id="checkbox1" type="checkbox" data-ng-model="agreed"/>
+            <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_6_2_1_1_1">I Agree to the terms</span>
+          </label>
+          <div data-ng-show="agreed" class="margin--top">
+            <h2 translate="PS_6_3_1">Payment Details</h2>
+            <div class="row">
+              <div class="col-md-6 margin--bottom">
+                <p translate="PS_6_3_2">How would you like to pay?</p>
+                <button type="button" data-ng-class="{'active': paymentDetails.term == 'monthly'}" data-ng-click="paymentDetails.term = 'monthly'" tabindex="1" class="btn btn-default random-margin"><span translate="PS_6_3_2_1">Monthly</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button type="button" data-ng-class="{'active': paymentDetails.term == 'annually'}" data-ng-click="paymentDetails.term = 'annually'" tabindex="2" class="btn btn-default"><span translate="PS_6_3_2_2">Annually</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="paymentForm.$submitted &amp;&amp; paymentDetails.term == null"/>
+              </div>
+              <div class="col-md-6 margin--bottom">
+                <p translate="PS_6_3_3">Using Bank</p>
+                <input type="text" name="bank" data-ng-model="paymentDetails.bank" required="required" tabindex="5" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(paymentForm.$submitted &amp;&amp; paymentForm.bank.$invalid) || (paymentForm.bank.$invalid &amp;&amp; paymentForm.bank.$dirty)"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 margin--bottom">
+                <p translate="PS_6_3_4">Cardholder Name</p>
+                <input type="text" placeholder="Name as it appears on the card" name="cardholderName" data-ng-model="paymentDetails.cardholderName" required="required" tabindex="3" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(paymentForm.$submitted &amp;&amp; paymentForm.cardholderName.$invalid) || (paymentForm.cardholderName.$invalid &amp;&amp; paymentForm.cardholderName.$dirty)"/>
+              </div>
+              <div class="col-md-6 margin--bottom">
+                <p translate="PS_6_3_5">Credit Card Number</p>
+                <input type="text" placeholder="0000-0000-0000-0000" name="creditCardNumber" data-ng-model="paymentDetails.creditCardNumber" required="required" tabindex="6" data-ng-pattern="/^[0-9s -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(paymentForm.$submitted &amp;&amp; paymentForm.creditCardNumber.$invalid) || (paymentForm.creditCardNumber.$invalid &amp;&amp; paymentForm.creditCardNumber.$dirty)"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p translate="PS_6_3_6">Verification Number</p>
+                <input type="text" name="verificationNumber" data-ng-model="paymentDetails.verificationNumber" required="required" tabindex="4" data-ng-pattern="/^[0-9]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(paymentForm.$submitted &amp;&amp; paymentForm.verificationNumber.$invalid) || (paymentForm.verificationNumber.$invalid &amp;&amp; paymentForm.verificationNumber.$dirty)"/>
+              </div>
+              <div class="col-md-6">
+                <p translate="PS_6_3_7">Expiry Date</p>
+                <div class="form-inline">
+                  <input placeholder="MM" name="expiryMonth" type="number" min="1" max="12" data-ng-model="paymentDetails.expiryDate.month" required="required" tabindex="7" class="month"/>
+                  <input placeholder="YYYY" name="expiryYear" type="number" min="2015" max="2025" data-ng-model="paymentDetails.expiryDate.year" required="required" tabindex="8" class="year"/><img src="../../images/error.png" data-ng-show="(paymentForm.$submitted &amp;&amp; paymentForm.expiryMonth.$invalid) || (paymentForm.$submitted &amp;&amp; paymentForm.expiryYear.$invalid) || (paymentForm.expiryMonth.$invalid &amp;&amp; paymentForm.expiryMonth.$dirty) || (paymentForm.expiryYear.$invalid &amp;&amp; paymentForm.expiryYear.$dirty)"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-ng-show="agreed" class="panel-footer">
+          <div data-ng-show="paymentDetails.term == 'annual'">
+            <h2 translate="PS_6_4_0">Would you like to sign up for auto renew?</h2>
+            <p translate="PS_6_4_0_1">Copy further touting the benefits of notification, lorem ipsum dolor sit atmet.</p>
+            <button type="button" data-ng-class="{'active': paymentDetails.autoRenew == true}" data-ng-click="paymentDetails.autoRenew = true" class="btn btn-default"><span translate="PS_1_2b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+            <button type="button" data-ng-class="{'active': paymentDetails.autoRenew == false}" data-ng-click="paymentDetails.autoRenew = false" class="btn btn-default"><span translate="PS_1_2c">No</span><span class="glyphicon glyphicon-ok"></span></button>
+          </div>
+          <div>
+            <h2 class="margin--bottom"><span translate="PS_6_5_1">What you pay today:</span><span data-ng-cloak="data-ng-cloak"> S${{summary.policy.total | number}}</span>
+              <div translate="PS_6_5_2" class="subtitle">if you change your mind, you have 15 days in which you can cancel your policy to receive a full refund</div>
+            </h2>
+            <h2 class="margin--bottom"><span translate="PS_6_5_3">Future monthly payments:</span><span data-ng-cloak="data-ng-cloak"> S${{summary.policy.total / 12}}</span></h2><a href="" title="" translate="PS_6_5_4">See monthly payment breakdown</a>
+          </div>
+        </div>
+      </div>
+      <div data-ng-show="review == 'call'" class="panel">
+        <div class="panel-body">
+          <h2 translate="PS_6_5_6">Want to finish over the phone? Let our [Country] team help you by calling us directly.</h2>
+          <p>[Phone Number]</p>
+          <p translate="PS_6_5_7">Please provide your policy number below so we can pick up where you left off.</p>
+          <p><span translate="PS_6_5_8">Your Policy Number:</span> [XXXXX]</p>
+          <h2><span translate="PS_6_5_9">We are available at these times</span> [Call Center Hours]</h2>
+        </div>
+      </div>
+      <div data-ng-show="review == 'centers'" class="panel">
+        <div class="panel-body">
+          <h2 translate="PS_6_5_10">Come and visit us in person!</h2>
+          <p>[Address]</p>
+          <iframe src="http://regiohelden.de/google-maps/map_en.php?hl=en&amp;q=1101%2C%2011%2FF%2C%20Allied%20Kajima%20Building%2C%20138%20Gloucester%20Road%2C%20Wan%20Chai%2C%20Hong%20Kong+(RegioHelden%20GmbH)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=A&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+        </div>
+      </div>
+      <div class="clearfix"><a href="" title="" class="btn btn-backward margin--bottom"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_6_6_1">Back</span></a>
+        <button type="submit" continue="continue" next-page="http://localhost:9000/pages/thank-you/thank-you.html" valid="review == 'book' ? paymentForm.$valid &amp;&amp; agreed : true" url="http://localhost:9000/payment" page-data="{{paymentDetails}}" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_5_6_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+        <button type="button" style="clear:both;" data-ng-click="saveForLater()" class="popover-button btn btn-primary btn-action btn-sm pull-right"><span data-ng-show="!saved" translate="PS_6_6_2">Save for later</span><span data-ng-show="saved" translate="PS_6_6_3">Saved!</span></button>
+      </div>
+    </form>
+    <div id="popover1" class="popover save-div bottom">
+      <div class="arrow"></div>
+      <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+      <div data-ng-hide="send">
+        <p translate="PS_6_6_4">Please provide your email below and we‘ll send you a link to retrieve your quotation for up to 90 days.</p>
+        <input type="email" placeholder="Enter email address" class="form-control"/>
+        <p translate="PS_6_6_4_1">Want us to help you finish? provide your phone number and we‘ll give you a call.</p>
+        <input type="tel" placeholder="Enter phone number" class="form-control"/>
+        <button type="button" data-ng-click="send = true" translate="PS_6_6_6" class="btn btn-forward">Send</button>
+      </div>
+      <div data-ng-show="send" class="on-send">
+        <p translate="PS_6_6_6_1">Your quote has been successfully saved. Please check your email, which contains a link to retrieve your quotation.</p>
+        <p translate="PS_6_6_6_2">Share your current renewal premium so we can make sure we‘re giving you the best value</p>
+        <button type="button" data-ng-click="submit = true" translate="PS_6_6_6_3" class="btn btn-forward">Submit</button>
+      </div>
+    </div>
+    <p translate="PS_6_6_7">Your details will be saved for 90 days so you can finish later</p>
+  </div>
+</section>

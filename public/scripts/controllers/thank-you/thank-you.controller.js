@@ -86,12 +86,11 @@ getMockData = function() {
 /*
 The controller ties together the view with the model.
 
-In this case the view is the partials/review-and-buy/review-and-buy1
-and partials/review-and-buy/review-and-buy2 file and the main model
-is the $scope.review variable.
+In this case the view is the partials/choose-your-cover/choose-your-cover file and the main model
+is the $scope.coverDetails variable.
  */
 
-angular.module("DirectAsia").controller("reviewAndBuyCtrl", [
+angular.module("DirectAsia").controller("thankYouCtrl", [
   "$scope", function($scope) {
 
     /*
@@ -112,34 +111,7 @@ angular.module("DirectAsia").controller("reviewAndBuyCtrl", [
       return dataFromAPI;
     };
     setupData = function(data) {
-      $scope.summary = data;
-      return $scope.paymentDetails = {
-        autoRenew: false,
-        bank: null,
-        cardholderName: null,
-        creditCardNumber: null,
-        expiryDate: {
-          month: null,
-          year: null
-        },
-        term: null,
-        verificationNumber: null
-      };
-    };
-
-    /*
-    		Function for saving the plan for later - called by buttons in the
-    		navbar and at the bottom of the page. When this is clicked, the saved
-    		plan should be sent to the server (not implemented)
-     */
-    $scope.saveForLater = function() {
-      saveCurrentPlan();
-
-      /*
-      			send data to server
-      			- for now just log the plan to the console
-       */
-      return console.table($scope.plan);
+      return $scope.summary = data;
     };
 
     /*

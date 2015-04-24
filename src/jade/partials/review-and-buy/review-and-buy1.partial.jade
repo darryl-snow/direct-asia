@@ -1,0 +1,225 @@
+script(src="../../scripts/controllers/review-and-buy/review-and-buy.controller.js")
+
+section.section.section-thankyou(data-ng-controller="reviewAndBuyCtrl")
+
+	.container
+
+		h1(translate="PS_6_0a") Review Your Policy and Purchase
+
+		.panel
+
+			.panel-header.clearfix.panel-header--blue
+
+				h2.margin--bottom.pull-left
+					span(translate="PS_7_1_1") Your Car Insurance Summary
+					.subtitle
+						span(translate="PS_7_1_2") Policy Number: 
+						span(data-ng-cloak)  {{summary.policy.number}}
+
+				.pull-right
+					h2.align-right
+						span(translate="PS_7_1_3") Total 
+						span(data-ng-cloak)  S${{summary.policy.total | number}}
+						span(translate="PS_7_1_4") /yr
+
+						.subtitle.align-right
+							span(data-ng-cloak) S${{(summary.policy.total / 12) | number}}
+							span(translate="PS_7_1_5") /mo
+
+						.subtitle.subtitle-secondary.align-right
+							span(translate="PS_7_1_6") Savings 
+							span(data-ng-cloak)  S${{summary.policy.savings}}
+							span(translate="PS_7_1_4") /yr
+
+			.panel-body(ng-hide="content")
+
+				h2(data-ng-cloak) {{summary.policy.name}}
+
+				p
+					span(translate="PS_7_1_8") Excess amount: 
+					span(data-ng-cloak)  S${{summary.policy.excess}}
+
+				p
+					span(translate="PS_7_1_9") Optional Cover included: 
+					span(data-ng-repeat="cover in summary.cover") {{cover.name}}
+						span(data-ng-if="!$last") , 
+
+			.panel-body
+
+				.row.margin--bottom
+
+					.col-xs-2
+
+						img(src="../../images/car-icon2.png")
+
+					.col-xs-5
+
+						.row
+
+							.col-md-3
+
+								strong(translate="PC_4_8_1_1a") Car
+
+							.col-md-8
+
+								div
+									span(data-ng-cloak) {{summary.car.year}}
+									span(data-ng-cloak) {{summary.car.make}}
+									span(data-ng-cloak) {{summary.car.model}}
+									span(data-ng-show="summary.car.lowmileageoption") , Low Mileage
+
+
+								div(data-ng-show="details")
+									p(data-ng-show="summary.car.modifications.bodykit || summary.car.modifications.airintakeexhaust || summary.car.modifications.rimstires || summary.car.modifications.suspensionstabiliser") Modifications: 
+										span(data-ng-if="summary.car.modifications.bodykit") Body Kit, Rims / Tires 
+										span(data-ng-if="summary.car.modifications.airintakeexhaust") Air Intake/Exhaust 
+										span(data-ng-if="summary.car.modifications.rimstires") Rims &amp; Tires 
+										span(data-ng-if="summary.car.modifications.suspensionstabiliser") Suspension Stabiliser 
+									p
+										span(data-ng-if="summary.car.financed") Financed
+										span(data-ng-if="summary.car.ownership == 'private'") Privately Owned
+										span(data-ng-show="summary.car.lowmileageoption") , Low Mileage
+
+					.col-xs-5
+
+						.row
+
+							.col-md-6
+
+								a.btn.btn-default.btn-sm.desktop(href="../car/car.html", title="Change car details", translate="PC_4_8_1_1b") Edit
+
+							.col-md-6
+
+				.row.margin--bottom
+
+					.col-xs-2
+
+						img(src="../../images/driver-icon.png")
+
+					.col-xs-5
+
+						.row
+
+							.col-md-3
+
+								strong(translate="PC_4_8_1_2") Driver
+
+							.col-md-8
+
+								div
+									span(data-ng-cloak) {{summary.mainDriver.gender}}
+									span(data-ng-cloak) {{summary.mainDriver.age}} years old
+									span(data-ng-cloak) {{summary.mainDriver.noClaimsDiscount}} NCD
+									span(data-ng-cloak) Certificate of Merit
+									span(data-ng-cloak, data-ng-if="summary.mainDriver.accidents.atFault == 1") {{summary.mainDriver.accidents.atFault}} at fault claim
+									span(data-ng-cloak, data-ng-if="summary.mainDriver.accidents.atFault > 1") {{summary.mainDriver.accidents.atFault}} at fault claims
+									span(data-ng-cloak, data-ng-if="summary.mainDriver.accidents.notAtFault == 1") {{summary.mainDriver.accidents.notAtFault}} at fault claim
+									span(data-ng-cloak, data-ng-if="summary.mainDriver.accidents.notAtFault > 1") {{summary.mainDriver.accidents.notAtFault}} at fault claims
+
+								div(ng-show="details")
+									span(data-ng-cloak) {{summary.mainDriver.occupation}}
+									span [Postal Code]
+									span(data-ng-cloak) {{summary.mainDriver.drivingExperience}} years valid driving license,
+
+					.col-xs-5
+
+						.row
+
+							.col-md-6
+
+								a.btn.btn-default.btn-sm.desktop(href="../about-your-driver/about-your-driver.html", title="Edit the main driver details", translate="PC_4_8_1_1b") Edit
+
+							.col-md-6
+
+								div.align-right S$45 
+									span(translate="PC_4_8_1_2_2") /yr
+
+				.row.margin--bottom
+
+					.col-xs-2
+
+						img(src="../../images/policy-icon2.png")
+
+					.col-xs-5
+
+						.row
+
+							.col-md-3
+
+								strong(translate="PC_4_8_1_3_1") Policy
+
+							.col-md-8
+
+								div
+									span(data-ng-cloak) {{summary.policy.name}} , S${{summary.policy.excess}} 
+									span(translate="PC_4_8_1_3_2") policy excess
+
+								div(ng-show="content")
+									p(data-ng-repeat="cover in summary.policy.covers") {{cover}}
+										span(data-ng-if="!$last") , 
+
+					.col-xs-5
+
+						.row
+
+							.col-md-6
+								a.btn.btn-default.btn-sm.desktop(href="../choose-your-cover/choose-your-cover.html", title="Edit policy details", translate="PC_4_8_1_3_3") Edit
+
+							.col-md-6
+
+								div.align-right S$732 
+									span(translate="PC_4_8_1_3_4") /yr
+
+				.row
+
+					.col-xs-2
+
+						img(src="../../images/cover-icon2.png")
+
+					.col-xs-5
+
+						.row
+							.col-md-3
+
+								strong(translate="PC_4_8_1_5_1") Cover
+
+							.col-md-8
+
+								div
+									span(data-ng-repeat="cover in summary.cover") {{cover.name}} 
+										span(data-ng-if="!$last") , 
+
+								div(ng-show="details")
+									span(data-ng-repeat="cover in summary.cover") {{cover.description}}
+										span(data-ng-if="!$last") , 
+
+					.col-xs-5
+
+						.row
+
+							.col-md-6
+
+								a.btn.btn-default.btn-sm.desktop(href="../quote/quote.html", title="Change your cover options", translate="PC_4_8_1_5_2") Edit
+
+							.col-md-6
+
+								p.align-right S$235 
+									span(translate="PC_4_8_1_5_3") /yr
+								p.align-right.strikethrough(style="text-decoration:line-through;") S$261 
+									span(translate="PC_4_8_1_5_3") /yr
+
+								p.align-right.highlight (10% 
+									span(translate="PC_4_8_1_5_4") Discount
+									| )
+
+			.panel-footer
+
+				div.centred(data-ng-click="details = !details", style="cursor: pointer;")
+
+					div(data-ng-show="!details")
+						h2(translate="PC_4_8_2_1") Review Full Details
+						img(src="../../images/down-arrow.png")
+
+					div(data-ng-show="details")
+						h2(translate="PC_4_8_2_2") See Summary
+						img(src="../../images/up-arrow.png")

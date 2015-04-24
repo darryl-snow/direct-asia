@@ -1,530 +1,421 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="DirectAsia">
-    <head>
-        <title>Car Insurance - Direct Asia Car Insurance</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Front-End templates for Direct Asia Car Insurance">
-        <meta name="keywords" content="bootstrap angularJS bootflat">
-        <meta name="author" content="Darryl Snow">
-        <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
-        <link rel="stylesheet" href="../../lib/bootstrap.css">
-        <link rel="stylesheet" href="../../lib/bootflat.css">
-        <link rel="stylesheet" href="../../styles/main.css">
-        <!--if lt IE 9
-        script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
-        
-        -->
-        <link rel="apple-touch-icon" sizes="57x57" href="../../images/apple-touch-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="../../images/apple-touch-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="../../images/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="../../images/apple-touch-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="../../images/apple-touch-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="../../images/apple-touch-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="../../images/apple-touch-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="../../images/apple-touch-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon-180x180.png">
-        <link rel="icon" type="image/png" href="../../images/favicon-16x16.png" sizes="16x16">
-        <link rel="icon" type="image/png" href="../../images/favicon-32x32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="../../images/favicon-96x96.png" sizes="96x96">
-        <link rel="icon" type="image/png" href="../../images/favicon-160x160.png" sizes="160x160">
-        <link rel="icon" type="image/png" href="../../images/favicon-192x192.png" sizes="192x192">
-
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="../../images/mstile-144x144.png">
-        <meta name="msapplication-config" content="../../images/browserconfig.xml">
-
-        <link rel="shortcut icon" href="../../images/favicon.ico">
-        <script src="../../lib/jquery.js"></script>
-        <script src="../../lib/angular.js"></script>
-        <script src="../../lib/angular-translate.js"></script>
-        <script src="../../lib/angular-translate-loader-static-files.js"></script>
-        <script src="../../lib/bootstrap.js"></script>
-        <script src="../../lib/jquery.fs.selecter.js"></script>
-        <script src="../../lib/fsm-sticky-header.js"></script>
-        <script src="../../scripts/main.js"></script>
+  <head>
+    <title>Review and Buy - Direct Asia Car Insurance</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Front-End templates for Direct Asia Car Insurance">
+    <meta name="keywords" content="bootstrap angularJS bootflat">
+    <meta name="author" content="Darryl Snow">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../lib/bootstrap.css">
+    <link rel="stylesheet" href="../../lib/bootflat.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <!--if lt IE 9
+    script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
+    
+    -->
+    <link rel="apple-touch-icon" sizes="57x57" href="../../images/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../images/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../../images/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../images/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="../../images/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../images/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="../../images/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="../../images/favicon-192x192.png" sizes="192x192">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../../images/mstile-144x144.png">
+    <meta name="msapplication-config" content="../../images/browserconfig.xml">
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+    <script src="../../lib/jquery.js"></script>
+    <script src="../../lib/angular.js"></script>
+    <script src="../../lib/angular-translate.js"></script>
+    <script src="../../lib/angular-translate-loader-static-files.js"></script>
+    <script src="../../lib/bootstrap.js"></script>
+    <script src="../../lib/jquery.fs.selecter.js"></script>
+    <script src="../../lib/fsm-sticky-header.js"></script>
+    <script src="../../lib/bootstrap-slider.min.js"></script>
+    <script src="../../lib/slider.js"></script>
+    <script src="../../scripts/main.js"></script>
+    <script src="../../scripts/controllers/help/help.controller.js"></script>
+    <script src="../../scripts/directives/continue-button.directive.js"></script>
+    <script src="../../scripts/directives/full-page-height.directive.js"></script>
+    <script src="../../scripts/directives/input-group.directive.js"></script>
+    <script src="../../scripts/directives/modal.directive.js"></script>
+    <script src="../../scripts/directives/popover.directive.js"></script>
+    <script src="../../scripts/directives/selecter.directive.js"></script>
+    <script src="../../scripts/directives/sticky-navbar.directive.js"></script>
+    <script src="../../scripts/directives/toggle-buttons.directive.js"></script>
+    <script src="../../scripts/directives/tooltip.directive.js"></script>
+    <script src="../../scripts/services/AdditionalDriver.factory.js"></script>
+    <script src="../../scripts/services/Car.factory.js"></script>
+    <script src="../../scripts/services/InsurancePlan.factory.js"></script>
+    <script src="../../scripts/services/MainDriver.factory.js"></script>
+    <script src="../../scripts/filters/age.filter.js"></script>
+    <script src="../../scripts/filters/range.filter.js"></script>
+    <script src="../../scripts/filters/slugify.filter.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar navbar-default">
+        <div class="navbar-header"><a href="/" class="navbar-brand"><img src="../../images/direct-asia-logo.png"></a></div>
+        <div translate="GS_0_0_1" class="navbar-title">Car Insurance</div>
+        <ol class="breadcrumb breadcrumb-arrow">
+          <li class="active"><a href="#" translate="GC_0_1_1">Your Car &amp; Drivers</a></li>
+          <li><span translate="GC_0_1_2">Your Quote</span></li>
+          <li><span translate="GC_0_1_3">Purchase</span></li>
+        </ol>
+        <div class="navbar-telephone pull-right"><span translate="GS_0_0_2c">Call our Singapore Team on</span><span class="navbar-telephone-number">9854 4345</span></div>
         <script src="../../scripts/controllers/help/help.controller.js"></script>
-        <script src="../../scripts/directives/continue-button.directive.js"></script>
-        <script src="../../scripts/directives/input-group.directive.js"></script>
-        <script src="../../scripts/directives/popover.directive.js"></script>
-        <script src="../../scripts/directives/selecter.directive.js"></script>
-        <script src="../../scripts/directives/toggle-buttons.directive.js"></script>
-        <script src="../../scripts/directives/tooltip.directive.js"></script>
-        <script src="../../scripts/services/AdditionalDriver.factory.js"></script>
-        <script src="../../scripts/services/Car.factory.js"></script>
-        <script src="../../scripts/services/InsurancePlan.factory.js"></script>
-        <script src="../../scripts/services/MainDriver.factory.js"></script>
-        <script src="../../scripts/filters/age.filter.js"></script>
-        <script src="../../scripts/filters/range.filter.js"></script>
-        <script src="../../scripts/filters/slugify.filter.js"></script>
-
-        <script src="../../scripts/controllers/review-and-buy/review-and-buy.controller.js"></script>
-
-    </head>
-    <body >
-        <div class="need-help" ng-controller="helpController">
-            <button type="button" class="popover-button btn btn-primary btn-action btn-sm" translate="GS_0_0_2a">Need Help?</button>
-            <div id="popover" class="popover left help-div">
-                <div class="arrow"></div>
-                <form>
-                <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
-                <div ng-hide="helps.submit">
-                <p><b translate="PS_3_0_1">Let us call you. Provide your details below and someone from our HK customer care team will get back to you.</b></p>
-                <div ng-class="{error:!helps.name && helps.no_content}">
-                    <img class="error-image" src="../../images/error.png">
-                    <input class="form-control" type="text" placeholder="Enter Name" name="name" ng-model="helps.name">
-                </div>
-                <div class="space"></div>
-                <div ng-class="{error:!helps.email && helps.no_content}">
-                    <img class="error-image" src="../../images/error.png">
-                    <input class="form-control" type="email" placeholder="Enter Email Address" name="email" ng-model="helps.email">
-                </div>
-                <div class="space"></div>
-                <div ng-class="{error:!helps.number && helps.no_content}">
-                    <img class="error-image" src="../../images/error.png">
-                    <input class="form-control" type="tel" placeholder="Enter Phone Number" name="phone" ng-model="helps.number">
-                </div>
-                <div class="space"></div>
-                <button type="button" class="btn btn-forward" ng-click="helps.click()" translate="PS_3_0_2">Send Now</button>
-
-                </div>
-                <div class="on-submit" ng-show="helps.submit">
-                    <h2><span translate="PS_3_0_3">Message Sent</span>
-                        <div class="subtitle" translate="PS_3_0_4">Thank you for your message. We will respond to you with 24 hours.</div>
-                    </h2>
-                </div>
-                <div class="space"></div>
-                <p><span translate="GS_0_0_2a">Call us on</span> +852 2884 8888<br/><span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
-                <p><span translate="GS_0_0_3a">Email us at</span> <a href="">enquiries@directasia.com.hk</a></p>                 
-                </form>
+        <div data-ng-controller="helpCtrl" class="help">
+          <button type="button" translate="GS_0_0_2a" data-ng-click="showPopover()" class="btn btn-primary btn-sm help-button">Need Help?</button>
+          <div id="popover" data-ng-show="open" class="fake-popover">
+            <div class="arrow"></div>
+            <form name="helpForm" novalidate data-ng-submit="helpForm.$valid &amp;&amp; sendRequest()" data-ng-show="sent == false">
+              <button type="button" data-ng-click="hidePopover()" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+              <p><b translate="PS_3_0_1">Let us call you. Provide your details below and someone from our HK customer care team will get back to you.</b></p>
+              <div class="margin--bottom">
+                <input type="text" placeholder="Enter Name" name="name" data-ng-model="supportRequest.name" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required class="form-control"><img src="../../images/error.png" data-ng-show="(helpForm.name.$invalid &amp;&amp; helpForm.name.$dirty) || (helpForm.name.$invalid &amp;&amp; helpForm.$submitted)">
+              </div>
+              <div class="margin--bottom">
+                <input type="email" placeholder="Enter Email Address" name="email" data-ng-model="supportRequest.email" required class="form-control"><img src="../../images/error.png" data-ng-show="(helpForm.email.$invalid &amp;&amp; helpForm.email.$dirty) || (helpForm.email.$invalid &amp;&amp; helpForm.$submitted)">
+              </div>
+              <div class="margin--bottom">
+                <input type="tel" placeholder="Enter Phone Number" name="phone" data-ng-model="supportRequest.number" required class="form-control"><img src="../../images/error.png" data-ng-show="(helpForm.phone.$invalid &amp;&amp; helpForm.phone.$dirty) || (helpForm.phone.$invalid &amp;&amp; helpForm.$submitted)">
+              </div>
+              <button type="submit" translate="PS_3_0_2" class="btn btn-forward margin--bottom">Send Now</button>
+            </form>
+            <div data-ng-show="sent" class="on-submit margin--bottom">
+              <h2><span translate="PS_3_0_3">Message Sent</span>
+                <div translate="PS_3_0_4" class="subtitle">Thank you for your message. We will respond to you with 24 hours.</div>
+              </h2>
             </div>
+            <p><span translate="GS_0_0_2b">Call us on </span>+852 2884 8888<br><span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
+            <p><span translate="GS_0_0_3a">Email us at </span><a href="" style="display:block;">enquiries@directasia.com.hk</a></p>
+          </div>
         </div>
-            <section class="section section-plan">
-                <form name="reviewForm" novalidate>
-                <div class="container">
-                    <div class="navbar navbar-default" data-resource-id="GS 0.0">
-                        <div class="navbar-header"><a href="/" class="navbar-brand"><img src="../../images/direct-asia-logo.png"></a></div>
-                        <div class="navbar-title" translate="GS_0_0_1">Car Insurance</div>
-                        <ol class="breadcrumb breadcrumb-arrow" data-resource-id="GC 0.1">
-                            <li><a href="#" translate="GC_0_1_1">Your Car &amp; Drivers</a></li>
-                            <li class="active"><a href="#" translate="GC_0_1_2">Your Quote</a></li>
-                            <li><span translate="GC_0_1_3">Purchase</span></li>
-                        </ol>
-                        <div class="navbar-telephone pull-right">
-                            <span translate="GS_0_0_2">Need help? Speak with Our Hong Kong Team</span>
-                            <span class="navbar-telephone-number">2884 8888</span>
-                            <span translate="GS_0_0_3">Mon - Fri 8am - 8pm | Sat 9am - 6pm</span>
-                        </div>
-                    </div> 
-                    <h1 data-resource-id="PS 6.0" translate="PS_6_0a">Review Your Policy and Purchase</h1>
-                    <div class="panel" data-resource-id="PS 6.1" ng-init="content = true">
-                        <div class="panel-header" data-resource-id="PC 4.8.0">
-                            <div class="desktop">
-                                <h2 style="float:left;" data-resource-id="PS 6.1a"><span translate="PS_6_1a">Your Car Insurance Summary</span>
-                                    <div class="subtitle"><span translate="PS_6_1a_1">Policy Number:</span>2332434535t66</div>
-                                </h2>
-                                <div class="yr-right" style="float:none;">
-                                    <h2><span translate="PS_6_1a_2">Total</span> S$1,356 <span translate="PS_6_1a_3">/yr</span></h2>
-                                    <div class="subtitle">S$113 <span translate="PS_6_1a_4">/mo</span></div>
-                                    <div class="subtitle" style="color:#fcd900;"><span translate="PS_6_1a_5">Savings</span> S$167 <span translate="PS_6_1a_3">/yr</span></div>
-                                </div>
-                            </div>
-                            <div class="mobile">
-                                <h2><span translate="PS_6_1a">Your Car Insurance Summary</span>
-                                    <div class="subtitle"><span translate="PS_6_1a_1">Policy Number:</span>2332434535t66</div>
-                                    <div class="space"></div>
-                                        <h2><span translate="PS_6_1a_2">Total</span> S$1,356 <span translate="PS_6_1a_3">/yr</span></h2>
-                                        <div class="subtitle">S$113 <span translate="PS_6_1a_4">/mo</span> | <span style="color:#fcd900;"><span translate="PS_6_1a_5">Savings</span> S$167 <span translate="PS_6_1a_3">/yr</span></span></div>
-                                    
-                                </h2>
-                            </div>
-                            
-                        </div>
-                        <div class="panel-body" ng-hide="content">
-                            <h2>Comprehensive Premium</h2>
-                            <p><span translate="PS_6_1_1">Excess amount:</span> <span style="color:#25A8E0;">S$500</span></p>
-                        </div>
-                        <div class="panel-body" ng-show="content" data-resource-id="PC 4.8.1">
-                            <div class="row" data-resource-id="PC 4.8.1.1">
-                                <div class="space"></div>
-                                <div class="col-xs-2">
-                                    <img src="../../images/car-icon2.png">
-                                </div>
-                                <div class="col-xs-5">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="subtitle"><b translate="PC_4_3_1_1">Car</b></div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="subtitle">2010 Honda Civic, Low Mileage</div>
-                                            <div class="subtitle" ng-show="content">
-                                                Modifications: Body Kit, Rims / Tires
-                                                Air Intake/Exhaust
-                                                Financed, Privately Owned, Low Mileage
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-5">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-default btn-sm desktop" translate="PC_4_3_1_2">Edit</button>
-                                        </div>
-                                        <div class="col-md-6" style="text-align:right;">
-                                            <button type="button" class="btn btn-default btn-sm mobile" translate="PC_4_3_1_2">Edit</button>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" data-resource-id="PC 4.8.1.2">
-                                <div class="space"></div>
-                                <div class="col-xs-2">
-                                    <img src="../../images/driver-icon.png">
-                                </div>
-                                <div class="col-xs-5">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="subtitle"><b translate="PC_4_3_1_3">Driver</b></div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="subtitle">Female, 37 years old, 30% NCD, Certificate of Merit, 1 at fault claim</div>
-                                            <div class="subtitle" ng-show="content">
-                                                [Occupation],[Postal Code],[4] years valid driving license,
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-5">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-default btn-sm desktop" translate="PC_4_3_1_4">Edit</button>
-                                        </div>
-                                        <div class="col-md-6" style="text-align:right;">
-                                            <button type="button" class="btn btn-default btn-sm mobile" translate="PC_4_3_1_4">Edit</button>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="yr-right" style="margin-top: 15px;">
-                                                <div class="subtitle">S$45 <span translate="PS_6_1a_3">/yr</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" data-resource-id="PC 4.8.1.3">
-                                <div class="space"></div>
-                                <div class="col-xs-2">
-                                    <img src="../../images/policy-icon2.png">
-                                </div>
-                                <div class="col-xs-5">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="subtitle"><b translate="PC_4_8_1_3_1">Policy</b></div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="subtitle">Comprehensive Premium, S$500 <span translate="PC_4_8_1_3_2">policy excess</span></div>
-                                            <div class="subtitle" ng-show="content">
-                                                Third Party - Death or Bodily Injury<br/>
-                                                Third Party - Property Damage<br/>
-                                                24 hour accident towing<br/>
-                                                Own damage - Fire<br/>
-                                                Own damage - Theft<br/>
-                                                Own damage - Act of God<br/>
-                                                Own damage - All Accidents<br/>
-                                                Windscreen / Window Breakage
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-5">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-default btn-sm desktop" translate="PC_4_8_1_3_3">Edit</button>
-                                        </div>
-                                        <div class="col-md-6" style="text-align:right;">
-                                            <button type="button" class="btn btn-default btn-sm mobile" translate="PC_4_8_1_3_3">Edit</button>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="yr-right" style="margin-top: 15px;">
-                                                <div class="subtitle">S$732 <span translate="PS_6_1a_3">/yr</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" data-resource-id="PC 4.8.1.5">
-                                <div class="space"></div>
-                                <div class="col-xs-2">
-                                    <img src="../../images/cover-icon2.png">
-                                </div>
-                                <div class="col-xs-5">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="subtitle"><b translate="PC_4_8_1_5_1">Cover</b></div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="subtitle">Loss of use, My Workshop, Experienced Drivers</div>
-                                            <div class="subtitle" ng-show="content">
-                                                S$50 to help you with transport costs while your car is being repaired
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-5">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-default btn-sm desktop" translate="PC_4_8_1_5_2">Edit</button>
-                                        </div>
-                                        <div class="col-md-6" style="text-align:right;">
-                                            <button type="button" class="btn btn-default btn-sm mobile" translate="PC_4_8_1_5_2">Edit</button>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="yr-right" style="margin-top: 15px;">
-                                                <div class="subtitle">S$235 <span translate="PC_4_8_1_5_3">/yr</span><br><span style="text-decoration:line-through;">S$261 <span translate="PC_4_8_1_5_3">/yr</span></span>  <span style="color:#D52B1E;">(10% <span translate="PC_4_8_1_5_4">Discount</span>)</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-footer" data-resource-id="PC 4.8.2" style="text-align:center;">      
-                            <div ng-hide="content" ng-click="content = true">
-                                <h2 translate="PC_4_8_2_1">Review Full Details</h2>
-                                <img src="../../images/down-arrow.png">
-                            </div>
-                            <div ng-show="content" ng-click="content = false">
-                                <h2 translate="PC_4_8_2_2">See Summary</h2>
-                                <img src="../../images/up-arrow.png">
-                            </div>
-                        </div>
+      </div>
+    </div>
+    <script src="../../scripts/controllers/review-and-buy/review-and-buy.controller.js"></script>
+    <section data-ng-controller="reviewAndBuyCtrl" class="section section-thankyou">
+      <div class="container">
+        <h1 translate="PS_6_0a">Review Your Policy and Purchase</h1>
+        <div class="panel">
+          <div class="panel-header clearfix panel-header--blue">
+            <h2 class="margin--bottom pull-left"><span translate="PS_7_1_1">Your Car Insurance Summary</span>
+              <div class="subtitle"><span translate="PS_7_1_2">Policy Number: </span><span data-ng-cloak> {{summary.policy.number}}</span></div>
+            </h2>
+            <div class="pull-right">
+              <h2 class="align-right"><span translate="PS_7_1_3">Total </span><span data-ng-cloak> S${{summary.policy.total | number}}</span><span translate="PS_7_1_4">/yr</span>
+                <div class="subtitle align-right"><span data-ng-cloak>S${{(summary.policy.total / 12) | number}}</span><span translate="PS_7_1_5">/mo</span></div>
+                <div class="subtitle subtitle-secondary align-right"><span translate="PS_7_1_6">Savings </span><span data-ng-cloak> S${{summary.policy.savings}}</span><span translate="PS_7_1_4">/yr</span></div>
+              </h2>
+            </div>
+          </div>
+          <div ng-hide="content" class="panel-body">
+            <h2 data-ng-cloak>{{summary.policy.name}}</h2>
+            <p><span translate="PS_7_1_8">Excess amount: </span><span data-ng-cloak> S${{summary.policy.excess}}</span></p>
+            <p><span translate="PS_7_1_9">Optional Cover included: </span><span data-ng-repeat="cover in summary.cover">{{cover.name}}<span data-ng-if="!$last">, </span></span></p>
+          </div>
+          <div class="panel-body">
+            <div class="row margin--bottom">
+              <div class="col-xs-2"><img src="../../images/car-icon2.png"></div>
+              <div class="col-xs-5">
+                <div class="row">
+                  <div class="col-md-3"><strong translate="PC_4_8_1_1a">Car</strong></div>
+                  <div class="col-md-8">
+                    <div><span data-ng-cloak>{{summary.car.year}}</span><span data-ng-cloak>{{summary.car.make}}</span><span data-ng-cloak>{{summary.car.model}}</span><span data-ng-show="summary.car.lowmileageoption">, Low Mileage</span></div>
+                    <div data-ng-show="details">
+                      <p data-ng-show="summary.car.modifications.bodykit || summary.car.modifications.airintakeexhaust || summary.car.modifications.rimstires || summary.car.modifications.suspensionstabiliser">Modifications: <span data-ng-if="summary.car.modifications.bodykit">Body Kit, Rims / Tires </span><span data-ng-if="summary.car.modifications.airintakeexhaust">Air Intake/Exhaust </span><span data-ng-if="summary.car.modifications.rimstires">Rims &amp; Tires </span><span data-ng-if="summary.car.modifications.suspensionstabiliser">Suspension Stabiliser </span></p>
+                      <p><span data-ng-if="summary.car.financed">Financed</span><span data-ng-if="summary.car.ownership == 'private'">Privately Owned</span><span data-ng-show="summary.car.lowmileageoption">, Low Mileage</span></p>
                     </div>
-<div data-resource-id="PS 6.2">
-   <h3 style="text-align:center;" data-resource-id="PS 6.2.0" translate="PS_6_2_0">3 Easy Ways to Purchase</h3>
-   <div class="row" style="text-align:center;">
-        <div class="col-sm-4">
-            <div class="panel" ng-class="{active:review == 'book'}">
-                <div class="panel-body">
-                    <img src="../../images/online-icon2.png">
-                    <div class="space"></div>
-                    <h2 data-resource-id="PS 6.2.1a" translate="PS_6_2_1a">Book Online</h2>
-                    <div class="space"></div>
-                    <button ng-hide="review == 'book'" ng-click="review = 'book'"  class="btn btn-default btn-sm ng-scope">Select</button>
-                    <img ng-show="review == 'book'" src="../../images/selected-icon.png" style="position:initial; height: 30px;">
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel" ng-class="{active:review == 'call'}">
-                <div class="panel-body">
-                    <img src="../../images/call-icon2.png">
-                    <div class="space"></div>
-                    <h2 data-resource-id="PS 6.2.1b" translate="PS_6_2_1b">Call Us</h2>
-                    <div class="space"></div>
-                    <button ng-hide="review == 'call'" ng-click="review = 'call'"  class="btn btn-default btn-sm ng-scope">Select</button>
-                    <img ng-show="review == 'call'" src="../../images/selected-icon.png" style="position:initial; height: 30px;">
+              </div>
+              <div class="col-xs-5">
+                <div class="row">
+                  <div class="col-md-6"><a href="../car/car.html" title="Change car details" translate="PC_4_8_1_1b" class="btn btn-default btn-sm desktop">Edit</a></div>
+                  <div class="col-md-6"></div>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel" ng-class="{active:review == 'centers'}">
-                <div class="panel-body">
-                    <img src="../../images/store-icon2.png">
-                    <div class="space"></div>
-                    <h2 data-resource-id="PS 6.2.1c" translate="PS_6_2_1c">Walk-In Centers</h2>
-                    <div class="space"></div>
-                    <button ng-hide="review == 'centers'" ng-click="review = 'centers'"  class="btn btn-default btn-sm ng-scope">Select</button>
-                    <img ng-show="review == 'centers'" src="../../images/selected-icon.png" style="position:initial; height: 30px;">
+            <div class="row margin--bottom">
+              <div class="col-xs-2"><img src="../../images/driver-icon.png"></div>
+              <div class="col-xs-5">
+                <div class="row">
+                  <div class="col-md-3"><strong translate="PC_4_8_1_2">Driver</strong></div>
+                  <div class="col-md-8">
+                    <div><span data-ng-cloak>{{summary.mainDriver.gender}}</span><span data-ng-cloak>{{summary.mainDriver.age}} years old</span><span data-ng-cloak>{{summary.mainDriver.noClaimsDiscount}} NCD</span><span data-ng-cloak>Certificate of Merit</span><span data-ng-cloak data-ng-if="summary.mainDriver.accidents.atFault == 1">{{summary.mainDriver.accidents.atFault}} at fault claim</span><span data-ng-cloak data-ng-if="summary.mainDriver.accidents.atFault &gt; 1">{{summary.mainDriver.accidents.atFault}} at fault claims</span><span data-ng-cloak data-ng-if="summary.mainDriver.accidents.notAtFault == 1">{{summary.mainDriver.accidents.notAtFault}} at fault claim</span><span data-ng-cloak data-ng-if="summary.mainDriver.accidents.notAtFault &gt; 1">{{summary.mainDriver.accidents.notAtFault}} at fault claims</span></div>
+                    <div ng-show="details"><span data-ng-cloak>{{summary.mainDriver.occupation}}</span><span>[Postal Code]</span><span data-ng-cloak>{{summary.mainDriver.drivingExperience}} years valid driving license,</span></div>
+                  </div>
                 </div>
+              </div>
+              <div class="col-xs-5">
+                <div class="row">
+                  <div class="col-md-6"><a href="../about-your-driver/about-your-driver.html" title="Edit the main driver details" translate="PC_4_8_1_1b" class="btn btn-default btn-sm desktop">Edit</a></div>
+                  <div class="col-md-6">
+                    <div class="align-right">S$45 <span translate="PC_4_8_1_2_2">/yr</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="row margin--bottom">
+              <div class="col-xs-2"><img src="../../images/policy-icon2.png"></div>
+              <div class="col-xs-5">
+                <div class="row">
+                  <div class="col-md-3"><strong translate="PC_4_8_1_3_1">Policy</strong></div>
+                  <div class="col-md-8">
+                    <div><span data-ng-cloak>{{summary.policy.name}} , S${{summary.policy.excess}} </span><span translate="PC_4_8_1_3_2">policy excess</span></div>
+                    <div ng-show="content">
+                      <p data-ng-repeat="cover in summary.policy.covers">{{cover}}<span data-ng-if="!$last">, </span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-5">
+                <div class="row">
+                  <div class="col-md-6"><a href="../choose-your-cover/choose-your-cover.html" title="Edit policy details" translate="PC_4_8_1_3_3" class="btn btn-default btn-sm desktop">Edit</a></div>
+                  <div class="col-md-6">
+                    <div class="align-right">S$732 <span translate="PC_4_8_1_3_4">/yr</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-2"><img src="../../images/cover-icon2.png"></div>
+              <div class="col-xs-5">
+                <div class="row">
+                  <div class="col-md-3"><strong translate="PC_4_8_1_5_1">Cover</strong></div>
+                  <div class="col-md-8">
+                    <div><span data-ng-repeat="cover in summary.cover">{{cover.name}} <span data-ng-if="!$last">, </span></span></div>
+                    <div ng-show="details"><span data-ng-repeat="cover in summary.cover">{{cover.description}}<span data-ng-if="!$last">, </span></span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-5">
+                <div class="row">
+                  <div class="col-md-6"><a href="../quote/quote.html" title="Change your cover options" translate="PC_4_8_1_5_2" class="btn btn-default btn-sm desktop">Edit</a></div>
+                  <div class="col-md-6">
+                    <p class="align-right">S$235 <span translate="PC_4_8_1_5_3">/yr</span></p>
+                    <p style="text-decoration:line-through;" class="align-right strikethrough">S$261 <span translate="PC_4_8_1_5_3">/yr</span></p>
+                    <p class="align-right highlight">(10% <span translate="PC_4_8_1_5_4">Discount</span>)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div data-ng-click="details = !details" style="cursor: pointer;" class="centred">
+              <div data-ng-show="!details">
+                <h2 translate="PC_4_8_2_1">Review Full Details</h2><img src="../../images/down-arrow.png">
+              </div>
+              <div data-ng-show="details">
+                <h2 translate="PC_4_8_2_2">See Summary</h2><img src="../../images/up-arrow.png">
+              </div>
+            </div>
+          </div>
         </div>
-   </div>
-   <div class="panel" data-resource-id="PS 6.2.1.1" ng-show="review == 'book'">
-        <div class="panel-body">
-            <h2 translate="PS_6_2_1_1_a">Your Quote Agreement</h2>
-            <p translate="PS_6_2_1_1_b">Please read the agreement below carefully before you purchasing. This is for your protection in the event of a claim.</p>
-            <p translate="PS_6_2_1_1_c">We are required by law to tell you that before we provide cover, you must fully and faithfully tell us everything you know or could reasonably be expected to know that is relevant to our decision to give you the insurance, otherwise you may receive no benefit from your policy or we may cancel your policy and treat it as never having existed.</p>
-        </div>
-        <div class="panel-footer">
-            <h2 translate="PS_6_2_1_1_d">You are agreeing to the statements below:</h2>
-            <div class="space"></div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
+      </div>
+    </section>
+    <section data-ng-controller="reviewAndBuyCtrl" class="section section-thankyou">
+      <div class="container">
+        <form name="paymentForm" novalidate>
+          <h3 translate="PS_6_2_0">3 Easy Ways to Purchase</h3>
+          <div class="row">
+            <div class="col-sm-4">
+              <div data-ng-class="{active:review == 'book'}" class="panel">
+                <div class="panel-body centred"><img src="../../images/online-icon2.png" class="margin--bottom">
+                  <h2 translate="PS_6_2_1a" class="margin--bottom">Book Online</h2>
+                  <button type="button" data-ng-hide="review == 'book'" data-ng-click="review = 'book'" class="btn btn-default btn-sm">Select</button><img data-ng-show="review == 'book'" src="../../images/selected-icon.png">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div data-ng-class="{active:review == 'call'}" class="panel">
+                <div class="panel-body centred"><img src="../../images/call-icon2.png" class="margin--bottom">
+                  <h2 translate="PS_6_2_1b" class="margin--bottom">Call Us</h2>
+                  <button type="button" data-ng-hide="review == 'call'" data-ng-click="review = 'call'" class="btn btn-default btn-sm">Select</button><img data-ng-show="review == 'call'" src="../../images/selected-icon.png">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div data-ng-class="{active:review == 'centers'}" class="panel">
+                <div class="panel-body centred"><img src="../../images/store-icon2.png" class="margin--bottom">
+                  <h2 translate="PS_6_2_1c" class="margin--bottom">Walk-In Centers</h2>
+                  <button type="button" data-ng-hide="review == 'centers'" data-ng-click="review = 'centers'" class="btn btn-default btn-sm">Select</button><img data-ng-show="review == 'centers'" src="../../images/selected-icon.png">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-ng-show="review == 'book'" class="panel">
+            <div class="panel-body">
+              <h2 translate="PS_6_2_1_1_a">Your Quote Agreement</h2>
+              <p translate="PS_6_2_1_1_b">Please read the agreement below carefully before you purchasing. This is for your protection in the event of a claim.</p>
+              <p translate="PS_6_2_1_1_c">We are required by law to tell you that before we provide cover, you must fully and faithfully tell us everything you know or could reasonably be expected to know that is relevant to our decision to give you the insurance, otherwise you may receive no benefit from your policy or we may cancel your policy and treat it as never having existed.</p>
+            </div>
+            <div class="panel-footer">
+              <h2 translate="PS_6_2_1_1_d" class="margin--bottom">You are agreeing to the statements below:</h2>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
                 <p translate="PS_6_2_1_1_e">The car is not used for commercial purposes or for hire/reward.</p>
-            </div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
+              </div>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
                 <p translate="PS_6_2_1_1_f">The car is registered in Hong Kong.</p>
-            </div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
+              </div>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
                 <p translate="PS_6_2_1_1_g">The car is registered in Singapore and any modifications it may have are LTA compliant.</p>
-            </div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
+              </div>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
                 <p translate="PS_6_2_1_1_h">That the policyholder must be the registered owner of the vehicle.</p>
-            </div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
+              </div>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
                 <p translate="PS_6_2_1_1_i">That the drivers you wish to insure do not have 2 or more at-fault accidents/claims on this or another vehicle (excluding motorcycles) in the last 3 years.</p>
-            </div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
+              </div>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
                 <p translate="PS_6_2_1_1_j">You have read and agree to our Privacy Statement.</p>
-            </div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
+              </div>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
                 <p translate="PS_6_2_1_1_k">The main driver of the car is aged 70 and below and has a valid driving license of at least 2 years.</p>
-            </div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
+              </div>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
                 <p translate="PS_6_2_1_1_l">No driver has been refused insurance or had it terminated in the last 3 years.</p>
-            </div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
+              </div>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
                 <p translate="PS_6_2_1_1_m">No driver has had any class of license suspended or cancelled in the last 5 years</p>
-            </div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
-                <p translate="PS_6_2_1_1_n">All drivers have valid driving licenses with less than 12 driving offence points.</p>
-            </div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
+              </div>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
+                <p translate="PS_6_2_1_1_n">| All drivers have valid driving licenses with less than 12 driving offence points.</p>
+              </div>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
                 <p translate="PS_6_2_1_1_o">That the policyholder must be the registered owner of the vehicle.</p>
-            </div>
-            <div>
-                <img class="pull-left margin--right" src="../../images/green-check.png">
+              </div>
+              <div><img src="../../images/green-check.png" class="pull-left margin--right">
                 <p translate="PS_6_2_1_1_p">You have read and understood the Policy summary and Policy wording</p>
+              </div>
             </div>
-        </div>
-        <div class="panel-body">
-            <label for="checkbox1" data-resource-id="PS 6.2.1.1.1" class="label-checkbox">
-                <input id="checkbox1" type="checkbox" ng-model="checked">
+            <div class="panel-body">
+              <label for="checkbox1" class="label-checkbox margin--bottom">
+                <input id="checkbox1" type="checkbox" data-ng-model="agreed">
                 <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_6_2_1_1_1">I Agree to the terms</span>
-            </label>
-            <div ng-show="checked" data-resource-id="PS 6.3">
+              </label>
+              <div data-ng-show="agreed" class="margin--top">
                 <h2 translate="PS_6_3_1">Payment Details</h2>
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="space"></div>
-                        <p translate="PS_6_3_2">How would you like to pay?</p>
-                        <button name="payment" type="button" class="btn btn-default random-margin" ng-class="{active:review.payment === false}" ng-click="review.payment = false"><span translate="PS_6_3_2_1">Monthly</span><span class="glyphicon glyphicon-ok"></span></button>
-                        <button name="payment" type="button" class="btn btn-default" ng-class="{active:review.payment === true}" ng-click="review.payment = true"><span translate="PS_6_3_2_2">Annually</span><span class="glyphicon glyphicon-ok"></span></button>
-                        <img class="error-image" src="../../images/error.png" data-ng-show="carForm.$submitted && review.payment == '' ">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="space"></div>
-                        <p translate="PS_6_3_3">Using Bank</p>
-                        <img class="error-input-image" src="../../images/error.png" data-ng-show="(reviewForm.bank_name.$invalid && reviewForm.bank_name.$dirty) || (reviewForm.bank_name.$invalid && carForm.$submitted)">
-                        <input id="bank_name" ng-model="review.bank" class="form-control" type="text"  name="bank_name" required>
-                    </div>
+                  <div class="col-md-6 margin--bottom">
+                    <p translate="PS_6_3_2">How would you like to pay?</p>
+                    <button type="button" data-ng-class="{'active': paymentDetails.term == 'monthly'}" data-ng-click="paymentDetails.term = 'monthly'" tabindex="1" class="btn btn-default random-margin"><span translate="PS_6_3_2_1">Monthly</span><span class="glyphicon glyphicon-ok"></span></button>
+                    <button type="button" data-ng-class="{'active': paymentDetails.term == 'annually'}" data-ng-click="paymentDetails.term = 'annually'" tabindex="2" class="btn btn-default"><span translate="PS_6_3_2_2">Annually</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="paymentForm.$submitted &amp;&amp; paymentDetails.term == null">
+                  </div>
+                  <div class="col-md-6 margin--bottom">
+                    <p translate="PS_6_3_3">Using Bank</p>
+                    <input type="text" name="bank" data-ng-model="paymentDetails.bank" required tabindex="5" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"><img src="../../images/error.png" data-ng-show="(paymentForm.$submitted &amp;&amp; paymentForm.bank.$invalid) || (paymentForm.bank.$invalid &amp;&amp; paymentForm.bank.$dirty)">
+                  </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="space"></div>
-                        <p translate="PS_6_3_3">Cardholder Name</p>
-                        <img class="error-input-image" src="../../images/error.png" data-ng-show="(reviewForm.card_name.$invalid && reviewForm.card_name.$dirty) || (reviewForm.card_name.$invalid && carForm.$submitted)">
-                        <input id="card_name" ng-model="card_name" class="form-control" type="text" placeholder="name as it appears on the card" name="card_name" required>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="space"></div>
-                        <p translate="PS_6_3_3">Credit Card Number</p>
-                        <img class="error-input-image" src="../../images/error.png" data-ng-show="(reviewForm.card_number.$invalid && reviewForm.card_number.$dirty) || (reviewForm.card_number.$invalid && carForm.$submitted)">
-                        <input id="card_number" ng-model="card_number" class="form-control" type="text" placeholder="enter credit card number" name="card_number" required>
-                    </div>
+                  <div class="col-md-6 margin--bottom">
+                    <p translate="PS_6_3_4">Cardholder Name</p>
+                    <input type="text" placeholder="Name as it appears on the card" name="cardholderName" data-ng-model="paymentDetails.cardholderName" required tabindex="3" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"><img src="../../images/error.png" data-ng-show="(paymentForm.$submitted &amp;&amp; paymentForm.cardholderName.$invalid) || (paymentForm.cardholderName.$invalid &amp;&amp; paymentForm.cardholderName.$dirty)">
+                  </div>
+                  <div class="col-md-6 margin--bottom">
+                    <p translate="PS_6_3_5">Credit Card Number</p>
+                    <input type="text" placeholder="0000-0000-0000-0000" name="creditCardNumber" data-ng-model="paymentDetails.creditCardNumber" required tabindex="6" data-ng-pattern="/^[0-9s -]*$/" class="form-control"><img src="../../images/error.png" data-ng-show="(paymentForm.$submitted &amp;&amp; paymentForm.creditCardNumber.$invalid) || (paymentForm.creditCardNumber.$invalid &amp;&amp; paymentForm.creditCardNumber.$dirty)">
+                  </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="space"></div>
-                        <p translate="PS_6_3_3">Verification Number</p>
-                        <img class="error-input-image" src="../../images/error.png" data-ng-show="(reviewForm.verification_number.$invalid && reviewForm.verification_number.$dirty) || (reviewForm.verification_number.$invalid && carForm.$submitted)">
-                        <input id="verification_number" ng-model="verification_number" class="form-control" type="text" name="verification_number" required>
+                  <div class="col-md-6">
+                    <p translate="PS_6_3_6">Verification Number</p>
+                    <input type="text" name="verificationNumber" data-ng-model="paymentDetails.verificationNumber" required tabindex="4" data-ng-pattern="/^[0-9]*$/" class="form-control"><img src="../../images/error.png" data-ng-show="(paymentForm.$submitted &amp;&amp; paymentForm.verificationNumber.$invalid) || (paymentForm.verificationNumber.$invalid &amp;&amp; paymentForm.verificationNumber.$dirty)">
+                  </div>
+                  <div class="col-md-6">
+                    <p translate="PS_6_3_7">Expiry Date</p>
+                    <div class="form-inline">
+                      <input placeholder="MM" name="expiryMonth" type="number" min="1" max="12" data-ng-model="paymentDetails.expiryDate.month" required tabindex="7" class="month">
+                      <input placeholder="YYYY" name="expiryYear" type="number" min="2015" max="2025" data-ng-model="paymentDetails.expiryDate.year" required tabindex="8" class="year"><img src="../../images/error.png" data-ng-show="(paymentForm.$submitted &amp;&amp; paymentForm.expiryMonth.$invalid) || (paymentForm.$submitted &amp;&amp; paymentForm.expiryYear.$invalid) || (paymentForm.expiryMonth.$invalid &amp;&amp; paymentForm.expiryMonth.$dirty) || (paymentForm.expiryYear.$invalid &amp;&amp; paymentForm.expiryYear.$dirty)">
                     </div>
-                    <div class="col-md-6">
-                        <div class="space"></div>
-                        <p translate="PS_6_3_3">Expiry Date</p>
-                        <div class="form-inline">
-                            <input name="review_month" ng-model="review_month" placeholder="MM" type="number" min="1" max="12" class="month">
-                            <input name="review_year" ng-model="review_year" placeholder="YYYY" type="number" min="1900" max="2015" class="year">
-                            <img class="error-input-image" src="../../images/error.png" data-ng-show="(reviewForm.review_month.$invalid && reviewForm.review_month.$dirty) || (reviewForm.review_year.$invalid && reviewForm.review_year.$dirty) || (reviewForm.review_month.$invalid && reviewForm.review_year.$invalid && carForm.$submitted)">
-                        </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="panel-footer" ng-show="checked">
-            <div data-resource-id="PS 6.4" ng-show="mont_anual">
-            <h2 translate="PS_6_4_0">Would you like to sign up for auto renew?</h2>
-            <p translate="PS_6_4_0_1">Copy further touting the benefits of notification, lorem ipsum dolor sit atmet.</p>
-            <button type="button" class="btn btn-default" ng-class="{active:yes_no === true}" ng-click="yes_no = true" data-resource-id="PS 1.2b"><span translate="PS_1_2b">Yes</span> <span class="glyphicon glyphicon-ok"></span></button>
-            <button type="button" class="btn btn-default" ng-class="{active:yes_no === false}" ng-click="yes_no = false" data-resource-id="PS 1.2c"><span translate="PS_1_2c">No</span> <span class="glyphicon glyphicon-ok"></span></button>
+            <div data-ng-show="agreed" class="panel-footer">
+              <div data-ng-show="paymentDetails.term == 'annual'">
+                <h2 translate="PS_6_4_0">Would you like to sign up for auto renew?</h2>
+                <p translate="PS_6_4_0_1">Copy further touting the benefits of notification, lorem ipsum dolor sit atmet.</p>
+                <button type="button" data-ng-class="{'active': paymentDetails.autoRenew == true}" data-ng-click="paymentDetails.autoRenew = true" class="btn btn-default"><span translate="PS_1_2b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button type="button" data-ng-class="{'active': paymentDetails.autoRenew == false}" data-ng-click="paymentDetails.autoRenew = false" class="btn btn-default"><span translate="PS_1_2c">No</span><span class="glyphicon glyphicon-ok"></span></button>
+              </div>
+              <div>
+                <h2 class="margin--bottom"><span translate="PS_6_5_1">What you pay today:</span><span data-ng-cloak> S${{summary.policy.total | number}}</span>
+                  <div translate="PS_6_5_2" class="subtitle">if you change your mind, you have 15 days in which you can cancel your policy to receive a full refund</div>
+                </h2>
+                <h2 class="margin--bottom"><span translate="PS_6_5_3">Future monthly payments:</span><span data-ng-cloak> S${{summary.policy.total / 12}}</span></h2><a href="" title="" translate="PS_6_5_4">See monthly payment breakdown</a>
+              </div>
             </div>
-            <div class="space"></div>
-            <div data-resource-id="PS 6.5">
-            <h2><span translate="PS_6_5_1">What you pay today:</span> S$1,356
-                <div class="subtitle" translate="PS_6_5_2">if you change your mind, you have 15 days in which<br/>you can cancel your policy to receive a full refund</div>
-            </h2>
-            <div class="space"></div>
-            <h2><span translate="PS_6_5_3">Future monthly payments:</span> S$400</h2>
-            <a href="" translate="PS_6_5_4">See monthly payment breakdown</a>
+          </div>
+          <div data-ng-show="review == 'call'" class="panel">
+            <div class="panel-body">
+              <h2 translate="PS_6_5_6">Want to finish over the phone? Let our [Country] team help you by calling us directly.</h2>
+              <p>[Phone Number]</p>
+              <p translate="PS_6_5_7">Please provide your policy number below so we can pick up where you left off.</p>
+              <p><span translate="PS_6_5_8">Your Policy Number:</span> [XXXXX]</p>
+              <h2><span translate="PS_6_5_9">We are available at these times</span> [Call Center Hours]</h2>
             </div>
-        </div>
-   </div>
-   <div class="panel" ng-show="review == 'call'">
-    <div class="panel-body">
-        <h2 translate="PS_6_5_6">Want to finish over the phone? Let our [Country] team help you by calling us directly.</h2>
-        <p>[Phone Number]</p>
-        <p translate="PS_6_5_7">Please provide your policy number below so we can pick up where you left off.</p>
-        <p><span translate="PS_6_5_8">Your Policy Number:</span> [XXXXX]</p>
-        <h2><span translate="PS_6_5_9">We are available at these times</span> [Call Center Hours]</h2>
-    </div>
-   </div>
-   <div class="panel" ng-show="review == 'centers'">
-    <div class="panel-body">
-        <h2 translate="PS_6_5_10">Come and visit us in person!</h2>
-        <p>[Address]</p>
-        <iframe style="width:100%; height:300px;" src="http://regiohelden.de/google-maps/map_en.php?hl=en&amp;q=1101%2C%2011%2FF%2C%20Allied%20Kajima%20Building%2C%20138%20Gloucester%20Road%2C%20Wan%20Chai%2C%20Hong%20Kong+(RegioHelden%20GmbH)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=A&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-    </div>
-   </div>
-</div>
-
-<div data-resource-id="PS 6.6">
-<div style="display: table; width: 100%;">
-<button type="button" class="btn btn-backward" style="float:left; padding: 5px 12px;"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_6_6_1">Back</span></button>
-<button type="submit" class="btn btn-forward btn-lg" style="float:right;" valid="reviewForm.$valid"><span translate="PS_5_6_2" class="ng-scope">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
-<!-- <button type="submit" class="btn btn-forward btn-lg" style="float:right;" continue next-page="http://localhost:9000/pages/thank-you/thank-you.html"><span translate="PS_5_6_2" class="ng-scope">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button> -->
-</div>
-    <div class="save-for-later" data-resource-id="PC 4.1.2">
-        <button type="button" class="popover-button btn btn-primary btn-action btn-sm"><span ng-hide="submit" translate="PS_6_6_2">Save for later</span><span ng-show="submit" translate="PS_6_6_3">Saved!</span></button>
+          </div>
+          <div data-ng-show="review == 'centers'" class="panel">
+            <div class="panel-body">
+              <h2 translate="PS_6_5_10">Come and visit us in person!</h2>
+              <p>[Address]</p>
+              <iframe src="http://regiohelden.de/google-maps/map_en.php?hl=en&amp;q=1101%2C%2011%2FF%2C%20Allied%20Kajima%20Building%2C%20138%20Gloucester%20Road%2C%20Wan%20Chai%2C%20Hong%20Kong+(RegioHelden%20GmbH)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=A&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            </div>
+          </div>
+          <div class="clearfix"><a href="" title="" class="btn btn-backward margin--bottom"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_6_6_1">Back</span></a>
+            <button type="submit" continue next-page="http://localhost:9000/pages/thank-you/thank-you.html" valid="review == 'book' ? paymentForm.$valid &amp;&amp; agreed : true" url="http://localhost:9000/payment" page-data="{{paymentDetails}}" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PS_5_6_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+            <button type="button" style="clear:both;" data-ng-click="saveForLater()" class="popover-button btn btn-primary btn-action btn-sm pull-right"><span data-ng-show="!saved" translate="PS_6_6_2">Save for later</span><span data-ng-show="saved" translate="PS_6_6_3">Saved!</span></button>
+          </div>
+        </form>
         <div id="popover1" class="popover save-div bottom">
-            <div class="arrow"></div>
-            <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
-            <div ng-hide="send">
-            <p data-resource-id="PC 4.1.2a" translate="PS_6_6_4">Please provide your email below and we'll send you a link to retrieve your quotation for up to 90 days.</p>
+          <div class="arrow"></div>
+          <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+          <div data-ng-hide="send">
+            <p translate="PS_6_6_4">Please provide your email below and we‘ll send you a link to retrieve your quotation for up to 90 days.</p>
             <input type="email" placeholder="Enter email address" class="form-control">
-            <p data-resource-id="PC 4.1.2b" translate="PS_6_6_4_1">Want us to help you finish? provide your phone number and we'll give you a call.</p>
+            <p translate="PS_6_6_4_1">Want us to help you finish? provide your phone number and we‘ll give you a call.</p>
             <input type="tel" placeholder="Enter phone number" class="form-control">
-            <button type="button" class="btn btn-forward" data-resource-id="PC 4.1.2c" ng-click="send = true" translate="PS_6_6_6">Send</button>
-            </div>
-            <div class="on-send" ng-show="send">
-                <p translate="PS_6_6_6_1">Your quote has been successfully saved. Please check your email, which contains a link to retrieve your quotation.</p>
-                <p translate="PS_6_6_6_2">Share your current renewal premium so we can make sure we're giving you the best value</p>
-                <button type="button" class="btn btn-forward" ng-click="submit = true" translate="PS_6_6_6_3">Submit</button>
-            </div>
+            <button type="button" data-ng-click="send = true" translate="PS_6_6_6" class="btn btn-forward">Send</button>
+          </div>
+          <div data-ng-show="send" class="on-send">
+            <p translate="PS_6_6_6_1">Your quote has been successfully saved. Please check your email, which contains a link to retrieve your quotation.</p>
+            <p translate="PS_6_6_6_2">Share your current renewal premium so we can make sure we‘re giving you the best value</p>
+            <button type="button" data-ng-click="submit = true" translate="PS_6_6_6_3" class="btn btn-forward">Submit</button>
+          </div>
         </div>
-        <p data-resource-id="PC 4.1.2d" translate="PS_6_6_7">Your details will be saved for 90 days so you can finish later</p>
-    </div>
-</div>
-
-                </div>
-                </form>                   
-            </section>
+        <p translate="PS_6_6_7">Your details will be saved for 90 days so you can finish later</p>
+      </div>
+    </section>
     <footer class="page-footer">
       <div class="container">
         <button ng-click="switchLanguage('zh_CN')" data-ng-show="currentLanguage=='en_GB'" class="btn btn-sm btn-icon btn-icon--chinese pull-right">Chinese</button>
         <button ng-click="switchLanguage('en_GB')" data-ng-show="currentLanguage=='zh_CN'" class="btn btn-sm btn-icon btn-icon--english pull-right">English</button>
       </div>
     </footer>
-    </body>
+    <script>
+      //- function loadCSS(e,t,n){"use strict";var i=window.document.createElement("link");var o=t||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";o.parentNode.insertBefore(i,o);setTimeout(function(){i.media=n||"all"})}
+      //- loadCSS("styles/main.css");
+      
+      //- var _gaq = _gaq || [];
+      //- _gaq.push(["_setAccount", "UA-XXXXXXXX-X"]);
+      //- _gaq.push(["_trackPageview"]);
+      
+      //- (function() {
+      //- 	var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+      //- 	ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+      //- 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      //- })();
+      
+    </script>
+  </body>
 </html>

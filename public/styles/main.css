@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Thu Apr 23 2015 11:47:45 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Fri Apr 24 2015 19:06:00 GMT+0800 (CST) */
 @media (min-width: 768px) {
   .pull-left-large {
     float: left; } }
@@ -947,6 +947,10 @@ input[type="checkbox"]:disabled ~ span, input[type="radio"]:disabled ~ span {
       padding-right: 47%; }
       .panel-header.compare .price-summary {
         clear: both; }
+    .panel-header--blue {
+      background: #25a8e0; }
+      .panel-header--blue h2 {
+        color: #ffffff; }
   .panel-body--grey {
     background: #f2f2f2; }
   .panel-footer {

@@ -1,0 +1,318 @@
+section.section.section-thankyou(data-ng-controller="reviewAndBuyCtrl")
+
+	.container
+
+		form(name="paymentForm", novalidate)
+
+			h3(translate="PS_6_2_0") 3 Easy Ways to Purchase
+
+			.row
+
+				.col-sm-4
+
+					.panel(data-ng-class="{active:review == 'book'}")
+
+						.panel-body.centred
+
+							img.margin--bottom(src="../../images/online-icon2.png")
+
+							h2.margin--bottom(translate="PS_6_2_1a") Book Online
+
+							button.btn.btn-default.btn-sm(type="button", data-ng-hide="review == 'book'", data-ng-click="review = 'book'") Select
+
+							img(data-ng-show="review == 'book'", src="../../images/selected-icon.png")
+
+				.col-sm-4
+
+					.panel(data-ng-class="{active:review == 'call'}")
+
+						.panel-body.centred
+
+							img.margin--bottom(src="../../images/call-icon2.png")
+
+							h2.margin--bottom(translate="PS_6_2_1b") Call Us
+
+							button.btn.btn-default.btn-sm(type="button", data-ng-hide="review == 'call'", data-ng-click="review = 'call'") Select
+
+							img(data-ng-show="review == 'call'", src="../../images/selected-icon.png")
+
+				.col-sm-4
+
+					.panel(data-ng-class="{active:review == 'centers'}")
+
+						.panel-body.centred
+
+							img.margin--bottom(src="../../images/store-icon2.png")
+
+							h2.margin--bottom(translate="PS_6_2_1c") Walk-In Centers
+
+							button.btn.btn-default.btn-sm(type="button", data-ng-hide="review == 'centers'", data-ng-click="review = 'centers'") Select
+
+							img(data-ng-show="review == 'centers'", src="../../images/selected-icon.png")
+
+			.panel(data-ng-show="review == 'book'")
+
+				.panel-body
+
+					h2(translate="PS_6_2_1_1_a") Your Quote Agreement
+
+					p(translate="PS_6_2_1_1_b") Please read the agreement below carefully before you purchasing. This is for your protection in the event of a claim.
+
+					p(translate="PS_6_2_1_1_c") We are required by law to tell you that before we provide cover, you must fully and faithfully tell us everything you know or could reasonably be expected to know that is relevant to our decision to give you the insurance, otherwise you may receive no benefit from your policy or we may cancel your policy and treat it as never having existed.
+
+				.panel-footer
+
+					h2.margin--bottom(translate="PS_6_2_1_1_d") You are agreeing to the statements below:
+
+					div
+
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_e") The car is not used for commercial purposes or for hire/reward.
+
+					div
+
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_f") The car is registered in Hong Kong.
+
+					div
+
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_g") The car is registered in Singapore and any modifications it may have are LTA compliant.
+
+					div
+
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_h") That the policyholder must be the registered owner of the vehicle.
+
+					div
+
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_i") That the drivers you wish to insure do not have 2 or more at-fault accidents/claims on this or another vehicle (excluding motorcycles) in the last 3 years.
+
+					div
+
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_j") You have read and agree to our Privacy Statement.
+
+					div
+
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_k") The main driver of the car is aged 70 and below and has a valid driving license of at least 2 years.
+
+					div
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_l") No driver has been refused insurance or had it terminated in the last 3 years.
+
+					div
+
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_m") No driver has had any class of license suspended or cancelled in the last 5 years
+
+					div
+
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_n") | All drivers have valid driving licenses with less than 12 driving offence points.
+
+					div
+
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_o") That the policyholder must be the registered owner of the vehicle.
+
+					div
+
+						img.pull-left.margin--right(src="../../images/green-check.png")
+
+						p(translate="PS_6_2_1_1_p") You have read and understood the Policy summary and Policy wording
+
+				.panel-body
+
+					label.label-checkbox.margin--bottom(for="checkbox1")
+
+						input#checkbox1(type="checkbox", data-ng-model="agreed")
+
+						.fake-checkbox
+							span.glyphicon.glyphicon-ok
+
+						span(translate="PS_6_2_1_1_1") I Agree to the terms
+
+					.margin--top(data-ng-show="agreed")
+
+						h2(translate="PS_6_3_1") Payment Details
+
+						.row
+
+							.col-md-6.margin--bottom
+
+								p(translate="PS_6_3_2") How would you like to pay?
+
+								button.btn.btn-default.random-margin(type="button", data-ng-class="{'active': paymentDetails.term == 'monthly'}", data-ng-click="paymentDetails.term = 'monthly'", tabindex="1")
+									span(translate="PS_6_3_2_1") Monthly
+									span.glyphicon.glyphicon-ok
+
+								button.btn.btn-default(type="button", data-ng-class="{'active': paymentDetails.term == 'annually'}", data-ng-click="paymentDetails.term = 'annually'", tabindex="2")
+									span(translate="PS_6_3_2_2") Annually
+									span.glyphicon.glyphicon-ok
+
+								img(src="../../images/error.png", data-ng-show="paymentForm.$submitted && paymentDetails.term == null")
+
+							.col-md-6.margin--bottom
+
+								p(translate="PS_6_3_3") Using Bank
+
+								input.form-control(type="text", name="bank", data-ng-model="paymentDetails.bank", required, tabindex="5", data-ng-pattern="/^[a-zA-Z0-9_ -]*$/")
+
+								img(src="../../images/error.png", data-ng-show="(paymentForm.$submitted && paymentForm.bank.$invalid) || (paymentForm.bank.$invalid && paymentForm.bank.$dirty)")
+
+						.row
+
+							.col-md-6.margin--bottom
+
+								p(translate="PS_6_3_4") Cardholder Name
+
+								input.form-control(type="text", placeholder="Name as it appears on the card", name="cardholderName", data-ng-model="paymentDetails.cardholderName", required, tabindex="3", data-ng-pattern="/^[a-zA-Z0-9_ -]*$/")
+
+								img(src="../../images/error.png", data-ng-show="(paymentForm.$submitted && paymentForm.cardholderName.$invalid) || (paymentForm.cardholderName.$invalid && paymentForm.cardholderName.$dirty)")
+
+							.col-md-6.margin--bottom
+
+								p(translate="PS_6_3_5") Credit Card Number
+
+								input.form-control(type="text", placeholder="0000-0000-0000-0000", name="creditCardNumber", data-ng-model="paymentDetails.creditCardNumber", required, tabindex="6", data-ng-pattern="/^[0-9\s -]*$/")
+
+								img(src="../../images/error.png", data-ng-show="(paymentForm.$submitted && paymentForm.creditCardNumber.$invalid) || (paymentForm.creditCardNumber.$invalid && paymentForm.creditCardNumber.$dirty)")
+
+						.row
+
+							.col-md-6
+
+								p(translate="PS_6_3_6") Verification Number
+
+								input.form-control(type="text", name="verificationNumber", data-ng-model="paymentDetails.verificationNumber", required, tabindex="4", data-ng-pattern="/^[0-9]*$/")
+
+								img(src="../../images/error.png", data-ng-show="(paymentForm.$submitted && paymentForm.verificationNumber.$invalid) || (paymentForm.verificationNumber.$invalid && paymentForm.verificationNumber.$dirty)")
+
+							.col-md-6
+
+								p(translate="PS_6_3_7") Expiry Date
+
+								.form-inline
+
+									input.month(placeholder="MM", name="expiryMonth", type="number", min="1", max="12", data-ng-model="paymentDetails.expiryDate.month", required, tabindex="7")
+
+									input.year(placeholder="YYYY", name="expiryYear", type="number", min="2015", max="2025", data-ng-model="paymentDetails.expiryDate.year", required, tabindex="8")
+
+									img(src="../../images/error.png", data-ng-show="(paymentForm.$submitted && paymentForm.expiryMonth.$invalid) || (paymentForm.$submitted && paymentForm.expiryYear.$invalid) || (paymentForm.expiryMonth.$invalid && paymentForm.expiryMonth.$dirty) || (paymentForm.expiryYear.$invalid && paymentForm.expiryYear.$dirty)")
+
+				.panel-footer(data-ng-show="agreed")
+
+					div(data-ng-show="paymentDetails.term == 'annual'")
+
+						h2(translate="PS_6_4_0") Would you like to sign up for auto renew?
+
+						p(translate="PS_6_4_0_1") Copy further touting the benefits of notification, lorem ipsum dolor sit atmet.
+
+						button.btn.btn-default(type="button", data-ng-class="{'active': paymentDetails.autoRenew == true}", data-ng-click="paymentDetails.autoRenew = true")
+							span(translate="PS_1_2b") Yes
+							span.glyphicon.glyphicon-ok
+
+						button.btn.btn-default(type="button", data-ng-class="{'active': paymentDetails.autoRenew == false}", data-ng-click="paymentDetails.autoRenew = false")
+							span(translate="PS_1_2c") No
+							span.glyphicon.glyphicon-ok
+
+					div
+
+						h2.margin--bottom
+							span(translate="PS_6_5_1") What you pay today:
+							span(data-ng-cloak)  S${{summary.policy.total | number}}
+
+							.subtitle(translate="PS_6_5_2") if you change your mind, you have 15 days in which you can cancel your policy to receive a full refund
+
+						h2.margin--bottom
+							span(translate="PS_6_5_3") Future monthly payments:
+							span(data-ng-cloak)  S${{summary.policy.total / 12}}
+
+						a(href="", title="", translate="PS_6_5_4") See monthly payment breakdown
+
+			.panel(data-ng-show="review == 'call'")
+
+				.panel-body
+
+					h2(translate="PS_6_5_6") Want to finish over the phone? Let our [Country] team help you by calling us directly.
+
+					p [Phone Number]
+
+					p(translate="PS_6_5_7") Please provide your policy number below so we can pick up where you left off.
+
+					p
+						span(translate="PS_6_5_8") Your Policy Number:
+						|  [XXXXX]
+
+					h2
+						span(translate="PS_6_5_9") We are available at these times
+						|  [Call Center Hours]
+
+			.panel(data-ng-show="review == 'centers'")
+
+				.panel-body
+
+					h2(translate="PS_6_5_10") Come and visit us in person!
+
+					p [Address]
+
+					iframe(src="http://regiohelden.de/google-maps/map_en.php?hl=en&q=1101%2C%2011%2FF%2C%20Allied%20Kajima%20Building%2C%20138%20Gloucester%20Road%2C%20Wan%20Chai%2C%20Hong%20Kong+(RegioHelden%20GmbH)&ie=UTF8&t=&z=14&iwloc=A&output=embed", frameborder="0", scrolling="no", marginheight="0", marginwidth="0")
+
+			div.clearfix
+
+				a.btn.btn-backward.margin--bottom(href="", title="")
+					span.glyphicon.glyphicon-arrow-left
+					span(translate="PS_6_6_1") Back
+
+				button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", continue, next-page="http://localhost:9000/pages/thank-you/thank-you.html", valid="review == 'book' ? paymentForm.$valid && agreed : true", url="http://localhost:9000/payment", page-data="{{paymentDetails}}")
+					span(translate="PS_5_6_2") Proceed
+					span.glyphicon.glyphicon-arrow-right
+
+				button.popover-button.btn.btn-primary.btn-action.btn-sm.pull-right(type="button", style="clear:both;", data-ng-click="saveForLater()")
+
+					span(data-ng-show="!saved", translate="PS_6_6_2") Save for later
+					span(data-ng-show="saved", translate="PS_6_6_3") Saved!
+
+		#popover1.popover.save-div.bottom
+
+			.arrow
+
+			button.popover-close-button(type="button")
+
+				span.glyphicon.glyphicon-remove
+
+			div(data-ng-hide="send")
+
+				p(translate="PS_6_6_4") Please provide your email below and we‘ll send you a link to retrieve your quotation for up to 90 days.
+
+				input.form-control(type="email", placeholder="Enter email address")
+
+				p(translate="PS_6_6_4_1") Want us to help you finish? provide your phone number and we‘ll give you a call.
+
+				input.form-control(type="tel", placeholder="Enter phone number")
+
+				button.btn.btn-forward(type="button", data-ng-click="send = true", translate="PS_6_6_6") Send
+
+			.on-send(data-ng-show="send")
+
+				p(translate="PS_6_6_6_1") Your quote has been successfully saved. Please check your email, which contains a link to retrieve your quotation.
+
+				p(translate="PS_6_6_6_2") Share your current renewal premium so we can make sure we‘re giving you the best value
+
+				button.btn.btn-forward(type="button", data-ng-click="submit = true", translate="PS_6_6_6_3") Submit
+
+		p(translate="PS_6_6_7") Your details will be saved for 90 days so you can finish later
