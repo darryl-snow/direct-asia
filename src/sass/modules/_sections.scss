@@ -37,4 +37,44 @@
 	&-cover {
 		margin:				$base-spacing-unit 0;
 	}
+
+	&-review-and-buy {
+
+		h3 {
+			font-family:	"ProximaLight";
+			font-size:		2em;
+			margin-bottom:	$base-spacing-unit;
+		}
+
+		h4 {
+			font-family:	"ProximaLight";
+			font-size:		2em;
+		}
+
+	}
+
+	&-quote-loading {
+		margin-top:			6em;
+
+		h2 {
+			font-family:	"ProximaLight";
+			font-size:		2em;
+			margin-bottom:	1em;
+		}
+	}
+
+	&-your-policy {
+		h2 {
+			font-family: 	"ProximaLight";
+			font-size:		2em;
+			margin-top:		0;
+		}
+		h3 {
+			font-family: 	"ProximaSemiBold";
+			font-size:		1.5em;
+		}
+		.panel:not(:first-of-type) {
+			margin:			4em 0 !important;
+		}
+	}
 }

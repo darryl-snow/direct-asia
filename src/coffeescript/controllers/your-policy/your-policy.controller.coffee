@@ -22,134 +22,150 @@ from a back-end API. Data should include:
 
 getMockData = ->
 	data =
-		car:
-			year: "2013"
-			make: "Nissan"
-			model: "Micra"
-			modified: true
-			modifications:
-				airintakeexhaust: false
-				bodykit: true
-				rimstires: true
-				suspensionstabiliser: false
-			ownership: "private"
-			financed: false
-			kmsperyear: "> 15,000"
-			lowmileageoption: true
-			usage: "personal use"
-		covers: [
-			name: "Loss of use"
-			description: "S$50 to help you with transport costs while your car is being repaired"
-			cost: 156
-		,
-			name: "My workshop / garage"
-			description: "Gives you the freedom to select your own preferred
-			 workshop for an optional benefit"
-			cost: 156
-		,
-			name: "Experienced Drivers"
-			description: "Cover anyone over 30 with more than 2 years driving experience"
-			cost: 156
-		]
 		policy:
-			covers: [
-				"Third Party - Death or Bodily injury"
-				"Third Party - Property Damage"
-				"Third Party - Collision Damage"
-				"24 hour accident towing"
-				"Own damage - No Other Vehicle Involved"
-				"Windscreen/Window Breakage"
-			]
 			excess: "500"
 			name: "Comprehensive Premium"
 			number: "2332434535t66"
 			savings: "167"
 			total: "1356"
-			registrationNumber: null
-			carChassisNumber: null
-			NCD: null
-			previousInsurer: null
-			previousVehicle: null
-			policyholderFirstName: null
-			policyholderLastName: null
-			policyholderEmail: null
-			policyholderConfirmEmail: null
-			policyholderMobileNumber: null
-			residentialAddressLine1: null
-			residentialAddressLine2: null
-			residentialDistrict: null
-			residentialStatus: null
-			residentialHKID: null
-			contactOption: null
-			driverFirstName: null
-			driverLastName: null
-			driverResidentialStatus: null
-			driverHKID: null
-			driverContactNumber: null
-			driverRelationshipWithPolicyholder: null
-		mainDriver:
-			ownership: true
-			dob:
-				day: 25
-				month: 3
-				year: 1983
-			age: 32
-			gender: "Female"
-			maritalStatus: "single"
-			occupation: "web developer"
-			residentialDistrict: "PanLong Qu"
-			drivingExperience: "more than 5"
-			noClaimsDiscount: "30%"
-			offences: false
-			refusals: false
-			accidents:
-				atFault: "1"
-				notAtFault: "0"
-			additionalDrivers: false
-		additionalDrivers:
-			driver1:
+			covers: [
+				name: "Loss of use"
+				description: "S$50 to help you with transport costs while your car is being repaired"
+				cost: 156
+			,
+				name: "My workshop / garage"
+				description: "Gives you the freedom to select your own preferred
+				 workshop for an optional benefit"
+				cost: 156
+			,
+				name: "Experienced Drivers"
+				description: "Cover anyone over 30 with more than 2 years driving experience"
+				cost: 156
+			]
+			car:
+				year: null
+				make: null
+				model: null
+				modified: false
+				modifications:
+					airintakeexhaust: false
+					bodykit: false
+					rimstires: false
+					suspensionstabiliser: false
+				ownership: null
+				financed: false
+				kmsperyear: null
+				lowmileageoption: true
+				usage: null
+				registrationNumber: null
+				carChassisNumber: null
+			policyHolder:
+				previousInsurer: null
+				previousVehicle: null
 				firstName: null
 				lastName: null
+				email: null
+				confirmEmail: null
+				mobileNumber: null
+				residentialAddressLine1: null
+				residentialAddressLine2: null
+				residentialDistrict: null
+				residentialStatus: null
+				residentialHKID: null
+				contactOption: null
+			mainDriver:
+				firstName: null
+				lastName: null
+				ownership: true
+				dob:
+					day: 0
+					month: 0
+					year: 0
+				age: 0
+				gender: null
+				maritalStatus: null
+				occupation: null
+				residentialDistrict: null
+				drivingExperience: null
+				noClaimsDiscount: null
+				offences: false
+				refusals: false
+				accidents:
+					atFault: null
+					notAtFault: null
+				additionalDrivers: false
+				contactNumber: null
+				relationshipWithPolicyholder: null
+				HKID: null
+				residentialStatus: null
+			additionalDrivers:[
+				firstName: null
+				lastName: null
+				dob:
+					day: null
+					month: null
+					year: null
+				gender: null
+				maritalStatus: null
+				occupation: null
+				drivingExperience: null
+				offences: null
+				accidents:
+					atFault: null
+					notAtFault: null
+				refusals: null
 				residentialStatus: null
 				NRIC: null
 				relationshipWithPolicyHolder: null
-			driver2:
+			,
 				firstName: null
 				lastName: null
+				dob:
+					day: null
+					month: null
+					year: null
+				gender: null
+				maritalStatus: null
+				occupation: null
+				drivingExperience: null
+				offences: null
+				accidents:
+					atFault: null
+					notAtFault: null
+				refusals: null
 				residentialStatus: null
 				NRIC: null
 				relationshipWithPolicyHolder: null
-		countries: [
-			"Singapore"
-			"malaysia"
-		]
-		policyholders: [
-			"Policyholder 1"
-			"Policyholder 2"
-		]
-		driver1policyholders: [
-			"Policyholder 1"
-			"Policyholder 2"
-		]
-		driver2policyholders: [
-			"Policyholder 1"
-			"Policyholder 2"
-		]
-		residentials: [
-			"Address line 1"
-			"Address line 2"
-			"Residential district"
-		]
-		driver1residentials: [
-			"Address line 1"
-			"Address line 2"
-			"Residential district"
-		]
-		driver2residentials: [
-			"Address line 1"
-			"Address line 2"
-			"Residential district"
-		]
+			]
+		options:
+			covers: [
+				name: "Loss of use"
+				description: "S$50 to help you with transport costs while your car is being repaired"
+				cost: 156
+			,
+				name: "My workshop / garage"
+				description: "Gives you the freedom to select your own preferred
+				 workshop for an optional benefit"
+				cost: 156
+			,
+				name: "Experienced Drivers"
+				description: "Cover anyone over 30 with more than 2 years driving experience"
+				cost: 156
+			]
+			countries: [
+				"Singapore"
+				"malaysia"
+			]
+			relationships: [
+				"Mother"
+				"Father"
+				"Spouse"
+			]
+			districts: [
+				"Kowloon"
+				"Central"
+				"New Territories"
+			]
 
 ###
 The controller ties together the view with the model.
@@ -179,20 +195,8 @@ angular.module("DirectAsia").controller "yourPolicyCtrl", [
 			dataFromAPI
 
 		setupData = (data) ->
-
-			$scope.car = data.car
-			$scope.covers = data.covers
 			$scope.policy = data.policy
-			$scope.mainDriver = data.mainDriver
-			$scope.additionalDrivers = driver.additionalDrivers
-
-			$scope.options.countries = data.countries
-			$scope.options.policyholders = data.policyholders
-			$scope.options.driver1policyholders = data.driver1policyholders
-			$scope.options.driver2policyholders = data.driver2policyholders
-			$scope.options.residentials = data.residentials
-			$scope.options.driver1residentials = data.driver1residentials
-			$scope.options.driver2residentials = data.driver2residentials			
+			$scope.options = data.options		
 
 		###
 		Function for saving the plan for later - called by buttons in the
@@ -201,8 +205,6 @@ angular.module("DirectAsia").controller "yourPolicyCtrl", [
 		###
 
 		$scope.saveForLater = ->
-
-			saveCurrentPlan()
 
 			###
 			send data to server

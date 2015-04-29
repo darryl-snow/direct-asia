@@ -1,16 +1,16 @@
-section.section.section-thankyou(data-ng-controller="reviewAndBuyCtrl")
+section.section.section-review-and-buy(data-ng-controller="reviewAndBuyCtrl")
 
 	.container
 
 		form(name="paymentForm", novalidate)
 
-			h3(translate="PS_6_2_0") 3 Easy Ways to Purchase
+			h3.centred(translate="PS_6_2_0") 3 Easy Ways to Purchase
 
 			.row
 
 				.col-sm-4
 
-					.panel(data-ng-class="{active:review == 'book'}")
+					.panel.panel-option(data-ng-class="{active:review == 'book'}")
 
 						.panel-body.centred
 
@@ -24,7 +24,7 @@ section.section.section-thankyou(data-ng-controller="reviewAndBuyCtrl")
 
 				.col-sm-4
 
-					.panel(data-ng-class="{active:review == 'call'}")
+					.panel.panel-option(data-ng-class="{active:review == 'call'}")
 
 						.panel-body.centred
 
@@ -38,7 +38,7 @@ section.section.section-thankyou(data-ng-controller="reviewAndBuyCtrl")
 
 				.col-sm-4
 
-					.panel(data-ng-class="{active:review == 'centers'}")
+					.panel.panel-option(data-ng-class="{active:review == 'centers'}")
 
 						.panel-body.centred
 
@@ -54,7 +54,7 @@ section.section.section-thankyou(data-ng-controller="reviewAndBuyCtrl")
 
 				.panel-body
 
-					h2(translate="PS_6_2_1_1_a") Your Quote Agreement
+					h4(translate="PS_6_2_1_1_a") Your Quote Agreement
 
 					p(translate="PS_6_2_1_1_b") Please read the agreement below carefully before you purchasing. This is for your protection in the event of a claim.
 
@@ -64,72 +64,72 @@ section.section.section-thankyou(data-ng-controller="reviewAndBuyCtrl")
 
 					h2.margin--bottom(translate="PS_6_2_1_1_d") You are agreeing to the statements below:
 
-					div
+					.bonus
 
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
 						p(translate="PS_6_2_1_1_e") The car is not used for commercial purposes or for hire/reward.
 
-					div
+					.bonus
 
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
 						p(translate="PS_6_2_1_1_f") The car is registered in Hong Kong.
 
-					div
+					.bonus
 
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
 						p(translate="PS_6_2_1_1_g") The car is registered in Singapore and any modifications it may have are LTA compliant.
 
-					div
+					.bonus
 
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
 						p(translate="PS_6_2_1_1_h") That the policyholder must be the registered owner of the vehicle.
 
-					div
+					.bonus
 
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
 						p(translate="PS_6_2_1_1_i") That the drivers you wish to insure do not have 2 or more at-fault accidents/claims on this or another vehicle (excluding motorcycles) in the last 3 years.
 
-					div
+					.bonus
 
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
 						p(translate="PS_6_2_1_1_j") You have read and agree to our Privacy Statement.
 
-					div
+					.bonus
 
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
 						p(translate="PS_6_2_1_1_k") The main driver of the car is aged 70 and below and has a valid driving license of at least 2 years.
 
-					div
+					.bonus
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
 						p(translate="PS_6_2_1_1_l") No driver has been refused insurance or had it terminated in the last 3 years.
 
-					div
+					.bonus
 
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
 						p(translate="PS_6_2_1_1_m") No driver has had any class of license suspended or cancelled in the last 5 years
 
-					div
+					.bonus
 
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
 						p(translate="PS_6_2_1_1_n") | All drivers have valid driving licenses with less than 12 driving offence points.
 
-					div
+					.bonus
 
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
 						p(translate="PS_6_2_1_1_o") That the policyholder must be the registered owner of the vehicle.
 
-					div
+					.bonus
 
 						img.pull-left.margin--right(src="../../images/green-check.png")
 
@@ -248,27 +248,31 @@ section.section.section-thankyou(data-ng-controller="reviewAndBuyCtrl")
 
 				.panel-body
 
-					h2(translate="PS_6_5_6") Want to finish over the phone? Let our [Country] team help you by calling us directly.
+					h4(translate="PS_6_5_6") Want to finish over the phone?
+					p(translate="PS_6_5_6_1") Let our [Country] team help you by calling us directly.
 
-					p [Phone Number]
+					p
+						strong [Phone Number]
 
 					p(translate="PS_6_5_7") Please provide your policy number below so we can pick up where you left off.
 
 					p
 						span(translate="PS_6_5_8") Your Policy Number:
-						|  [XXXXX]
+						strong  [XXXXX]
 
-					h2
+					h5
 						span(translate="PS_6_5_9") We are available at these times
-						|  [Call Center Hours]
+						strong  [Call Center Hours]
 
 			.panel(data-ng-show="review == 'centers'")
 
-				.panel-body
+				.panel-header.panel-header--white
 
-					h2(translate="PS_6_5_10") Come and visit us in person!
+					h4(translate="PS_6_5_10") Come and visit us in person!
 
 					p [Address]
+
+				.panel-body.panel-body--nopadding
 
 					iframe(src="http://regiohelden.de/google-maps/map_en.php?hl=en&q=1101%2C%2011%2FF%2C%20Allied%20Kajima%20Building%2C%20138%20Gloucester%20Road%2C%20Wan%20Chai%2C%20Hong%20Kong+(RegioHelden%20GmbH)&ie=UTF8&t=&z=14&iwloc=A&output=embed", frameborder="0", scrolling="no", marginheight="0", marginwidth="0")
 

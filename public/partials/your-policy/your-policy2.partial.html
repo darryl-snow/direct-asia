@@ -1,297 +1,239 @@
 
 <form name="policyForm" novalidate="novalidate">
-  <div class="row">
-    <div class="col-md-8">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12"><img src="../../images/car-icon2.png" class="pull-left margin-right"/>
+  <div class="row margin--bottom">
+    <div class="col-md-8 margin--top">
+      <div class="container-fluid margin--top">
+        <div class="row margin--top">
+          <div class="col-md-12 margin--top"><img src="../../images/car-icon2.png" class="pull-left margin--right"/>
             <h2 translate="PS_5_3a" class="section-title">Car Details</h2>
           </div>
+        </div>
+        <div class="row margin--top">
           <div class="col-md-6">
-            <div class="input-content">
-              <label translate="PS_5_3b" for="registrationNumber">Registration Number</label>
-              <input id="registrationNumber" data-ng-model="policy.registrationNumber" type="text" placeholder="enter registration number" name="registrationNumber" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.registrationNumber.$invalid) || (policyForm.registrationNumber.$invalid &amp;&amp; policyForm.registrationNumber.$dirty)"/>
-            </div>
+            <label translate="PS_5_3b" for="registrationNumber" class="label-bold margin--bottom">Registration Number</label>
+            <input id="registrationNumber" data-ng-model="policy.registrationNumber" type="text" placeholder="enter registration number" name="registrationNumber" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.registrationNumber.$invalid) || (policyForm.registrationNumber.$invalid &amp;&amp; policyForm.registrationNumber.$dirty)"/>
           </div>
-          <div class="col-md-6">
-            <div class="input-content">
-              <label translate="PS_5_3c" for="carChassisNumber">Car Chassis Number</label>
-              <input id="carChassisNumber" data-ng-model="policy.carChassisNumber" type="text" placeholder="Enter car chassis number" name="carChassisNumber" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.carChassisNumber.$invalid) || (policyForm.carChassisNumber.$invalid &amp;&amp; policyForm.carChassisNumber.$dirty)"/><span translate="PS_5_3c_1">(You can obtain your chassis number by logging onto LTA‘s website.)</span>
+          <div data-toggle="popover" data-placement="top" popover="#popover1" popover-type="popover--yellow" trigger="hover" class="col-md-6">
+            <label for="carChassisNumber" class="label-bold margin--bottom"><span translate="PS_5_3c">Car Chassis Number</span><img src="../../images/question-icon.png"/></label>
+            <input id="carChassisNumber" data-ng-model="policy.carChassisNumber" type="text" placeholder="Enter car chassis number" name="carChassisNumber" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.carChassisNumber.$invalid) || (policyForm.carChassisNumber.$invalid &amp;&amp; policyForm.carChassisNumber.$dirty)"/>
+            <div id="popover1" class="popover top">
+              <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+              <div translate="PS_5_3c_1" class="subtitle">You can obtain your chassis number by logging onto LTA‘s website.</div>
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row margin--top">
           <div class="col-md-12">
-            <p><strong translate="PS_5_3d">Are you transfering your NCD from another car?</strong></p>
-            <button type="button" data-ng-class="{'active': policy.NCD == 'yes'}" data-ng-click="policy.NCD = 'yes'" class="btn btn-default random-margin"><span translate="PS_5_3e">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
-            <button type="button" data-ng-class="{'active': policy.NCD == 'no'}" data-ng-click="policy.NCD = 'no'" class="btn btn-default"><span translate="PS_5_3f">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="policyForm.$submitted &amp;&amp; policy.NCD == null"/>
+            <label translate="PS_5_3d" class="label-bold margin--bottom">Are you transfering your NCD from another car?</label>
+            <div class="margin--bottom">
+              <button type="button" data-ng-class="{'active': policy.NCD == 'yes'}" data-ng-click="policy.NCD = 'yes'" class="btn btn-default random-margin"><span translate="PS_5_3e">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+              <button type="button" data-ng-class="{'active': policy.NCD == 'no'}" data-ng-click="policy.NCD = 'no'" class="btn btn-default"><span translate="PS_5_3f">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="policyForm.$submitted &amp;&amp; policy.NCD == null"/>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="panel">
-        <div class="panel-body">
-          <h2 translate="PS_5_3_1a">Previous vehicle registration?</h2>
-          <div class="input-content">
-            <label translate="PS_5_3_1b" for="previousInsurer">We need the name of the previous insurer to validate the NCD that you have declared.</label>
+        <div data-ng-if="policy.NCD == 'yes'" class="row margin--bottom margin--top">
+          <div class="col-md-12">
+            <h2 translate="PS_5_3_1a">Previous vehicle registration?</h2>
+          </div>
+        </div>
+        <div data-ng-if="policy.NCD == 'yes'" class="row margin--bottom">
+          <div class="col-md-12">
+            <label translate="PS_5_3_1b" for="previousInsurer" class="margin--bottom">We need the name of the previous insurer to validate the NCD that you have declared.</label>
             <input id="previousInsurer" data-ng-model="policy.previousInsurer" type="text" placeholder="Enter previous Insurer" name="previousInsurer" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.previousInsurer.$invalid) || (policyForm.previousInsurer.$invalid &amp;&amp; policyForm.previousInsurer.$dirty)"/>
           </div>
-          <div class="input-content">
-            <label translate="PS_5_3_1c" for="previousVehicle">We need your previous car registration number to validate the NCD that you have declared</label>
+        </div>
+        <div data-ng-if="policy.NCD == 'yes'" class="row margin--bottom">
+          <div class="col-md-12">
+            <label translate="PS_5_3_1c" for="previousVehicle" class="margin--bottom">We need your previous car registration number to validate the NCD that you have declared</label>
             <input id="previousVehicle" data-ng-model="policy.previousVehicle" type="text" placeholder="Enter previous vehicle registration" name="previousVehicle" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.previousVehicle.$invalid) || (policyForm.previousVehicle.$invalid &amp;&amp; policyForm.previousVehicle.$dirty)"/>
           </div>
         </div>
-        <div class="panel">
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-12"><img src="../../images/driver-icon3.png" class="pull-left margin-right"/>
-                <h2 class="section-title"><span translate="PS_5_2a">Policyholder Details</span>
-                  <div translate="PS_5_2b" class="subtitle">The Policyholder of this car insurance policy must be the legal owner of the vehicle.</div>
-                </h2>
-              </div>
-            </div>
-          </div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_2c" for="policyholderFirstName">First Name</label>
-                  <input id="policyholderFirstName" data-ng-model="policy.policyholderFirstName" type="text" placeholder="Enter first name" name="policyholderFirstName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.policyholderFirstName.$invalid) || (policyForm.policyholderFirstName.$invalid &amp;&amp; policyForm.policyholderFirstName.$dirty)"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_2d" for="policyholderLastName">Last Name</label>
-                  <input id="policyholderLastName" data-ng-model="policy.policyholderLastName" type="text" placeholder="Enter last name" name="policyholderLastName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.policyholderLastName.$invalid) || (policyForm.policyholderLastName.$invalid &amp;&amp; policyForm.policyholderLastName.$dirty)"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_2e" for="policyholderEmail">Email</label>
-                  <input id="policyholderEmail" data-ng-model="policy.policyholderEmail" type="email" placeholder="Enter email" name="policyholderEmail" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.policyholderEmail.$invalid) || (policyForm.policyholderEmail.$invalid &amp;&amp; policyForm.policyholderEmail.$dirty)"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_2f" for="policyholderConfirmEmail">Confirm Email</label>
-                  <input id="policyholderConfirmEmail" data-ng-model="policy.policyholderConfirmEmail" type="email" placeholder="Enter email again" name="policyholderConfirmEmail" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.policyholderConfirmEmail.$invalid) || (policyForm.policyholderConfirmEmail.$invalid &amp;&amp; policyForm.policyholderConfirmEmail.$dirty)"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_2g" for="policyholderMobileNumber">Mobile Number</label>
-                  <input id="policyholderMobileNumber" data-ng-model="policy.policyholderMobileNumber" type="text" placeholder="enter contact number" name="policyholderMobileNumber" required="required" data-ng-pattern="/^[0-9s() -+]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.policyholderMobileNumber.$invalid) || (policyForm.policyholderMobileNumber.$invalid &amp;&amp; policyForm.policyholderMobileNumber.$dirty)"/>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <h2 translate="PS_5_2h" class="section-title">Residential Address</h2>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_2i" for="residentialAddressLine1">Address Line 1</label>
-                  <input id="residentialAddressLine1" data-ng-model="policy.residentialAddressLine1" type="text" placeholder="Enter address line 1" name="residentialAddressLine1" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.residentialAddressLine1.$invalid) || (policyForm.residentialAddressLine1.$invalid &amp;&amp; policyForm.residentialAddressLine1.$dirty)"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_2j" for="residentialAddressLine2">Address Line 2</label>
-                  <input id="residentialAddressLine2" data-ng-model="policy.residentialAddressLine2" type="text" placeholder="Enter address line 2" name="residentialAddressLine2" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.residentialAddressLine1.$invalid) || (policyForm.residentialAddressLine1.$invalid &amp;&amp; policyForm.residentialAddressLine1.$dirty)"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_2k" for="residentialDistrict">Residential District</label>
-                  <input id="residentialDistrict" data-ng-model="policy.residentialDistrict" type="text" placeholder="Enter District" name="residentialDistrict" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.residentialDistrict.$invalid) || (policyForm.residentialDistrict.$invalid &amp;&amp; policyForm.residentialDistrict.$dirty)"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_2l" for="residentialStatus">Residential Status</label>
-                  <select id="residentialStatus" name="residentialStatus" data-ng-model="policy.residentialStatus">
-                    <option selecter="selecter" label="Enter Driving License" value="{{residential}}" data-data-ng-repeat="residential in options.residentials" selecter-target="#residentialStatus" selecter-callback="select" property="residentialStatus" data-ng-selected="residential == selectedItem">{{residential}}</option>
-                  </select><img src="../../images/error.png" data-ng-show="policyForm.$submitted &amp;&amp; policyForm.residentialStatus == null"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_2m" for="residentialHKID">HKID</label>
-                  <input id="residentialHKID" data-ng-model="policy.residentialHKID" type="text" placeholder="Enter HKID" name="residentialHKID" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.residentialHKID.$invalid) || (policyForm.residentialHKID.$invalid &amp;&amp; policyForm.residentialHKID.$dirty)"/>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-12">
-                <h2 translate="PC_5_2_1a" class="section-title">How would you like to be contacted?<img src="../../images/error.png" data-ng-show="policyForm.$submitted &amp;&amp; policyForm.contactOption == null"/></h2>
-                <p translate="PC_5_2_1b">Occasionally, we send information and offers about DirectAsia.com and selected third parties. By continuing this application, you agree to receive marketing materials.  If you do not want this, please uncheck all three options.</p>
-                <div class="row">
-                  <div class="col-xs-4">
-                    <label for="radio1" class="label-radio pull-left margin-right">
-                      <input id="radio1" type="radio" name="contactOption" data-ng-model="policy.contactOption"/>
-                      <div class="fake-radio"></div><span translate="PC_5_2_1c">Email</span>
-                    </label>
-                  </div>
-                  <div class="col-xs-4">
-                    <label for="radio2" class="label-radio pull-left margin-right">
-                      <input id="radio2" type="radio" name="contactOption" data-ng-model="policy.contactOption"/>
-                      <div class="fake-radio"></div><span translate="PC_5_2_1d">Do not contact me</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel margin--top">
+    <div class="panel-header panel-header--white">
+      <div class="row">
+        <div class="col-md-1 text-center"><img src="../../images/driver-icon3.png" class="margin--right"/></div>
+        <div class="col-md-11">
+          <h2><span translate="PS_5_2a">Policyholder Details</span>
+            <div translate="PS_5_2b" class="subtitle">The Policyholder of this car insurance policy must be the legal owner of the vehicle.</div>
+          </h2>
         </div>
-        <div class="panel">
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-12"><img src="../../images/driver-icon3.png" class="pull-left margin-right"/>
-                <h2 class="section-title"><span translate="PS_5_4a">Main Driver Details</span>
-                  <div translate="PS_5_4b" class="subtitle">The main driver is the person who uses the car most frequently. They do not need to be the car owner(policy holder)</div>
-                </h2>
-              </div>
-            </div>
-          </div>
-          <div class="panel-footer">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_4c" for="driverFirstName">First Name</label>
-                  <input id="driverFirstName" data-ng-model="policy.driverFirstName" type="text" placeholder="Enter first name" name="driverFirstName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.driverFirstName.$invalid) || (policyForm.driverFirstName.$invalid &amp;&amp; policyForm.driverFirstName.$dirty)"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_4d" for="driverLastName">Last Name</label>
-                  <input id="driverLastName" data-ng-model="policy.driverLastName" type="text" placeholder="Enter last name" name="driverLastName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.driverLastName.$invalid) || (policyForm.driverLastName.$invalid &amp;&amp; policyForm.driverLastName.$dirty)"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_4f" for="driverResidentialStatus">Residential Status</label>
-                  <select id="driverResidentialStatus" name="driverResidentialStatus" data-ng-model="policy.driverResidentialStatus">
-                    <option selecter="selecter" label="Enter Driving License" value="{{residential}}" data-data-ng-repeat="residential in driver1residentials" selecter-target="#driverResidentialStatus" selecter-callback="select" property="driverResidentialStatus" data-ng-selected="residential == selectedItem">{{residential}}</option>
-                  </select><img src="../../images/error.png" data-ng-show="policyForm.$submitted &amp;&amp; policyForm.residentialStatus == null"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_4g" for="driverHKID">HKID</label>
-                  <input id="driverHKID" data-ng-model="policy.driverHKID" type="text" placeholder="Enter HKID" name="driverHKID" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.driverHKID.$invalid) || (policyForm.driverHKID.$invalid &amp;&amp; policyForm.driverHKID.$dirty)"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_5i" for="driverContactNumber">Contact Number</label>
-                  <input id="driverContactNumber" data-ng-model="policy.driverContactNumber" type="number" placeholder="Enter contact number" name="driverContactNumber" required="required" data-ng-pattern="/^[0-9s -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.driverContactNumber.$invalid) || (policyForm.driverContactNumber.$invalid &amp;&amp; policyForm.driverContactNumber.$dirty)"/>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-content">
-                  <label translate="PS_5_4c" for="driverRelationshipWithPolicyholder">Relationship with Policyholder</label>
-                  <select id="driverRelationshipWithPolicyholder" name="driverRelationshipWithPolicyholder" data-ng-model="policy.driverRelationshipWithPolicyholder">
-                    <option selecter="selecter" label="Enter Driving License" value="{{policyholder}}" data-data-ng-repeat="policyholder in policyholders" selecter-target="#driverRelationshipWithPolicyholder" selecter-callback="select" property="driverRelationshipWithPolicyholder" data-ng-selected="policyholder == selectedItem">{{policyholder}}</option>
-                  </select><img src="../../images/error.png" data-ng-show="policyForm.$submitted &amp;&amp; policyForm.driverRelationshipWithPolicyholder == null"/>
-                </div>
-              </div>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="panel-body panel-body--grey">
+      <div class="row">
+        <div class="col-md-6 margin--bottom margin--top">
+          <label translate="PS_5_2c" for="policyholderFirstName" class="label-strong">First Name</label>
+          <input id="policyholderFirstName" data-ng-model="policy.policyHolder.firstName" type="text" placeholder="Enter first name" name="policyholderFirstName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.policyholderFirstName.$invalid) || (policyForm.policyholderFirstName.$invalid &amp;&amp; policyForm.policyholderFirstName.$dirty)"/>
+        </div>
+        <div class="col-md-6 margin--bottom margin--top">
+          <label translate="PS_5_2d" for="policyholderLastName" class="label-strong">Last Name</label>
+          <input id="policyholderLastName" data-ng-model="policy.policyHolder.lastName" type="text" placeholder="Enter last name" name="policyholderLastName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.policyholderLastName.$invalid) || (policyForm.policyholderLastName.$invalid &amp;&amp; policyForm.policyholderLastName.$dirty)"/>
+        </div>
+        <div class="col-md-6 margin--bottom margin--top">
+          <label translate="PS_5_2e" for="policyholderEmail" class="label-strong">Email</label>
+          <input id="policyholderEmail" data-ng-model="policy.policyHolder.email" type="email" placeholder="Enter email" name="policyholderEmail" required="required" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.policyholderEmail.$invalid) || (policyForm.policyholderEmail.$invalid &amp;&amp; policyForm.policyholderEmail.$dirty)"/>
+        </div>
+        <div class="col-md-6 margin--bottom margin--top">
+          <label translate="PS_5_2f" for="policyholderConfirmEmail" class="label-strong">Confirm Email</label>
+          <input id="policyholderConfirmEmail" data-ng-model="policy.policyHolder.confirmEmail" type="email" placeholder="Enter email again" name="policyholderConfirmEmail" required="required" match="policy.policyHolder.email" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.policyholderConfirmEmail.$invalid) || (policyForm.policyholderConfirmEmail.$invalid &amp;&amp; policyForm.policyholderConfirmEmail.$dirty)"/>
+        </div>
+        <div class="col-md-6 margin--bottom margin--top">
+          <label translate="PS_5_2g" for="policyholderMobileNumber" class="label-strong">Mobile Number</label>
+          <input id="policyholderMobileNumber" data-ng-model="policy.policyHolder.mobileNumber" type="text" placeholder="enter contact number" name="policyholderMobileNumber" required="required" data-ng-pattern="/^[0-9s() -+]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.policyholderMobileNumber.$invalid) || (policyForm.policyholderMobileNumber.$invalid &amp;&amp; policyForm.policyholderMobileNumber.$dirty)"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="margin--bottom"><span translate="PS_5_2h">Residential Address</span><img src="../../images/question-icon.png" class="margin--left"/></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 margin--bottom margin--top">
+          <label translate="PS_5_2i" for="residentialAddressLine1" class="label-strong">Address Line 1</label>
+          <input id="residentialAddressLine1" data-ng-model="policy.policyHolder.residentialAddressLine1" type="text" placeholder="Enter address line 1" name="residentialAddressLine1" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.residentialAddressLine1.$invalid) || (policyForm.residentialAddressLine1.$invalid &amp;&amp; policyForm.residentialAddressLine1.$dirty)"/>
+        </div>
+        <div class="col-md-6 margin--bottom margin--top">
+          <label translate="PS_5_2j" for="residentialAddressLine2" class="label-strong">Address Line 2</label>
+          <input id="residentialAddressLine2" data-ng-model="policy.policyHolder.residentialAddressLine2" type="text" placeholder="Enter address line 2" name="residentialAddressLine2" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.residentialAddressLine2.$invalid) || (policyForm.residentialAddressLine2.$invalid &amp;&amp; policyForm.residentialAddressLine2.$dirty)"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 margin--bottom margin--top">
+          <label translate="PS_5_2k" for="residentialDistrict" class="label-strong">Residential District</label>
+          <input id="residentialDistrict" data-ng-model="policy.policyHolder.residentialDistrict" type="text" placeholder="Enter District" name="residentialDistrict" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.residentialDistrict.$invalid) || (policyForm.residentialDistrict.$invalid &amp;&amp; policyForm.residentialDistrict.$dirty)"/>
+        </div>
+        <div class="col-md-6 margin--bottom margin--top">
+          <label translate="PS_5_2l" for="residentialStatus" class="label-strong">Residential Status</label>
+          <select id="residentialStatus" name="residentialStatus" data-ng-model="policy.policyHolder.residentialStatus" required="required">
+            <option selecter="selecter" label="Select residential status" value="{{district}}" data-ng-repeat="district in options.districts" selecter-target="#residentialStatus" selecter-callback="select" property="policyHolder.residentialStatus" data-ng-selected="district == selectedItem">{{district}}</option>
+          </select><img src="../../images/error.png" data-ng-show="policyForm.$submitted &amp;&amp; policy.policyHolder.residentialStatus == null" style="position:absolute; right: 15px; bottom: 3px;"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 margin--top">
+          <label translate="PS_5_2m" for="residentialHKID" class="label-strong">HKID</label>
+          <input id="residentialHKID" data-ng-model="policy.policyHolder.residentialHKID" type="text" placeholder="Enter HKID" name="residentialHKID" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.residentialHKID.$invalid) || (policyForm.residentialHKID.$invalid &amp;&amp; policyForm.residentialHKID.$dirty)"/>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer panel-footer--white">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="section-title"><span translate="PC_5_2_1a">How would you like to be contacted?</span><img src="../../images/question-icon.png" class="margin--left"/><img src="../../images/error.png" data-ng-show="policyForm.$submitted &amp;&amp; policyForm.contactOption == null"/></h2>
+          <p translate="PC_5_2_1b" style="margin-top:10px;">Occasionally, we send information and offers about DirectAsia.com and selected third parties. By continuing this application, you agree to receive marketing materials.  If you do not want this, please uncheck all three options.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label for="radio1" class="label-radio pull-left margin--right">
+            <input id="radio1" type="radio" name="contactOption" value="email" data-ng-model="policy.contactOption"/>
+            <div class="fake-radio"></div><span translate="PC_5_2_1c">Email</span>
+          </label>
+          <label for="radio2" class="label-radio pull-left">
+            <input id="radio2" type="radio" name="contactOption" value="do not contact" data-ng-model="policy.contactOption"/>
+            <div class="fake-radio"></div><span translate="PC_5_2_1d">Do not contact me</span>
+          </label>
         </div>
       </div>
     </div>
   </div>
-</form>
-<div class="panel">
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-12"><img src="../../images/driver-icon2.png" class="pull-left margin-right"/>
-        <h2 class="section-title"><span translate="PS_5_5a">Additional Drivers</span>
-          <div translate="PS_5_5b" class="subtitle">The main driver is the person who uses the car most frequently. They do not need to be the car owner(policy holder)</div>
-        </h2>
+  <div class="panel">
+    <div class="panel-header panel-header--white">
+      <div class="row">
+        <div class="col-md-1 text-center"><img src="../../images/driver-icon3.png" class="margin--right"/></div>
+        <div class="col-md-11">
+          <h2><span translate="PS_5_4a">Main Driver Details</span>
+            <div translate="PS_5_4b" class="subtitle">The main driver is the person who uses the car most frequently. They do not need to be the car owner(policy holder)</div>
+          </h2>
+        </div>
       </div>
     </div>
-    <div class="panel-footer">
+    <div class="panel-body panel-body--grey">
       <div class="row">
-        <div class="col-md-12">
-          <h2 class="section-title"><span translate="PS_5_5c">Additional Driver</span></h2>
+        <div class="col-md-4 margin--bottom margin--top">
+          <label translate="PS_5_4c" for="driverFirstName" class="label-strong">First Name</label>
+          <input id="driverFirstName" data-ng-model="policy.mainDriver.firstName" type="text" placeholder="Enter first name" name="driverFirstName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.driverFirstName.$invalid) || (policyForm.driverFirstName.$invalid &amp;&amp; policyForm.driverFirstName.$dirty)"/>
+        </div>
+        <div class="col-md-4 margin--bottom margin--top">
+          <label translate="PS_5_4d" for="driverLastName" class="label-strong">Last Name</label>
+          <input id="driverLastName" data-ng-model="policy.mainDriver.lastName" type="text" placeholder="Enter last name" name="driverLastName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.driverLastName.$invalid) || (policyForm.driverLastName.$invalid &amp;&amp; policyForm.driverLastName.$dirty)"/>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
-          <div class="input-content">
-            <label translate="PS_5_5d" for="additionalDriver1FirstName">First Name</label>
-            <input id="additionalDriver1FirstName" type="text" placeholder="Enter first name" name="additionalDriver1FirstName" data-ng-model="additionalDrivers.driver1.firstName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.additionalDriver1FirstName.$invalid) || (policyForm.additionalDriver1FirstName.$invalid &amp;&amp; policyForm.additionalDriver1FirstName.$dirty)"/>
-          </div>
+        <div class="col-md-4 margin--bottom margin--top">
+          <label translate="PS_5_4f" for="driverResidentialStatus" class="label-strong">Residential Status</label>
+          <select id="driverResidentialStatus" name="driverResidentialStatus" data-ng-model="policy.mainDriver.residentialStatus" required="required">
+            <option selecter="selecter" label="Select residential status" value="{{district}}" data-ng-repeat="district in options.districts" selecter-target="#driverResidentialStatus" selecter-callback="select" property="driverResidentialStatus" data-ng-selected="district == selectedItem">{{district}}</option>
+          </select><img src="../../images/error.png" data-ng-show="policyForm.$submitted &amp;&amp; policy.mainDriver.residentialStatus == null" style="position:absolute; right: 15px; bottom: 3px;"/>
         </div>
-        <div class="col-md-6">
-          <div class="input-content">
-            <label translate="PS_5_5e" for="">Last name</label>
-            <input id="additionalDriver1LastName" type="text" placeholder="Enter last name" name="additionalDriver1LastName" data-ng-model="additionalDrivers.driver1.lastName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.additionalDriver1LastName.$invalid) || (policyForm.additionalDriver1LastName.$invalid &amp;&amp; policyForm.additionalDriver1LastName.$dirty)"/>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="input-content">
-            <label translate="PS_5_5g" for="">Residential Status</label>
-            <select id="additionalDriver1ResidentialStatus" name="additionalDriver1ResidentialStatus">
-              <option selecter="selecter" label="Enter Driving License" value="{{residential}}" data-ng-repeat="residential in driver1residentials" selecter-target="#additionalDriver1ResidentialStatus" selecter-callback="select" property="additionalDrivers.driver1.residentialStatus" ng-selected="year == selectedItem">{{residential}}</option>
-            </select><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.additionalDriver1LastName.$invalid) || (policyForm.additionalDriver1LastName.$invalid &amp;&amp; policyForm.additionalDriver1LastName.$dirty)"/>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="input-content">
-            <label translate="PS_5_5h" for="additionalDriver1HKID">HKID</label>
-            <input id="additionalDriver1HKID" type="text" placeholder="Enter HKID" name="additionalDriver1HKID" ,="," data-ng-model="additionalDrivers.driver1.NRIC" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.additionalDriver1HKID.$invalid) || (policyForm.additionalDriver1HKID.$invalid &amp;&amp; policyForm.additionalDriver1HKID.$dirty)"/>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="input-content">
-            <label translate="PS_5_5f" for="additionalDriverRelationshipWithPolicyHolder">Relationship with Policyholder</label>
-            <select id="additionalDriverRelationshipWithPolicyHolder" name="additionalDriver1rRelationshipWithPolicyHolder">
-              <option selecter="selecter" label="Enter Driving License" value="{{driver1policyholder}}" data-ng-repeat="driver1policyholder in driver1policyholders" selecter-target="#driver1policyholder" selecter-callback="select" property="driver1policyholder" ng-selected="year == selectedItem">{{driver1policyholder}}</option>
-            </select>
-          </div>
+        <div class="col-md-4 margin--bottom margin--top">
+          <label translate="PS_5_4g" for="driverHKID" class="label-strong">HKID</label>
+          <input id="driverHKID" data-ng-model="policy.mainDriver.HKID" type="text" placeholder="Enter HKID" name="driverHKID" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.driverHKID.$invalid) || (policyForm.driverHKID.$invalid &amp;&amp; policyForm.driverHKID.$dirty)"/>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
-          <h2 class="section-title"><span translate="PS_5_5c">Additional Driver</span></h2>
+        <div class="col-md-4 margin--top">
+          <label translate="PS_5_5i" for="driverContactNumber" class="label-strong">Contact Number</label>
+          <input id="driverContactNumber" data-ng-model="policy.mainDriver.contactNumber" type="tel" placeholder="Enter contact number" name="driverContactNumber" required="required" data-ng-pattern="/^[0-9s -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.driverContactNumber.$invalid) || (policyForm.driverContactNumber.$invalid &amp;&amp; policyForm.driverContactNumber.$dirty)"/>
+        </div>
+        <div class="col-md-4 margin--top">
+          <label translate="PS_5_4e" for="driverRelationshipWithPolicyholder" class="label-strong">Relationship with Policyholder</label>
+          <select id="driverRelationshipWithPolicyholder" name="driverRelationshipWithPolicyholder" data-ng-model="policy.mainDriver.relationshipWithPolicyholder" required="required">
+            <option selecter="selecter" label="Select relationship" value="{{relationship}}" data-ng-repeat="relationship in options.relationships" selecter-target="#driverRelationshipWithPolicyholder" selecter-callback="select" property="driverRelationshipWithPolicyholder" data-ng-selected="relationship == selectedItem">{{relationship}}</option>
+          </select><img src="../../images/error.png" data-ng-show="policyForm.$submitted &amp;&amp; policy.mainDriver.relationshipWithPolicyholder == null" style="position:absolute; right: 15px; bottom: 3px;"/>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-header panel-header--white">
       <div class="row">
-        <div class="col-md-6">
-          <div class="input-content">
-            <label translate="PS_5_5d" for="additionalDriver2FirstName">First Name</label>
-            <input id="additionalDriver2FirstName" type="text" placeholder="Enter first name" name="additionalDriver2FirstName" data-ng-model="additionalDrivers.driver1.firstName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.additionalDriver2FirstName.$invalid) || (policyForm.additionalDriver2FirstName.$invalid &amp;&amp; policyForm.additionalDriver2FirstName.$dirty)"/>
+        <div class="col-md-1 text-center"><img src="../../images/driver-icon2.png" class="margin--right"/></div>
+        <div class="col-md-11">
+          <h2><span translate="PS_5_5a">Additional Drivers</span>
+            <div translate="PS_5_5b" class="subtitle">The main driver is the person who uses the car most frequently. They do not need to be the car owner(policy holder)</div>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body panel-body--grey">
+      <div data-ng-repeat="driver in policy.additionalDrivers">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="margin--bottom"><span translate="PS_5_5c">Additional Driver</span><span data-ng-cloak="data-ng-cloak"> {{$index + 1}}</span></h3>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="input-content">
-            <label translate="PS_5_5e" for="">Last name</label>
-            <input id="additionalDriver2LastName" type="text" placeholder="Enter last name" name="additionalDriver2LastName" data-ng-model="additionalDrivers.driver1.lastName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.additionalDriver2LastName.$invalid) || (policyForm.additionalDriver2LastName.$invalid &amp;&amp; policyForm.additionalDriver2LastName.$dirty)"/>
+        <div class="row">
+          <div class="col-md-4 margin--bottom margin--top">
+            <label translate="PS_5_5d" for="additionalDriver{{$index}}FirstName" class="label-strong">First Name</label>
+            <input id="additionalDriver{{$index}}FirstName" type="text" placeholder="Enter first name" name="additionalDriver{{$index}}FirstName" data-ng-model="driver.firstName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.additionalDriver{{$index}}FirstName.$invalid) || (policyForm.additionalDriver{{$index}}FirstName.$invalid &amp;&amp; policyForm.additionalDriver{{$index}}FirstName.$dirty)"/>
+          </div>
+          <div class="col-md-4 margin--bottom margin--top">
+            <label translate="PS_5_5e" for="" class="label-strong">Last name</label>
+            <input id="additionalDriver{{$index}}LastName" type="text" placeholder="Enter last name" name="additionalDriver{{$index}}LastName" data-ng-model="driver.lastName" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.additionalDriver{{$index}}LastName.$invalid) || (policyForm.additionalDriver{{$index}}LastName.$invalid &amp;&amp; policyForm.additionalDriver{{$index}}LastName.$dirty)"/>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="input-content">
-            <label translate="PS_5_5g" for="">Residential Status</label>
-            <select id="additionalDriver2ResidentialStatus" name="additionalDriver2ResidentialStatus">
-              <option selecter="selecter" label="Enter Driving License" value="{{residential}}" data-ng-repeat="residential in driver1residentials" selecter-target="#additionalDriver2ResidentialStatus" selecter-callback="select" property="additionalDrivers.driver1.residentialStatus" ng-selected="year == selectedItem">{{residential}}</option>
-            </select><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.additionalDriver2LastName.$invalid) || (policyForm.additionalDriver2LastName.$invalid &amp;&amp; policyForm.additionalDriver2LastName.$dirty)"/>
+        <div class="row">
+          <div class="col-md-4 margin--bottom margin--top">
+            <label translate="PS_5_5g" for="" class="label-strong">Residential Status</label>
+            <select id="additionalDriver{{$index}}ResidentialStatus" name="additionalDriver{{$index}}ResidentialStatus" data-ng-model="driver.residentialStatus" required="required">
+              <option selecter="selecter" label="Select Residential Status" value="{{district}}" data-ng-repeat="district in options.districts" selecter-target="#additionalDriver{{$parent.$index}}ResidentialStatus" selecter-callback="select" property="additionalDrivers[{{$parent.$index}}].residentialStatus" ng-selected="district == selectedItem">{{district}}</option>
+            </select><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; driver.residentialStatus == null)" style="position:absolute; right: 15px; bottom: 3px;"/>
+          </div>
+          <div class="col-md-4 margin--bottom margin--top">
+            <label translate="PS_5_5h" for="additionalDriver{{$index}}HKID" class="label-strong">HKID</label>
+            <input id="additionalDriver{{$index}}HKID" type="text" placeholder="Enter HKID" name="additionalDriver{{$index}}HKID" ,="," data-ng-model="driver.NRIC" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.additionalDriver{{$index}}HKID.$invalid) || (policyForm.additionalDriver{{$index}}HKID.$invalid &amp;&amp; policyForm.additionalDriver{{$index}}HKID.$dirty)"/>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="input-content">
-            <label translate="PS_5_5h" for="additionalDriver2HKID">HKID</label>
-            <input id="additionalDriver2HKID" type="text" placeholder="Enter HKID" name="additionalDriver2HKID" ,="," data-ng-model="additionalDrivers.driver1.NRIC" required="required" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" class="form-control"/><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; policyForm.additionalDriver2HKID.$invalid) || (policyForm.additionalDriver2HKID.$invalid &amp;&amp; policyForm.additionalDriver2HKID.$dirty)"/>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="input-content">
-            <label translate="PS_5_5f" for="additionalDriverRelationshipWithPolicyHolder">Relationship with Policyholder</label>
-            <select id="additionalDriverRelationshipWithPolicyHolder" name="additionalDriver2rRelationshipWithPolicyHolder">
-              <option selecter="selecter" label="Enter Driving License" value="{{driver1policyholder}}" data-ng-repeat="driver1policyholder in driver1policyholders" selecter-target="#driver1policyholder" selecter-callback="select" property="driver1policyholder" ng-selected="year == selectedItem">{{driver1policyholder}}</option>
-            </select>
+        <div class="row">
+          <div class="col-md-4 margin--bottom margin--top">
+            <label translate="PS_5_5f" for="additionalDriver{{$index}}RelationshipWithPolicyHolder" class="label-strong">Relationship with Policyholder</label>
+            <select id="additionalDriver{{$index}}RelationshipWithPolicyHolder" name="additionalDriver{{$index}}RelationshipWithPolicyHolder" data-ng-model="driver.relationshipWithPolicyHolder" required="required">
+              <option selecter="selecter" label="Select relationship" value="{{relationship}}" data-ng-repeat="relationship in options.relationships" selecter-target="#additionalDriver{{$parent.$index}}RelationshipWithPolicyHolder" selecter-callback="select" property="additionalDrivers[{{$parent.$index}}].relationshipWithPolicyHolder" ng-selected="relationship == selectedItem">{{relationship}}</option>
+            </select><img src="../../images/error.png" data-ng-show="(policyForm.$submitted &amp;&amp; driver.residentialStatus == null)" style="position:absolute; right: 15px; bottom: 3px;"/>
           </div>
         </div>
       </div>
@@ -299,41 +241,39 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <div class="panel">
+      <div class="panel panel-summary">
         <div class="panel-body">
-          <h2 translate="PC_5_7_1a">Policy Documents</h2>
-          <div class="row">
-            <div class="col-xs-12"><img src="../../images/pdf-icon.png" class="pull-left margin--right"/>
-              <p translate="PC_5_7_1b" class="remove-margin font-weight-bold font-color-25a8e0">Policy Summary</p>
-              <p translate="PC_5_7_1c">A summary if the key features of your car insurance policy</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12"><img src="../../images/pdf-icon.png" class="pull-left margin--right"/>
-              <p translate="PC_5_7_1d" class="remove-margin font-weight-bold font-color-25a8e0">Policy Wording</p>
-              <p translate="PC_5_7_1e">The full terms and conditions of your car insurance policy</p>
-            </div>
+          <div class="container-fluid">
+            <h2 translate="PC_5_7_1a" class="margin--bottom">Policy Documents</h2><a href="" title="" class="row margin--top">
+              <div class="col-md-2"><img src="../../images/pdf-icon.png" class="margin--right"/></div>
+              <div class="col-md-10">
+                <h3 translate="PC_5_7_1b">Policy Summary</h3>
+                <p translate="PC_5_7_1c">A summary if the key features of your car insurance policy</p>
+              </div></a><a href="" title="" class="row margin--top">
+              <div class="col-md-2"><img src="../../images/pdf-icon.png" class="margin--right"/></div>
+              <div class="col-md-10">
+                <h3 translate="PC_5_7_1d">Policy Wording</h3>
+                <p translate="PC_5_7_1e">The full terms and conditions of your car insurance policy</p>
+              </div></a>
           </div>
         </div>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="panel">
-        <div class="panel-body">
+      <div class="panel panel-summary">
+        <div class="panel-header panel-header--white">
           <h2 translate="PC_5_7_2a">Why customers choose Directasia.com</h2>
         </div>
-        <div class="panel-footer">
-          <ul>
-            <li><img src="../../images/green-check.png" class="pull-left margin--right"/>
-              <p translate="PC_5_7_2b">Voted the most popular online insurance company in Hong Kong</p>
-            </li>
-            <li><img src="../../images/green-check.png" class="pull-left margin--right"/>
-              <p translate="PC_5_7_2c">The first Hong Kong insurer to be awarded the ISO 10002:2004 Certification</p>
-            </li>
-            <li><img src="../../images/green-check.png" class="pull-left margin--right"/>
-              <p translate="PC_5_7_2d">100% Owned by Hiscox Group</p>
-            </li>
-          </ul>
+        <div class="panel-body panel-body--grey">
+          <div class="bonus"><img src="../../images/green-check.png"/>
+            <p translate="PC_5_7_2b">Voted the most popular online insurance company in Hong Kong</p>
+          </div>
+          <div class="bonus"><img src="../../images/green-check.png"/>
+            <p translate="PC_5_7_2c">The first Hong Kong insurer to be awarded the ISO 10002:2004 Certification</p>
+          </div>
+          <div class="bonus"><img src="../../images/green-check.png"/>
+            <p translate="PC_5_7_2d">100% Owned by Hiscox Group</p>
+          </div>
         </div>
       </div>
     </div>
@@ -341,31 +281,12 @@
   <div class="row">
     <div class="col-md-12">
       <button type="button" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PS_5_6_1">Back</span></button>
-      <button type="button" continue="continue" url="http://localhost:9000/policy" page-data="{{policy}}" next-page="http://localhost:9000/pages/review-and-buy/review-and-buy.html" valid="policyForm.$valid" class="btn btn-forward btn-lg"><span translate="PS_5_6_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+      <button type="submit" continue="continue" url="http://localhost:9000/policy" page-data="{{policy}}" next-page="http://localhost:9000/pages/review-and-buy/review-and-buy.html" valid="policyForm.$valid" class="btn btn-forward btn-lg pull-right"><span translate="PS_5_6_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
     </div>
   </div>
-  <div class="row">
+  <div class="row margin--top">
     <div class="col-md-12">
-      <div class="save-for-later">
-        <button type="button" class="popover-button btn btn-primary btn-action btn-sm"><span ng-hide="submit" translate="PS_5_6_3">Save for later</span><span ng-show="submit" translate="PS_5_6_4">Saved!</span></button>
-        <div id="popover1" class="popover save-div bottom">
-          <div class="arrow"></div>
-          <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
-          <div ng-hide="send">
-            <p translate="PC_4_1_2a">Please provide your email below and we‘ll send you a link to retrieve your quotation for up to 90 days.</p>
-            <input type="email" placeholder="Enter email address" class="form-control"/>
-            <p translate="PS_6_6_4_1">Want us to help you finish? provide your phone number and we‘ll give you a call.</p>
-            <input type="tel" placeholder="Enter phone number" class="form-control"/>
-            <button type="button" ng-click="send = true" translate="PS_6_6_6" class="btn btn-forward">Send</button>
-          </div>
-          <div ng-show="send" class="on-send">
-            <p translate="PS_6_6_6_1">Your quote has been successfully saved. Please check your email, which contains a link to retrieve your quotation.</p>
-            <p translate="PS_6_6_6_2">Share your current renewal premium so we can make sure we‘re giving you the best value</p>
-            <button type="button" ng-click="submit = true" translate="PS_6_6_6_3" class="btn btn-forward">Submit</button>
-          </div>
-        </div>
-        <p translate="PS_6_6_7">Your details will be saved for 90 days so you can finish later</p>
-      </div>
+      <button type="button" data-toggle="modal" data-target="#modal-saveForLater" data-ng-click="sent = false" class="btn btn-primary btn-action btn-sm pull-right"><span data-ng-show="!sent" translate="PS_5_6_3">Save for later</span><span data-ng-show="sent" translate="PS_5_6_4">Saved!</span></button>
     </div>
   </div>
-</div>
+</form>

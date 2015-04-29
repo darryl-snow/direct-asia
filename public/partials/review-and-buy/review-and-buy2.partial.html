@@ -1,11 +1,11 @@
 
-<section data-ng-controller="reviewAndBuyCtrl" class="section section-thankyou">
+<section data-ng-controller="reviewAndBuyCtrl" class="section section-review-and-buy">
   <div class="container">
     <form name="paymentForm" novalidate="novalidate">
-      <h3 translate="PS_6_2_0">3 Easy Ways to Purchase</h3>
+      <h3 translate="PS_6_2_0" class="centred">3 Easy Ways to Purchase</h3>
       <div class="row">
         <div class="col-sm-4">
-          <div data-ng-class="{active:review == 'book'}" class="panel">
+          <div data-ng-class="{active:review == 'book'}" class="panel panel-option">
             <div class="panel-body centred"><img src="../../images/online-icon2.png" class="margin--bottom"/>
               <h2 translate="PS_6_2_1a" class="margin--bottom">Book Online</h2>
               <button type="button" data-ng-hide="review == 'book'" data-ng-click="review = 'book'" class="btn btn-default btn-sm">Select</button><img data-ng-show="review == 'book'" src="../../images/selected-icon.png"/>
@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <div data-ng-class="{active:review == 'call'}" class="panel">
+          <div data-ng-class="{active:review == 'call'}" class="panel panel-option">
             <div class="panel-body centred"><img src="../../images/call-icon2.png" class="margin--bottom"/>
               <h2 translate="PS_6_2_1b" class="margin--bottom">Call Us</h2>
               <button type="button" data-ng-hide="review == 'call'" data-ng-click="review = 'call'" class="btn btn-default btn-sm">Select</button><img data-ng-show="review == 'call'" src="../../images/selected-icon.png"/>
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <div data-ng-class="{active:review == 'centers'}" class="panel">
+          <div data-ng-class="{active:review == 'centers'}" class="panel panel-option">
             <div class="panel-body centred"><img src="../../images/store-icon2.png" class="margin--bottom"/>
               <h2 translate="PS_6_2_1c" class="margin--bottom">Walk-In Centers</h2>
               <button type="button" data-ng-hide="review == 'centers'" data-ng-click="review = 'centers'" class="btn btn-default btn-sm">Select</button><img data-ng-show="review == 'centers'" src="../../images/selected-icon.png"/>
@@ -31,46 +31,46 @@
       </div>
       <div data-ng-show="review == 'book'" class="panel">
         <div class="panel-body">
-          <h2 translate="PS_6_2_1_1_a">Your Quote Agreement</h2>
+          <h4 translate="PS_6_2_1_1_a">Your Quote Agreement</h4>
           <p translate="PS_6_2_1_1_b">Please read the agreement below carefully before you purchasing. This is for your protection in the event of a claim.</p>
           <p translate="PS_6_2_1_1_c">We are required by law to tell you that before we provide cover, you must fully and faithfully tell us everything you know or could reasonably be expected to know that is relevant to our decision to give you the insurance, otherwise you may receive no benefit from your policy or we may cancel your policy and treat it as never having existed.</p>
         </div>
         <div class="panel-footer">
           <h2 translate="PS_6_2_1_1_d" class="margin--bottom">You are agreeing to the statements below:</h2>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_e">The car is not used for commercial purposes or for hire/reward.</p>
           </div>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_f">The car is registered in Hong Kong.</p>
           </div>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_g">The car is registered in Singapore and any modifications it may have are LTA compliant.</p>
           </div>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_h">That the policyholder must be the registered owner of the vehicle.</p>
           </div>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_i">That the drivers you wish to insure do not have 2 or more at-fault accidents/claims on this or another vehicle (excluding motorcycles) in the last 3 years.</p>
           </div>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_j">You have read and agree to our Privacy Statement.</p>
           </div>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_k">The main driver of the car is aged 70 and below and has a valid driving license of at least 2 years.</p>
           </div>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_l">No driver has been refused insurance or had it terminated in the last 3 years.</p>
           </div>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_m">No driver has had any class of license suspended or cancelled in the last 5 years</p>
           </div>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_n">| All drivers have valid driving licenses with less than 12 driving offence points.</p>
           </div>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_o">That the policyholder must be the registered owner of the vehicle.</p>
           </div>
-          <div><img src="../../images/green-check.png" class="pull-left margin--right"/>
+          <div class="bonus"><img src="../../images/green-check.png" class="pull-left margin--right"/>
             <p translate="PS_6_2_1_1_p">You have read and understood the Policy summary and Policy wording</p>
           </div>
         </div>
@@ -134,17 +134,20 @@
       </div>
       <div data-ng-show="review == 'call'" class="panel">
         <div class="panel-body">
-          <h2 translate="PS_6_5_6">Want to finish over the phone? Let our [Country] team help you by calling us directly.</h2>
-          <p>[Phone Number]</p>
+          <h4 translate="PS_6_5_6">Want to finish over the phone?</h4>
+          <p translate="PS_6_5_6_1">Let our [Country] team help you by calling us directly.</p>
+          <p><strong>[Phone Number]</strong></p>
           <p translate="PS_6_5_7">Please provide your policy number below so we can pick up where you left off.</p>
-          <p><span translate="PS_6_5_8">Your Policy Number:</span> [XXXXX]</p>
-          <h2><span translate="PS_6_5_9">We are available at these times</span> [Call Center Hours]</h2>
+          <p><span translate="PS_6_5_8">Your Policy Number:</span><strong> [XXXXX]</strong></p>
+          <h5><span translate="PS_6_5_9">We are available at these times</span><strong> [Call Center Hours]</strong></h5>
         </div>
       </div>
       <div data-ng-show="review == 'centers'" class="panel">
-        <div class="panel-body">
-          <h2 translate="PS_6_5_10">Come and visit us in person!</h2>
+        <div class="panel-header panel-header--white">
+          <h4 translate="PS_6_5_10">Come and visit us in person!</h4>
           <p>[Address]</p>
+        </div>
+        <div class="panel-body panel-body--nopadding">
           <iframe src="http://regiohelden.de/google-maps/map_en.php?hl=en&amp;q=1101%2C%2011%2FF%2C%20Allied%20Kajima%20Building%2C%20138%20Gloucester%20Road%2C%20Wan%20Chai%2C%20Hong%20Kong+(RegioHelden%20GmbH)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=A&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
         </div>
       </div>

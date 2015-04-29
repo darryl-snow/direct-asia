@@ -1,31 +1,36 @@
 script(src="../../scripts/controllers/quote/quote.controller.js")
 
-.container.margin--top.centred(data-ng-controller="QuoteCtrl")
 
-	img(src="../../images/loading.gif")
+section.section.section-quote-loading
 
-	h1.margin--bottom(translate="PS_1_5_1") We‘re working on your quote
+	.container.margin--top.centred(data-ng-controller="QuoteCtrl")
 
-	.row.align-left.margin--top
+		img(src="../../images/loading.gif")
 
-		.col-sm-6
+		h1.margin--bottom(translate="PS_1_5_1") We‘re working on your quote
 
-			h2(translate="PS_1_5_2", style="margin-top:0;") Why our customers choose DirectAsia.com‘s Car Insurance:
+		.row.align-left.margin--top
 
-			ul
-				li(translate="PS_1_5_3") Award Winning Insurer - People‘s Choice Awards
-				li(translate="PS_1_5_4") Award Winning Customer Service - Call Center Association of Singapore
-				li(translate="PS_1_5_5") Favourite Online Insurance - Service Lifestyle Awards
-				li(translate="PS_1_5_6") Gold Award in Mystery Caller Assessment - Hong Kong Corporate Counsel Association
-				li(translate="PS_1_5_7") 100% Owned by Hiscox Group
+			.col-sm-6
 
-		.col-sm-6
+				h2(translate="PS_1_5_2", style="margin-top:1em;") Why our customers choose DirectAsia.com‘s Car Insurance:
 
-			.panel
+				ul
+					li(translate="PS_1_5_3") Award Winning Insurer - People‘s Choice Awards
+					li(translate="PS_1_5_4") Award Winning Customer Service - Call Center Association of Singapore
+					li(translate="PS_1_5_5") Favourite Online Insurance - Service Lifestyle Awards
+					li(translate="PS_1_5_6") Gold Award in Mystery Caller Assessment - Hong Kong Corporate Counsel Association
+					li(translate="PS_1_5_7") 100% Owned by Hiscox Group
 
-				.panel-body
+			.col-sm-6
 
-					h2.margin--bottom(translate="PS_1_5_8") Where did you hear about DirectAsia.com?
+				.panel
 
-					select#feedback(name="feedback")
-						option(selecter, label="Tell us how you heard about us", value="{{option}}", data-ng-repeat="option in options.feedback", selecter-target="#feedback", selecter-callback="select", property="feedback", ng-selected="option == selectedItem") {{option}}
+					.panel-body
+
+						h2.margin--bottom(translate="PS_1_5_8") Where did you hear about DirectAsia.com?
+
+					.panel-footer
+
+						select#feedback(name="feedback")
+							option(selecter, label="Tell us how you heard about us", value="{{option}}", data-ng-repeat="option in options.feedback", selecter-target="#feedback", selecter-callback="select", property="feedback", ng-selected="option == selectedItem") {{option}}

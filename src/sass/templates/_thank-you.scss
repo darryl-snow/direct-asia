@@ -1,0 +1,50 @@
+.thank-you-footer {
+	margin:					0 0 2 * $base-spacing-unit 0;
+	text-align:				center;
+
+	h2 {
+		font-family:		"ProximaLight";
+		font-size:			2em;
+	}
+
+	p {
+		margin:				$base-spacing-unit auto $base-spacing-unit auto;
+
+		@media(min-width: 654px) {
+			max-width:		50%;
+		}
+	}
+
+	ul {
+		@include inline-list();
+		@include unstyled-list();
+	}
+
+	a {
+		display:			block;
+	}
+
+	li {
+		margin:				$base-spacing-unit !important;
+	}
+}
+
+.bonus {
+	margin-bottom:			0.5 * $base-spacing-unit;
+	text-align:				left;
+
+	img {
+		display:			inline-block;
+		margin-right:		16px;
+		vertical-align:		top;
+	}
+
+	p {
+		display: 			inline-block;
+		margin:				0 !important;
+		max-width:			100% !important;
+		text-align:			left;
+		width:				calc(100% - 30px - 16px);
+		vertical-align:		top;
+	}
+}

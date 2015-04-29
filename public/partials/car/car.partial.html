@@ -46,14 +46,18 @@
         </div>
         <div class="container-fluid margin--bottom">
           <div class="container-fluid">
-            <h2 translate="PS_2_1_2_1" class="margin--bottom">Is the vehicle privately owned or corporate owned?</h2>
-            <button name="carOwnership" type="button" data-ng-click="select('private', 0, 'ownership')" data-ng-class="{'active':car.ownership=='private'}" class="btn btn-default random-margin"><span translate="PS_2_1_2_2">Private</span><span class="glyphicon glyphicon-ok"></span></button>
-            <button name="carOwnership" type="button" data-ng-click="select('corporate', 0, 'ownership')" data-ng-class="{'active':car.ownership=='corporate'}" class="btn btn-default"><span translate="PS_2_1_2_3">Corporate</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.ownership"/>
+            <label translate="PS_2_1_2_1" class="label-bold margin--bottom">Is the vehicle privately owned or corporate owned?</label>
+            <div class="row">
+              <div class="col-md-12">
+                <button name="carOwnership" type="button" data-ng-click="select('private', 0, 'ownership')" data-ng-class="{'active':car.ownership=='private'}" class="btn btn-default random-margin"><span translate="PS_2_1_2_2">Private</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button name="carOwnership" type="button" data-ng-click="select('corporate', 0, 'ownership')" data-ng-class="{'active':car.ownership=='corporate'}" class="btn btn-default"><span translate="PS_2_1_2_3">Corporate</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.ownership"/>
+              </div>
+            </div>
           </div>
         </div>
         <div class="container-fluid margin--bottom margin--top">
           <div class="container-fluid margin--bottom">
-            <h2 class="margin--bottom"><span translate="PS_2_1_4_a">Roughly how many kilometres do you drive per year?</span><img data-toggle="tooltip" data-placement="top" title="We ask how much you drive per year so we can recommend the right optional benefits for your policy." src="../../images/question-icon.png" class="show-tooltip"/></h2>
+            <label class="label-bold margin--bottom"><span translate="PS_2_1_4_a">Roughly how many kilometres do you drive per year?</span><img data-toggle="tooltip" data-placement="top" title="We ask how much you drive per year so we can recommend the right optional benefits for your policy." src="../../images/question-icon.png" class="show-tooltip"/></label>
             <div class="row">
               <div class="col-md-2">
                 <button type="button" data-ng-click="select('&lt; 8,000', 0, 'kmsperyear')" data-ng-class="{'active':car.kmsperyear=='&lt; 8,000'}" class="btn btn-default margin--bottom"><span translate="PS_2_1_4_b">Less than 8,000 km</span><span class="glyphicon glyphicon-ok"></span></button>
@@ -75,7 +79,7 @@
           <div class="col-md-8">
             <div class="arrow"></div>
             <div class="panel-body">
-              <h2 class="margin--bottom"><span translate="PS_2_1_4_2_1">What do you use the car for?</span><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.usage"/></h2>
+              <label class="label-bold margin--bottom"><span translate="PS_2_1_4_2_1">What do you use the car for?</span><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.usage"/></label>
               <div class="row margin--top">
                 <div class="col-md-4 centred"><img src="../../images/trolley-icon.png" data-toggle="tooltip" data-placement="top" title="If you are only using your car in the course of your private life and for leisure." class="margin--bottom show-tooltip"/>
                   <button type="button" data-ng-click="select('personal use', 0, 'usage')" data-ng-class="{'active':car.usage=='personal use'}" class="btn btn-default btn-block margin--bottom"><span translate="PS_2_1_4_2_3">Personal use</span><span class="glyphicon glyphicon-ok"></span></button>
@@ -128,11 +132,11 @@
         </div>
       </div>
     </form>
-    <modal id="modal-success" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" shown="modalShown" class="modal fade">
+    <modal id="modal-success" tabindex="-1" role="dialog" aria-labelledby="modalSuccessTitle" aria-hidden="false" shown="modalShown" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            <h2 translate="GS_0_3_1">Are you still there?</h2>
+            <h2 id="modalSuccessTitle" translate="GS_0_3_1">Are you still there?</h2>
             <p translate="GS_0_3_2">If we don‘t detect you clicking around, then we end your session to protect your personal information.</p>
             <p><strong translate="GS_0_3_3">your session will end in: [X]</strong></p>
             <button type="button" data-dismiss="modal" translate="GS_0_3_4" class="btn btn-forward btn-lg">Yes! Continue My Quote</button>
@@ -140,12 +144,12 @@
         </div>
       </div>
     </modal>
-    <modal id="modal-problem" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" shown="modalShown" class="modal fade">
+    <modal id="modal-problem" tabindex="-1" role="dialog" aria-labelledby="modalProblemTitle" aria-hidden="false" shown="modalShown" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
           <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
           <div class="modal-body">
-            <h2 id="modalLabel" translate="PC_3_3_3">Sorry, but we‘d like to speak with you about your policy</h2>
+            <h2 id="modalProblemTitle" translate="PC_3_3_3">Sorry, but we‘d like to speak with you about your policy</h2>
             <p><strong translate="PC_3_3_4">What to do next:</strong></p>
             <p translate="PC_3_3_5">Call our [Country] based team and provide your reference number and we‘ll help you complete your policy</p>
             <p><strong><span translate="PC_3_3_6">Your Reference Number:</span> XXXXX</strong></p>

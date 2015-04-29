@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Sat Apr 25 2015 04:29:45 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Wed Apr 29 2015 22:46:26 GMT+0800 (CST) */
 
 /*
 This is a class for instantiating car objects, as used on the quote page

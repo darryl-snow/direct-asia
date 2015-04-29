@@ -72,23 +72,26 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 					.container-fluid
 
-						h2.margin--bottom(translate="PS_2_1_2_1") Is the vehicle privately owned or corporate owned?
+						label.label-bold.margin--bottom(translate="PS_2_1_2_1") Is the vehicle privately owned or corporate owned?
 
-						button.btn.btn-default.random-margin(name="carOwnership", type="button", data-ng-click="select('private', 0, 'ownership')", data-ng-class="{'active':car.ownership=='private'}")
-							span(translate="PS_2_1_2_2") Private
-							span.glyphicon.glyphicon-ok
+						.row
+							.col-md-12
 
-						button.btn.btn-default(name="carOwnership", type="button", data-ng-click="select('corporate', 0, 'ownership')", data-ng-class="{'active':car.ownership=='corporate'}")
-							span(translate="PS_2_1_2_3") Corporate
-							span.glyphicon.glyphicon-ok
+								button.btn.btn-default.random-margin(name="carOwnership", type="button", data-ng-click="select('private', 0, 'ownership')", data-ng-class="{'active':car.ownership=='private'}")
+									span(translate="PS_2_1_2_2") Private
+									span.glyphicon.glyphicon-ok
 
-						img(src="../../images/error.png", data-ng-show="carForm.$submitted && !car.ownership")
+								button.btn.btn-default(name="carOwnership", type="button", data-ng-click="select('corporate', 0, 'ownership')", data-ng-class="{'active':car.ownership=='corporate'}")
+									span(translate="PS_2_1_2_3") Corporate
+									span.glyphicon.glyphicon-ok
+
+								img(src="../../images/error.png", data-ng-show="carForm.$submitted && !car.ownership")
 
 				.container-fluid.margin--bottom.margin--top
 
 					.container-fluid.margin--bottom
 
-						h2.margin--bottom
+						label.label-bold.margin--bottom
 							span(translate="PS_2_1_4_a") Roughly how many kilometres do you drive per year?
 							img.show-tooltip(data-toggle="tooltip", data-placement="top", title="We ask how much you drive per year so we can recommend the right optional benefits for your policy.", src="../../images/question-icon.png")
 
@@ -128,7 +131,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 						.arrow
 						.panel-body
 
-							h2.margin--bottom
+							label.label-bold.margin--bottom
 								span(translate="PS_2_1_4_2_1") What do you use the car for?
 								img(src="../../images/error.png", data-ng-show="carForm.$submitted && !car.usage")
 
@@ -211,13 +214,13 @@ script(src="../../scripts/controllers/car/car.controller.js")
 								span.glyphicon.glyphicon-arrow-right
 
 
-		modal#modal-success.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalLabel", aria-hidden="false", shown="modalShown")
+		modal#modal-success.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalSuccessTitle", aria-hidden="false", shown="modalShown")
 			.modal-dialog
 				.modal-content
 
 					.modal-body
 
-						h2(translate="GS_0_3_1") Are you still there?
+						h2#modalSuccessTitle(translate="GS_0_3_1") Are you still there?
 
 						p(translate="GS_0_3_2") If we don‘t detect you clicking around, then we end your session to protect your personal information.
 						p
@@ -225,7 +228,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 						button.btn.btn-forward.btn-lg(type="button", data-dismiss="modal", translate="GS_0_3_4") Yes! Continue My Quote
 
-		modal#modal-problem.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalLabel", aria-hidden="false", shown="modalShown")
+		modal#modal-problem.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalProblemTitle", aria-hidden="false", shown="modalShown")
 			.modal-dialog
 				.modal-content
 
@@ -234,7 +237,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 					.modal-body
 
-						h2#modalLabel(translate="PC_3_3_3") Sorry, but we‘d like to speak with you about your policy
+						h2#modalProblemTitle(translate="PC_3_3_3") Sorry, but we‘d like to speak with you about your policy
 						p
 							strong(translate="PC_3_3_4") What to do next:
 						p(translate="PC_3_3_5") Call our [Country] based team and provide your reference number and we‘ll help you complete your policy

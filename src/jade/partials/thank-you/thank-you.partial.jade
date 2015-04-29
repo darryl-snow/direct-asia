@@ -8,17 +8,17 @@ section.section.section-thankyou(data-ng-controller="thankYouCtrl")
 
 			.panel-body
 
-					.row
+				.row
 
-						.col-md-2.centred.margin--bottom
-							img(src="../../images/help-us-icon2.png")
+					.col-md-2.centred.margin--bottom
+						img(src="../../images/help-us-icon2.png")
 
-						.col-md-10
+					.col-md-10
 
-							h1
-								span.hidden-sm(translate="PS_7_0_1") You’re all done! We’re sending you a confirmation email so you have a copy of your policy details.
-								span.visible-sm(translate="PS_7_0_1") You’re all done! Please look for the confirmation email with your policy details.
-								.subtitle(translate="PS_7_0_3") Please allow [x] mins to receive your confirmation email.
+						h1
+							span.hidden-sm(translate="PS_7_0_1") You’re all done! We’re sending you a confirmation email so you have a copy of your policy details.
+							span.visible-sm(translate="PS_7_0_1") You’re all done! Please look for the confirmation email with your policy details.
+							.subtitle(translate="PS_7_0_3") Please allow [x] mins to receive your confirmation email.
 
 		.panel
 
@@ -243,7 +243,7 @@ section.section.section-thankyou(data-ng-controller="thankYouCtrl")
 
 			.col-md-4
 
-				.panel
+				.panel.panel-thankyou.centred
 
 					.panel-body
 
@@ -251,17 +251,21 @@ section.section.section-thankyou(data-ng-controller="thankYouCtrl")
 
 						h2(translate="PS_7_2_1") Want to add [Product Name]?
 
-						p(translate="PS_7_2_2") Customer&apos;s who buy car insurance through DirectAsia.com often buy [Product Name]. Get your [Product Name] quote online now.
+						p(translate="PS_7_2_2") Customer&apos;s who buy car insurance through DirectAsia.com often buy 
+							strong [Product Name]
+							| . Get your 
+							strong [Product Name] 
+							|  quote online now.
 
 						a.btn.btn-default.btn-sm(href="", title="", translate="PS_7_2_4") Get Started
 
 			.col-md-4
 
-				.panel
+				.panel.panel-thankyou.centred
 
 					.panel-body
 
-						img(src="../../images/help-account-icon.png")
+						img.margin--bottom(src="../../images/help-account-icon.png")
 
 						h2(translate="PS_7_3_1") Your DirectAsia.com Account
 
@@ -271,53 +275,56 @@ section.section.section-thankyou(data-ng-controller="thankYouCtrl")
 
 			.col-md-2
 
-		div
+		.thank-you-footer
 
 			h2(translate="PS_7_4_1") Connect With Us for Great Offers!
 
 			p(translate="PS_7_4_2") We want you to get to know the people in our customer care centre and those behind the website. Follow us on our social media accounts and stay up to date with DirectAsia.com&apos;s news and special offers.
 
-			.row
+			ul.social-links
+				li
+					a(href="", title="")
+						img(src="../../images/DA-facebook.png")
+				li
+					a(href="", title="")
+						img(src="../../images/DA-twitter.png")
+				li
+					a(href="", title="")
+						img(src="../../images/DA-google+.png")
+				li
+					a(href="", title="")
+						img(src="../../images/DA-linkedin.png")
+				li
+					a(href="", title="")
+						img(src="../../images/DA-youtube.png")
 
-				.col-md-1
+			.panel
 
-				.col-md-2.col-xs-4
-					img(src="../../images/DA-facebook.png")
+				.panel-body
 
-				.col-md-2.col-xs-4
-					img(src="../../images/DA-twitter.png")
+					.row
 
-				.col-md-2.col-xs-4
-					img(src="../../images/DA-google+.png")
+						.col-md-2.centred.margin--bottom
+							img(src="../../images/help-us-icon.png")
 
-				.col-md-2.col-xs-6
-					img(src="../../images/DA-linkedin.png")
+						.col-md-10
 
-				.col-md-2.col-xs-6
-					img(src="../../images/DA-youtube.png")
+							h2
+								span(translate="PS_7_5_1") Help Us Improve
+								.subtitle(translate="PS_7_5_2") We love honest feedback so we can make a better business for our customers. If you have two minutes, please complete a short survey about your DirectAsia.com experience.
 
-		.panel
+				.panel-footer
 
-			.panel-body
+					.bonus
+						img(src="../../images/green-check.png")
+						p(translate="PS_7_5_3") Rate and Review Us
 
-				img.pull-left.margin--right(src="../../images/help-us-icon.png")
+					.bonus
+						img(src="../../images/green-check.png")
+						p(translate="PS_7_5_4") Refer a Friend and Get a $25 Voucher
 
-				h2(translate="PS_7_5_1") Help Us Improve
+					.bonus
+						img(src="../../images/green-check.png")
+						p(translate="PS_7_5_5") Refer a friend to us for their car insurance and receive a $25 voucher when they sign up with us!
 
-				p(translate="PS_7_5_2") We love honest feedback so we can make a better business for our customers. If you have two minutes, please complete a short survey about your DirectAsia.com experience.
-
-			.panel-footer
-
-				div
-					img.pull-left.margin--right(src="../../images/green-check.png")
-					p(translate="PS_7_5_3") Rate and Review Us
-
-				div
-					img.pull-left.margin--right(src="../../images/green-check.png")
-					p(translate="PS_7_5_4") Refer a Friend and Get a $25 Voucher
-
-				div
-					img.pull-left.margin--right(src="../../images/green-check.png")
-					p(translate="PS_7_5_5") Refer a friend to us for their car insurance and receive a $25 voucher when they sign up with us!
-
-				button.btn.btn-default.btn-sm(type="button", translate="PS_7_5_6") Learn More
+					button.btn.btn-default.btn-sm.margin--top(type="button", translate="PS_7_5_6") Learn More

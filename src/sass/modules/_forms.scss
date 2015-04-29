@@ -102,6 +102,16 @@ label {
 	img {
 		margin-left:		10px;
 	}
+
+	&.label-strong {
+		display:			block;
+		font-family: 		"ProximaSemiBold";
+	}
+
+	&.label-bold {
+		font-family: 		"ProximaSemiBold";
+  		font-size: 			1.6em;
+	}
 }
 
 .label-checkbox,

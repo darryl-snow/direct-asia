@@ -56,12 +56,26 @@
 			}
 		}
 
+		&--white {
+			background:			$white;
+		}
+
 		&--blue {
 			background:			$blue;
 
 			h2 {
 				color:			$white;
 			}
+		}
+
+		&--nopadding {
+			padding:			0;
+		}
+	}
+
+	&-body {
+		&--nopadding {
+			padding:			0;
 		}
 	}
 
@@ -78,6 +92,10 @@
 			color:				$dark-grey-1;
 			font-size:			24px;
 			font-weight:		600;
+		}
+
+		&--white {
+			background:			$white;
 		}
 	}
 
@@ -116,6 +134,7 @@
 
 		.subtitle-secondary {
 			color:				$black;
+			font-family:		"ProximaSemiBold";
 		}
 
 		.btn-medium {
@@ -140,6 +159,49 @@
 			font-family: 		"ProximaSemiBold";
 			font-size:			1.6em;
 		}
+	}
+
+	&-summary {
+
+		h3 {
+			color:				$blue;
+			font-family: 		"ProximaSemiBold";
+			font-size:			1.25em !important;
+			margin:				0;
+		}
+
+		a {
+			color:				$black;
+
+			&:hover,
+			&:active,
+			&:focus {
+				color:			$black;
+			}
+		}
+	}
+
+	&-thankyou {
+		height:					300px;
+		position:				relative;
+
+		h2 {
+			color:				$blue;
+			margin-bottom:		0.5 * $base-spacing-unit !important;
+		}
+
+		.btn {
+			bottom:				$base-spacing-unit;
+			left:				50%;
+			position:			absolute;
+			transform: 			translateX(-50%);
+		}
+	}
+
+	iframe {
+		display:				block;
+		min-height: 			400px;
+		width:					100%;
 	}
 
 	h1,
@@ -503,6 +565,14 @@
 	// 		}
 	// 	}
 	// }
+
+	&-option {
+		min-height:				215px;
+
+		&.active {
+			background:			$yellow;
+		}
+	}
 
 	&-editoption,
 	&-option-details {
