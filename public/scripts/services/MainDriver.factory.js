@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Wed Apr 29 2015 22:46:26 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon May 11 2015 03:49:06 GMT+0800 (CST) */
 
 /*
 This is a class for instantiating main drivers, as used on the quote page
@@ -8,20 +8,16 @@ var MainDriver;
 MainDriver = (function() {
   function MainDriver() {
     this.ownership = null;
-    this.dob = {
-      day: null,
-      month: null,
-      year: null
-    };
+    this.dob = new Date();
     this.age = null;
     this.gender = null;
     this.maritalStatus = null;
     this.occupation = null;
     this.residentialDistrict = null;
     this.drivingExperience = null;
-    this.noClaimsDiscount = 0;
+    this.noClaimsDiscount = 30;
     this.whyNoClaimsDiscount = null;
-    this.otherCarNoClaimsDiscount = null;
+    this.otherCarNoClaimsDiscount = 30;
     this.offences = null;
     this.refusals = null;
     this.accidents = {

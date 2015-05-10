@@ -11,11 +11,11 @@
               <div class="col-md-2 centred margin--bottom"><img src="../../images/person-icon.png"/></div>
               <div class="col-md-7 margin--bottom">
                 <h1><span translate="PS_3_0a">Tell Us About the Main Driver</span>
-                  <p>{{driverForm.$submitted}}</p>
                   <div translate="PS_3_0b" class="subtitle">it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.</div>
                 </h1>
               </div>
-              <div class="col-md-3"><strong translate="GS_0_2a">Existing Customer?</strong>
+              <div class="col-md-3">
+                <strong translate="GS_0_2a">Existing Customer?</strong>
                 <p translate="GS_0_2b">Save time and retrieve your renewal quote</p>
                 <button type="button" class="btn btn-primary"><span translate="GS_0_2c">Login Now</span><span class="glyphicon glyphicon-ok"></span></button>
               </div>
@@ -25,14 +25,14 @@
         <div class="row margin--bottom">
           <div class="col-md-10 margin--bottom">
             <div class="container-fluid">
-              <h2 data-toggle="tooltip" data-placement="top" title="The main driver is the person who uses the car most frequently. They do not need to be the car owner (policyholder)." class="show-tooltip"><span translate="PS_3_0c">Does the main driver own the car?</span><img src="../../images/question-icon.png"/></h2>
-              <button id="ownCar" name="ownCar" type="button" data-ng-class="{'active': driver.ownership}" data-ng-click="driver.ownership = true" class="btn btn-default random-margin"><span translate="PS_3_0d">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
-              <button name="ownCar" type="button" data-ng-class="{'active': driver.ownership == false}" data-ng-click="driver.ownership = false" class="btn btn-default"><span translate="PS_3_0e">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="!driver.ownership &amp;&amp; driverForm.$submitted"/>
+              <div data-ng-if="ownership == 'private'">
+                <h2 data-toggle="tooltip" data-placement="top" title="The main driver is the person who uses the car most frequently. They do not need to be the car owner (policyholder)." class="show-tooltip"><span translate="PS_3_0c">Does the main driver own the car?</span><img src="../../images/question-icon.png"/></h2>
+                <button id="ownCar" name="ownCar" type="button" data-ng-class="{'active': driver.ownership}" data-ng-click="driver.ownership = true" class="btn btn-default random-margin"><span translate="PS_3_0d">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button name="ownCar" type="button" data-ng-class="{'active': driver.ownership == false}" data-ng-click="driver.ownership = false" class="btn btn-default"><span translate="PS_3_0e">No</span><span class="glyphicon glyphicon-ok"></span></button>
+              </div><img src="../../images/error.png" data-ng-show="!driver.ownership &amp;&amp; driverForm.$submitted"/>
               <h2 translate="PS_3_0f">Date of Birth</h2>
-              <div data-toggle="popover" data-placement="right" popover="#popover1" popover-type="popover--yellow" trigger="hover" style="display:inline-block;" class="form-inline">
-                <input id="driverDOBDay" name="driverDOBDay" data-ng-model="driver.dob.day" placeholder="DD" type="number" min="1" max="31" required="required" data-ng-class="{'ng-invalid': !isValidAge() &amp;&amp; driverForm.$submitted}" class="day"/>
-                <input id="driverDOBMonth" name="driverDOBMonth" data-ng-model="driver.dob.month" placeholder="MM" type="number" min="1" max="12" required="required" data-ng-class="{'ng-invalid': !isValidAge() &amp;&amp; driverForm.$submitted}" class="month"/>
-                <input id="driverDOBYear" name="driverDOBYear" data-ng-model="driver.dob.year" placeholder="YYYY" type="number" min="1900" max="2015" required="required" data-ng-class="{'ng-invalid': !isValidAge() &amp;&amp; driverForm.$submitted}" class="year"/><img src="../../images/error.png" data-ng-show="(!isValidAge() &amp;&amp; driverForm.$submitted) || (driverForm.driverDOBDay.$invalid &amp;&amp; driverForm.driverDOBDay.$dirty) || (driverForm.driverDOBMonth.$invalid &amp;&amp; driverForm.driverDOBMonth.$dirty) || (driverForm.driverDOBYear.$invalid &amp;&amp; driverForm.driverDOBYear.$dirty) || ((driverForm.driverDOBDay.$invalid || driverForm.driverDOBMonth.$invalid || driverForm.driverDOBYear.$invalid) &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.age &lt; 20)"/>
+              <div data-toggle="popover" data-placement="right" popover="#popover1" popover-type="popover--yellow" trigger="hover" style="display:inline-block;" class="form-inline"><img src="../../images/calendar.png" class="margin--right"/>
+                <input type="text" data-ng-datepicker="data-ng-datepicker" data-ng-model="driver.dob" name="driverDOB" data-ng-change="calculateAge()" data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true, 'endDate': today, 'immediateUpdates': true}" placeholder="DD/MM/YYYY" style="display:inline-block;" required="required" data-ng-class="{'ng-invalid': (!isValidAge() &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.age &lt; 20)}"/><img src="../../images/error.png" data-ng-show="(!isValidAge() &amp;&amp; driverForm.$submitted) || (driverForm.driverDOB.$invalid &amp;&amp; driverForm.driverDOB.$dirty) || (modalShown &amp;&amp; driver.age &lt; 20)"/>
               </div>
               <div id="popover1" class="popover right"><span translate="PS_3_0f_1">The main driver should be less than 70 year old</span></div>
               <div class="row">
@@ -48,13 +48,13 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                   <h2 translate="PS_3_0k">Occupation</h2>
                   <select id="occupation" name="occupation" data-ng-model="driver.occupation" required="required">
                     <option selecter="selecter" label="Enter Occupation" value="{{occupation}}" data-ng-repeat="occupation in occupations" selecter-target="#occupation" selecter-callback="select" property="occupation" data-ng-selected="occupation == selectedItem">{{occupation}}</option>
                   </select><img src="../../images/error.png" data-ng-show="(driverForm.occupation.$invalid &amp;&amp; driverForm.occupation.$dirty) || (driverForm.occupation.$invalid &amp;&amp; driverForm.$submitted)" style="bottom: 3px; position: absolute; right: 15px;"/>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                   <h2 translate="PS_3_0l">Residential District</h2>
                   <select id="residential" name="residential" data-ng-model="driver.residentialDistrict" required="required">
                     <option selecter="selecter" label="Enter Residential District" value="{{residential}}" data-ng-repeat="residential in residentials" selecter-target="#residential" selecter-callback="select" property="residential" data-ng-selected="residential == selectedItem">{{residential}}</option>
@@ -64,20 +64,19 @@
             </div>
             <div class="container-fluid">
               <h2 translate="PS_3_1_1a">Years of valid driving license</h2>
-              <div data-toggle="popover" data-placement="right" popover="#popover2" popover-type="popover--yellow" trigger="hover" style="display:inline-block; position: relative; width: 48%;" class="form-inline">
-                <select id="drivingExperience" name="drivingExperience" data-ng-model="driver.drivingExperience" required="required">
-                  <option selecter="selecter" label="Enter Driving License" value="{{drivingExperience}}" data-ng-repeat="drivingExperience in drivingExperiences" selecter-target="#drivingExperience" selecter-callback="select" property="drivingExperience" data-ng-selected="drivingExperience == selectedItem">{{drivingExperience}}</option>
-                </select><img src="../../images/error.png" data-ng-show="(driverForm.drivingExperience.$invalid &amp;&amp; driverForm.drivingExperience.$dirty) || (driverForm.drivingExperience.$invalid &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.drivingExperience == '1')" style="bottom: 3px; position: absolute; right: 0;"/>
+              <div class="col-md-12 margin--bottom">
+                <div data-toggle="popover" data-placement="right" popover="#popover2" popover-type="popover--yellow" trigger="hover" class="slider-labels slider-labels-experience"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>more than 5</span></div>
+                <slider data-ng-model="driver.drivingExperience" min="1" step="1" max="6" value="1"></slider>
               </div>
-              <div id="popover2" class="popover right"><span translate="PS_3_1_1b">We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.</span></div>
+              <div id="popover2" class="popover right"><span translate="PS_3_1_1b">We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.</span></div><img src="../../images/error.png" data-ng-show="(driverForm.drivingExperience == 'null' &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.drivingExperience == '1')" style="bottom: 3px; position: absolute; right: 0;"/>
             </div>
             <div class="container-fluid">
               <h2><span translate="PS_3_1_2a">No Claims Discount</span>
                 <div translate="PS_3_1_2b" class="subtitle">You will find on the renewal notice you recieved from your insurer</div>
               </h2>
               <div class="col-md-12 margin--bottom">
-                <div class="slider-labels"><span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span><span>50%</span></div>
-                <slider data-ng-model="driver.noClaimsDiscount" min="0" step="10" max="50" value="0"></slider>
+                <div class="slider-labels"><span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span><span>50%</span><span>60%</span></div>
+                <slider data-ng-model="driver.noClaimsDiscount" min="0" step="10" max="60" value="30"></slider>
               </div>
               <div data-ng-show="driver.noClaimsDiscount == 0">
                 <h2><span translate="PS_3_1_2_1a">Why does the main driver have 0% NCD?</span><img src="../../images/error.png" data-ng-show="driver.noClaimsDiscount == 0 &amp;&amp; driver.whyNoClaimsDiscount == null &amp;&amp; driverForm.$submitted"/></h2>
@@ -100,8 +99,8 @@
               </div>
               <div data-ng-show="driver.whyNoClaimsDiscount == 'Insured as a named driver on another policy' &amp;&amp; driver.noClaimsDiscount == 0">
                 <h2><span translate="PS_3_1_2_1f">What is your NCD on the other car?</span><img src="../../images/error.png" data-ng-show="driver.whyNoClaimsDiscount == 'Insured as a named driver on another policy' &amp;&amp; driver.otherCarNoClaimsDiscount == null &amp;&amp; driverForm.$submitted"/></h2>
-                <div class="slider-labels"><span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span><span>50%</span></div>
-                <slider data-ng-model="driver.otherCarNoClaimsDiscount" min="0" step="10" max="50" value="0"></slider>
+                <div class="slider-labels"><span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span><span>50%</span><span>60%</span></div>
+                <slider data-ng-model="driver.otherCarNoClaimsDiscount" min="0" step="10" max="60" value="30"></slider>
               </div>
             </div>
             <div class="container-fluid">
@@ -122,13 +121,13 @@
                 <div translate="PC_3_1_4b" class="subtitle">You should include all accidents and/or claims, but you can exclude windscreen claims.</div>
               </h2>
               <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-5">
                   <label translate="PC_4_4_1_4c">at Fault</label>
                   <select id="fault" name="fault" data-ng-model="driver.accidents.atFault" required="required">
                     <option selecter="selecter" label="at Fault" value="{{fault}}" data-ng-repeat="fault in faults" selecter-target="#fault" selecter-callback="select" property="fault" data-ng-selected="fault == selectedItem">{{fault}}</option>
                   </select><img src="../../images/error.png" data-ng-show="(driverForm.fault.$invalid &amp;&amp; driverForm.fault.$dirty) || (driverForm.fault.$invalid &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.accidents.atFault == '2+')" style="bottom: 3px; position: absolute; right: 15px;"/>
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-5">
                   <label translate="PC_4_4_1_4d">Not at Fault</label>
                   <select id="notFault" name="notFault" data-ng-model="driver.accidents.notAtFault" required="required">
                     <option selecter="selecter" label="Not at Fault" value="{{notFault}}" data-ng-repeat="notFault in notFaults" selecter-target="#notFault" selecter-callback="select" property="notFault" data-ng-selected="notFault == selectedItem">{{notFault}}</option>
@@ -140,8 +139,8 @@
         </div>
         <div class="row">
           <div class="col-md-12 margin--top">
-            <button type="submit" continue="continue" modal="#modal" modal-conditions="driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1" url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid &amp;&amp; driver.ownership == true &amp;&amp; isValidAge()" data-ng-disabled="modalShown &amp;&amp; (driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1)" class="btn btn-forward btn-lg margin--bottom margin--right"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
-            <button type="button" class="btn btn-backward"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_3_3_1">Back</span></button>
+            <button type="button" class="btn btn-backward margin--bottom"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_3_3_1">Back</span></button>
+            <button type="submit" continue="continue" modal="#modal" modal-conditions="driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1" url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid &amp;&amp; driver.ownership == true &amp;&amp; isValidAge()" data-ng-disabled="modalShown &amp;&amp; (driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1)" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
           </div>
         </div>
       </div>

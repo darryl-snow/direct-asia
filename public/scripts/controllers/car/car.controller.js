@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Wed Apr 29 2015 22:46:26 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon May 11 2015 03:49:06 GMT+0800 (CST) */
 
 /*
 
@@ -15,7 +15,8 @@ getMockData = function() {
   var data;
   return data = {
     makes: ["Volkswagon", "Nissan", "Toyota"],
-    models: ["Golf", "Micra", "Sera"]
+    models: ["Golf", "Micra", "Sera"],
+    years: ["2015", "2014", "2013", "2012", "2011", "2010"]
   };
 };
 
@@ -67,11 +68,11 @@ angular.module("DirectAsia").controller("CarCtrl", [
       var tomorrow;
       $scope.car = new Car;
       tomorrow = getTomorrowsDate();
-      $scope.car.policy.start.day = tomorrow.getDate();
-      $scope.car.policy.start.month = tomorrow.getMonth() + 1;
-      $scope.car.policy.start.year = tomorrow.getFullYear();
+      $scope.car.policy.startDate = "DD/MM/YYYY";
+      $scope.car.policy.endDate = "DD/MM/YYYY";
       $scope.makes = data.makes;
       $scope.models = data.models;
+      $scope.years = data.years;
       $scope.age = 0;
       return $scope.modalShown = false;
     };
@@ -88,9 +89,12 @@ angular.module("DirectAsia").controller("CarCtrl", [
     		or after tomorrow
      */
     $scope.startDateOnOrAfterTomorrow = function() {
-      var startDate, tomorrow;
+      var day, month, startDate, tomorrow, year;
       tomorrow = getTomorrowsDate();
-      startDate = new Date($scope.car.policy.start.year, $scope.car.policy.start.month - 1, $scope.car.policy.start.day);
+      day = $scope.car.policy.startDate.substr(0, 2);
+      month = $scope.car.policy.startDate.substr(3, 2);
+      year = $scope.car.policy.startDate.substr(6, 4);
+      startDate = new Date(year, month, day);
       return (startDate - tomorrow) >= 0;
     };
 
@@ -99,12 +103,15 @@ angular.module("DirectAsia").controller("CarCtrl", [
     		more than 3 months in the future
      */
     $scope.startDateWithin3Months = function() {
-      var months, startDate, today;
+      var day, month, months, startDate, today, year;
       today = new Date();
-      startDate = new Date($scope.car.policy.start.year, $scope.car.policy.start.month - 1, $scope.car.policy.start.day);
-      months = (startDate.getFullYear() - today.getFullYear()) * 12;
+      day = $scope.car.policy.startDate.substr(0, 2);
+      month = $scope.car.policy.startDate.substr(3, 2);
+      year = $scope.car.policy.startDate.substr(6, 4);
+      startDate = new Date(year, month, day);
+      months = (year - today.getFullYear()) * 12;
       months -= today.getMonth() + 1;
-      months += startDate.getMonth() + 1;
+      months += month + 1;
       return months <= 3;
     };
 
@@ -112,8 +119,11 @@ angular.module("DirectAsia").controller("CarCtrl", [
     		This function is used for validating that the selected end date is after the start date
      */
     $scope.endDateAfterStartDate = function() {
-      var endDate, startDate;
-      startDate = new Date($scope.car.policy.start.year, $scope.car.policy.start.month - 1, $scope.car.policy.start.day);
+      var day, endDate, month, startDate, year;
+      day = $scope.car.policy.startDate.substr(0, 2);
+      month = $scope.car.policy.startDate.substr(3, 2);
+      year = $scope.car.policy.startDate.substr(6, 4);
+      startDate = new Date(year, month, day);
       endDate = new Date($scope.car.policy.end.year, $scope.car.policy.end.month - 1, $scope.car.policy.end.day);
       return (endDate - startDate) > 0;
     };
@@ -123,11 +133,14 @@ angular.module("DirectAsia").controller("CarCtrl", [
     		after the selected start date
      */
     $scope.endDateWithin7And18MonthsAfterStartDate = function() {
-      var endDate, months, startDate;
-      startDate = new Date($scope.car.policy.start.year, $scope.car.policy.start.month - 1, $scope.car.policy.start.day);
+      var day, endDate, month, months, startDate, year;
+      day = $scope.car.policy.startDate.substr(0, 2);
+      month = $scope.car.policy.startDate.substr(3, 2);
+      year = $scope.car.policy.startDate.substr(6, 4);
+      startDate = new Date(year, month, day);
       endDate = new Date($scope.car.policy.end.year, $scope.car.policy.end.month - 1, $scope.car.policy.end.day);
-      months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
-      months -= startDate.getMonth() + 1;
+      months = (endDate.getFullYear() - year) * 12;
+      months -= month + 1;
       months += endDate.getMonth() + 1;
       return months >= 7 && months <= 18;
     };

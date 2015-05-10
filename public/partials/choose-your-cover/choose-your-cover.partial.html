@@ -8,8 +8,8 @@
           <div class="row">
             <div class="col-md-2 centred margin--bottom"><img src="../../images/person-icon.png"/></div>
             <div class="col-md-7 margin--bottom">
-              <h1><span translate="PS_3_0a">Tell Us About the Main Driver</span>
-                <div translate="PS_3_0b" class="subtitle">it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.</div>
+              <h1><span translate="PS_1_0a">Get an Instant Quote &amp; Buy Online</span>
+                <div translate="PS_1_0b" class="subtitle">Save up to 25% with a flexible &amp; customisable plan</div>
               </h1>
             </div>
             <div class="col-md-3"><strong translate="GS_0_2a">Existing Customer?</strong>
@@ -29,7 +29,6 @@
               <div data-ng-class="{'selected':coverDetails.plan == plan}" data-ng-repeat="plan in plans" class="panel plan-option">
                 <div class="panel-body"><img data-ng-src="{{plan.image}}" class="margin--bottom"/>
                   <h2 class="margin--bottom"><strong>{{plan.name}}</strong>
-                    <div data-ng-if="plan.tagline" class="subtitle">{{plan.tagline}}</div>
                   </h2><img data-ng-show="coverDetails.plan == plan" src="../../images/selected-icon.png" class="plan-option-status"/>
                   <button type="button" data-ng-show="coverDetails.plan != plan" data-ng-click="selectPlan(plan)" translate="PC_4_5c" class="btn btn-default plan-option-status">Select</button>
                 </div>
@@ -66,20 +65,13 @@
             </div>
             <div class="row margin--bottom">
               <div class="col-md-12">
-                <h2><span translate="PS_1_4a">Is the car financed?</span><img src="../../images/error.png" data-ng-show="coverDetails.financed === null &amp;&amp; planForm.$submitted"/></h2>
-                <button type="button" data-ng-class="{'active': coverDetails.financed}" data-ng-click="coverDetails.financed = true" class="btn btn-default"><span translate="PS_1_4b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
-                <button type="button" data-ng-class="{'active': coverDetails.financed == false}" data-ng-click="coverDetails.financed = false" class="btn btn-default"><span translate="PS_1_4c">No</span><span class="glyphicon glyphicon-ok"></span></button>
-              </div>
-            </div>
-            <div class="row margin--bottom">
-              <div class="col-md-12">
                 <label for="checkbox1" class="label-checkbox margin--bottom">
                   <input id="checkbox1" type="checkbox" data-ng-model="coverDetails.agreed"/>
                   <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div><span translate="PS_1_2a">I Agree to the <a href="#" title="">privacy terms</a>, and to fully and honestly answer any questions needed to recieve a policy.</span><img src="../../images/error.png" data-ng-show="(coverDetails.agreed == false || coverDetails.agreed == null) &amp;&amp; planForm.$submitted"/>
                 </label>
               </div>
             </div>
-            <button type="submit" continue="continue" url="http://localhost:9000/api/cover" page-data="{{coverDetails}}" valid="planForm.$valid &amp;&amp; coverDetails.agreed &amp;&amp; coverDetails.financed !== null" data-ng-disabled="planForm.$invalid || !coverDetails.agreed || coverDetails.financed === null" next-page="http://localhost:9000/pages/car/car.html" class="btn btn-forward btn-lg"><span translate="PS_1_3">Get Your Quote</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+            <button type="submit" continue="continue" url="http://localhost:9000/api/cover" page-data="{{coverDetails}}" valid="planForm.$valid &amp;&amp; coverDetails.agreed" data-ng-disabled="planForm.$invalid || !coverDetails.agreed" next-page="http://localhost:9000/pages/car/car.html" class="btn btn-forward btn-lg"><span translate="PS_1_3">Get Your Quote</span><span class="glyphicon glyphicon-arrow-right"></span></button>
           </div>
         </div>
       </form>

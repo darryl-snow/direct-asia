@@ -21,6 +21,14 @@ getMockData = ->
 			"Micra"
 			"Sera"
 		]
+		years: [
+			"2015"
+			"2014"
+			"2013"
+			"2012"
+			"2011"
+			"2010"
+		]
 
 ###
 The controller ties together the view with the model.
@@ -70,12 +78,16 @@ angular.module("DirectAsia").controller "CarCtrl", [
 
 			tomorrow = getTomorrowsDate()
 
-			$scope.car.policy.start.day = tomorrow.getDate()
-			$scope.car.policy.start.month = tomorrow.getMonth() + 1
-			$scope.car.policy.start.year = tomorrow.getFullYear()
+			# $scope.car.policy.start.day = tomorrow.getDate()
+			# $scope.car.policy.start.month = tomorrow.getMonth() + 1
+			# $scope.car.policy.start.year = tomorrow.getFullYear()
+
+			$scope.car.policy.startDate = "DD/MM/YYYY"
+			$scope.car.policy.endDate = "DD/MM/YYYY"
 
 			$scope.makes = data.makes
 			$scope.models = data.models
+			$scope.years = data.years
 
 			$scope.age = 0
 
@@ -93,7 +105,10 @@ angular.module("DirectAsia").controller "CarCtrl", [
 		$scope.startDateOnOrAfterTomorrow = ->
 
 			tomorrow = getTomorrowsDate()
-			startDate = new Date $scope.car.policy.start.year, ($scope.car.policy.start.month - 1), $scope.car.policy.start.day
+			day = $scope.car.policy.startDate.substr 0,2
+			month = $scope.car.policy.startDate.substr 3,2
+			year = $scope.car.policy.startDate.substr 6,4
+			startDate = new Date year, month, day
 
 			(startDate - tomorrow) >= 0
 
@@ -104,10 +119,13 @@ angular.module("DirectAsia").controller "CarCtrl", [
 
 		$scope.startDateWithin3Months = ->
 			today = new Date()
-			startDate = new Date $scope.car.policy.start.year, ($scope.car.policy.start.month - 1), $scope.car.policy.start.day
-			months = (startDate.getFullYear() - today.getFullYear()) * 12
+			day = $scope.car.policy.startDate.substr 0,2
+			month = $scope.car.policy.startDate.substr 3,2
+			year = $scope.car.policy.startDate.substr 6,4
+			startDate = new Date year, month, day
+			months = (year - today.getFullYear()) * 12
 			months -= today.getMonth() + 1
-			months += startDate.getMonth() + 1
+			months += month + 1
 			months <= 3
 
 		###
@@ -115,7 +133,10 @@ angular.module("DirectAsia").controller "CarCtrl", [
 		###
 
 		$scope.endDateAfterStartDate = ->
-			startDate = new Date $scope.car.policy.start.year, ($scope.car.policy.start.month - 1), $scope.car.policy.start.day
+			day = $scope.car.policy.startDate.substr 0,2
+			month = $scope.car.policy.startDate.substr 3,2
+			year = $scope.car.policy.startDate.substr 6,4
+			startDate = new Date year, month, day
 			endDate = new Date $scope.car.policy.end.year, ($scope.car.policy.end.month - 1), $scope.car.policy.end.day
 			(endDate - startDate) > 0
 
@@ -125,10 +146,13 @@ angular.module("DirectAsia").controller "CarCtrl", [
 		###
 
 		$scope.endDateWithin7And18MonthsAfterStartDate = ->
-			startDate = new Date $scope.car.policy.start.year, ($scope.car.policy.start.month - 1), $scope.car.policy.start.day
+			day = $scope.car.policy.startDate.substr 0,2
+			month = $scope.car.policy.startDate.substr 3,2
+			year = $scope.car.policy.startDate.substr 6,4
+			startDate = new Date year, month, day
 			endDate = new Date $scope.car.policy.end.year, ($scope.car.policy.end.month - 1), $scope.car.policy.end.day
-			months = (endDate.getFullYear() - startDate.getFullYear()) * 12
-			months -= startDate.getMonth() + 1
+			months = (endDate.getFullYear() - year) * 12
+			months -= month + 1
 			months += endDate.getMonth() + 1
 			months >= 7 && months <= 18
 

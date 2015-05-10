@@ -6,19 +6,16 @@ class MainDriver
 
 	constructor: ->
 		@ownership = null
-		@dob =
-			day: null
-			month: null
-			year: null
+		@dob = new Date()
 		@age = null
 		@gender = null
 		@maritalStatus = null
 		@occupation = null
 		@residentialDistrict = null
 		@drivingExperience = null
-		@noClaimsDiscount = 0
+		@noClaimsDiscount = 30
 		@whyNoClaimsDiscount = null
-		@otherCarNoClaimsDiscount = null
+		@otherCarNoClaimsDiscount = 30
 		@offences = null
 		@refusals = null
 		@accidents =

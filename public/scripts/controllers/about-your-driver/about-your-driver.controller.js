@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Wed Apr 29 2015 22:46:26 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon May 11 2015 03:49:06 GMT+0800 (CST) */
 
 /*
 
@@ -24,7 +24,8 @@ getMockData = function() {
     drivingExperiences: ["1", "2", "3", "4", "5", "more than 5"],
     discounts: ["0%", "20%", "30%", "40%", "50%", "60%"],
     faults: ["0", "1", "2", "2+"],
-    notFaults: ["0", "1", "2", "2+"]
+    notFaults: ["0", "1", "2", "2+"],
+    ownership: "private"
   };
 };
 
@@ -62,6 +63,7 @@ angular.module("DirectAsia").controller("aboutYourDriverCtrl", [
     		can be used on the page
      */
     setupData = function(data) {
+      $scope.today = new Date();
       $scope.driver = new MainDriver;
       $scope.occupations = data.occupations;
       $scope.residentials = data.residentials;
@@ -69,6 +71,7 @@ angular.module("DirectAsia").controller("aboutYourDriverCtrl", [
       $scope.discounts = data.discounts;
       $scope.faults = data.faults;
       $scope.notFaults = data.notFaults;
+      $scope.ownership = data.ownership;
       return $scope.modalShown = false;
     };
 
@@ -76,13 +79,27 @@ angular.module("DirectAsia").controller("aboutYourDriverCtrl", [
     		This is an Angular watch function that calculates and saves the driver's age when
     		they enter their DOB
      */
-    $scope.$watchGroup(["driver.dob.day", "driver.dob.month", "driver.dob.year"], function(newValues, oldValues, scope) {
-      var age;
-      age = ageFilter(newValues[2] + "/" + newValues[1] + "/" + newValues[0]);
-      if (!isNaN(age && newValues[0] && newValues[1] && newValues[2])) {
-        return $scope.driver.age = age;
+    $scope.$watch("driver.dob", function(newValue, oldValue) {
+      var age, day, month, year;
+      if (typeof newValue === "string") {
+        day = newValue.substr(0, 2);
+        month = newValue.substr(3, 2);
+        year = newValue.substr(6, 4);
+      }
+      if (newValue) {
+        if (typeof newValue === "string") {
+          age = ageFilter(year + "/" + month + "/" + day);
+        } else {
+          age = ageFilter(newValue.getFullYear() + "/" + newValue.getMonth() + "/" + newValue.getDate());
+        }
+        if (!isNaN(age && newValue)) {
+          return $scope.driver.age = age;
+        }
       }
     });
+    $scope.calculateAge = function() {
+      return $scope.driver.age = ageFilter($scope.driver.dob.substr(0, 2 + "/" + $scope.driver.dob.substr(3, 2 + "/" + $scope.driver.dob.substr(6, 4))));
+    };
 
     /*
     		This is an Angular watch function that removes values for why no NCD and NCD on
@@ -91,7 +108,7 @@ angular.module("DirectAsia").controller("aboutYourDriverCtrl", [
     $scope.$watch("driver.noClaimsDiscount", function(newValue, oldValue) {
       if (newValue !== 0) {
         $scope.driver.whyNoClaimsDiscount = null;
-        return $scope.driver.otherCarNoClaimsDiscount = null;
+        return $scope.driver.otherCarNoClaimsDiscount = 30;
       }
     });
 

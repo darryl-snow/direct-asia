@@ -33,10 +33,14 @@
     "angular-translate-loader-url": "~2.6.1",
     "angular-translate-loader-static-files": "~2.6.1",
     "seiyria-bootstrap-slider": "~3.1.0",
-    "angular-bootstrap-slider": "~0.1.1"
+    "angular-bootstrap-slider": "~0.1.1",
+    "angular-bootstrap-datepicker": "~0.3.1",
+    "angular-ui-select": "~0.11.2"
   },
   "resolutions": {
     "angular": "~1.3.7",
-    "seiyria-bootstrap-slider": "~3.1.0"
+    "seiyria-bootstrap-slider": "~3.1.0",
+    "bootstrap": "3.3.4",
+    "jquery": "2.1.4"
   }
 }

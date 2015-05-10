@@ -3,12 +3,20 @@
 
 	&-labels {
 		margin-left: 		-10px;
-		width:				250px;
+		width:				275px;
 
 		span {
 			display:		inline-block;
 			font-weight:	600;
-			width:			16.66%;
+			width:			14.28%;
 		}
+	}
+
+	&-horizontal {
+		width:				235px !important;
+	}
+
+	&-labels-experience {
+		width:				345px;
 	}
 }

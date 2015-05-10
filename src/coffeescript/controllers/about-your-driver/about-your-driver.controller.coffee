@@ -53,6 +53,7 @@ getMockData = ->
 			"2"
 			"2+"
 		]
+		ownership: "private"
 
 ###
 The controller ties together the view with the model.
@@ -88,6 +89,8 @@ angular.module("DirectAsia").controller "aboutYourDriverCtrl", [
 		###
 
 		setupData = (data) ->
+			$scope.today = new Date()
+
 			$scope.driver = new MainDriver
 			$scope.occupations = data.occupations
 			$scope.residentials = data.residentials
@@ -95,6 +98,7 @@ angular.module("DirectAsia").controller "aboutYourDriverCtrl", [
 			$scope.discounts = data.discounts
 			$scope.faults = data.faults
 			$scope.notFaults = data.notFaults
+			$scope.ownership = data.ownership
 
 			$scope.modalShown = false
 
@@ -103,9 +107,22 @@ angular.module("DirectAsia").controller "aboutYourDriverCtrl", [
 		they enter their DOB
 		###
 
-		$scope.$watchGroup ["driver.dob.day", "driver.dob.month", "driver.dob.year"], (newValues, oldValues, scope) ->
-			age = ageFilter newValues[2] + "/" + newValues[1] + "/" + newValues[0]
-			if !isNaN age and newValues[0] and newValues[1] and newValues[2] then $scope.driver.age = age
+		$scope.$watch "driver.dob", (newValue, oldValue) ->
+
+			if typeof newValue is "string"
+				day = newValue.substr 0,2
+				month = newValue.substr 3,2
+				year = newValue.substr 6,4
+
+			if newValue
+				if typeof newValue is "string"
+					age = ageFilter year + "/" + month + "/" + day
+				else
+					age = ageFilter newValue.getFullYear() + "/" + newValue.getMonth() + "/" + newValue.getDate()
+				if !isNaN age and newValue then $scope.driver.age = age
+
+		$scope.calculateAge = ->
+			$scope.driver.age = ageFilter $scope.driver.dob.substr 0,2 + "/" + $scope.driver.dob.substr 3,2 + "/" + $scope.driver.dob.substr 6,4
 
 		###
 		This is an Angular watch function that removes values for why no NCD and NCD on
@@ -115,7 +132,7 @@ angular.module("DirectAsia").controller "aboutYourDriverCtrl", [
 		$scope.$watch "driver.noClaimsDiscount", (newValue, oldValue) ->
 			if newValue isnt 0
 				$scope.driver.whyNoClaimsDiscount = null
-				$scope.driver.otherCarNoClaimsDiscount = null
+				$scope.driver.otherCarNoClaimsDiscount = 30
 
 		###
 		This is an Angular watch function that removes the value for NCD on

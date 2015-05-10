@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Wed Apr 29 2015 22:46:26 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon May 11 2015 03:49:06 GMT+0800 (CST) */
 
 /*
 
@@ -95,7 +95,6 @@ angular.module("DirectAsia").controller("yourPlanCtrl", [
       $scope.covers = data.covers;
       return $scope.coverDetails = {
         plan: $scope.plans[0],
-        financed: null,
         agreed: false
       };
     };

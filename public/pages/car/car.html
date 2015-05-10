@@ -42,6 +42,8 @@
     <script src="../../lib/fsm-sticky-header.js"></script>
     <script src="../../lib/bootstrap-slider.min.js"></script>
     <script src="../../lib/slider.js"></script>
+    <script src="../../lib/angular-bootstrap-datepicker.js"></script>
+    <script src="../../lib/select.js"></script>
     <script src="../../scripts/main.js"></script>
     <script src="../../scripts/controllers/help/help.controller.js"></script>
     <script src="../../scripts/directives/continue-button.directive.js"></script>
@@ -72,8 +74,8 @@
           <li><span translate="GC_0_1_2">Your Quote</span></li>
           <li><span translate="GC_0_1_3">Purchase</span></li>
         </ol>
-        <div class="navbar-telephone pull-right"><span translate="GS_0_0_2c">Call our Singapore Team on</span><span class="navbar-telephone-number">9854 4345</span></div>
-        <script src="../../scripts/controllers/help/help.controller.js"></script>
+        <div class="navbar-telephone pull-right"><span translate="GS_0_0_2c">Call our Hong Kong Team on</span><span class="navbar-telephone-number">9854 4345</span></div>
+        
         <div data-ng-controller="helpCtrl" class="help">
           <button type="button" translate="GS_0_0_2a" data-ng-click="showPopover()" class="btn btn-primary btn-sm help-button">Need Help?</button>
           <div id="popover" data-ng-show="open" class="fake-popover">
@@ -98,11 +100,12 @@
               </h2>
             </div>
             <p><span translate="GS_0_0_2b">Call us on </span>+852 2884 8888<br><span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
-            <p><span translate="GS_0_0_3a">Email us at </span><a href="" style="display:block;">enquiries@directasia.com.hk</a></p>
+            <p><span translate="GS_0_0_3a">Email us at </span><a href="mailto:enquiries@directasia.com.hk" style="display:block;">enquiries@directasia.com.hk</a></p>
           </div>
         </div>
       </div>
     </div>
+    <link rel="stylesheet" href="../../lib/angular-bootstrap-datepicker.css">
     <script src="../../scripts/controllers/car/car.controller.js"></script>
     <div class="container">
       <section ng-controller="CarCtrl" class="section section-car">
@@ -117,7 +120,8 @@
                       <div translate="PS_2_0_2" class="subtitle">Please note that we do not cover cars used for commercial<br>purposes or for hire/reward</div>
                     </h1>
                   </div>
-                  <div class="col-md-3"><strong translate="GS_0_2a">Existing Customer?</strong>
+                  <div class="col-md-3">
+                    <strong translate="GS_0_2a">Existing Customer?</strong>
                     <p translate="GS_0_2b">Save time and retrieve your renewal quote</p>
                     <button type="button" class="btn btn-primary"><span translate="GS_0_2c">Login Now</span><span class="glyphicon glyphicon-ok"></span></button>
                   </div>
@@ -127,7 +131,9 @@
                 <div data-toggle="popover" data-placement="top" popover="#popover1" popover-type="popover--yellow" trigger="hover" class="row">
                   <div class="col-md-4 margin--bottom">
                     <label for="year"><span translate="PS_2_0_3">Year of Manufacture</span><img data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document." src="../../images/question-icon.png" class="show-tooltip"></label>
-                    <input id="carYear" name="carYear" data-ng-model="car.year" type="number" min="1980" max="2015" placeholder="Enter year" required class="form-control"><img src="../../images/error.png" data-ng-show="(carForm.carYear.$invalid &amp;&amp; carForm.carYear.$dirty) || (carForm.carYear.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; age &gt; 10)">
+                    <select id="carYear" name="carYear" data-ng-model="car.year" required>
+                      <option selecter label="Enter year" value="{{year}}" data-ng-repeat="year in years" selecter-target="#carYear" selecter-callback="select" property="year" data-ng-selected="year == selectedItem">{{year}}</option>
+                    </select><img src="../../images/error.png" data-ng-show="(carForm.carYear.$invalid &amp;&amp; carForm.carYear.$dirty) || (carForm.carYear.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; age &gt; 10)">
                   </div>
                   <div class="col-md-4 margin--bottom">
                     <label for="make"><span translate="PS_2_0_4">Car Make</span><img src="../../images/question-icon.png"></label>
@@ -155,6 +161,17 @@
                   <div class="col-md-12">
                     <button name="carOwnership" type="button" data-ng-click="select('private', 0, 'ownership')" data-ng-class="{'active':car.ownership=='private'}" class="btn btn-default random-margin"><span translate="PS_2_1_2_2">Private</span><span class="glyphicon glyphicon-ok"></span></button>
                     <button name="carOwnership" type="button" data-ng-click="select('corporate', 0, 'ownership')" data-ng-class="{'active':car.ownership=='corporate'}" class="btn btn-default"><span translate="PS_2_1_2_3">Corporate</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.ownership">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid margin--bottom margin--top">
+              <div class="container-fluid margin--bottom">
+                <div class="row margin--bottom">
+                  <div class="col-md-12">
+                    <h2><span translate="PS_1_4a">Is the car financed?</span><img src="../../images/error.png" data-ng-show="car.financed === null &amp;&amp; carForm.$submitted"></h2>
+                    <button type="button" data-ng-class="{'active': car.financed}" data-ng-click="car.financed = true" class="btn btn-default random-margin"><span translate="PS_1_4b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                    <button type="button" data-ng-class="{'active': car.financed == false}" data-ng-click="car.financed = false" class="btn btn-default"><span translate="PS_1_4c">No</span><span class="glyphicon glyphicon-ok"></span></button>
                   </div>
                 </div>
               </div>
@@ -208,18 +225,14 @@
                   <div class="row">
                     <div class="col-md-4">
                       <p><strong translate="PS_2_1_5a">Policy start date:</strong></p>
-                      <div class="form-inline">
-                        <input id="policyStartDay" name="policyStartDay" data-ng-model="car.policy.start.day" placeholder="DD" type="number" min="1" max="31" required data-ng-class="{'ng-invalid': !startDateWithin3Months() &amp;&amp; carForm.$submitted}" class="day">
-                        <input id="policyStartMonth" name="policyStartMonth" data-ng-model="car.policy.start.month" placeholder="MM" type="number" min="1" max="12" required data-ng-class="{'ng-invalid': !startDateWithin3Months() &amp;&amp; carForm.$submitted}" class="month">
-                        <input id="policyStartYear" name="policyStartYear" data-ng-model="car.policy.start.year" placeholder="YYYY" type="number" min="1900" max="2015" required data-ng-class="{'ng-invalid': !startDateWithin3Months() &amp;&amp; carForm.$submitted}" class="year"><img src="../../images/error.png" data-ng-show="(carForm.policyStartDay.$invalid &amp;&amp; carForm.policyStartDay.$dirty) || (carForm.policyStartMonth.$invalid &amp;&amp; carForm.policyStartMonth.$dirty) || (carForm.policyStartYear.$invalid &amp;&amp; carForm.policyStartYear.$dirty) || (carForm.policyStartDay.$invalid &amp;&amp; carForm.policyStartMonth.$invalid &amp;&amp; carForm.policyStartYear.$invalid &amp;&amp; carForm.$submitted) || (!startDateWithin3Months() &amp;&amp; carForm.$submitted) || (!startDateOnOrAfterTomorrow() &amp;&amp; carForm.$submitted)">
+                      <div class="form-inline"><img src="../../images/calendar.png" class="margin--right">
+                        <input type="text" name="policyStartDate" ng-datepicker data-ng-model="car.policy.startDate" data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true}" placeholder="DD/MM/YYYY" required data-ng-class="{'ng-invalid': (carForm.policyStartDate.$invalid &amp;&amp; carForm.policyStartDate.$dirty) || (!startDateWithin3Months() &amp;&amp; carForm.$submitted) || (!startDateOnOrAfterTomorrow() &amp;&amp; carForm.$submitted)}" style="display:inline-block;"><img src="../../images/error.png" data-ng-show="(carForm.policyStartDate.$invalid &amp;&amp; carForm.policyStartDate.$dirty) || (!startDateWithin3Months() &amp;&amp; carForm.$submitted) || (!startDateOnOrAfterTomorrow() &amp;&amp; carForm.$submitted)">
                       </div>
                     </div>
                     <div class="col-md-4">
                       <p><strong translate="PS_2_1_5b">Policy end date:</strong></p>
-                      <div class="form-inline">
-                        <input id="policyEndDay" name="policyEndDay" data-ng-model="car.policy.end.day" placeholder="DD" type="number" min="1" max="31" required class="day">
-                        <input id="policyEndMonth" name="policyEndMonth" data-ng-model="car.policy.end.month" placeholder="MM" type="number" min="1" max="12" required class="month">
-                        <input id="policyEndYear" name="policyEndYear" data-ng-model="car.policy.end.year" placeholder="YYYY" type="number" min="2015" max="2025" required class="year"><img src="../../images/error.png" data-ng-show="(carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndDay.$dirty) || (carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndMonth.$dirty) || (carForm.policyEndYear.$invalid &amp;&amp; carForm.policyEndYear.$dirty) || (carForm.policyEndDay.$invalid &amp;&amp; carForm.policyEndMonth.$invalid &amp;&amp; carForm.policyEndYear.$invalid &amp;&amp; carForm.$submitted) || (!endDateAfterStartDate() &amp;&amp; carForm.policyEndDay.$dirty &amp;&amp; carForm.policyEndMonth.$dirty &amp;&amp; carForm.policyEndYear.$dirty) || (!endDateWithin7And18MonthsAfterStartDate() &amp;&amp; carForm.policyEndDay.$dirty &amp;&amp; carForm.policyEndMonth.$dirty &amp;&amp; carForm.policyEndYear.$dirty)">
+                      <div class="form-inline"><img src="../../images/calendar.png" class="margin--right">
+                        <input type="text" name="policyEndDate" ng-datepicker data-ng-model="car.policy.endDate" data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true}" placeholder="DD/MM/YYYY" required data-ng-class="{'ng-invalid': (carForm.policyEndDate.$invalid &amp;&amp; carForm.policyEndDate.$dirty) || (!endDateAfterStartDate() &amp;&amp; carForm.policyEndDate.$dirty) || (!endDateWithin7And18MonthsAfterStartDate() &amp;&amp; carForm.policyEndDate.$dirty)}" style="display:inline-block;"><img src="../../images/error.png" data-ng-show="(carForm.policyEndDate.$invalid &amp;&amp; carForm.policyEndDate.$dirty) || (!endDateAfterStartDate() &amp;&amp; carForm.policyEndDate.$dirty) || (!endDateWithin7And18MonthsAfterStartDate() &amp;&amp; carForm.policyEndDate.$dirty)">
                       </div>
                     </div>
                   </div>
@@ -242,7 +255,7 @@
               <div class="modal-body">
                 <h2 id="modalSuccessTitle" translate="GS_0_3_1">Are you still there?</h2>
                 <p translate="GS_0_3_2">If we don‘t detect you clicking around, then we end your session to protect your personal information.</p>
-                <p><strong translate="GS_0_3_3">your session will end in: [X]</strong></p>
+                <p><strong translate="GS_0_3_3">your session will end in:<span class="highlight-blue">[X]</span></strong></p>
                 <button type="button" data-dismiss="modal" translate="GS_0_3_4" class="btn btn-forward btn-lg">Yes! Continue My Quote</button>
               </div>
             </div>
@@ -256,7 +269,7 @@
                 <h2 id="modalProblemTitle" translate="PC_3_3_3">Sorry, but we‘d like to speak with you about your policy</h2>
                 <p><strong translate="PC_3_3_4">What to do next:</strong></p>
                 <p translate="PC_3_3_5">Call our [Country] based team and provide your reference number and we‘ll help you complete your policy</p>
-                <p><strong><span translate="PC_3_3_6">Your Reference Number:</span> XXXXX</strong></p>
+                <p><strong><span translate="PC_3_3_6">Your Reference Number:</span><span class="highlight-blue"> XXXXX</span></strong></p>
                 <p><span translate="GS_0_0_2a">Call us on</span> +852 2884 8888<span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
               </div>
             </div>

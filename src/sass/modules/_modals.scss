@@ -1,8 +1,22 @@
+.modal {
+	background:		$light-grey-3;
+}
+
 .modal-content {
+	background:		transparent;
+	border-radius:	0;
+	box-shadow:		none;
 	padding: 		$base-spacing-unit;
 
 	h2 {
-		margin-top:	0;
+		font-family: 	Proxima;
+		font-size:		2em;
+		margin-top:		0;
+	}
+
+	p,
+	strong {
+		margin:			1.5em auto;
 	}
 
 	.close {

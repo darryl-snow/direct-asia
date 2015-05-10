@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Wed Apr 29 2015 22:46:26 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Mon May 11 2015 03:49:06 GMT+0800 (CST) */
 
 /*
 Lovely welcome message
@@ -10,7 +10,7 @@ console.log("%c Welcome to Direct Asia Car Insurance ", "background: #3498db;\nc
 Define main module
  */
 
-angular.module("DirectAsia", ["fsm", "pascalprecht.translate", "ui.bootstrap-slider"]).config(function($translateProvider) {
+angular.module("DirectAsia", ["fsm", "pascalprecht.translate", "ui.bootstrap-slider", "ng-bootstrap-datepicker", "ui.select"]).config(function($translateProvider) {
 
   /*
   		Setup translation content.

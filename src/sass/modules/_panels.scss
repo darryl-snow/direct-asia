@@ -58,6 +58,10 @@
 
 		&--white {
 			background:			$white;
+
+			h2 {
+				color:			$black !important;
+			}
 		}
 
 		&--blue {

@@ -42,6 +42,18 @@
     <script src="../../lib/fsm-sticky-header.js"></script>
     <script src="../../lib/bootstrap-slider.min.js"></script>
     <script src="../../lib/slider.js"></script>
+    <script src="../../lib/angular-bootstrap-datepicker.js"></script>
+    <script src="../../lib/select.js"></script>
+    <!-- if lt IE 9
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+    <script>
+    	document.createElement("ui-select");
+    	document.createElement("ui-select-match");
+    	document.createElement("ui-select-choices");
+    </script>
+    
+    -->
     <script src="../../scripts/main.js"></script>
     <script src="../../scripts/controllers/help/help.controller.js"></script>
     <script src="../../scripts/directives/continue-button.directive.js"></script>
@@ -73,7 +85,7 @@
           <li><span translate="GC_0_1_3">Purchase</span></li>
         </ol>
         <div class="navbar-telephone pull-right"><span translate="GS_0_0_2">Need help? Speak with Our Hong Kong Team</span><span class="navbar-telephone-number">2884 8888</span><span translate="GS_0_0_3">Mon - Fri 8am - 8pm | Sat 9am - 6pm</span></div>
-        <script src="../../scripts/controllers/help/help.controller.js"></script>
+        
         <div data-ng-controller="helpCtrl" class="help">
           <button type="button" translate="GS_0_0_2a" data-ng-click="showPopover()" class="btn btn-primary btn-sm help-button">Need Help?</button>
           <div id="popover" data-ng-show="open" class="fake-popover">
@@ -98,7 +110,7 @@
               </h2>
             </div>
             <p><span translate="GS_0_0_2b">Call us on </span>+852 2884 8888<br><span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
-            <p><span translate="GS_0_0_3a">Email us at </span><a href="" style="display:block;">enquiries@directasia.com.hk</a></p>
+            <p><span translate="GS_0_0_3a">Email us at </span><a href="mailto:enquiries@directasia.com.hk" style="display:block;">enquiries@directasia.com.hk</a></p>
           </div>
         </div>
       </div>

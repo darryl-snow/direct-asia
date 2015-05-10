@@ -112,7 +112,6 @@ angular.module("DirectAsia").controller "yourPlanCtrl", [
 			# Data to be sent back to the server
 			$scope.coverDetails =
 				plan: $scope.plans[0]
-				financed: null
 				agreed: false
 
 		###

@@ -1,3 +1,4 @@
+link(rel="stylesheet", href="../../lib/angular-bootstrap-datepicker.css")
 script(src="../../scripts/controllers/car/car.controller.js")
 
 .container
@@ -37,7 +38,9 @@ script(src="../../scripts/controllers/car/car.controller.js")
 									span(translate="PS_2_0_3") Year of Manufacture
 									img.show-tooltip(data-placement="top", title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document.", src="../../images/question-icon.png")
 
-								input#carYear.form-control(name="carYear", data-ng-model="car.year", type="number", min="1980", max="2015", placeholder="Enter year", required)
+								//- input#carYear.form-control(name="carYear", data-ng-model="car.year", type="number", min="1980", max="2015", placeholder="Enter year", required)
+								select#carYear(name="carYear", data-ng-model="car.year", required)
+									option(selecter, label="Enter year", value="{{year}}", data-ng-repeat="year in years", selecter-target="#carYear", selecter-callback="select", property="year", data-ng-selected="year == selectedItem") {{year}}
 
 								img(src="../../images/error.png", data-ng-show="(carForm.carYear.$invalid && carForm.carYear.$dirty) || (carForm.carYear.$invalid && carForm.$submitted) || (modalShown && age > 10)")
 
@@ -49,6 +52,10 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 								select#carMake(name="carMake", data-ng-model="car.make", required)
 									option(selecter, label="Enter make", value="{{make}}", data-ng-repeat="make in makes", selecter-target="#carMake", selecter-callback="select", property="make", data-ng-selected="make == selectedItem") {{make}}
+
+								//- ul-select(data-ng-model="car.make", theme="bootstrap")
+								//- 	ul-select-match(placeholder="Enter make") {{$select.selected}}
+								//- 	ul-select-choices(repeat="make in makes") {{make}}
 
 								img(src="../../images/error.png", data-ng-show="(carForm.carMake.$invalid && carForm.carMake.$dirty) || (carForm.carMake.$invalid && carForm.$submitted) || (modalShown && car.make == 'xxxx')", style="position:absolute; right: 15px; bottom: 3px;")
 
@@ -86,6 +93,23 @@ script(src="../../scripts/controllers/car/car.controller.js")
 									span.glyphicon.glyphicon-ok
 
 								img(src="../../images/error.png", data-ng-show="carForm.$submitted && !car.ownership")
+
+				.container-fluid.margin--bottom.margin--top
+					.container-fluid.margin--bottom
+						.row.margin--bottom
+							.col-md-12
+
+								h2
+									span(translate="PS_1_4a") Is the car financed?
+									img(src="../../images/error.png", data-ng-show="car.financed === null && carForm.$submitted")
+
+								button.btn.btn-default.random-margin(type="button", data-ng-class="{'active': car.financed}", data-ng-click="car.financed = true")
+									span(translate="PS_1_4b") Yes
+									span.glyphicon.glyphicon-ok
+
+								button.btn.btn-default(type="button", data-ng-class="{'active': car.financed == false}", data-ng-click="car.financed = false")
+									span(translate="PS_1_4c") No
+									span.glyphicon.glyphicon-ok
 
 				.container-fluid.margin--bottom.margin--top
 
@@ -178,13 +202,10 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 									.form-inline
 
-										input#policyStartDay.day(name="policyStartDay", data-ng-model="car.policy.start.day", placeholder="DD", type="number", min="1", max="31", required, data-ng-class="{'ng-invalid': !startDateWithin3Months() && carForm.$submitted}")
+										img.margin--right(src="../../images/calendar.png")
+										input(type="text", name="policyStartDate", ng-datepicker, data-ng-model="car.policy.startDate", data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true}", placeholder="DD/MM/YYYY", required, data-ng-class="{'ng-invalid': (carForm.policyStartDate.$invalid && carForm.policyStartDate.$dirty) || (!startDateWithin3Months() && carForm.$submitted) || (!startDateOnOrAfterTomorrow() && carForm.$submitted)}", style="display:inline-block;")
 
-										input#policyStartMonth.month(name="policyStartMonth", data-ng-model="car.policy.start.month", placeholder="MM", type="number", min="1", max="12", required, data-ng-class="{'ng-invalid': !startDateWithin3Months() && carForm.$submitted}")
-
-										input#policyStartYear.year(name="policyStartYear", data-ng-model="car.policy.start.year", placeholder="YYYY", type="number", min="1900", max="2015", required, data-ng-class="{'ng-invalid': !startDateWithin3Months() && carForm.$submitted}")
-
-										img(src="../../images/error.png", data-ng-show="(carForm.policyStartDay.$invalid && carForm.policyStartDay.$dirty) || (carForm.policyStartMonth.$invalid && carForm.policyStartMonth.$dirty) || (carForm.policyStartYear.$invalid && carForm.policyStartYear.$dirty) || (carForm.policyStartDay.$invalid && carForm.policyStartMonth.$invalid && carForm.policyStartYear.$invalid && carForm.$submitted) || (!startDateWithin3Months() && carForm.$submitted) || (!startDateOnOrAfterTomorrow() && carForm.$submitted)")
+										img(src="../../images/error.png", data-ng-show="(carForm.policyStartDate.$invalid && carForm.policyStartDate.$dirty) || (!startDateWithin3Months() && carForm.$submitted) || (!startDateOnOrAfterTomorrow() && carForm.$submitted)")
 
 								.col-md-4
 
@@ -193,13 +214,10 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 									.form-inline
 
-										input#policyEndDay.day(name="policyEndDay", data-ng-model="car.policy.end.day", placeholder="DD", type="number", min="1", max="31", required)
+										img.margin--right(src="../../images/calendar.png")
+										input(type="text", name="policyEndDate", ng-datepicker, data-ng-model="car.policy.endDate", data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true}", placeholder="DD/MM/YYYY", required, data-ng-class="{'ng-invalid': (carForm.policyEndDate.$invalid && carForm.policyEndDate.$dirty) || (!endDateAfterStartDate() && carForm.policyEndDate.$dirty) || (!endDateWithin7And18MonthsAfterStartDate() && carForm.policyEndDate.$dirty)}", style="display:inline-block;")
 
-										input#policyEndMonth.month(name="policyEndMonth", data-ng-model="car.policy.end.month", placeholder="MM", type="number", min="1", max="12", required)
-
-										input#policyEndYear.year(name="policyEndYear", data-ng-model="car.policy.end.year", placeholder="YYYY", type="number", min="2015", max="2025", required)
-
-										img(src="../../images/error.png", data-ng-show="(carForm.policyEndDay.$invalid && carForm.policyEndDay.$dirty) || (carForm.policyEndMonth.$invalid && carForm.policyEndMonth.$dirty) || (carForm.policyEndYear.$invalid && carForm.policyEndYear.$dirty) || (carForm.policyEndDay.$invalid && carForm.policyEndMonth.$invalid && carForm.policyEndYear.$invalid && carForm.$submitted) || (!endDateAfterStartDate() && carForm.policyEndDay.$dirty && carForm.policyEndMonth.$dirty && carForm.policyEndYear.$dirty) || (!endDateWithin7And18MonthsAfterStartDate() && carForm.policyEndDay.$dirty && carForm.policyEndMonth.$dirty && carForm.policyEndYear.$dirty)")
+										img(src="../../images/error.png", data-ng-show="(carForm.policyEndDate.$invalid && carForm.policyEndDate.$dirty) || (!endDateAfterStartDate() && carForm.policyEndDate.$dirty) || (!endDateWithin7And18MonthsAfterStartDate() && carForm.policyEndDate.$dirty)")
 				.container-fluid
 
 					.row
@@ -224,9 +242,11 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 						p(translate="GS_0_3_2") If we don‘t detect you clicking around, then we end your session to protect your personal information.
 						p
-							strong(translate="GS_0_3_3") your session will end in: [X]
+							strong(translate="GS_0_3_3") your session will end in:
+								span.highlight-blue [X]
 
 						button.btn.btn-forward.btn-lg(type="button", data-dismiss="modal", translate="GS_0_3_4") Yes! Continue My Quote
+
 
 		modal#modal-problem.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalProblemTitle", aria-hidden="false", shown="modalShown")
 			.modal-dialog
@@ -244,11 +264,12 @@ script(src="../../scripts/controllers/car/car.controller.js")
 						p
 							strong
 								span(translate="PC_3_3_6") Your Reference Number:
-								|  XXXXX
+								span.highlight-blue  XXXXX
 						p
 							span(translate="GS_0_0_2a") Call us on
 							|  +852 2884 8888
 							span(translate="GS_0_0_3") Mon - Fri 8am, Sat 9am - 6pm
+
 
 script.
 	$('#modal').modal();

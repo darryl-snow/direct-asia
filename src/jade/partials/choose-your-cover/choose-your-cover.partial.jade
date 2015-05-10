@@ -18,8 +18,8 @@ script(src="../../scripts/controllers/your-plan/your-plan.controller.js")
 						.col-md-7.margin--bottom
 
 							h1
-								span(translate="PS_3_0a") Tell Us About the Main Driver
-								.subtitle(translate="PS_3_0b") it‘s important that you‘re honest about who the main driver is so you‘re covered if you ever have a claim.
+								span(translate="PS_1_0a") Get an Instant Quote &amp; Buy Online
+								.subtitle(translate="PS_1_0b") Save up to 25% with a flexible &amp; customisable plan
 
 						.col-md-3
 
@@ -44,7 +44,7 @@ script(src="../../scripts/controllers/your-plan/your-plan.controller.js")
 									img.margin--bottom(data-ng-src="{{plan.image}}")
 									h2.margin--bottom
 										strong {{plan.name}}
-										.subtitle(data-ng-if="plan.tagline") {{plan.tagline}}
+										//- .subtitle(data-ng-if="plan.tagline") {{plan.tagline}}
 									img.plan-option-status(data-ng-show="coverDetails.plan == plan", src="../../images/selected-icon.png")
 									button.btn.btn-default.plan-option-status(type="button", data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
 
@@ -84,21 +84,6 @@ script(src="../../scripts/controllers/your-plan/your-plan.controller.js")
 						.row.margin--bottom
 							.col-md-12
 
-								h2
-									span(translate="PS_1_4a") Is the car financed?
-									img(src="../../images/error.png", data-ng-show="coverDetails.financed === null && planForm.$submitted")
-
-								button.btn.btn-default(type="button", data-ng-class="{'active': coverDetails.financed}", data-ng-click="coverDetails.financed = true")
-									span(translate="PS_1_4b") Yes
-									span.glyphicon.glyphicon-ok
-
-								button.btn.btn-default(type="button", data-ng-class="{'active': coverDetails.financed == false}", data-ng-click="coverDetails.financed = false")
-									span(translate="PS_1_4c") No
-									span.glyphicon.glyphicon-ok
-
-						.row.margin--bottom
-							.col-md-12
-
 								label.label-checkbox.margin--bottom(for="checkbox1")
 									input#checkbox1(type="checkbox", data-ng-model="coverDetails.agreed")
 									.fake-checkbox
@@ -109,6 +94,6 @@ script(src="../../scripts/controllers/your-plan/your-plan.controller.js")
 										| , and to fully and honestly answer any questions needed to recieve a policy.
 									img(src="../../images/error.png", data-ng-show="(coverDetails.agreed == false || coverDetails.agreed == null) && planForm.$submitted")
 
-						button.btn.btn-forward.btn-lg(type="submit", continue, url="http://localhost:9000/api/cover", page-data="{{coverDetails}}", valid="planForm.$valid && coverDetails.agreed && coverDetails.financed !== null", data-ng-disabled="planForm.$invalid || !coverDetails.agreed || coverDetails.financed === null", next-page="http://localhost:9000/pages/car/car.html")
+						button.btn.btn-forward.btn-lg(type="submit", continue, url="http://localhost:9000/api/cover", page-data="{{coverDetails}}", valid="planForm.$valid && coverDetails.agreed", data-ng-disabled="planForm.$invalid || !coverDetails.agreed", next-page="http://localhost:9000/pages/car/car.html")
 							span(translate="PS_1_3") Get Your Quote
 							span.glyphicon.glyphicon-arrow-right

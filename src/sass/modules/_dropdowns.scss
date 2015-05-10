@@ -1,0 +1,17 @@
+.dropdown-menu {
+	background:			$white;
+
+	th {
+		text-align: 	center;
+	}
+
+	td{
+		cursor:			pointer;
+		text-align: 	center;
+		transition:		0.3s all ease-in-out;
+
+		&:hover {
+			background:	$light-grey-1;
+		}
+	}
+}

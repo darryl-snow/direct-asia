@@ -74,7 +74,9 @@ gulp.task "lib", ->
 		Config.src + "lib/Selecter/jquery.fs.selecter.js",
 		Config.src + "lib/fsm-sticky-header/src/fsm-sticky-header.js",
 		Config.src + "lib/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js",
-		Config.src + "lib/angular-bootstrap-slider/slider.js"
+		Config.src + "lib/angular-bootstrap-slider/slider.js",
+		Config.src + "lib/angular-bootstrap-datepicker/dist/angular-bootstrap-datepicker.js"
+		Config.src + "lib/angular-ui-select/dist/select.js"
 	]
 	.pipe gulp.dest Config.build + "lib"
 
@@ -83,7 +85,9 @@ gulp.task "lib", ->
 	gulp.src [
 		Config.src + "lib/bootstrap/dist/css/bootstrap.css",
 		Config.src + "lib/Bootflat/bootflat/css/bootflat.css",
-		Config.src + "lib/bootstrap-slider/dist/css/bootstrap-slider.css"
+		Config.src + "lib/bootstrap-slider/dist/css/bootstrap-slider.css",
+		Config.src + "lib/angular-bootstrap-datepicker/dist/angular-bootstrap-datepicker.css"
+		Config.src + "lib/angular-ui-select/dist/select.css"
 	]
 	.pipe gulp.dest Config.build + "lib"
 
