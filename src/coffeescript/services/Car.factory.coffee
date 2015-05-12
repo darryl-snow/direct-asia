@@ -20,15 +20,8 @@ class Car
 		@lowmileageoption = null
 		@usage = null
 		@policy =
-			start:
-				day: null
-				month: null
-				year: null
-			end:
-				day: null
-				month: null
-				year: null
-
+			startDate: (new Date()).toString()
+			endDate: (new Date()).toString()
 ###
 Using an Angular factory allows us to use dependency injection in the controller
 and instantiate objects from there

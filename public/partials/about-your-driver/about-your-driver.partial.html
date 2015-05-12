@@ -1,5 +1,6 @@
 
 <link rel="stylesheet" href="../../lib/bootstrap-slider.css"/>
+<link rel="stylesheet" href="../../lib/angular-bootstrap-datepicker.css"/>
 <script src="../../scripts/controllers/about-your-driver/about-your-driver.controller.js"></script>
 <div class="container">
   <section data-ng-controller="aboutYourDriverCtrl" class="section section-driver">
@@ -28,20 +29,20 @@
               <div data-ng-if="ownership == 'private'">
                 <h2 data-toggle="tooltip" data-placement="top" title="The main driver is the person who uses the car most frequently. They do not need to be the car owner (policyholder)." class="show-tooltip"><span translate="PS_3_0c">Does the main driver own the car?</span><img src="../../images/question-icon.png"/></h2>
                 <button id="ownCar" name="ownCar" type="button" data-ng-class="{'active': driver.ownership}" data-ng-click="driver.ownership = true" class="btn btn-default random-margin"><span translate="PS_3_0d">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
-                <button name="ownCar" type="button" data-ng-class="{'active': driver.ownership == false}" data-ng-click="driver.ownership = false" class="btn btn-default"><span translate="PS_3_0e">No</span><span class="glyphicon glyphicon-ok"></span></button>
-              </div><img src="../../images/error.png" data-ng-show="!driver.ownership &amp;&amp; driverForm.$submitted"/>
+                <button name="ownCar" type="button" data-ng-class="{'active': driver.ownership == false}" data-ng-click="driver.ownership = false" class="btn btn-default"><span translate="PS_3_0e">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="!driver.ownership &amp;&amp; driverForm.$submitted"/>
+              </div>
               <h2 translate="PS_3_0f">Date of Birth</h2>
               <div data-toggle="popover" data-placement="right" popover="#popover1" popover-type="popover--yellow" trigger="hover" style="display:inline-block;" class="form-inline"><img src="../../images/calendar.png" class="margin--right"/>
-                <input type="text" data-ng-datepicker="data-ng-datepicker" data-ng-model="driver.dob" name="driverDOB" data-ng-change="calculateAge()" data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true, 'endDate': today, 'immediateUpdates': true}" placeholder="DD/MM/YYYY" style="display:inline-block;" required="required" data-ng-class="{'ng-invalid': (!isValidAge() &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.age &lt; 20)}"/><img src="../../images/error.png" data-ng-show="(!isValidAge() &amp;&amp; driverForm.$submitted) || (driverForm.driverDOB.$invalid &amp;&amp; driverForm.driverDOB.$dirty) || (modalShown &amp;&amp; driver.age &lt; 20)"/>
+                <input type="text" data-ng-datepicker="data-ng-datepicker" data-ng-model="driver.dob" name="driverDOB" data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true, 'endDate': today, 'immediateUpdates': true}" placeholder="DD/MM/YYYY" style="display:inline-block;" required="required" data-ng-class="{'ng-invalid': (!isValidAge() &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.age &lt; 20)}"/><img src="../../images/error.png" data-ng-show="(driverForm.driverDOB.$invalid &amp;&amp; driverForm.driverDOB.$dirty) || (modalShown &amp;&amp; driver.age &lt; 20)"/>
               </div>
               <div id="popover1" class="popover right"><span translate="PS_3_0f_1">The main driver should be less than 70 year old</span></div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                   <h2 translate="PS_3_0g">Gender</h2>
                   <button name="gender" type="button" data-ng-class="{'active': driver.gender == 'male'}" data-ng-click="driver.gender = 'male'" class="btn btn-default random-margin"><span translate="PS_3_0g_1">Male</span><span class="glyphicon glyphicon-ok"></span></button>
                   <button name="gender" type="button" data-ng-class="{'active': driver.gender == 'female'}" data-ng-click="driver.gender = 'female'" class="btn btn-default"><span translate="PS_3_0g_2">Female</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="driverForm.$submitted &amp;&amp; !driver.gender"/>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                   <h2 translate="PS_3_0h">Marital Status</h2>
                   <button name="status" type="button" data-ng-class="{'active': driver.maritalStatus == 'single'}" data-ng-click="driver.maritalStatus = 'single'" class="btn btn-default random-margin"><span translate="PS_3_0i">Single</span><span class="glyphicon glyphicon-ok"></span></button>
                   <button name="status" type="button" data-ng-class="{'active': driver.maritalStatus == 'married'}" data-ng-click="driver.maritalStatus = 'married'" class="btn btn-default"><span translate="PS_3_0j">Married</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="driverForm.$submitted &amp;&amp; !driver.maritalStatus"/>
@@ -65,10 +66,10 @@
             <div class="container-fluid">
               <h2 translate="PS_3_1_1a">Years of valid driving license</h2>
               <div class="col-md-12 margin--bottom">
-                <div data-toggle="popover" data-placement="right" popover="#popover2" popover-type="popover--yellow" trigger="hover" class="slider-labels slider-labels-experience"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>more than 5</span></div>
+                <div data-toggle="popover" data-placement="right" popover="#popover2" popover-type="popover--yellow" trigger="hover" class="slider-labels slider-labels-experience"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>more than 5</span><img src="../../images/error.png" data-ng-show="(driverForm.drivingExperience == 'null' &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.drivingExperience == '1')" style="bottom: 3px; position: absolute; right: 0;"/></div>
                 <slider data-ng-model="driver.drivingExperience" min="1" step="1" max="6" value="1"></slider>
               </div>
-              <div id="popover2" class="popover right"><span translate="PS_3_1_1b">We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.</span></div><img src="../../images/error.png" data-ng-show="(driverForm.drivingExperience == 'null' &amp;&amp; driverForm.$submitted) || (modalShown &amp;&amp; driver.drivingExperience == '1')" style="bottom: 3px; position: absolute; right: 0;"/>
+              <div id="popover2" class="popover right"><span translate="PS_3_1_1b">We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.</span></div>
             </div>
             <div class="container-fluid">
               <h2><span translate="PS_3_1_2a">No Claims Discount</span>
@@ -140,7 +141,7 @@
         <div class="row">
           <div class="col-md-12 margin--top">
             <button type="button" class="btn btn-backward margin--bottom"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_3_3_1">Back</span></button>
-            <button type="submit" continue="continue" modal="#modal" modal-conditions="driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1" url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid &amp;&amp; driver.ownership == true &amp;&amp; isValidAge()" data-ng-disabled="modalShown &amp;&amp; (driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1)" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+            <button type="submit" continue="continue" modals="[{'condition': driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1, 'popup': '#modal'}]" url="http://localhost:9000/driver" page-data="{{driver}}" next-page="http://localhost:9000/pages/quote/quote.html" valid="driverForm.$valid &amp;&amp; driver.ownership != null" data-ng-disabled="modalShown &amp;&amp; (driver.ownership == false || driver.age &lt; 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1 || !isValidAge())" class="btn btn-forward btn-lg pull-right margin--bottom"><span translate="PC_3_3_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
           </div>
         </div>
       </div>

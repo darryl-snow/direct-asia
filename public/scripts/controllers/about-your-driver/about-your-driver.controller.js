@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon May 11 2015 03:49:06 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Wed May 13 2015 02:11:47 GMT+0800 (CST) */
 
 /*
 
@@ -46,7 +46,7 @@ angular.module("DirectAsia").controller("aboutYourDriverCtrl", [
     		(NOTE: This isn't used currently as the data is mocked by the
     		function getMockData() above)
      */
-    var getDataFromAPI, setupData;
+    var getDataFromAPI, getDate, setupData;
     getDataFromAPI = function() {
       var dataFromAPI;
       dataFromAPI = {};
@@ -76,29 +76,33 @@ angular.module("DirectAsia").controller("aboutYourDriverCtrl", [
     };
 
     /*
+    		The date picker returns a formatted string while sometimes the model
+    		is a date object so this function just normalises the date
+     */
+    getDate = function(d) {
+      var date;
+      date = d.toString();
+      if (date.indexOf("/" !== -1)) {
+        date = date.split("/");
+        date = date.reverse();
+        date = date.join("/");
+        date = new Date(date);
+      }
+      return date;
+    };
+
+    /*
     		This is an Angular watch function that calculates and saves the driver's age when
     		they enter their DOB
      */
     $scope.$watch("driver.dob", function(newValue, oldValue) {
-      var age, day, month, year;
-      if (typeof newValue === "string") {
-        day = newValue.substr(0, 2);
-        month = newValue.substr(3, 2);
-        year = newValue.substr(6, 4);
-      }
-      if (newValue) {
-        if (typeof newValue === "string") {
-          age = ageFilter(year + "/" + month + "/" + day);
-        } else {
-          age = ageFilter(newValue.getFullYear() + "/" + newValue.getMonth() + "/" + newValue.getDate());
-        }
-        if (!isNaN(age && newValue)) {
-          return $scope.driver.age = age;
-        }
-      }
+      var dob;
+      dob = getDate(newValue);
+      $scope.driver.age = ageFilter(dob.getFullYear() + "/" + dob.getMonth() + "/" + dob.getDate());
+      return $scope.driver.age;
     });
     $scope.calculateAge = function() {
-      return $scope.driver.age = ageFilter($scope.driver.dob.substr(0, 2 + "/" + $scope.driver.dob.substr(3, 2 + "/" + $scope.driver.dob.substr(6, 4))));
+      return $scope.driver.age = ageFilter(getDate($scope.driver.dob));
     };
 
     /*

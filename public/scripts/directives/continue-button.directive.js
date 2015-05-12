@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon May 11 2015 03:49:06 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Wed May 13 2015 02:11:47 GMT+0800 (CST) */
 
 /*
 Directive for continue buttons - buttons at the bottom of
@@ -11,12 +11,14 @@ e.g. <button continue>Continue</button>
 The element may also have 5 other attributes to pass data
 to this directive:
 
-modal (optional) -			the ID of the modal element to be
-							shown if the modal conditions
-							evaluate to true
-
-modalConditions (optional) - the validation conditions under
-							which a modal should be shown
+modals (optional) -			An array of objects that specify the modal
+							windows to be shown under which conditions.
+							The conditions should evaluate to true or
+							false and the popup should be the ID of the
+							modal element. e.g. [{
+								condition: true/false
+								popup: '#myModal'
+							}]
 
 next-page (required) - 		the URL of the page the user should
 							be directed to once the data has
@@ -48,13 +50,12 @@ angular.module("DirectAsia").directive("continue", [
     return {
       restrict: "A",
       scope: {
-        modal: "@",
-        modalConditions: "=",
         nextPage: "@",
         pageData: "@",
         successModal: "@",
         url: "@",
-        valid: "="
+        valid: "=",
+        modals: "="
       },
       link: function(scope, element, attrs) {
 
@@ -66,16 +67,27 @@ angular.module("DirectAsia").directive("continue", [
           /*
           				If validation conditions are met (conditions passed in element attribute)
            */
-          var interval, modalHidden;
+          var canProceed, condition, interval, modal, modalHidden, popup, _i, _len, _ref;
           if (scope.valid) {
 
             /*
             					If there is an additional validation step whereby a modal needs to be
             					shown requesting that the user has to make a call.
              */
-            if (scope.modalConditions !== null && scope.modalConditions) {
-              return $(scope.modal).modal();
-            } else {
+            canProceed = true;
+            if (scope.modals !== null && scope.modals) {
+              _ref = scope.modals;
+              for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                modal = _ref[_i];
+                condition = modal.condition;
+                popup = modal.popup;
+                if (condition) {
+                  $(popup).modal();
+                  canProceed = false;
+                }
+              }
+            }
+            if (canProceed) {
 
               /*
               						If there is data to be submitted before the user can continue

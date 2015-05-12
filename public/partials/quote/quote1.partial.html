@@ -470,17 +470,45 @@
       </div>
       <div style="margin-top:2em;" class="row">
         <div class="col-md-12"><a href="" title="" class="btn btn-backward margin--bottom"><span class="glyphicon glyphicon-arrow-left"></span><span translate="PC_4_10_1">Back</span></a>
-          <button type="button" continue="continue" url="http://localhost:9000/plans" valid="editDriverForm.$valid" page-data="{{plan}}" next-page="http://localhost:9000/pages/your-policy/your-policy.html" class="btn btn-forward btn-lg pull-right"><span translate="PC_4_10_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
+          <button type="button" continue="continue" url="http://localhost:9000/plans" valid="true" page-data="{{plan}}" next-page="http://localhost:9000/pages/your-policy/your-policy.html" modals="[{'condition': car.ownership != 'private', 'popup': '#modal-problem'}, {'condition': car.financed == true, 'popup': '#modal-financed'}]" class="btn btn-forward btn-lg pull-right"><span translate="PC_4_10_2">Proceed</span><span class="glyphicon glyphicon-arrow-right"></span></button>
         </div>
       </div>
       <div class="row margin--top">
         <div class="col-md-3 col-md-offset-9">
-          <button type="button" data-ng-click="saveForLater()" class="btn btn-primary btn-action btn-block btn-sm"><span translate="PC_4_10_3" class="btn-action-default">Save for later</span><span translate="PC_4_10_4" class="btn-action-alt">Saved!</span><span class="glyphicon glyphicon-ok"></span></button>
+          <button type="button" save-for-later="save-for-later" modals="[{'condition': car.ownership != 'private', 'popup': '#modal-problem'}]" class="btn btn-primary btn-action btn-block btn-sm"><span translate="PC_4_10_3" class="btn-action-default">Save for later</span><span translate="PC_4_10_4" class="btn-action-alt">Saved!</span><span class="glyphicon glyphicon-ok"></span></button>
           <p translate="PC_4_10_8">Your details will be saved for 90 days so you can finish later</p>
         </div>
       </div>
     </div>
   </section>
+  <modal id="modal-problem" tabindex="-1" role="dialog" aria-labelledby="modalProblemTitle" aria-hidden="false" shown="modalShown" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+        <div class="modal-body">
+          <h2 id="modalProblemTitle" translate="PC_3_3_3">Sorry, but we‘d like to speak with you about your policy</h2>
+          <p><strong translate="PC_3_3_4">What to do next:</strong></p>
+          <p translate="PC_3_3_5">Call our [Country] based team and provide your reference number and we‘ll help you complete your policy</p>
+          <p><strong><span translate="PC_3_3_6">Your Reference Number:</span><span class="highlight-blue"> XXXXX</span></strong></p>
+          <p><span translate="GS_0_0_2b">Call us on</span> +852 2884 8888<br/><span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
+        </div>
+      </div>
+    </div>
+  </modal>
+  <modal id="modal-financed" tabindex="-1" role="dialog" aria-labelledby="modalFinancedTitle" aria-hidden="false" shown="modalShown" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+        <div class="modal-body">
+          <h2 id="modalFinancedTitle" translate="PC_3_3_11">Since your vehicle is under financing, we'd like to help you finish over the phone.</h2>
+          <p><strong translate="PC_3_3_4">What to do next:</strong></p>
+          <p translate="PC_3_3_5">Call our [Country] based team and provide your reference number and we‘ll help you complete your policy</p>
+          <p><strong><span translate="PC_3_3_6">Your Reference Number:</span><span class="highlight-blue"> XXXXX</span></strong></p>
+          <p><span translate="GS_0_0_2b">Call us on</span> +852 2884 8888<br/><span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
+        </div>
+      </div>
+    </div>
+  </modal>
   <script>
     $(".internal-link").on("click", function(e) {
     	e.preventDefault();

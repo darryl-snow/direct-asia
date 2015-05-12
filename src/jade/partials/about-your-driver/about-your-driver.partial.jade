@@ -1,4 +1,5 @@
 link(rel="stylesheet", href="../../lib/bootstrap-slider.css")
+link(rel="stylesheet", href="../../lib/angular-bootstrap-datepicker.css")
 script(src="../../scripts/controllers/about-your-driver/about-your-driver.controller.js")
 
 .container
@@ -48,23 +49,23 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 									span(translate="PS_3_0e") No
 									span.glyphicon.glyphicon-ok
 
-							img(src="../../images/error.png", data-ng-show="!driver.ownership && driverForm.$submitted")
+								img(src="../../images/error.png", data-ng-show="!driver.ownership && driverForm.$submitted")
 
 							h2(translate="PS_3_0f") Date of Birth
 
 							.form-inline(data-toggle="popover", data-placement="right", popover="#popover1", popover-type="popover--yellow", trigger="hover", style="display:inline-block;")
 
 								img.margin--right(src="../../images/calendar.png")
-								input(type="text", data-ng-datepicker, data-ng-model="driver.dob", name="driverDOB", data-ng-change="calculateAge()", data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true, 'endDate': today, 'immediateUpdates': true}", placeholder="DD/MM/YYYY", style="display:inline-block;", required, data-ng-class="{'ng-invalid': (!isValidAge() && driverForm.$submitted) || (modalShown && driver.age < 20)}")
+								input(type="text", data-ng-datepicker, data-ng-model="driver.dob", name="driverDOB", data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true, 'endDate': today, 'immediateUpdates': true}", placeholder="DD/MM/YYYY", style="display:inline-block;", required, data-ng-class="{'ng-invalid': (!isValidAge() && driverForm.$submitted) || (modalShown && driver.age < 20)}")
 
-								img(src="../../images/error.png", data-ng-show="(!isValidAge() && driverForm.$submitted) || (driverForm.driverDOB.$invalid && driverForm.driverDOB.$dirty) || (modalShown && driver.age < 20)")
+								img(src="../../images/error.png", data-ng-show="(driverForm.driverDOB.$invalid && driverForm.driverDOB.$dirty) || (modalShown && driver.age < 20)")
 
 							#popover1.popover.right
 								span(translate="PS_3_0f_1") The main driver should be less than 70 year old
 
 							.row
 
-								.col-md-6
+								.col-md-5
 
 									h2(translate="PS_3_0g") Gender
 									button.btn.btn-default.random-margin(name="gender", type="button", data-ng-class="{'active': driver.gender == 'male'}", data-ng-click="driver.gender = 'male'")
@@ -75,7 +76,7 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 										span.glyphicon.glyphicon-ok
 									img(src="../../images/error.png", data-ng-show="driverForm.$submitted && !driver.gender")
 
-								.col-md-6
+								.col-md-5
 
 									h2(translate="PS_3_0h") Marital Status
 									button.btn.btn-default.random-margin(name="status", type="button", data-ng-class="{'active': driver.maritalStatus == 'single'}", data-ng-click="driver.maritalStatus = 'single'")
@@ -116,12 +117,12 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 									span 5
 									span more than 5
 
+									img(src="../../images/error.png", data-ng-show="(driverForm.drivingExperience == 'null' && driverForm.$submitted) || (modalShown && driver.drivingExperience == '1')", style="bottom: 3px; position: absolute; right: 0;")
+
 								slider(data-ng-model="driver.drivingExperience", min="1", step="1", max="6", value="1")
 
 							#popover2.popover.right
 								span(translate="PS_3_1_1b") We are unable to insure drivers who have had their license suspended or cancelled in the last 5 years.
-
-							img(src="../../images/error.png", data-ng-show="(driverForm.drivingExperience == 'null' && driverForm.$submitted) || (modalShown && driver.drivingExperience == '1')", style="bottom: 3px; position: absolute; right: 0;")
 
 						.container-fluid
 
@@ -247,7 +248,7 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 							span.glyphicon.glyphicon-arrow-left
 							span(translate="PC_3_3_1") Back
 
-						button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", continue, modal="#modal", modal-conditions="driver.age < 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1", url="http://localhost:9000/driver", page-data="{{driver}}", next-page="http://localhost:9000/pages/quote/quote.html", valid="driverForm.$valid && driver.ownership == true && isValidAge()", data-ng-disabled="modalShown && (driver.age < 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1)")
+						button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", continue, modals="[{'condition': driver.age < 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1, 'popup': '#modal'}]", url="http://localhost:9000/driver", page-data="{{driver}}", next-page="http://localhost:9000/pages/quote/quote.html", valid="driverForm.$valid && driver.ownership != null", data-ng-disabled="modalShown && (driver.ownership == false || driver.age < 20 || driver.refusals == 'yes' || driver.accidents.atFault == '2+' || driver.drivingExperience == 1 || !isValidAge())")
 							span(translate="PC_3_3_2") Proceed
 							span.glyphicon.glyphicon-arrow-right
 

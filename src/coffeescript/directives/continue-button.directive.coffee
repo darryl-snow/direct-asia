@@ -9,12 +9,14 @@ e.g. <button continue>Continue</button>
 The element may also have 5 other attributes to pass data
 to this directive:
 
-modal (optional) -			the ID of the modal element to be
-							shown if the modal conditions
-							evaluate to true
-
-modalConditions (optional) - the validation conditions under
-							which a modal should be shown
+modals (optional) -			An array of objects that specify the modal
+							windows to be shown under which conditions.
+							The conditions should evaluate to true or
+							false and the popup should be the ID of the
+							modal element. e.g. [{
+								condition: true/false
+								popup: '#myModal'
+							}]
 
 next-page (required) - 		the URL of the page the user should
 							be directed to once the data has
@@ -46,19 +48,18 @@ angular.module "DirectAsia"
 	.directive "continue", ["$window", "$http", ($window, $http) ->
 		restrict: "A"
 		scope:
-			modal: "@"
-			modalConditions: "="
 			nextPage: "@"
 			pageData: "@"
 			successModal: "@"
 			url: "@"
 			valid: "="
+			modals: "="
 		link: (scope, element, attrs) ->
 
 			###
 			When the button is clicked...
 			###
-			
+
 			element.on "click", ->
 
 				###
@@ -72,11 +73,20 @@ angular.module "DirectAsia"
 					shown requesting that the user has to make a call.
 					###
 
-					if scope.modalConditions isnt null and scope.modalConditions
+					canProceed = true
 
-						$(scope.modal).modal()
+					if scope.modals isnt null and scope.modals
 
-					else
+						for modal in scope.modals
+
+							condition = modal.condition
+							popup = modal.popup
+
+							if condition
+								$(popup).modal()
+								canProceed = false
+
+					if canProceed
 
 						###
 						If there is data to be submitted before the user can continue

@@ -139,7 +139,7 @@ getMockData = ->
 				rimstires: true
 				suspensionstabiliser: false
 			ownership: "private"
-			financed: false
+			financed: true
 			kmsperyear: "> 15,000"
 			lowmileageoption: true
 			usage: "personal use"

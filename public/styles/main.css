@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon May 11 2015 03:39:31 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Wed May 13 2015 01:11:36 GMT+0800 (CST) */
 @import url(../lib/select.css);
 @media (min-width: 768px) {
   .pull-left-large {
@@ -174,7 +174,7 @@ h1 img, h2 img {
         height: 1245px; } }
     @media (min-width: 1200px) {
       .additional-driver.active {
-        height: 1224px; } }
+        height: 1234px; } }
 
 .alert {
   margin-top: 1em; }
@@ -437,7 +437,7 @@ h1 img, h2 img {
   .input-append.ng-invalid {
     width: calc(100% - 77px) !important; }
     .input-append.ng-invalid input {
-      border: 1px solid transparent; }
+      border: 1px solid #d52b1e; }
 
 .dropdown-menu {
   background: #ffffff; }
@@ -557,7 +557,7 @@ input[type="text"], input[type="number"], input[type="tel"], input[type="email"]
     display: inline-block;
     width: calc(100% - 37px); }
 
-.ng-submitted .ng-invalid:not(.year):not(.month):not(.day):not(.claim) {
+.ng-submitted .ng-invalid:not(.year):not(.month):not(.day):not(.claim):not(.input-append) {
   border: 1px solid #d52b1e;
   display: inline-block;
   width: calc(100% - 37px); }
@@ -1533,6 +1533,7 @@ input[type="checkbox"]:disabled ~ span, input[type="radio"]:disabled ~ span {
   margin-bottom: 10px !important; }
   .slider-labels {
     margin-left: -10px;
+    position: relative;
     width: 275px; }
     .slider-labels span {
       display: inline-block;

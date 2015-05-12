@@ -103,26 +103,35 @@ angular.module("DirectAsia").controller "aboutYourDriverCtrl", [
 			$scope.modalShown = false
 
 		###
+		The date picker returns a formatted string while sometimes the model
+		is a date object so this function just normalises the date
+		###
+
+		getDate = (d) ->
+			date = d.toString()
+
+			if date.indexOf "/" isnt -1
+				date = date.split "/"
+				date = date.reverse()
+				date = date.join "/"
+				date = new Date date
+
+			date
+
+		###
 		This is an Angular watch function that calculates and saves the driver's age when
 		they enter their DOB
 		###
 
 		$scope.$watch "driver.dob", (newValue, oldValue) ->
 
-			if typeof newValue is "string"
-				day = newValue.substr 0,2
-				month = newValue.substr 3,2
-				year = newValue.substr 6,4
+			dob = getDate newValue
+			$scope.driver.age = ageFilter dob.getFullYear() + "/" + dob.getMonth() + "/" + dob.getDate()
 
-			if newValue
-				if typeof newValue is "string"
-					age = ageFilter year + "/" + month + "/" + day
-				else
-					age = ageFilter newValue.getFullYear() + "/" + newValue.getMonth() + "/" + newValue.getDate()
-				if !isNaN age and newValue then $scope.driver.age = age
+			$scope.driver.age
 
 		$scope.calculateAge = ->
-			$scope.driver.age = ageFilter $scope.driver.dob.substr 0,2 + "/" + $scope.driver.dob.substr 3,2 + "/" + $scope.driver.dob.substr 6,4
+			$scope.driver.age = ageFilter getDate $scope.driver.dob
 
 		###
 		This is an Angular watch function that removes values for why no NCD and NCD on

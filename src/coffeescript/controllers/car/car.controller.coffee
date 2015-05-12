@@ -15,11 +15,13 @@ getMockData = ->
 			"Volkswagon"
 			"Nissan"
 			"Toyota"
-		], 
+			"xxxx"
+		]
 		models: [
 			"Golf"
 			"Micra"
 			"Sera"
+			"ZZZZ"
 		]
 		years: [
 			"2015"
@@ -28,7 +30,25 @@ getMockData = ->
 			"2012"
 			"2011"
 			"2010"
+			"2009"
+			"2008"
+			"2007"
+			"2006"
+			"2005"
+			"2004"
 		]
+		plan:
+			image: "../../images/comprehensive.png"
+			name: "Comprehensive"
+			tagline: ""
+			covers: [
+				"Third Party - Death or Bodily injury"
+				"Third Party - Property Damage"
+				"Third Party - Collision Damage"
+				"24 hour accident towing"
+				"Own damage - No Other Vehicle Involved"
+				"Windscreen/Window Breakage"
+			]
 
 ###
 The controller ties together the view with the model.
@@ -82,12 +102,13 @@ angular.module("DirectAsia").controller "CarCtrl", [
 			# $scope.car.policy.start.month = tomorrow.getMonth() + 1
 			# $scope.car.policy.start.year = tomorrow.getFullYear()
 
-			$scope.car.policy.startDate = "DD/MM/YYYY"
-			$scope.car.policy.endDate = "DD/MM/YYYY"
+			# $scope.car.policy.startDate = "DD/MM/YYYY"
+			# $scope.car.policy.endDate = "DD/MM/YYYY"
 
 			$scope.makes = data.makes
 			$scope.models = data.models
 			$scope.years = data.years
+			$scope.plan = data.plan.name
 
 			$scope.age = 0
 
@@ -98,6 +119,22 @@ angular.module("DirectAsia").controller "CarCtrl", [
 			if !isNaN age then $scope.age = age
 
 		###
+		The date picker returns a formatted string while sometimes the model
+		is a date object so this function just normalises the date
+		###
+
+		getDate = (d) ->
+			date = d
+
+			if date.indexOf "/" isnt -1
+				date = date.split "/"
+				date = date.reverse()
+				date = date.join "/"
+				date = new Date date
+
+			date
+
+		###
 		This function is used to validate whether the selected start date is on
 		or after tomorrow
 		###
@@ -105,10 +142,7 @@ angular.module("DirectAsia").controller "CarCtrl", [
 		$scope.startDateOnOrAfterTomorrow = ->
 
 			tomorrow = getTomorrowsDate()
-			day = $scope.car.policy.startDate.substr 0,2
-			month = $scope.car.policy.startDate.substr 3,2
-			year = $scope.car.policy.startDate.substr 6,4
-			startDate = new Date year, month, day
+			startDate = getDate $scope.car.policy.startDate
 
 			(startDate - tomorrow) >= 0
 
@@ -119,13 +153,11 @@ angular.module("DirectAsia").controller "CarCtrl", [
 
 		$scope.startDateWithin3Months = ->
 			today = new Date()
-			day = $scope.car.policy.startDate.substr 0,2
-			month = $scope.car.policy.startDate.substr 3,2
-			year = $scope.car.policy.startDate.substr 6,4
-			startDate = new Date year, month, day
-			months = (year - today.getFullYear()) * 12
+			startDate = getDate $scope.car.policy.startDate
+
+			months = (startDate.getFullYear() - today.getFullYear()) * 12
 			months -= today.getMonth() + 1
-			months += month + 1
+			months += startDate.getMonth() + 1
 			months <= 3
 
 		###
@@ -133,11 +165,8 @@ angular.module("DirectAsia").controller "CarCtrl", [
 		###
 
 		$scope.endDateAfterStartDate = ->
-			day = $scope.car.policy.startDate.substr 0,2
-			month = $scope.car.policy.startDate.substr 3,2
-			year = $scope.car.policy.startDate.substr 6,4
-			startDate = new Date year, month, day
-			endDate = new Date $scope.car.policy.end.year, ($scope.car.policy.end.month - 1), $scope.car.policy.end.day
+			startDate = getDate $scope.car.policy.startDate
+			endDate = getDate $scope.car.policy.endDate
 			(endDate - startDate) > 0
 
 		###
@@ -146,15 +175,28 @@ angular.module("DirectAsia").controller "CarCtrl", [
 		###
 
 		$scope.endDateWithin7And18MonthsAfterStartDate = ->
-			day = $scope.car.policy.startDate.substr 0,2
-			month = $scope.car.policy.startDate.substr 3,2
-			year = $scope.car.policy.startDate.substr 6,4
-			startDate = new Date year, month, day
-			endDate = new Date $scope.car.policy.end.year, ($scope.car.policy.end.month - 1), $scope.car.policy.end.day
-			months = (endDate.getFullYear() - year) * 12
-			months -= month + 1
+			startDate = getDate $scope.car.policy.startDate
+			endDate = getDate $scope.car.policy.endDate
+			months = (endDate.getFullYear() - startDate.getFullYear()) * 12
+			months -= startDate.getMonth() + 1
 			months += endDate.getMonth() + 1
 			months >= 7 && months <= 18
+
+		###
+		This function is used for validating that the selected car make & model is
+		covered. If not a modal should be shown.
+		###
+
+		$scope.carIsCovered = ->
+
+			$scope.car.make in $scope.makes and $scope.car.model in $scope.models
+
+		###
+		This function is used for validating that the car is not more than 10 years old.
+		###
+
+		$scope.carIsNotMoreThan10YearsOld = ->
+			(new Date()).getFullYear() - $scope.car.year <= 10
 
 		###
 		A scope function to manually update the model from the view.

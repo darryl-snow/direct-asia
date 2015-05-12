@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon May 11 2015 03:49:06 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Wed May 13 2015 02:11:47 GMT+0800 (CST) */
 
 /*
 
@@ -9,14 +9,21 @@ from a back-end API. Data should include:
 
 - available car models
  */
-var getMockData;
+var getMockData,
+  __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 getMockData = function() {
   var data;
   return data = {
-    makes: ["Volkswagon", "Nissan", "Toyota"],
-    models: ["Golf", "Micra", "Sera"],
-    years: ["2015", "2014", "2013", "2012", "2011", "2010"]
+    makes: ["Volkswagon", "Nissan", "Toyota", "xxxx"],
+    models: ["Golf", "Micra", "Sera", "ZZZZ"],
+    years: ["2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004"],
+    plan: {
+      image: "../../images/comprehensive.png",
+      name: "Comprehensive",
+      tagline: "",
+      covers: ["Third Party - Death or Bodily injury", "Third Party - Property Damage", "Third Party - Collision Damage", "24 hour accident towing", "Own damage - No Other Vehicle Involved", "Windscreen/Window Breakage"]
+    }
   };
 };
 
@@ -30,7 +37,7 @@ is the $scope.car variable.
 
 angular.module("DirectAsia").controller("CarCtrl", [
   "$scope", "Car", function($scope, Car) {
-    var getDataFromAPI, getTomorrowsDate, setupData, thisYear;
+    var getDataFromAPI, getDate, getTomorrowsDate, setupData, thisYear;
     thisYear = (new Date()).getFullYear();
 
     /*
@@ -68,11 +75,10 @@ angular.module("DirectAsia").controller("CarCtrl", [
       var tomorrow;
       $scope.car = new Car;
       tomorrow = getTomorrowsDate();
-      $scope.car.policy.startDate = "DD/MM/YYYY";
-      $scope.car.policy.endDate = "DD/MM/YYYY";
       $scope.makes = data.makes;
       $scope.models = data.models;
       $scope.years = data.years;
+      $scope.plan = data.plan.name;
       $scope.age = 0;
       return $scope.modalShown = false;
     };
@@ -85,16 +91,29 @@ angular.module("DirectAsia").controller("CarCtrl", [
     });
 
     /*
+    		The date picker returns a formatted string while sometimes the model
+    		is a date object so this function just normalises the date
+     */
+    getDate = function(d) {
+      var date;
+      date = d;
+      if (date.indexOf("/" !== -1)) {
+        date = date.split("/");
+        date = date.reverse();
+        date = date.join("/");
+        date = new Date(date);
+      }
+      return date;
+    };
+
+    /*
     		This function is used to validate whether the selected start date is on
     		or after tomorrow
      */
     $scope.startDateOnOrAfterTomorrow = function() {
-      var day, month, startDate, tomorrow, year;
+      var startDate, tomorrow;
       tomorrow = getTomorrowsDate();
-      day = $scope.car.policy.startDate.substr(0, 2);
-      month = $scope.car.policy.startDate.substr(3, 2);
-      year = $scope.car.policy.startDate.substr(6, 4);
-      startDate = new Date(year, month, day);
+      startDate = getDate($scope.car.policy.startDate);
       return (startDate - tomorrow) >= 0;
     };
 
@@ -103,15 +122,12 @@ angular.module("DirectAsia").controller("CarCtrl", [
     		more than 3 months in the future
      */
     $scope.startDateWithin3Months = function() {
-      var day, month, months, startDate, today, year;
+      var months, startDate, today;
       today = new Date();
-      day = $scope.car.policy.startDate.substr(0, 2);
-      month = $scope.car.policy.startDate.substr(3, 2);
-      year = $scope.car.policy.startDate.substr(6, 4);
-      startDate = new Date(year, month, day);
-      months = (year - today.getFullYear()) * 12;
+      startDate = getDate($scope.car.policy.startDate);
+      months = (startDate.getFullYear() - today.getFullYear()) * 12;
       months -= today.getMonth() + 1;
-      months += month + 1;
+      months += startDate.getMonth() + 1;
       return months <= 3;
     };
 
@@ -119,12 +135,9 @@ angular.module("DirectAsia").controller("CarCtrl", [
     		This function is used for validating that the selected end date is after the start date
      */
     $scope.endDateAfterStartDate = function() {
-      var day, endDate, month, startDate, year;
-      day = $scope.car.policy.startDate.substr(0, 2);
-      month = $scope.car.policy.startDate.substr(3, 2);
-      year = $scope.car.policy.startDate.substr(6, 4);
-      startDate = new Date(year, month, day);
-      endDate = new Date($scope.car.policy.end.year, $scope.car.policy.end.month - 1, $scope.car.policy.end.day);
+      var endDate, startDate;
+      startDate = getDate($scope.car.policy.startDate);
+      endDate = getDate($scope.car.policy.endDate);
       return (endDate - startDate) > 0;
     };
 
@@ -133,16 +146,29 @@ angular.module("DirectAsia").controller("CarCtrl", [
     		after the selected start date
      */
     $scope.endDateWithin7And18MonthsAfterStartDate = function() {
-      var day, endDate, month, months, startDate, year;
-      day = $scope.car.policy.startDate.substr(0, 2);
-      month = $scope.car.policy.startDate.substr(3, 2);
-      year = $scope.car.policy.startDate.substr(6, 4);
-      startDate = new Date(year, month, day);
-      endDate = new Date($scope.car.policy.end.year, $scope.car.policy.end.month - 1, $scope.car.policy.end.day);
-      months = (endDate.getFullYear() - year) * 12;
-      months -= month + 1;
+      var endDate, months, startDate;
+      startDate = getDate($scope.car.policy.startDate);
+      endDate = getDate($scope.car.policy.endDate);
+      months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
+      months -= startDate.getMonth() + 1;
       months += endDate.getMonth() + 1;
       return months >= 7 && months <= 18;
+    };
+
+    /*
+    		This function is used for validating that the selected car make & model is
+    		covered. If not a modal should be shown.
+     */
+    $scope.carIsCovered = function() {
+      var _ref, _ref1;
+      return (_ref = $scope.car.make, __indexOf.call($scope.makes, _ref) >= 0) && (_ref1 = $scope.car.model, __indexOf.call($scope.models, _ref1) >= 0);
+    };
+
+    /*
+    		This function is used for validating that the car is not more than 10 years old.
+     */
+    $scope.carIsNotMoreThan10YearsOld = function() {
+      return (new Date()).getFullYear() - $scope.car.year <= 10;
     };
 
     /*

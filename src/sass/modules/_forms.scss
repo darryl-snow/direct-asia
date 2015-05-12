@@ -75,7 +75,7 @@ input[type="email"]{
 }
 
 .ng-submitted {
-	.ng-invalid:not(.year):not(.month):not(.day):not(.claim) {
+	.ng-invalid:not(.year):not(.month):not(.day):not(.claim):not(.input-append) {
 		border:				1px solid $red;
 		display:			inline-block;
 		width:				calc(100% - 37px);

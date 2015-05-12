@@ -14,14 +14,60 @@ section.section.section--padded(data-ng-show="currentStep>=5")
 					span.glyphicon.glyphicon-arrow-left
 					span(translate="PC_4_10_1") Back
 
-				button.btn.btn-forward.btn-lg.pull-right(type="button", continue, url="http://localhost:9000/plans", valid="editDriverForm.$valid", page-data="{{plan}}", next-page="http://localhost:9000/pages/your-policy/your-policy.html")
+				button.btn.btn-forward.btn-lg.pull-right(type="button", continue, url="http://localhost:9000/plans", valid="true", page-data="{{plan}}", next-page="http://localhost:9000/pages/your-policy/your-policy.html", modals="[{'condition': car.ownership != 'private', 'popup': '#modal-problem'}, {'condition': car.financed == true, 'popup': '#modal-financed'}]")
 					span(translate="PC_4_10_2") Proceed
 					span.glyphicon.glyphicon-arrow-right
 
 		.row.margin--top
 			.col-md-3.col-md-offset-9
-				button.btn.btn-primary.btn-action.btn-block.btn-sm(type="button", data-ng-click="saveForLater()")
+				button.btn.btn-primary.btn-action.btn-block.btn-sm(type="button", save-for-later, modals="[{'condition': car.ownership != 'private', 'popup': '#modal-problem'}]")
 					span.btn-action-default(translate="PC_4_10_3") Save for later
 					span.btn-action-alt(translate="PC_4_10_4") Saved!
 					span.glyphicon.glyphicon-ok
 				p(translate="PC_4_10_8") Your details will be saved for 90 days so you can finish later
+
+modal#modal-problem.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalProblemTitle", aria-hidden="false", shown="modalShown")
+	.modal-dialog
+		.modal-content
+
+			button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+				span(aria-hidden="true") ×
+
+			.modal-body
+
+				h2#modalProblemTitle(translate="PC_3_3_3") Sorry, but we‘d like to speak with you about your policy
+				p
+					strong(translate="PC_3_3_4") What to do next:
+				p(translate="PC_3_3_5") Call our [Country] based team and provide your reference number and we‘ll help you complete your policy
+				p
+					strong
+						span(translate="PC_3_3_6") Your Reference Number:
+						span.highlight-blue  XXXXX
+				p
+					span(translate="GS_0_0_2b") Call us on
+					|  +852 2884 8888
+					br
+					span(translate="GS_0_0_3") Mon - Fri 8am, Sat 9am - 6pm
+
+modal#modal-financed.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalFinancedTitle", aria-hidden="false", shown="modalShown")
+	.modal-dialog
+		.modal-content
+
+			button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+				span(aria-hidden="true") ×
+
+			.modal-body
+
+				h2#modalFinancedTitle(translate="PC_3_3_11") Since your vehicle is under financing, we'd like to help you finish over the phone.
+				p
+					strong(translate="PC_3_3_4") What to do next:
+				p(translate="PC_3_3_5") Call our [Country] based team and provide your reference number and we‘ll help you complete your policy
+				p
+					strong
+						span(translate="PC_3_3_6") Your Reference Number:
+						span.highlight-blue  XXXXX
+				p
+					span(translate="GS_0_0_2b") Call us on
+					|  +852 2884 8888
+					br
+					span(translate="GS_0_0_3") Mon - Fri 8am, Sat 9am - 6pm

@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Mon May 11 2015 03:49:06 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Wed May 13 2015 02:11:47 GMT+0800 (CST) */
 
 /*
 This is a class for instantiating car objects, as used on the quote page
@@ -23,16 +23,8 @@ Car = (function() {
     this.lowmileageoption = null;
     this.usage = null;
     this.policy = {
-      start: {
-        day: null,
-        month: null,
-        year: null
-      },
-      end: {
-        day: null,
-        month: null,
-        year: null
-      }
+      startDate: (new Date()).toString(),
+      endDate: (new Date()).toString()
     };
   }
 

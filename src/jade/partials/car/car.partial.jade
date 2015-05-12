@@ -38,11 +38,10 @@ script(src="../../scripts/controllers/car/car.controller.js")
 									span(translate="PS_2_0_3") Year of Manufacture
 									img.show-tooltip(data-placement="top", title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document.", src="../../images/question-icon.png")
 
-								//- input#carYear.form-control(name="carYear", data-ng-model="car.year", type="number", min="1980", max="2015", placeholder="Enter year", required)
 								select#carYear(name="carYear", data-ng-model="car.year", required)
 									option(selecter, label="Enter year", value="{{year}}", data-ng-repeat="year in years", selecter-target="#carYear", selecter-callback="select", property="year", data-ng-selected="year == selectedItem") {{year}}
 
-								img(src="../../images/error.png", data-ng-show="(carForm.carYear.$invalid && carForm.carYear.$dirty) || (carForm.carYear.$invalid && carForm.$submitted) || (modalShown && age > 10)")
+								img(src="../../images/error.png", data-ng-show="(carForm.carYear.$invalid && carForm.carYear.$dirty) || (carForm.carYear.$invalid && carForm.$submitted) || (modalShown && age > 10)", style="position:absolute; right: 15px; bottom: 3px;")
 
 							.col-md-4.margin--bottom
 
@@ -52,10 +51,6 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 								select#carMake(name="carMake", data-ng-model="car.make", required)
 									option(selecter, label="Enter make", value="{{make}}", data-ng-repeat="make in makes", selecter-target="#carMake", selecter-callback="select", property="make", data-ng-selected="make == selectedItem") {{make}}
-
-								//- ul-select(data-ng-model="car.make", theme="bootstrap")
-								//- 	ul-select-match(placeholder="Enter make") {{$select.selected}}
-								//- 	ul-select-choices(repeat="make in makes") {{make}}
 
 								img(src="../../images/error.png", data-ng-show="(carForm.carMake.$invalid && carForm.carMake.$dirty) || (carForm.carMake.$invalid && carForm.$submitted) || (modalShown && car.make == 'xxxx')", style="position:absolute; right: 15px; bottom: 3px;")
 
@@ -203,9 +198,9 @@ script(src="../../scripts/controllers/car/car.controller.js")
 									.form-inline
 
 										img.margin--right(src="../../images/calendar.png")
-										input(type="text", name="policyStartDate", ng-datepicker, data-ng-model="car.policy.startDate", data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true}", placeholder="DD/MM/YYYY", required, data-ng-class="{'ng-invalid': (carForm.policyStartDate.$invalid && carForm.policyStartDate.$dirty) || (!startDateWithin3Months() && carForm.$submitted) || (!startDateOnOrAfterTomorrow() && carForm.$submitted)}", style="display:inline-block;")
+										input(type="text", name="policyStartDate", ng-datepicker, data-ng-model="car.policy.startDate", data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true}", placeholder="DD/MM/YYYY", required, data-ng-class="{'ng-invalid': (carForm.policyStartDate.$invalid && carForm.$submitted) || (!startDateWithin3Months() && carForm.$submitted) || (!startDateOnOrAfterTomorrow() && carForm.$submitted)}", style="display:inline-block;")
 
-										img(src="../../images/error.png", data-ng-show="(carForm.policyStartDate.$invalid && carForm.policyStartDate.$dirty) || (!startDateWithin3Months() && carForm.$submitted) || (!startDateOnOrAfterTomorrow() && carForm.$submitted)")
+										img(src="../../images/error.png", data-ng-show="(carForm.policyStartDate.$invalid && carForm.$submitted) || (!startDateWithin3Months() && carForm.$submitted) || (!startDateOnOrAfterTomorrow() && carForm.$submitted)")
 
 								.col-md-4
 
@@ -215,9 +210,9 @@ script(src="../../scripts/controllers/car/car.controller.js")
 									.form-inline
 
 										img.margin--right(src="../../images/calendar.png")
-										input(type="text", name="policyEndDate", ng-datepicker, data-ng-model="car.policy.endDate", data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true}", placeholder="DD/MM/YYYY", required, data-ng-class="{'ng-invalid': (carForm.policyEndDate.$invalid && carForm.policyEndDate.$dirty) || (!endDateAfterStartDate() && carForm.policyEndDate.$dirty) || (!endDateWithin7And18MonthsAfterStartDate() && carForm.policyEndDate.$dirty)}", style="display:inline-block;")
+										input(type="text", name="policyEndDate", ng-datepicker, data-ng-model="car.policy.endDate", data-ng-options="{'format': 'dd/mm/yyyy', 'autoclose': true}", placeholder="DD/MM/YYYY", required, data-ng-class="{'ng-invalid': (carForm.policyEndDate.$invalid && carForm.$submitted) || (!endDateAfterStartDate() && carForm.$submitted) || (!endDateWithin7And18MonthsAfterStartDate() && carForm.$submitted)}", style="display:inline-block;")
 
-										img(src="../../images/error.png", data-ng-show="(carForm.policyEndDate.$invalid && carForm.policyEndDate.$dirty) || (!endDateAfterStartDate() && carForm.policyEndDate.$dirty) || (!endDateWithin7And18MonthsAfterStartDate() && carForm.policyEndDate.$dirty)")
+										img(src="../../images/error.png", data-ng-show="(carForm.policyEndDate.$invalid && carForm.$submitted) || (!endDateAfterStartDate() && carForm.$submitted) || (!endDateWithin7And18MonthsAfterStartDate() && carForm.$submitted)")
 				.container-fluid
 
 					.row
@@ -227,7 +222,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 								span.glyphicon.glyphicon-arrow-left
 								span(translate="PS_2_2_2") Back
 
-							button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", valid="carForm.$valid && startDateWithin3Months() && startDateOnOrAfterTomorrow() && endDateAfterStartDate() && endDateWithin7And18MonthsAfterStartDate()", continue, url="http://localhost:9000/car", page-data="{{car}}", next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html", modal="#modal-problem", modal-conditions="age > 10 || car.make == 'xxxx' || car.model == 'ZZZZ'", data-ng-disabled="modalShown && (age > 10 || car.make == 'xxxx' || car.model == 'ZZZZ')", success-modal="#modal-success")
+							button.btn.btn-forward.btn-lg.pull-right.margin--bottom(type="submit", valid="carForm.$valid && startDateWithin3Months() && startDateOnOrAfterTomorrow() && endDateAfterStartDate() && endDateWithin7And18MonthsAfterStartDate()", continue, url="http://localhost:9000/car", page-data="{{car}}", next-page="http://localhost:9000/pages/about-your-driver/about-your-driver.html", modals="[{'condition': (age > 10 && plan != 'Comprehensive') || car.make == 'xxxx' || car.model == 'ZZZZ', 'popup': '#modal-problem'}, {'condition': !carIsCovered(), 'popup': '#modal-unique-vehicle'}, {'condition': !carIsNotMoreThan10YearsOld() && plan == 'Comprehensive', 'popup': '#modal-old-vehicle'}]", data-ng-disabled="modalShown && (age > 10 || car.make == 'xxxx' || car.model == 'ZZZZ')", success-modal="#modal-success")
 								span(translate="PS_2_2_1") Proceed
 								span.glyphicon.glyphicon-arrow-right
 
@@ -266,8 +261,45 @@ script(src="../../scripts/controllers/car/car.controller.js")
 								span(translate="PC_3_3_6") Your Reference Number:
 								span.highlight-blue  XXXXX
 						p
-							span(translate="GS_0_0_2a") Call us on
+							span(translate="GS_0_0_2b") Call us on
 							|  +852 2884 8888
+							br
+							span(translate="GS_0_0_3") Mon - Fri 8am, Sat 9am - 6pm
+
+		modal#modal-unique-vehicle.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalUniqueVehicleTitle", aria-hidden="false", shown="modalShown")
+			.modal-dialog
+				.modal-content
+
+					button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+						span(aria-hidden="true") ×
+
+					.modal-body
+
+						h2#modalUniqueVehicleTitle(translate="PC_3_3_7") You have a unique vehicle. Please give us a call so we can help!
+						p(translate="PC_3_3_8") You've indicated that you have a vehicle that we are unable to quote online. Please give us a call and we'll help you to finish.
+
+						p
+							span(translate="GS_0_0_2b") Call us on
+							|  +852 2884 8888
+							br
+							span(translate="GS_0_0_3") Mon - Fri 8am, Sat 9am - 6pm
+
+		modal#modal-old-vehicle.modal.fade(tabindex="-1", role="dialog", aria-labelledby="modalOldVehicleTitle", aria-hidden="false", shown="modalShown")
+			.modal-dialog
+				.modal-content
+
+					button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+						span(aria-hidden="true") ×
+
+					.modal-body
+
+						h2#modalOldVehicleTitle(translate="PC_3_3_9") Sorry, but you can only purchase Third-Party Plans based on your vehicle. How would you like to proceed?
+						p(translate="PC_3_3_10") Still want Comprehensive cover?
+
+						p
+							span(translate="GS_0_0_2b") Call us on
+							|  +852 2884 8888
+							br
 							span(translate="GS_0_0_3") Mon - Fri 8am, Sat 9am - 6pm
 
 
