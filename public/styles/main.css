@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Wed May 13 2015 01:11:36 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Wed May 13 2015 15:18:41 GMT+0800 (CST) */
 @import url(../lib/select.css);
 @media (min-width: 768px) {
   .pull-left-large {
@@ -556,6 +556,8 @@ input[type="text"], input[type="number"], input[type="tel"], input[type="email"]
     border: 1px solid #d52b1e;
     display: inline-block;
     width: calc(100% - 37px); }
+  input[type="text"].block, input[type="number"].block, input[type="tel"].block, input[type="email"].block {
+    width: 100%; }
 
 .ng-submitted .ng-invalid:not(.year):not(.month):not(.day):not(.claim):not(.input-append) {
   border: 1px solid #d52b1e;

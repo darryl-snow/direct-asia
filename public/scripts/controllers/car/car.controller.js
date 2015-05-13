@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Wed May 13 2015 02:11:47 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Wed May 13 2015 14:55:43 GMT+0800 (CST) */
 
 /*
 
@@ -15,8 +15,8 @@ var getMockData,
 getMockData = function() {
   var data;
   return data = {
-    makes: ["Volkswagon", "Nissan", "Toyota", "xxxx"],
-    models: ["Golf", "Micra", "Sera", "ZZZZ"],
+    makes: ["Volkswagon", "Nissan", "Toyota", "xxxx", "Other"],
+    models: ["Golf", "Micra", "Sera", "ZZZZ", "Other"],
     years: ["2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004"],
     plan: {
       image: "../../images/comprehensive.png",

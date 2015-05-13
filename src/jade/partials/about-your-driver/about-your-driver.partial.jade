@@ -212,13 +212,18 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 						.container-fluid
 
 							h2(translate="PC_3_1_5a") Has insurance been refused or cancelled in the past 3 years?
-							button.btn.btn-default.random-margin(name="refusedInsurance", type="button", data-ng-class="{'active': driver.refusals == 'yes'}", data-ng-click="driver.refusals = 'yes'")
-								span(translate="PC_3_1_5b") Yes
-								span.glyphicon.glyphicon-ok
-							button.btn.btn-default(name="refusedInsurance", type="button", data-ng-class="{'active': driver.refusals == 'no'}", data-ng-click="driver.refusals = 'no'")
-								span(translate="PC_3_1_5c") No
-								span.glyphicon.glyphicon-ok
-							img(src="../../images/error.png", data-ng-show="(driverForm.$submitted && driver.refusals == null) || (modalShown && driver.refusals == 'yes')")
+
+							div(data-toggle="popover", data-placement="right", popover="#insurance-refused", popover-type="popover--yellow", trigger="hover", style="display: inline-block;")
+								button.btn.btn-default.random-margin(name="refusedInsurance", type="button", data-ng-class="{'active': driver.refusals == 'yes'}", data-ng-click="driver.refusals = 'yes'")
+									span(translate="PC_3_1_5b") Yes
+									span.glyphicon.glyphicon-ok
+								button.btn.btn-default(name="refusedInsurance", type="button", data-ng-class="{'active': driver.refusals == 'no'}", data-ng-click="driver.refusals = 'no'")
+									span(translate="PC_3_1_5c") No
+									span.glyphicon.glyphicon-ok
+								img(src="../../images/error.png", data-ng-show="(driverForm.$submitted && driver.refusals == null) || (modalShown && driver.refusals == 'yes')")
+
+							#insurance-refused.popover.right
+								span(translate="PC_3_1_3e") Tooltip text
 
 						.container-fluid
 
@@ -227,7 +232,7 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 								.subtitle(translate="PC_3_1_4b")
 									| You should include all accidents and/or claims, but you can exclude windscreen claims.
 
-							.row
+							.row(data-toggle="popover", data-placement="top", popover="#faults", popover-type="popover--yellow", trigger="hover")
 
 								.col-xs-5
 									label(translate="PC_4_4_1_4c") at Fault
@@ -240,6 +245,9 @@ script(src="../../scripts/controllers/about-your-driver/about-your-driver.contro
 									select#notFault(name="notFault", data-ng-model="driver.accidents.notAtFault", required)
 										option(selecter, label="Not at Fault", value="{{notFault}}", data-ng-repeat="notFault in notFaults", selecter-target="#notFault", selecter-callback="select", property="notFault", data-ng-selected="notFault == selectedItem") {{notFault}}
 									img(src="../../images/error.png", data-ng-show="(driverForm.notFault.$invalid && driverForm.notFault.$dirty) || (driverForm.notFault.$invalid && driverForm.$submitted)", style="bottom: 3px; position: absolute; right: 15px;")
+
+							#faults.popover.top
+								span(translate="PC_3_1_3f") Tooltip text
 
 				.row
 					.col-md-12.margin--top

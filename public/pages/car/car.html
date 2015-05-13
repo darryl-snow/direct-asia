@@ -129,7 +129,7 @@
                 </div>
               </div>
               <div class="panel-footer">
-                <div data-toggle="popover" data-placement="top" popover="#popover1" popover-type="popover--yellow" trigger="hover" class="row">
+                <div class="row">
                   <div class="col-md-4 margin--bottom">
                     <label for="year"><span translate="PS_2_0_3">Year of Manufacture</span><img data-placement="top" title="This refers to the year when the car was manufactured. You’ll find this on your vehicle registration document." src="../../images/question-icon.png" class="show-tooltip"></label>
                     <select id="carYear" name="carYear" data-ng-model="car.year" required>
@@ -140,17 +140,15 @@
                     <label for="make"><span translate="PS_2_0_4">Car Make</span><img src="../../images/question-icon.png"></label>
                     <select id="carMake" name="carMake" data-ng-model="car.make" required>
                       <option selecter label="Enter make" value="{{make}}" data-ng-repeat="make in makes" selecter-target="#carMake" selecter-callback="select" property="make" data-ng-selected="make == selectedItem">{{make}}</option>
-                    </select><img src="../../images/error.png" data-ng-show="(carForm.carMake.$invalid &amp;&amp; carForm.carMake.$dirty) || (carForm.carMake.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; car.make == 'xxxx')" style="position:absolute; right: 15px; bottom: 3px;">
+                    </select>
+                    <input type="text" required data-ng-model="car.otherMake" name="otherCarMake" data-ng-if="car.make=='Other'" placeholder="Enter make" class="margin--top block"><img src="../../images/error.png" data-ng-show="(carForm.carMake.$invalid &amp;&amp; carForm.carMake.$dirty) || (carForm.carMake.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; car.make == 'xxxx') || ((car.make == 'Other' &amp;&amp; carForm.otherCarMake == null &amp;&amp; carForm.otherCarMake.$dirty) || (car.make == 'Other' &amp;&amp; carForm.otherCarMake.$invalid &amp;&amp; carForm.otherCarMake.$dirty))" style="position:absolute; right: 15px; bottom: 3px;">
                   </div>
                   <div class="col-md-4">
                     <label for="model"><span translate="PS_2_0_5">Car Model</span><img src="../../images/question-icon.png"></label>
                     <select id="model" name="model" data-ng-model="car.model" required>
                       <option selecter label="Enter model" value="{{model}}" data-ng-repeat="model in models" selecter-target="#model" selecter-callback="select" property="model" data-ng-selected="model == selectedItem">{{model}}</option>
-                    </select><img src="../../images/error.png" data-ng-show="(carForm.model.$invalid &amp;&amp; carForm.model.$dirty) || (carForm.model.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; car.model == 'ZZZZ')" style="position:absolute; right: 15px; bottom: 3px;">
-                  </div>
-                  <div id="popover1" class="popover top">
-                    <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
-                    <div translate="PS_2_0_2" class="subtitle">Please note that we do not cover cars used for commercial purposes or for hire/reward</div>
+                    </select>
+                    <input type="text" required data-ng-model="car.otherModel" name="otherCarModel" data-ng-if="car.model=='Other'" placeholder="Enter model" class="margin--top block"><img src="../../images/error.png" data-ng-show="(carForm.model.$invalid &amp;&amp; carForm.model.$dirty) || (carForm.model.$invalid &amp;&amp; carForm.$submitted) || (modalShown &amp;&amp; car.model == 'ZZZZ') || ((car.model == 'other' &amp;&amp; carForm.otherCarModel == null) || (car.model == 'other' &amp;&amp; carForm.otherCarModel.$invalid))" style="position:absolute; right: 15px; bottom: 3px;">
                   </div>
                 </div>
               </div>
@@ -161,7 +159,11 @@
                 <div class="row">
                   <div class="col-md-12">
                     <button name="carOwnership" type="button" data-ng-click="select('private', 0, 'ownership')" data-ng-class="{'active':car.ownership=='private'}" class="btn btn-default random-margin"><span translate="PS_2_1_2_2">Private</span><span class="glyphicon glyphicon-ok"></span></button>
-                    <button name="carOwnership" type="button" data-ng-click="select('corporate', 0, 'ownership')" data-ng-class="{'active':car.ownership=='corporate'}" class="btn btn-default"><span translate="PS_2_1_2_3">Corporate</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.ownership">
+                    <button name="carOwnership" type="button" data-ng-click="select('corporate', 0, 'ownership')" data-ng-class="{'active':car.ownership=='corporate'}" data-toggle="popover" data-placement="right" popover="#popover1" popover-type="popover--yellow" trigger="hover" class="btn btn-default"><span translate="PS_2_1_2_3">Corporate</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="carForm.$submitted &amp;&amp; !car.ownership">
+                    <div id="popover1" class="popover right">
+                      <button type="button" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+                      <div translate="PS_2_0_2" class="subtitle">Please note that we do not cover cars used for commercial purposes or for hire/reward</div>
+                    </div>
                   </div>
                 </div>
               </div>

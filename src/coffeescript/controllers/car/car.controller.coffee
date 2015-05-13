@@ -16,12 +16,14 @@ getMockData = ->
 			"Nissan"
 			"Toyota"
 			"xxxx"
+			"Other"
 		]
 		models: [
 			"Golf"
 			"Micra"
 			"Sera"
 			"ZZZZ"
+			"Other"
 		]
 		years: [
 			"2015"

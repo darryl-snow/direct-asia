@@ -30,7 +30,7 @@ script(src="../../scripts/controllers/car/car.controller.js")
 
 					.panel-footer
 
-						.row(data-toggle="popover", data-placement="top", popover="#popover1", popover-type="popover--yellow", trigger="hover")
+						.row
 
 							.col-md-4.margin--bottom
 
@@ -52,7 +52,9 @@ script(src="../../scripts/controllers/car/car.controller.js")
 								select#carMake(name="carMake", data-ng-model="car.make", required)
 									option(selecter, label="Enter make", value="{{make}}", data-ng-repeat="make in makes", selecter-target="#carMake", selecter-callback="select", property="make", data-ng-selected="make == selectedItem") {{make}}
 
-								img(src="../../images/error.png", data-ng-show="(carForm.carMake.$invalid && carForm.carMake.$dirty) || (carForm.carMake.$invalid && carForm.$submitted) || (modalShown && car.make == 'xxxx')", style="position:absolute; right: 15px; bottom: 3px;")
+								input.margin--top.block(type="text", required, data-ng-model="car.otherMake", name="otherCarMake", data-ng-if="car.make=='Other'", placeholder="Enter make")
+
+								img(src="../../images/error.png", data-ng-show="(carForm.carMake.$invalid && carForm.carMake.$dirty) || (carForm.carMake.$invalid && carForm.$submitted) || (modalShown && car.make == 'xxxx') || ((car.make == 'Other' && carForm.otherCarMake == null && carForm.otherCarMake.$dirty) || (car.make == 'Other' && carForm.otherCarMake.$invalid && carForm.otherCarMake.$dirty))", style="position:absolute; right: 15px; bottom: 3px;")
 
 							.col-md-4
 
@@ -63,12 +65,9 @@ script(src="../../scripts/controllers/car/car.controller.js")
 								select#model(name="model", data-ng-model="car.model", required)
 									option(selecter, label="Enter model", value="{{model}}", data-ng-repeat="model in models", selecter-target="#model", selecter-callback="select", property="model", data-ng-selected="model == selectedItem") {{model}}
 
-								img(src="../../images/error.png", data-ng-show="(carForm.model.$invalid && carForm.model.$dirty) || (carForm.model.$invalid && carForm.$submitted) || (modalShown && car.model == 'ZZZZ')", style="position:absolute; right: 15px; bottom: 3px;")
+								input.margin--top.block(type="text", required, data-ng-model="car.otherModel", name="otherCarModel", data-ng-if="car.model=='Other'", placeholder="Enter model")
 
-							#popover1.popover.top
-								button.popover-close-button(type="button")
-									span.glyphicon.glyphicon-remove
-								.subtitle(translate="PS_2_0_2") Please note that we do not cover cars used for commercial purposes or for hire/reward
+								img(src="../../images/error.png", data-ng-show="(carForm.model.$invalid && carForm.model.$dirty) || (carForm.model.$invalid && carForm.$submitted) || (modalShown && car.model == 'ZZZZ') || ((car.model == 'other' && carForm.otherCarModel == null) || (car.model == 'other' && carForm.otherCarModel.$invalid))", style="position:absolute; right: 15px; bottom: 3px;")
 
 				.container-fluid.margin--bottom
 
@@ -83,11 +82,16 @@ script(src="../../scripts/controllers/car/car.controller.js")
 									span(translate="PS_2_1_2_2") Private
 									span.glyphicon.glyphicon-ok
 
-								button.btn.btn-default(name="carOwnership", type="button", data-ng-click="select('corporate', 0, 'ownership')", data-ng-class="{'active':car.ownership=='corporate'}")
+								button.btn.btn-default(name="carOwnership", type="button", data-ng-click="select('corporate', 0, 'ownership')", data-ng-class="{'active':car.ownership=='corporate'}", data-toggle="popover", data-placement="right", popover="#popover1", popover-type="popover--yellow", trigger="hover")
 									span(translate="PS_2_1_2_3") Corporate
 									span.glyphicon.glyphicon-ok
 
 								img(src="../../images/error.png", data-ng-show="carForm.$submitted && !car.ownership")
+
+								#popover1.popover.right
+									button.popover-close-button(type="button")
+										span.glyphicon.glyphicon-remove
+									.subtitle(translate="PS_2_0_2") Please note that we do not cover cars used for commercial purposes or for hire/reward
 
 				.container-fluid.margin--bottom.margin--top
 					.container-fluid.margin--bottom

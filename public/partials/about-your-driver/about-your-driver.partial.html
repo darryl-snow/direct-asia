@@ -114,14 +114,17 @@
             </div>
             <div class="container-fluid">
               <h2 translate="PC_3_1_5a">Has insurance been refused or cancelled in the past 3 years?</h2>
-              <button name="refusedInsurance" type="button" data-ng-class="{'active': driver.refusals == 'yes'}" data-ng-click="driver.refusals = 'yes'" class="btn btn-default random-margin"><span translate="PC_3_1_5b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
-              <button name="refusedInsurance" type="button" data-ng-class="{'active': driver.refusals == 'no'}" data-ng-click="driver.refusals = 'no'" class="btn btn-default"><span translate="PC_3_1_5c">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="(driverForm.$submitted &amp;&amp; driver.refusals == null) || (modalShown &amp;&amp; driver.refusals == 'yes')"/>
+              <div data-toggle="popover" data-placement="right" popover="#insurance-refused" popover-type="popover--yellow" trigger="hover" style="display: inline-block;">
+                <button name="refusedInsurance" type="button" data-ng-class="{'active': driver.refusals == 'yes'}" data-ng-click="driver.refusals = 'yes'" class="btn btn-default random-margin"><span translate="PC_3_1_5b">Yes</span><span class="glyphicon glyphicon-ok"></span></button>
+                <button name="refusedInsurance" type="button" data-ng-class="{'active': driver.refusals == 'no'}" data-ng-click="driver.refusals = 'no'" class="btn btn-default"><span translate="PC_3_1_5c">No</span><span class="glyphicon glyphicon-ok"></span></button><img src="../../images/error.png" data-ng-show="(driverForm.$submitted &amp;&amp; driver.refusals == null) || (modalShown &amp;&amp; driver.refusals == 'yes')"/>
+              </div>
+              <div id="insurance-refused" class="popover right"><span translate="PC_3_1_3e">Tooltip text</span></div>
             </div>
             <div class="container-fluid">
               <h2><span translate="PC_3_1_4a">In the past 3 years (36 months), how many accidents and/or claims where made?</span>
                 <div translate="PC_3_1_4b" class="subtitle">You should include all accidents and/or claims, but you can exclude windscreen claims.</div>
               </h2>
-              <div class="row">
+              <div data-toggle="popover" data-placement="top" popover="#faults" popover-type="popover--yellow" trigger="hover" class="row">
                 <div class="col-xs-5">
                   <label translate="PC_4_4_1_4c">at Fault</label>
                   <select id="fault" name="fault" data-ng-model="driver.accidents.atFault" required="required">
@@ -135,6 +138,7 @@
                   </select><img src="../../images/error.png" data-ng-show="(driverForm.notFault.$invalid &amp;&amp; driverForm.notFault.$dirty) || (driverForm.notFault.$invalid &amp;&amp; driverForm.$submitted)" style="bottom: 3px; position: absolute; right: 15px;"/>
                 </div>
               </div>
+              <div id="faults" class="popover top"><span translate="PC_3_1_3f">Tooltip text</span></div>
             </div>
           </div>
         </div>
