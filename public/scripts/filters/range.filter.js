@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Wed May 13 2015 14:55:43 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Fri Jun 05 2015 14:14:28 GMT-0400 (AST) */
 
 /*
 This is an angular filter that allows us to change the format of
@@ -8,9 +8,9 @@ will then be replaced by that array. Useful for generating lists.
  */
 angular.module("DirectAsia").filter("range", function() {
   return function(input, total) {
-    var i, _i;
+    var i, j, ref;
     total = parseInt(total);
-    for (i = _i = 0; 0 <= total ? _i <= total : _i >= total; i = 0 <= total ? ++_i : --_i) {
+    for (i = j = 0, ref = total; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
       input.push(i);
     }
     return input;

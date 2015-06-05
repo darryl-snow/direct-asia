@@ -17,6 +17,8 @@ getMockData = ->
 				image: "../../images/comprehensive.png"
 				name: "Comprehensive"
 				tagline: ""
+				price: "S$884.73"
+				policyExcess: ["S$700", "S$600"]
 				covers: [
 					"Third Party - Death or Bodily injury"
 					"Third Party - Property Damage"
@@ -30,6 +32,8 @@ getMockData = ->
 				image: "../../images/third-party-plus.png"
 				name: "Third-Party Plus"
 				tagline: "(includes Fire & Theft)"
+				price: "S$884.73"
+				policyExcess: ["S$600"]
 				covers: [
 					"Third Party - Death or Bodily injury"
 					"Third Party - Property Damage"
@@ -41,6 +45,8 @@ getMockData = ->
 				image: "../../images/third-party-only.png"
 				name: "Third-Party Only"
 				tagline: ""
+				price: "S$884.73"
+				policyExcess: []
 				covers: [
 					"Third Party - Death or Bodily injury"
 					"Third Party - Property Damage"
@@ -72,6 +78,11 @@ getMockData = ->
 			{
 				name: "Windscreen/Window Breakage"
 				description: "If you want to replace a damaged windscreen, you\"ll need to pay HKD$100 (before GST) out of your own pocket. You won\"t need to pay if the windscreen can be repaired instead of replaced."
+			}
+			{
+				name: "Policy Excess"
+				options: true
+				description: "Your excess policy description."
 			}
 		]
 
@@ -113,6 +124,14 @@ angular.module("DirectAsia").controller "yourPlanCtrl", [
 			$scope.coverDetails =
 				plan: $scope.plans[0]
 				agreed: false
+
+			$scope.selection = {}
+
+			# Set selection defaults
+			angular.forEach data.plans, (object, i) ->
+				if (object.policyExcess.length > 0)
+					$scope.selection[object.name] = object.policyExcess[0]
+
 
 		###
 		This function is used to select a particular cover plan

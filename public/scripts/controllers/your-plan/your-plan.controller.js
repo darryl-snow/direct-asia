@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Wed May 13 2015 14:55:43 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Fri Jun 05 2015 14:14:28 GMT-0400 (AST) */
 
 /*
 
@@ -20,16 +20,22 @@ getMockData = function() {
         image: "../../images/comprehensive.png",
         name: "Comprehensive",
         tagline: "",
+        price: "S$884.73",
+        policyExcess: ["S$700", "S$600"],
         covers: ["Third Party - Death or Bodily injury", "Third Party - Property Damage", "Third Party - Collision Damage", "24 hour accident towing", "Own damage - No Other Vehicle Involved", "Windscreen/Window Breakage"]
       }, {
         image: "../../images/third-party-plus.png",
         name: "Third-Party Plus",
         tagline: "(includes Fire & Theft)",
+        price: "S$884.73",
+        policyExcess: ["S$600"],
         covers: ["Third Party - Death or Bodily injury", "Third Party - Property Damage", "Third Party - Collision Damage", "24 hour accident towing"]
       }, {
         image: "../../images/third-party-only.png",
         name: "Third-Party Only",
         tagline: "",
+        price: "S$884.73",
+        policyExcess: [],
         covers: ["Third Party - Death or Bodily injury", "Third Party - Property Damage", "Third Party - Collision Damage"]
       }
     ],
@@ -52,6 +58,10 @@ getMockData = function() {
       }, {
         name: "Windscreen/Window Breakage",
         description: "If you want to replace a damaged windscreen, you\"ll need to pay HKD$100 (before GST) out of your own pocket. You won\"t need to pay if the windscreen can be repaired instead of replaced."
+      }, {
+        name: "Policy Excess",
+        options: true,
+        description: "Your excess policy description."
       }
     ]
   };
@@ -93,10 +103,16 @@ angular.module("DirectAsia").controller("yourPlanCtrl", [
     setupData = function(data) {
       $scope.plans = data.plans;
       $scope.covers = data.covers;
-      return $scope.coverDetails = {
+      $scope.coverDetails = {
         plan: $scope.plans[0],
         agreed: false
       };
+      $scope.selection = {};
+      return angular.forEach(data.plans, function(object, i) {
+        if (object.policyExcess.length > 0) {
+          return $scope.selection[object.name] = object.policyExcess[0];
+        }
+      });
     };
 
     /*
