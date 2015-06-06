@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Jun 05 2015 14:14:28 GMT-0400 (AST) */
+/* direct-asia : 0.0.0 : Fri Jun 05 2015 20:18:54 GMT-0400 (AST) */
 
 /*
 
@@ -108,11 +108,36 @@ angular.module("DirectAsia").controller("yourPlanCtrl", [
         agreed: false
       };
       $scope.selection = {};
+      $scope.i = -1;
+      $scope.responsive = false;
       return angular.forEach(data.plans, function(object, i) {
         if (object.policyExcess.length > 0) {
           return $scope.selection[object.name] = object.policyExcess[0];
         }
       });
+    };
+
+    /*
+    		This function is used to get plans
+     */
+    $scope.getPlans = function(i) {
+      if (i < 0) {
+        return $scope.plans;
+      } else {
+        $scope.responsive = true;
+        return [$scope.plans[i]];
+      }
+    };
+
+    /*
+    		This function is used to get one plan based on index and screen
+     */
+    $scope.getPlan = function(i, plan) {
+      if (i < 0) {
+        return plan;
+      } else {
+        return $scope.plans[i];
+      }
     };
 
     /*

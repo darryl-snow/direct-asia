@@ -127,11 +127,35 @@ angular.module("DirectAsia").controller "yourPlanCtrl", [
 
 			$scope.selection = {}
 
+			# Iterator index table
+			$scope.i = -1
+			$scope.responsive = false
+
 			# Set selection defaults
 			angular.forEach data.plans, (object, i) ->
 				if (object.policyExcess.length > 0)
 					$scope.selection[object.name] = object.policyExcess[0]
 
+		###
+		This function is used to get plans
+		###
+
+		$scope.getPlans = (i) ->
+			if (i < 0)
+				return $scope.plans
+			else 
+				$scope.responsive = true
+				return [$scope.plans[i]]
+
+		###
+		This function is used to get one plan based on index and screen
+		###
+
+		$scope.getPlan = (i, plan) ->
+			if (i < 0)
+				return plan
+			else 
+				return $scope.plans[i]
 
 		###
 		This function is used to select a particular cover plan

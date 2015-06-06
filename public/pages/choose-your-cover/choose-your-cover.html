@@ -144,68 +144,68 @@
                 <div class="row margin--bottom">
                   <div class="col-md-12">
                     <h2 data-ng-click="compare = !compare" style="cursor: pointer;"><span translate="PS_1_1_1">Compare these cover options</span><img data-ng-show="!compare" src="../../images/down-arrow.png"><img data-ng-show="compare" src="../../images/up-arrow.png"></h2>
-                    <table data-ng-show="compare" responsive-table ng-repeat="i in [0, 1, 2]" id="compare-plans-{{i}}" class="compare-plans responsive table table-striped">
-                      <thead>
-                        <tr class="thead-main">
-                          <td></td>
-                          <td data-ng-class="{'active': coverDetails.plan == plans[i]}" class="centred"><img data-ng-src="{{plans[i].image}}" class="thead-image"><br><strong>{{plans[i].name}}</strong>
-                            <div data-ng-if="plans[i].tagline">{{plans[i].tagline}} &nbsp;</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td data-ng-class="{'active': coverDetails.plan == plan}" class="centred"><strong class="price">{{plans[i].price}}</strong></td>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr data-ng-repeat="cover in covers">
-                          <td class="align-left covers-meta"><strong class="name">{{cover.name}}</strong><span class="tip"><img data-toggle="tooltip" data-placement="top" text="cover.description" src="../../images/question-icon.png" class="show-tooltip"></span></td>
-                          <td data-ng-class="{'active': coverDetails.plan == plans[i]}" class="centred"><img src="../../images/green-check.png" data-ng-show="doesPlanIncludeCover(plans[i], cover)">&nbsp;<span data-ng-show="plans[i].policyExcess.length &gt; 0 &amp;&amp; cover.options" alt="cover.options"> <span data-ng-class="{'active': coverDetails.plan == plans[i]}" class="centred">
-                                <select data-ng-show="coverDetails.plan == plans[i]" data-ng-model="selection[plans[i].name]">
-                                  <option ng-repeat="policyExcess in plans[i].policyExcess">{{policyExcess}}</option>
-                                </select><strong data-ng-show="coverDetails.plan != plans[i]">{{selection[plans[i].name]}} </strong></span></span></td>
-                        </tr>
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <td></td>
-                          <td data-ng-class="{'active': coverDetails.plan == plans[i]}" class="centred"><img data-ng-show="coverDetails.plan == plans[i]" src="../../images/selected-icon.png">
-                            <button type="button" data-ng-show="coverDetails.plan != plans[i]" data-ng-click="selectPlan(plans[i])" translate="PC_4_5c" class="btn btn-default">Select</button>
-                          </td>
-                        </tr>
-                      </tfoot>
-                    </table>
-                    <table data-ng-show="compare" class="compare-plans table table-striped desktop">
-                      <thead>
-                        <tr class="thead-main">
-                          <td></td>
-                          <td data-ng-repeat="plan in plans" data-ng-class="{'active': coverDetails.plan == plan}" class="centred"><img data-ng-src="{{plan.image}}" class="thead-image"><br><strong>{{plan.name}}</strong>
-                            <div data-ng-if="plan.tagline">{{plan.tagline}}</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td data-ng-repeat="plan in plans" data-ng-class="{'active': coverDetails.plan == plan}" class="centred"><strong class="price">{{plan.price}}</strong></td>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr data-ng-repeat="cover in covers">
-                          <td class="align-left"><strong>{{cover.name}}</strong><img data-toggle="tooltip" data-placement="top" text="cover.description" src="../../images/question-icon.png" class="show-tooltip"></td>
-                          <td data-ng-repeat="plan in plans" data-ng-class="{'active': coverDetails.plan == plan}" class="centred"><img src="../../images/green-check.png" data-ng-show="doesPlanIncludeCover(plan, cover)">&nbsp;<span data-ng-show="plan.policyExcess.length &gt; 0 &amp;&amp; cover.options" alt="cover.options"> <span data-ng-class="{'active': coverDetails.plan == plan}" class="centred">
-                                <select data-ng-show="coverDetails.plan == plan" data-ng-model="selection[plan.name]">
-                                  <option ng-repeat="policyExcess in plan.policyExcess">{{policyExcess}}</option>
-                                </select><strong data-ng-show="coverDetails.plan != plan">{{selection[plan.name]}} </strong></span></span></td>
-                        </tr>
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <td></td>
-                          <td data-ng-repeat="plan in plans" data-ng-class="{'active': coverDetails.plan == plan}" class="centred"><img data-ng-show="coverDetails.plan == plan" src="../../images/selected-icon.png">
-                            <button type="button" data-ng-show="coverDetails.plan != plan" data-ng-click="selectPlan(plan)" translate="PC_4_5c" class="btn btn-default">Select</button>
-                          </td>
-                        </tr>
-                      </tfoot>
-                    </table>
+                        <table data-ng-show="compare" ng-repeat="i in [0, 1, 2]" class="compare-plans responsive table table-striped">
+                              <thead>
+                                <tr class="thead-main">
+                                  <td></td>
+                                  <td data-ng-repeat="plan in getPlans(i)" data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}" class="centred"><img data-ng-src="{{getPlan(i, plan).image}}" class="thead-image"><br><strong>{{getPlan(i, plan).name}}</strong>
+                                    <div data-ng-if="getPlan(i, plan).tagline">{{getPlan(i, plan).tagline}}</div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td></td>
+                                  <td data-ng-repeat="plan in getPlans(i)" data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}" class="centred"><strong class="price">{{getPlan(i, plan).price}}</strong></td>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr data-ng-repeat="cover in covers">
+                                  <td class="align-left covers-meta"><strong class="name">{{cover.name}}</strong><span class="tip"><img data-toggle="tooltip" data-placement="top" text="cover.description" src="../../images/question-icon.png" class="show-tooltip"></span></td>
+                                  <td data-ng-repeat="plan in getPlans(i)" data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}" class="centred"><img src="../../images/green-check.png" data-ng-show="doesPlanIncludeCover(getPlan(i, plan), cover)">&nbsp;<span data-ng-show="getPlan(i, plan).policyExcess.length &gt; 0 &amp;&amp; cover.options" alt="cover.options"> <span data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}" class="centred">
+                                        <select data-ng-show="coverDetails.plan == getPlan(i, plan)" data-ng-model="selection[getPlan(i, plan).name]">
+                                          <option ng-repeat="policyExcess in getPlan(i, plan).policyExcess">{{policyExcess}}</option>
+                                        </select><strong data-ng-show="coverDetails.plan != plan">{{selection[getPlan(i, plan).name]}} </strong></span></span></td>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td></td>
+                                  <td data-ng-repeat="plan in getPlans(i)" data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}" class="centred"><img data-ng-show="coverDetails.plan == getPlan(i, plan)" src="../../images/selected-icon.png">
+                                    <button type="button" data-ng-show="coverDetails.plan != getPlan(i, plan)" data-ng-click="selectPlan(getPlan(i, plan))" translate="PC_4_5c" class="btn btn-default">Select</button>
+                                  </td>
+                                </tr>
+                              </tfoot>
+                        </table>
+                        <table data-ng-show="compare" class="compare-plans table table-striped desktop">
+                              <thead>
+                                <tr class="thead-main">
+                                  <td></td>
+                                  <td data-ng-repeat="plan in getPlans(i)" data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}" class="centred"><img data-ng-src="{{getPlan(i, plan).image}}" class="thead-image"><br><strong>{{getPlan(i, plan).name}}</strong>
+                                    <div data-ng-if="getPlan(i, plan).tagline">{{getPlan(i, plan).tagline}}</div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td></td>
+                                  <td data-ng-repeat="plan in getPlans(i)" data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}" class="centred"><strong class="price">{{getPlan(i, plan).price}}</strong></td>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr data-ng-repeat="cover in covers">
+                                  <td class="align-left covers-meta"><strong class="name">{{cover.name}}</strong><span class="tip"><img data-toggle="tooltip" data-placement="top" text="cover.description" src="../../images/question-icon.png" class="show-tooltip"></span></td>
+                                  <td data-ng-repeat="plan in getPlans(i)" data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}" class="centred"><img src="../../images/green-check.png" data-ng-show="doesPlanIncludeCover(getPlan(i, plan), cover)">&nbsp;<span data-ng-show="getPlan(i, plan).policyExcess.length &gt; 0 &amp;&amp; cover.options" alt="cover.options"> <span data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}" class="centred">
+                                        <select data-ng-show="coverDetails.plan == getPlan(i, plan)" data-ng-model="selection[getPlan(i, plan).name]">
+                                          <option ng-repeat="policyExcess in getPlan(i, plan).policyExcess">{{policyExcess}}</option>
+                                        </select><strong data-ng-show="coverDetails.plan != plan">{{selection[getPlan(i, plan).name]}} </strong></span></span></td>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td></td>
+                                  <td data-ng-repeat="plan in getPlans(i)" data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}" class="centred"><img data-ng-show="coverDetails.plan == getPlan(i, plan)" src="../../images/selected-icon.png">
+                                    <button type="button" data-ng-show="coverDetails.plan != getPlan(i, plan)" data-ng-click="selectPlan(getPlan(i, plan))" translate="PC_4_5c" class="btn btn-default">Select</button>
+                                  </td>
+                                </tr>
+                              </tfoot>
+                        </table>
                   </div>
                 </div>
                 <div class="row margin--bottom">
