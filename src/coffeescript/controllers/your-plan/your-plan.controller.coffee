@@ -129,7 +129,6 @@ angular.module("DirectAsia").controller "yourPlanCtrl", [
 
 			# Iterator index table
 			$scope.i = -1
-			$scope.responsive = false
 
 			# Set selection defaults
 			angular.forEach data.plans, (object, i) ->
@@ -137,18 +136,19 @@ angular.module("DirectAsia").controller "yourPlanCtrl", [
 					$scope.selection[object.name] = object.policyExcess[0]
 
 		###
-		This function is used to get plans
+		This function is used to get plans based on index as it relates to 
+		the table type being generated i.e. mobile|desktop
 		###
 
 		$scope.getPlans = (i) ->
 			if (i < 0)
 				return $scope.plans
 			else 
-				$scope.responsive = true
 				return [$scope.plans[i]]
 
 		###
-		This function is used to get one plan based on index and screen
+		This function is used to get one plan based on index as it relates to 
+		the table type being generated i.e mobile|desktop
 		###
 
 		$scope.getPlan = (i, plan) ->
