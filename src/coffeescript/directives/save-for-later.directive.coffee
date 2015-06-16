@@ -52,6 +52,6 @@ angular.module "DirectAsia"
 
 				if canProceed
 
-					scope.$parent.saveForLater()						
+					scope.$parent.saveForLater()
 
 	]

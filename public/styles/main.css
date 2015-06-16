@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Tue Jun 16 2015 17:26:07 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Tue Jun 16 2015 19:45:52 GMT+0800 (CST) */
 @import url(../lib/select.css);
 @media (min-width: 768px) {
   .pull-left-large {
@@ -570,9 +570,6 @@ img[src*="error.png"] {
 input[type="checkbox"], input[type="radio"] {
   display: none; }
 
-.section-task2 input[type="checkbox"] {
-  display: inline-block !important; }
-
 label.label--large {
   display: block;
   font-size: 1.6em;
@@ -653,9 +650,6 @@ input[type="checkbox"]:disabled ~ span, input[type="radio"]:disabled ~ span {
 
 .ng-submitted .claim.ng-invalid {
   border: 1px solid #d52b1e; }
-
-.section-task2 .form-control {
-  background: #e5e5e5; }
 
 .navbar {
   background: transparent !important;
@@ -1576,26 +1570,20 @@ td.shadow {
 .table-striped > tbody > tr:nth-child(odd) > td {
   background: #f2f2f2; }
 
-.table:not(.table-task2) > thead > tr > th, .table:not(.table-task2) > tbody > tr > th, .table:not(.table-task2) > tfoot > tr > th, .table:not(.table-task2) > thead > tr > td, .table:not(.table-task2) > tbody > tr > td, .table:not(.table-task2) > tfoot > tr > td {
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
   border-top: none; }
 
-.table:not(.table-task2) > thead > tr > th, .table:not(.table-task2) > tfoot > tr > th, .table:not(.table-task2) > thead > tr > td, .table:not(.table-task2) > tfoot > tr > td {
+.table > thead > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tfoot > tr > td {
   background: #e5e5e5; }
 
-.table:not(.table-task2) > thead > tr > td.active, .table:not(.table-task2) > tbody > tr > td.active, .table:not(.table-task2) > tfoot > tr > td.active, .table:not(.table-task2) > thead > tr > th.active, .table:not(.table-task2) > tbody > tr > th.active, .table:not(.table-task2) > tfoot > tr > th.active, .table:not(.table-task2) > thead > tr.active > td, .table:not(.table-task2) > tbody > tr.active > td, .table:not(.table-task2) > tfoot > tr.active > td, .table:not(.table-task2) > thead > tr.active > th, .table:not(.table-task2) > tbody > tr.active > th, .table:not(.table-task2) > tfoot > tr.active > th {
+.table > thead > tr > td.active, .table > tbody > tr > td.active, .table > tfoot > tr > td.active, .table > thead > tr > th.active, .table > tbody > tr > th.active, .table > tfoot > tr > th.active, .table > thead > tr.active > td, .table > tbody > tr.active > td, .table > tfoot > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr.active > th, .table > tfoot > tr.active > th {
   background-color: #fcd900; }
 
-.table:not(.table-task2) > tbody > tr:nth-child(odd) > td.active, .table:not(.table-task2) > tfoot > tr:nth-child(odd) > td.active, .table:not(.table-task2) > tbody > tr:nth-child(odd) > th.active, .table:not(.table-task2) > tfoot > tr:nth-child(odd) > th.active, .table:not(.table-task2) > tbody > tr.active:nth-child(odd) > td, .table:not(.table-task2) > tfoot > tr.active:nth-child(odd) > td, .table:not(.table-task2) > tbody > tr.active:nth-child(odd) > th, .table:not(.table-task2) > tfoot > tr.active:nth-child(odd) > th {
+.table > tbody > tr:nth-child(odd) > td.active, .table > tfoot > tr:nth-child(odd) > td.active, .table > tbody > tr:nth-child(odd) > th.active, .table > tfoot > tr:nth-child(odd) > th.active, .table > tbody > tr.active:nth-child(odd) > td, .table > tfoot > tr.active:nth-child(odd) > td, .table > tbody > tr.active:nth-child(odd) > th, .table > tfoot > tr.active:nth-child(odd) > th {
   background: #f2d000; }
 
-.table:not(.table-task2) > thead > tr:nth-child(odd) > td.active, .table:not(.table-task2) > thead > tr:nth-child(odd) > th.active, .table:not(.table-task2) > thead > tr.active:nth-child(odd) > td, .table:not(.table-task2) > thead > tr.active:nth-child(odd) > th {
+.table > thead > tr:nth-child(odd) > td.active, .table > thead > tr:nth-child(odd) > th.active, .table > thead > tr.active:nth-child(odd) > td, .table > thead > tr.active:nth-child(odd) > th {
   background: #e8c700; }
-
-.section-task2 .table {
-  font-size: 16px; }
-.section-task2 .table > thead > tr > th, .section-task2 .table > tfoot > tr > th, .section-task2 .table > thead > tr > td, .section-task2 .table > tfoot > tr > td {
-  color: #000000;
-  font-family: ProximaBold; }
 
 .tooltip-inner {
   color: #333333;
@@ -1615,7 +1603,8 @@ td.shadow {
   .compare-plans select {
     width: 80%;
     border: solid 1px rgba(0, 0, 0, 0.2);
-    height: 30px; }
+    height: 30px;
+    display: inline-block; }
   .compare-plans .thead-image {
     margin-bottom: 20px;
     display: inline-block; }
@@ -1628,6 +1617,14 @@ td.shadow {
       .compare-plans .thead-main td.centred:first-child, .compare-plans .thead-main td.centred:last-child {
         border-top-left-radius: 3px;
         border-top-right-radius: 3px; }
+  .compare-plans .thead-task2 td {
+    margin: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    background-color: #fff !important; }
+    .compare-plans .thead-task2 td:first-child {
+      border-top-left-radius: 3px; }
+    .compare-plans .thead-task2 td:last-child {
+      border-top-right-radius: 3px; }
 
 .compare-plans.responsive {
   width: 100%;

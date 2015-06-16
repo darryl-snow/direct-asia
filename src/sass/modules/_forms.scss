@@ -95,11 +95,11 @@ input[type="radio"] {
 	display:				none;
 }
 
-.section-task2 {
-	input[type="checkbox"] {
-		display:			inline-block !important;
-	}
-}
+// .section-task2 {
+// 	input[type="checkbox"] {
+// 		display:			inline-block !important;
+// 	}
+// }
 
 label {
 
@@ -231,8 +231,8 @@ input[type="radio"]:disabled ~ span {
 	}
 }
 
-.section-task2 {
-	.form-control {
-		background:			$light-grey-1;
-	}
-}
+// .section-task2 {
+// 	.form-control {
+// 		background:			$light-grey-1;
+// 	}
+// }
