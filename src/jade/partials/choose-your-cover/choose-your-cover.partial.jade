@@ -3,76 +3,76 @@ include choose-your-cover-table-content.mixin.jade
 include choose-your-cover.mixin.jade
 .container
 
-  section.section.section-cover(data-ng-controller="yourPlanCtrl")
+	section.section.section-cover(data-ng-controller="yourPlanCtrl")
 
-    .container-fluid
+		.container-fluid
 
-      .panel
+			.panel
 
-        .panel-body
+				.panel-body
 
-          .row
+					.row
 
-            .col-md-2.centred.margin--bottom
-              img(src="../../images/person-icon.png")
+						.col-md-2.centred.margin--bottom
+							img(src="../../images/person-icon.png")
 
-            .col-md-7.margin--bottom
+						.col-md-7.margin--bottom
 
-              h1
-                span(translate="PS_1_0a") Get an Instant Quote &amp; Buy Online
-                .subtitle(translate="PS_1_0b") Save up to 25% with a flexible &amp; customisable plan
+							h1
+								span(translate="PS_1_0a") Get an Instant Quote &amp; Buy Online
+								.subtitle(translate="PS_1_0b") Save up to 25% with a flexible &amp; customisable plan
 
-            .col-md-3
+						.col-md-3
 
-              strong(translate="GS_0_2a") Existing Customer?
-              p(translate="GS_0_2b") Save time and retrieve your renewal quote
-              button.btn.btn-primary(type="button")
-                span(translate="GS_0_2c") Login Now
-                span.glyphicon.glyphicon-ok
+							strong(translate="GS_0_2a") Existing Customer?
+							p(translate="GS_0_2b") Save time and retrieve your renewal quote
+							button.btn.btn-primary(type="button")
+								span(translate="GS_0_2c") Login Now
+								span.glyphicon.glyphicon-ok
 
-    .container-fluid
+		.container-fluid
 
-      form(name="planForm", novalidate)
+			form(name="planForm", novalidate)
 
-        .row.centred
+				.row.centred
 
-          .col-md-12
-            h2(translate="PS_1_1a") Choose you car cover
+					.col-md-12
+						h2(translate="PS_1_1a") Choose you car cover
 
-            .margin--bottom
-              .panel.plan-option(data-ng-class="{'selected':coverDetails.plan == plan}", data-ng-repeat="plan in plans")
-                .panel-body
-                  img.margin--bottom(data-ng-src="{{plan.image}}")
-                  h2.margin--bottom
-                    strong {{plan.name}}
-                    //- .subtitle(data-ng-if="plan.tagline") {{plan.tagline}}
-                  img.plan-option-status(data-ng-show="coverDetails.plan == plan", src="../../images/selected-icon.png")
-                  button.btn.btn-default.plan-option-status(type="button", data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
+						.margin--bottom
+							.panel.plan-option(data-ng-class="{'selected':coverDetails.plan == plan}", data-ng-repeat="plan in plans")
+								.panel-body
+									img.margin--bottom(data-ng-src="{{plan.image}}")
+									h2.margin--bottom
+										strong {{plan.name}}
+										//- .subtitle(data-ng-if="plan.tagline") {{plan.tagline}}
+									img.plan-option-status(data-ng-show="coverDetails.plan == plan", src="../../images/selected-icon.png")
+									button.btn.btn-default.plan-option-status(type="button", data-ng-show="coverDetails.plan != plan", data-ng-click="selectPlan(plan)", translate="PC_4_5c") Select
 
-            .row.margin--bottom
-              .col-md-12
+						.row.margin--bottom
+							.col-md-12
 
-                h2(data-ng-click="compare = !compare", style="cursor: pointer;")
-                  span(translate="PS_1_1_1") Compare these cover options
-                  img(data-ng-show="!compare", src="../../images/down-arrow.png")
-                  img(data-ng-show="compare", src="../../images/up-arrow.png")
+								h2(data-ng-click="compare = !compare", style="cursor: pointer;")
+									span(translate="PS_1_1_1") Compare these cover options
+									img(data-ng-show="!compare", src="../../images/down-arrow.png")
+									img(data-ng-show="compare", src="../../images/up-arrow.png")
 
-                +coverTable("mobile")
-                +coverTable("desktop")
+								+coverTable("mobile")
+								+coverTable("desktop")
 
-            .row.margin--bottom
-              .col-md-12
+						.row.margin--bottom
+							.col-md-12
 
-                label.label-checkbox.margin--bottom(for="checkbox1")
-                  input#checkbox1(type="checkbox", data-ng-model="coverDetails.agreed")
-                  .fake-checkbox
-                    span.glyphicon.glyphicon-ok
-                  span(translate="PS_1_2a")
-                    | I Agree to the 
-                    a(href="#", title="") privacy terms
-                    | , and to fully and honestly answer any questions needed to recieve a policy.
-                  img(src="../../images/error.png", data-ng-show="(coverDetails.agreed == false || coverDetails.agreed == null) && planForm.$submitted")
+								label.label-checkbox.margin--bottom(for="checkbox1")
+									input#checkbox1(type="checkbox", data-ng-model="coverDetails.agreed")
+									.fake-checkbox
+										span.glyphicon.glyphicon-ok
+									span(translate="PS_1_2a")
+										| I Agree to the 
+										a(href="#", title="") privacy terms
+										| , and to fully and honestly answer any questions needed to recieve a policy.
+									img(src="../../images/error.png", data-ng-show="(coverDetails.agreed == false || coverDetails.agreed == null) && planForm.$submitted")
 
-            button.btn.btn-forward.btn-lg(type="submit", continue, url="http://localhost:9000/api/cover", page-data="{{coverDetails}}", valid="planForm.$valid && coverDetails.agreed", data-ng-disabled="planForm.$invalid || !coverDetails.agreed", next-page="http://localhost:9000/pages/car/car.html")
-              span(translate="PS_1_3") Get Your Quote
-              span.glyphicon.glyphicon-arrow-right
+						button.btn.btn-forward.btn-lg(type="submit", continue, url="http://localhost:9000/api/cover", page-data="{{coverDetails}}", valid="planForm.$valid && coverDetails.agreed", data-ng-disabled="planForm.$invalid || !coverDetails.agreed", next-page="http://localhost:9000/pages/car/car.html")
+							span(translate="PS_1_3") Get Your Quote
+							span.glyphicon.glyphicon-arrow-right

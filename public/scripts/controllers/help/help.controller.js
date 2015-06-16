@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Jun 05 2015 20:26:39 GMT-0400 (AST) */
+/* direct-asia : 0.0.0 : Tue Jun 16 2015 17:11:34 GMT+0800 (CST) */
 
 /*
 The controller ties together the view with the model.

@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Jun 05 2015 20:26:39 GMT-0400 (AST) */
+/* direct-asia : 0.0.0 : Tue Jun 16 2015 17:11:34 GMT+0800 (CST) */
 
 /*
 
@@ -17,7 +17,7 @@ from a back-end API. Data should include:
 - recommended plan details
  */
 var getMockData,
-  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+  __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 getMockData = function() {
   var data;
@@ -169,7 +169,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			savedPlan = in case the user wants to save the plan for later or switch
     			to the recommended plan and then switch back
      */
-    var calculateTotalCost, getDataFromAPI, getOption, getRecommendedOptions, getRecommendedPlan, i, j, saveCurrentPlan, selectPreviousOptions, selectRecommendedOptions, setupData;
+    var calculateTotalCost, getDataFromAPI, getOption, getRecommendedOptions, getRecommendedPlan, i, saveCurrentPlan, selectPreviousOptions, selectRecommendedOptions, setupData, _i;
     $scope.plan = new InsurancePlan();
     $scope.recommendedPlan = new InsurancePlan();
     $scope.savedPlan = new InsurancePlan();
@@ -215,7 +215,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			the user may wish to add.
      */
     $scope.additionalDrivers = [];
-    for (i = j = 0; j <= 3; i = ++j) {
+    for (i = _i = 0; _i <= 3; i = ++_i) {
       $scope.additionalDrivers.push(new AdditionalDriver);
     }
 
@@ -323,7 +323,7 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			user has selected
      */
     getRecommendedPlan = function() {
-      var k, len, matched, option, ref;
+      var matched, option, _j, _len, _ref;
       $scope.recommendedPlan.car = $scope.plan.car;
       $scope.recommendedPlan.driver = $scope.plan.driver;
       $scope.recommendedPlan.cover = $scope.plan.cover;
@@ -332,9 +332,9 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
       /*
       				set recommended optional benefits
        */
-      ref = $scope.options.optionalCover;
-      for (i = k = 0, len = ref.length; k < len; i = ++k) {
-        option = ref[i];
+      _ref = $scope.options.optionalCover;
+      for (i = _j = 0, _len = _ref.length; _j < _len; i = ++_j) {
+        option = _ref[i];
         option.recommended = false;
         matched = $scope.recommendedPlan.options.filter(function(recommendedOption) {
           return recommendedOption.name === option.name;
@@ -462,10 +462,10 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
      */
     $scope.selectOption = function(option) {
       option.selected = !option.selected;
-      if (option.selected && indexOf.call($scope.plan.options, option) < 0) {
+      if (option.selected && __indexOf.call($scope.plan.options, option) < 0) {
         $scope.plan.options.push(option);
       }
-      if (!option.selected && indexOf.call($scope.plan.options, option) >= 0) {
+      if (!option.selected && __indexOf.call($scope.plan.options, option) >= 0) {
         $scope.plan.options = $scope.plan.options.filter(function(selectedOption) {
           return selectedOption !== option;
         });
@@ -479,11 +479,11 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			for showing a breakdown in the summary section.
      */
     $scope.calculateOptionsCost = function(plan) {
-      var k, len, option, optionsCost, ref;
+      var option, optionsCost, _j, _len, _ref;
       optionsCost = 0;
-      ref = plan.options;
-      for (k = 0, len = ref.length; k < len; k++) {
-        option = ref[k];
+      _ref = plan.options;
+      for (_j = 0, _len = _ref.length; _j < _len; _j++) {
+        option = _ref[_j];
         optionsCost += option.cost;
       }
       return optionsCost;
@@ -564,22 +564,22 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			private function called only from within functions in this controller.
      */
     selectRecommendedOptions = function() {
-      var k, len, matched, option, ref, results;
-      ref = $scope.options.optionalCover;
-      results = [];
-      for (k = 0, len = ref.length; k < len; k++) {
-        option = ref[k];
+      var matched, option, _j, _len, _ref, _results;
+      _ref = $scope.options.optionalCover;
+      _results = [];
+      for (_j = 0, _len = _ref.length; _j < _len; _j++) {
+        option = _ref[_j];
         option.selected = false;
         matched = $scope.recommendedPlan.options.filter(function(recommendedOption) {
           return recommendedOption.name === option.name;
         });
         if (matched.length) {
-          results.push($scope.selectOption(option));
+          _results.push($scope.selectOption(option));
         } else {
-          results.push(void 0);
+          _results.push(void 0);
         }
       }
-      return results;
+      return _results;
     };
 
     /*
@@ -593,22 +593,22 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			private function called only from within functions in this controller.
      */
     selectPreviousOptions = function() {
-      var k, len, matched, option, ref, results;
-      ref = $scope.options.optionalCover;
-      results = [];
-      for (k = 0, len = ref.length; k < len; k++) {
-        option = ref[k];
+      var matched, option, _j, _len, _ref, _results;
+      _ref = $scope.options.optionalCover;
+      _results = [];
+      for (_j = 0, _len = _ref.length; _j < _len; _j++) {
+        option = _ref[_j];
         option.selected = false;
         matched = $scope.savedPlan.options.filter(function(previousOption) {
           return previousOption.name === option.name;
         });
         if (matched.length) {
-          results.push($scope.selectOption(option));
+          _results.push($scope.selectOption(option));
         } else {
-          results.push(void 0);
+          _results.push(void 0);
         }
       }
-      return results;
+      return _results;
     };
 
     /*
@@ -664,10 +664,10 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			form.
      */
     $scope.showNewDriverForm = function(driver) {
-      var d, index, k, len, ref;
-      ref = $scope.additionalDrivers;
-      for (index = k = 0, len = ref.length; k < len; index = ++k) {
-        d = ref[index];
+      var d, index, _j, _len, _ref;
+      _ref = $scope.additionalDrivers;
+      for (index = _j = 0, _len = _ref.length; _j < _len; index = ++_j) {
+        d = _ref[index];
         d.editing = false;
         if (!d.added) {
           setTimeout(function() {
@@ -684,10 +684,10 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			drivers array, otherwise return false.
      */
     $scope.wasDriverAdded = function(driver) {
-      var d, index, k, len, ref;
-      ref = $scope.plan.additionalDrivers;
-      for (index = k = 0, len = ref.length; k < len; index = ++k) {
-        d = ref[index];
+      var d, index, _j, _len, _ref;
+      _ref = $scope.plan.additionalDrivers;
+      for (index = _j = 0, _len = _ref.length; _j < _len; index = ++_j) {
+        d = _ref[index];
         if (d === driver) {
           return index;
         }
@@ -717,10 +717,10 @@ angular.module("DirectAsia").controller("QuoteCtrl", [
     			Hide all additional driver forms then show the form for this driver.
      */
     $scope.editAdditionalDriver = function(driver) {
-      var d, k, len, ref;
-      ref = $scope.additionalDrivers;
-      for (k = 0, len = ref.length; k < len; k++) {
-        d = ref[k];
+      var d, _j, _len, _ref;
+      _ref = $scope.additionalDrivers;
+      for (_j = 0, _len = _ref.length; _j < _len; _j++) {
+        d = _ref[_j];
         d.editing = false;
       }
       return driver.editing = true;

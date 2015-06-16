@@ -39,53 +39,69 @@ td {
 	background:				$light-grey-2;
 }
 
-.table > thead > tr > th,
-.table > tbody > tr > th,
-.table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td,
-.table > tfoot > tr > td {
+.table:not(.table-task2) > thead > tr > th,
+.table:not(.table-task2) > tbody > tr > th,
+.table:not(.table-task2) > tfoot > tr > th,
+.table:not(.table-task2) > thead > tr > td,
+.table:not(.table-task2) > tbody > tr > td,
+.table:not(.table-task2) > tfoot > tr > td {
 	border-top:				none;
 }
 
-.table > thead > tr > th,
-.table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tfoot > tr > td {
+.table:not(.table-task2) > thead > tr > th,
+.table:not(.table-task2) > tfoot > tr > th,
+.table:not(.table-task2) > thead > tr > td,
+.table:not(.table-task2) > tfoot > tr > td {
 	background:				$light-grey-1;
 }
 
-.table > thead > tr > td.active,
-.table > tbody > tr > td.active,
-.table > tfoot > tr > td.active,
-.table > thead > tr > th.active,
-.table > tbody > tr > th.active,
-.table > tfoot > tr > th.active,
-.table > thead > tr.active > td,
-.table > tbody > tr.active > td,
-.table > tfoot > tr.active > td,
-.table > thead > tr.active > th,
-.table > tbody > tr.active > th,
-.table > tfoot > tr.active > th {
+.table:not(.table-task2) > thead > tr > td.active,
+.table:not(.table-task2) > tbody > tr > td.active,
+.table:not(.table-task2) > tfoot > tr > td.active,
+.table:not(.table-task2) > thead > tr > th.active,
+.table:not(.table-task2) > tbody > tr > th.active,
+.table:not(.table-task2) > tfoot > tr > th.active,
+.table:not(.table-task2) > thead > tr.active > td,
+.table:not(.table-task2) > tbody > tr.active > td,
+.table:not(.table-task2) > tfoot > tr.active > td,
+.table:not(.table-task2) > thead > tr.active > th,
+.table:not(.table-task2) > tbody > tr.active > th,
+.table:not(.table-task2) > tfoot > tr.active > th {
 	background-color: 		$yellow;
 }
 
-.table > tbody > tr:nth-child(odd) > td.active,
-.table > tfoot > tr:nth-child(odd) > td.active,
-.table > tbody > tr:nth-child(odd) > th.active,
-.table > tfoot > tr:nth-child(odd) > th.active,
-.table > tbody > tr.active:nth-child(odd) > td,
-.table > tfoot > tr.active:nth-child(odd) > td,
-.table > tbody > tr.active:nth-child(odd) > th,
-.table > tfoot > tr.active:nth-child(odd) > th {
+.table:not(.table-task2) > tbody > tr:nth-child(odd) > td.active,
+.table:not(.table-task2) > tfoot > tr:nth-child(odd) > td.active,
+.table:not(.table-task2) > tbody > tr:nth-child(odd) > th.active,
+.table:not(.table-task2) > tfoot > tr:nth-child(odd) > th.active,
+.table:not(.table-task2) > tbody > tr.active:nth-child(odd) > td,
+.table:not(.table-task2) > tfoot > tr.active:nth-child(odd) > td,
+.table:not(.table-task2) > tbody > tr.active:nth-child(odd) > th,
+.table:not(.table-task2) > tfoot > tr.active:nth-child(odd) > th {
 	background:				darken(#fcd900, 2%);
 
 }
 
-.table > thead > tr:nth-child(odd) > td.active,
-.table > thead > tr:nth-child(odd) > th.active,
-.table > thead > tr.active:nth-child(odd) > td,
-.table > thead > tr.active:nth-child(odd) > th {
+.table:not(.table-task2) > thead > tr:nth-child(odd) > td.active,
+.table:not(.table-task2) > thead > tr:nth-child(odd) > th.active,
+.table:not(.table-task2) > thead > tr.active:nth-child(odd) > td,
+.table:not(.table-task2) > thead > tr.active:nth-child(odd) > th {
 	background:				darken(#fcd900, 4%);
+
+}
+
+.section-task2 {
+
+	.table {
+		font-size:			16px;
+	}
+
+	.table > thead > tr > th,
+	.table > tfoot > tr > th,
+	.table > thead > tr > td,
+	.table > tfoot > tr > td {
+		color:				$black;
+		font-family: 		ProximaBold;
+	}
 
 }

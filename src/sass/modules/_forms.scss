@@ -95,6 +95,12 @@ input[type="radio"] {
 	display:				none;
 }
 
+.section-task2 {
+	input[type="checkbox"] {
+		display:			inline-block !important;
+	}
+}
+
 label {
 
 	&.label--large {
@@ -222,5 +228,11 @@ input[type="radio"]:disabled ~ span {
 		&.ng-invalid {
 			border:			1px solid $red;
 		}
+	}
+}
+
+.section-task2 {
+	.form-control {
+		background:			$light-grey-1;
 	}
 }

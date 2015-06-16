@@ -1,7 +1,7 @@
 mixin coverTable(screen)
-  if (screen == "desktop")
-    table.compare-plans.table.table-striped.desktop(data-ng-show="compare")
-      +coverTableContent()
-  else 
-    table.compare-plans.responsive.table.table-striped(data-ng-show="compare", ng-repeat="i in [0, 1, 2]")
-      +coverTableContent()
+	if (screen == "desktop")
+		table.compare-plans.table.table-striped.desktop(data-ng-show="compare")
+			+coverTableContent()
+	else 
+		table.compare-plans.responsive.table.table-striped(data-ng-show="compare", ng-repeat="i in [0, 1, 2]")
+			+coverTableContent()

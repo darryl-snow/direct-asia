@@ -1,36 +1,36 @@
 mixin coverTableContent() 
-  thead
-    tr.thead-main
-      td
-      td.centred(data-ng-repeat="plan in getPlans(i)", data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}")
-        img.thead-image(data-ng-src="{{getPlan(i, plan).image}}")
-        br
-        strong {{getPlan(i, plan).name}}
-        div(data-ng-if="getPlan(i, plan).tagline") {{getPlan(i, plan).tagline}}
-    tr
-      td
-      td.centred(data-ng-repeat="plan in getPlans(i)", data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}")
-        strong.price {{getPlan(i, plan).price}}
+	thead
+		tr.thead-main
+			td
+			td.centred(data-ng-repeat="plan in getPlans(i)", data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}")
+				img.thead-image(data-ng-src="{{getPlan(i, plan).image}}")
+				br
+				strong {{getPlan(i, plan).name}}
+				div(data-ng-if="getPlan(i, plan).tagline") {{getPlan(i, plan).tagline}}
+		tr
+			td
+			td.centred(data-ng-repeat="plan in getPlans(i)", data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}")
+				strong.price {{getPlan(i, plan).price}}
 
-  tbody
-    tr(data-ng-repeat="cover in covers")
-      td.align-left.covers-meta
-        strong.name {{cover.name}}
-        span.tip
-          img.show-tooltip(data-toggle="tooltip", data-placement="top", text="cover.description", src="../../images/question-icon.png")
+	tbody
+		tr(data-ng-repeat="cover in covers")
+			td.align-left.covers-meta
+				strong.name {{cover.name}}
+				span.tip
+					img.show-tooltip(data-toggle="tooltip", data-placement="top", text="cover.description", src="../../images/question-icon.png")
 
-      td.centred(data-ng-repeat="plan in getPlans(i)", data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}")
-        img(src="../../images/green-check.png", data-ng-show="doesPlanIncludeCover(getPlan(i, plan), cover)")
-        | &nbsp;
-        span(data-ng-show="getPlan(i, plan).policyExcess.length > 0 && cover.options", alt="cover.options")  
-          span.centred(data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}")
-            select(data-ng-show="coverDetails.plan == getPlan(i, plan)", data-ng-model="selection[getPlan(i, plan).name]")
-              option(ng-repeat="policyExcess in getPlan(i, plan).policyExcess") {{policyExcess}}
-            strong(data-ng-show="coverDetails.plan != plan") {{selection[getPlan(i, plan).name]}} 
+			td.centred(data-ng-repeat="plan in getPlans(i)", data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}")
+				img(src="../../images/green-check.png", data-ng-show="doesPlanIncludeCover(getPlan(i, plan), cover)")
+				| &nbsp;
+				span(data-ng-show="getPlan(i, plan).policyExcess.length > 0 && cover.options", alt="cover.options")  
+					span.centred(data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}")
+						select(data-ng-show="coverDetails.plan == getPlan(i, plan)", data-ng-model="selection[getPlan(i, plan).name]")
+							option(ng-repeat="policyExcess in getPlan(i, plan).policyExcess") {{policyExcess}}
+						strong(data-ng-show="coverDetails.plan != plan") {{selection[getPlan(i, plan).name]}} 
 
-  tfoot
-    tr
-      td
-      td.centred(data-ng-repeat="plan in getPlans(i)", data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}")
-        img(data-ng-show="coverDetails.plan == getPlan(i, plan)", src="../../images/selected-icon.png")
-        button.btn.btn-default(type="button", data-ng-show="coverDetails.plan != getPlan(i, plan)", data-ng-click="selectPlan(getPlan(i, plan))", translate="PC_4_5c") Select
+	tfoot
+		tr
+			td
+			td.centred(data-ng-repeat="plan in getPlans(i)", data-ng-class="{'active': coverDetails.plan == getPlan(i, plan)}")
+				img(data-ng-show="coverDetails.plan == getPlan(i, plan)", src="../../images/selected-icon.png")
+				button.btn.btn-default(type="button", data-ng-show="coverDetails.plan != getPlan(i, plan)", data-ng-click="selectPlan(getPlan(i, plan))", translate="PC_4_5c") Select

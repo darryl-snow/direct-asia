@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Jun 05 2015 20:26:39 GMT-0400 (AST) */
+/* direct-asia : 0.0.0 : Tue Jun 16 2015 17:11:34 GMT+0800 (CST) */
 
 /*
 
@@ -10,7 +10,7 @@ from a back-end API. Data should include:
 - available car models
  */
 var getMockData,
-  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+  __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 getMockData = function() {
   var data;
@@ -160,8 +160,8 @@ angular.module("DirectAsia").controller("CarCtrl", [
     		covered. If not a modal should be shown.
      */
     $scope.carIsCovered = function() {
-      var ref, ref1;
-      return (ref = $scope.car.make, indexOf.call($scope.makes, ref) >= 0) && (ref1 = $scope.car.model, indexOf.call($scope.models, ref1) >= 0);
+      var _ref, _ref1;
+      return (_ref = $scope.car.make, __indexOf.call($scope.makes, _ref) >= 0) && (_ref1 = $scope.car.model, __indexOf.call($scope.models, _ref1) >= 0);
     };
 
     /*

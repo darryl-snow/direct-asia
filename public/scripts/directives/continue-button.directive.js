@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Jun 05 2015 20:26:39 GMT-0400 (AST) */
+/* direct-asia : 0.0.0 : Tue Jun 16 2015 17:11:34 GMT+0800 (CST) */
 
 /*
 Directive for continue buttons - buttons at the bottom of
@@ -67,7 +67,7 @@ angular.module("DirectAsia").directive("continue", [
           /*
           				If validation conditions are met (conditions passed in element attribute)
            */
-          var canProceed, condition, i, interval, len, modal, modalHidden, popup, ref;
+          var canProceed, condition, interval, modal, modalHidden, popup, _i, _len, _ref;
           if (scope.valid) {
 
             /*
@@ -76,9 +76,9 @@ angular.module("DirectAsia").directive("continue", [
              */
             canProceed = true;
             if (scope.modals !== null && scope.modals) {
-              ref = scope.modals;
-              for (i = 0, len = ref.length; i < len; i++) {
-                modal = ref[i];
+              _ref = scope.modals;
+              for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                modal = _ref[_i];
                 condition = modal.condition;
                 popup = modal.popup;
                 if (condition) {

@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Fri Jun 05 2015 20:26:39 GMT-0400 (AST) */
+/* direct-asia : 0.0.0 : Tue Jun 16 2015 17:11:34 GMT+0800 (CST) */
 
 /*
 UNFINISHED
@@ -30,12 +30,12 @@ angular.module("DirectAsia").controller("SOSCtrl", [
     		Default options for years select input
      */
     $scope.years = (function() {
-      var i, ref, results;
-      results = [];
-      for (year = i = 1, ref = $scope.maindriver.yearslicensed; 1 <= ref ? i <= ref : i >= ref; year = 1 <= ref ? ++i : --i) {
-        results.push(year);
+      var _i, _ref, _results;
+      _results = [];
+      for (year = _i = 1, _ref = $scope.maindriver.yearslicensed; 1 <= _ref ? _i <= _ref : _i >= _ref; year = 1 <= _ref ? ++_i : --_i) {
+        _results.push(year);
       }
-      return results;
+      return _results;
     })();
 
     /*

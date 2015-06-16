@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="DirectAsia">
+  <head>
+    <title>TASK2 - Direct Asia Car Insurance</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Front-End templates for Direct Asia Car Insurance">
+    <meta name="keywords" content="bootstrap angularJS bootflat">
+    <meta name="author" content="Darryl Snow">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../lib/bootstrap.css">
+    <link rel="stylesheet" href="../../lib/bootflat.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <!--if lt IE 9
+    script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
+    
+    -->
+    <link rel="apple-touch-icon" sizes="57x57" href="../../images/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../images/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../../images/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../images/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="../../images/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../images/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="../../images/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="../../images/favicon-192x192.png" sizes="192x192">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../../images/mstile-144x144.png">
+    <meta name="msapplication-config" content="../../images/browserconfig.xml">
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+    <script src="../../lib/jquery.js"></script>
+    <script src="../../lib/angular.js"></script>
+    <script src="../../lib/angular-translate.js"></script>
+    <script src="../../lib/angular-translate-loader-static-files.js"></script>
+    <script src="../../lib/bootstrap.js"></script>
+    <script src="../../lib/jquery.fs.selecter.js"></script>
+    <script src="../../lib/fsm-sticky-header.js"></script>
+    <script src="../../lib/bootstrap-slider.min.js"></script>
+    <script src="../../lib/slider.js"></script>
+    <script src="../../lib/angular-bootstrap-datepicker.js"></script>
+    <script src="../../lib/select.js"></script>
+    <script src="../../scripts/main.js"></script>
+    <script src="../../scripts/controllers/help/help.controller.js"></script>
+    <script src="../../scripts/directives/continue-button.directive.js"></script>
+    <script src="../../scripts/directives/full-page-height.directive.js"></script>
+    <script src="../../scripts/directives/input-group.directive.js"></script>
+    <script src="../../scripts/directives/match.directive.js"></script>
+    <script src="../../scripts/directives/modal.directive.js"></script>
+    <script src="../../scripts/directives/popover.directive.js"></script>
+    <script src="../../scripts/directives/save-for-later.directive.js"></script>
+    <script src="../../scripts/directives/selecter.directive.js"></script>
+    <script src="../../scripts/directives/sticky-navbar.directive.js"></script>
+    <script src="../../scripts/directives/toggle-buttons.directive.js"></script>
+    <script src="../../scripts/directives/tooltip.directive.js"></script>
+    <script src="../../scripts/services/AdditionalDriver.factory.js"></script>
+    <script src="../../scripts/services/Car.factory.js"></script>
+    <script src="../../scripts/services/InsurancePlan.factory.js"></script>
+    <script src="../../scripts/services/MainDriver.factory.js"></script>
+    <script src="../../scripts/filters/age.filter.js"></script>
+    <script src="../../scripts/filters/range.filter.js"></script>
+    <script src="../../scripts/filters/slugify.filter.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar navbar-default">
+        <div class="navbar-header"><a href="/" class="navbar-brand"><img src="../../images/direct-asia-logo.png"></a></div>
+        <div translate="GS_0_0_1" class="navbar-title">Car Insurance</div>
+        <ol class="breadcrumb breadcrumb-arrow">
+          <li class="active"><a href="#" translate="GC_0_1_1">Your Car &amp; Drivers</a></li>
+          <li><span translate="GC_0_1_2">Your Quote</span></li>
+          <li><span translate="GC_0_1_3">Purchase</span></li>
+        </ol>
+        <div class="navbar-telephone pull-right"><span translate="GS_0_0_2c">Call our Hong Kong Team on</span><span class="navbar-telephone-number">9854 4345</span></div>
+        
+        <div data-ng-controller="helpCtrl" class="help">
+          <button type="button" translate="GS_0_0_2a" data-ng-click="showPopover()" class="btn btn-primary btn-sm help-button">Need Help?</button>
+          <div id="popover" data-ng-show="open" class="fake-popover">
+            <div class="arrow"></div>
+            <form name="helpForm" novalidate data-ng-submit="helpForm.$valid &amp;&amp; sendRequest()" data-ng-show="sent == false">
+              <button type="button" data-ng-click="hidePopover()" class="popover-close-button"><span class="glyphicon glyphicon-remove"></span></button>
+              <p><b translate="PS_3_0_1">Let us call you. Provide your details below and someone from our HK customer care team will get back to you.</b></p>
+              <div class="margin--bottom">
+                <input type="text" placeholder="Enter Name" name="name" data-ng-model="supportRequest.name" data-ng-pattern="/^[a-zA-Z0-9_ -]*$/" required class="form-control"><img src="../../images/error.png" data-ng-show="(helpForm.name.$invalid &amp;&amp; helpForm.name.$dirty) || (helpForm.name.$invalid &amp;&amp; helpForm.$submitted)">
+              </div>
+              <div class="margin--bottom">
+                <input type="email" placeholder="Enter Email Address" name="email" data-ng-model="supportRequest.email" required class="form-control"><img src="../../images/error.png" data-ng-show="(helpForm.email.$invalid &amp;&amp; helpForm.email.$dirty) || (helpForm.email.$invalid &amp;&amp; helpForm.$submitted)">
+              </div>
+              <div class="margin--bottom">
+                <input type="tel" placeholder="Enter Phone Number" name="phone" data-ng-model="supportRequest.number" required class="form-control"><img src="../../images/error.png" data-ng-show="(helpForm.phone.$invalid &amp;&amp; helpForm.phone.$dirty) || (helpForm.phone.$invalid &amp;&amp; helpForm.$submitted)">
+              </div>
+              <button type="submit" translate="PS_3_0_2" class="btn btn-forward margin--bottom">Send Now</button>
+            </form>
+            <div data-ng-show="sent" class="on-submit margin--bottom">
+              <h2><span translate="PS_3_0_3">Message Sent</span>
+                <div translate="PS_3_0_4" class="subtitle">Thank you for your message. We will respond to you with 24 hours.</div>
+              </h2>
+            </div>
+            <p><span translate="GS_0_0_2b">Call us on </span>+852 2884 8888<br><span translate="GS_0_0_3">Mon - Fri 8am, Sat 9am - 6pm</span></p>
+            <p><span translate="GS_0_0_3a">Email us at </span><a href="mailto:enquiries@directasia.com.hk" style="display:block;">enquiries@directasia.com.hk</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <section class="section section-task2">
+        <table class="table table-task2 visible-md visible-lg">
+          <thead>
+            <tr>
+              <td>Choose Comprehensive cover on the right &raquo;</td>
+              <td class="centred">Sum Insured up to (S$)</td>
+              <td class="centred">Select</td>
+              <td style="width:15%;" class="align-right">Additional Premium per year (S$)</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>My Workshop/ My Authorised Distributor Workshop <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              <td class="align-right">Market Value</td>
+              <td class="centred">
+                <input type="checkbox" name="checkbox1">
+              </td>
+              <td class="centred">S$125.17</td>
+            </tr>
+            <tr>
+              <td>Medical Expenses for driver and passengers <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              <td class="align-right">S$500/person</td>
+              <td class="centred">
+                <input type="checkbox" name="checkbox2">
+              </td>
+              <td class="centred">S$16.05</td>
+            </tr>
+            <tr>
+              <td>Personal accident for driver <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              <td class="align-right">
+                <select class="form-control">
+                  <option value="">Please select...</option>
+                </select>
+              </td>
+              <td class="centred">
+                <input type="checkbox" name="checkbox3">
+              </td>
+              <td class="centred">S$53.50</td>
+            </tr>
+            <tr>
+              <td>Loss of Use (10 days per accident/ 20 days per policy year) <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              <td class="align-right">S$50/day</td>
+              <td class="centred">
+                <input type="checkbox" name="checkbox4">
+              </td>
+              <td class="centred">S$53.50</td>
+            </tr>
+            <tr>
+              <td>Repatriation Costs <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              <td class="align-right">S$3,500 towing<br>S$200/person</td>
+              <td class="centred">
+                <input type="checkbox" name="checkbox5">
+              </td>
+              <td class="centred">S$10.70</td>
+            </tr>
+            <tr>
+              <td>24Hr Breakdown Assistance <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              <td class="align-right">Labour and towing costs</td>
+              <td class="centred">
+                <input type="checkbox" name="checkbox6">
+              </td>
+              <td class="centred">S$26.75</td>
+            </tr>
+            <tr>
+              <td>Car accessories <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              <td class="align-right"></td>
+              <td class="centred"></td>
+              <td class="centred"></td>
+            </tr>
+            <tr>
+              <td>Solar Film</td>
+              <td class="align-right">
+                <input type="text" name="text1" placeholder="1000" value="1000" class="form-control">
+              </td>
+              <td class="centred">
+                <input type="checkbox" name="checkbox7">
+              </td>
+              <td class="centred">S$21.40</td>
+            </tr>
+            <tr>
+              <td>Car Camera</td>
+              <td class="align-right">
+                <input type="text" name="text2" placeholder="1000" value="1000" class="form-control">
+              </td>
+              <td class="centred">
+                <input type="checkbox" name="checkbox8">
+              </td>
+              <td class="centred">S$10.70</td>
+            </tr>
+            <tr>
+              <td>In-Vehicle Entertainment System</td>
+              <td class="align-right">
+                <input type="text" name="text3" placeholder="1000" value="1000" class="form-control">
+              </td>
+              <td class="centred">
+                <input type="checkbox" name="checkbox9">
+              </td>
+              <td class="centred">S$10.70</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="hidden-md hidden-lg margin--top">
+          <table style="table-layout:fixed;" class="table table-task2">
+            <thead>
+              <tr>
+                <td colspan="2" class="centred">My Workshop/ My Authorised Distributor Workshop <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="centred">Market Value</td>
+                <td class="centred">
+                  <input type="checkbox" name="checkbox1">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="centred">S$125.17</td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="table-layout:fixed;" class="table table-task2">
+            <thead>
+              <tr>
+                <td colspan="2" class="centred">Medical Expenses for driver and passengers <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="centred">S$500/person</td>
+                <td class="centred">
+                  <input type="checkbox" name="checkbox2">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="centred">S$16.05</td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="table-layout:fixed;" class="table table-task2">
+            <thead>
+              <tr>
+                <td colspan="2" class="centred">Personal accident for driver <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="centred">
+                  <select class="form-control">
+                    <option value="">Please select...</option>
+                  </select>
+                </td>
+                <td class="centred">
+                  <input type="checkbox" name="checkbox3">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="centred">S$53.50</td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="table-layout:fixed;" class="table table-task2">
+            <thead>
+              <tr>
+                <td colspan="2" class="centred">Loss of Use (10 days per accident/ 20 days per policy year) <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="centred">S$50/day</td>
+                <td class="centred">
+                  <input type="checkbox" name="checkbox4">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="centred">S$53.50</td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="table-layout:fixed;" class="table table-task2">
+            <thead>
+              <tr>
+                <td colspan="2" class="centred">Repatriation Costs <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="centred">S$3,500 towing<br>S$200/person</td>
+                <td class="centred">
+                  <input type="checkbox" name="checkbox5">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="centred">S$10.70</td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="table-layout:fixed;" class="table table-task2">
+            <thead>
+              <tr>
+                <td colspan="2" class="centred">24Hr Breakdown Assistance <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="centred">Labour and towing costs</td>
+                <td class="centred">
+                  <input type="checkbox" name="checkbox6">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="centred">S$26.75</td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="table-layout:fixed;" class="table table-task2">
+            <thead>
+              <tr>
+                <td colspan="2" class="centred">Car accessories <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="centred"></td>
+                <td class="centred"></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="centred"></td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="table-layout:fixed;" class="table table-task2">
+            <thead>
+              <tr>
+                <td colspan="2" class="centred">Solar Film</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="centred">
+                  <input type="text" name="text1" placeholder="1000" value="1000" class="form-control">
+                </td>
+                <td class="centred">
+                  <input type="checkbox" name="checkbox7">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="centred">S$125.17</td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="table-layout:fixed;" class="table table-task2">
+            <thead>
+              <tr>
+                <td colspan="2" class="centred">Car Camera</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="centred">
+                  <input type="text" name="text2" placeholder="1000" value="1000" class="form-control">
+                </td>
+                <td class="centred">
+                  <input type="checkbox" name="checkbox8">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="centred">S$10.70</td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="table-layout:fixed;" class="table table-task2">
+            <thead>
+              <tr>
+                <td colspan="2" class="centred">In-Vehicle Entertainment System <i class="glyphicon glyphicon--brown glyphicon-info-sign"></i></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="centred">
+                  <input type="text" name="text3" placeholder="1000" value="1000" class="form-control">
+                </td>
+                <td class="centred">
+                  <input type="checkbox" name="checkbox9">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="centred">S$10.70</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <footer class="page-footer">
+      <div class="container">
+        <button ng-click="switchLanguage('zh_CN')" data-ng-show="currentLanguage=='en_GB'" class="btn btn-sm btn-icon btn-icon--chinese pull-right">Chinese</button>
+        <button ng-click="switchLanguage('en_GB')" data-ng-show="currentLanguage=='zh_CN'" class="btn btn-sm btn-icon btn-icon--english pull-right">English</button>
+      </div>
+    </footer>
+    <script>
+      //- function loadCSS(e,t,n){"use strict";var i=window.document.createElement("link");var o=t||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";o.parentNode.insertBefore(i,o);setTimeout(function(){i.media=n||"all"})}
+      //- loadCSS("styles/main.css");
+      
+      //- var _gaq = _gaq || [];
+      //- _gaq.push(["_setAccount", "UA-XXXXXXXX-X"]);
+      //- _gaq.push(["_trackPageview"]);
+      
+      //- (function() {
+      //- 	var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+      //- 	ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+      //- 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      //- })();
+      
+    </script>
+  </body>
+</html>
