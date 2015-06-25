@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Tue Jun 16 2015 19:45:52 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Thu Jun 25 2015 12:00:13 GMT+0800 (CST) */
 @import url(../lib/select.css);
 @media (min-width: 768px) {
   .pull-left-large {
@@ -204,6 +204,45 @@ h1 img, h2 img {
     .benefit h4 img {
       float: left;
       margin-left: 10px; }
+
+.navbar .breadcrumb-container {
+  float: left;
+  margin-bottom: 30px;
+  margin-top: 0px;
+  width: 100%; }
+  @media (min-width: 1000px) {
+    .navbar .breadcrumb-container {
+      margin-top: 90px !important;
+      width: 50% !important; } }
+  @media (min-width: 1200px) {
+    .navbar .breadcrumb-container {
+      margin-bottom: 30px;
+      margin-top: 30px !important;
+      width: 50% !important; } }
+  .navbar .breadcrumb-container .breadcrumb {
+    border-radius: none;
+    border-top: 1px solid #e5e5e5;
+    display: table;
+    float: none !important;
+    margin-top: 0 !important;
+    overflow: hidden;
+    position: relative !important;
+    table-layout: fixed;
+    width: 100% !important; }
+    .navbar .breadcrumb-container .breadcrumb a, .navbar .breadcrumb-container .breadcrumb span {
+      display: block; }
+    .navbar .breadcrumb-container .breadcrumb:first-child {
+      border-radius: 4px 4px 0 0 !important;
+      border-top: none; }
+    .navbar .breadcrumb-container .breadcrumb:last-child {
+      border-radius: 0 0 4px 4px; }
+    .navbar .breadcrumb-container .breadcrumb li {
+      border-radius: 0 !important;
+      display: table-cell;
+      position: relative;
+      text-align: left; }
+    .navbar .breadcrumb-container .breadcrumb li:first-child a {
+      border-radius: 0 !important; }
 
 .breadcrumb-arrow {
   background-color: #ffffff;

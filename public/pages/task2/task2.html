@@ -70,11 +70,18 @@
       <div class="navbar navbar-default">
         <div class="navbar-header"><a href="/" class="navbar-brand"><img src="../../images/direct-asia-logo.png"></a></div>
         <div translate="GS_0_0_1" class="navbar-title">Car Insurance</div>
-        <ol class="breadcrumb breadcrumb-arrow">
-          <li class="active"><a href="#" translate="GC_0_1_1">Your Car &amp; Drivers</a></li>
-          <li><span translate="GC_0_1_2">Your Quote</span></li>
-          <li><span translate="GC_0_1_3">Purchase</span></li>
-        </ol>
+        <div class="breadcrumb-container">
+          <ol class="breadcrumb breadcrumb-arrow">
+            <li class="active"><a href="#" translate="GC_0_1_1">Your Car &amp; Drivers</a></li>
+            <li><span translate="GC_0_1_2">Your Quote</span></li>
+            <li><span translate="GC_0_1_3">Purchase</span></li>
+          </ol>
+          <ol class="breadcrumb breadcrumb-arrow">
+            <li><a href="#" translate="GC_0_1_1">Your Car &amp; Drivers</a></li>
+            <li><span translate="GC_0_1_2">Your Quote</span></li>
+            <li><span translate="GC_0_1_3">Purchase</span></li>
+          </ol>
+        </div>
         <div class="navbar-telephone pull-right"><span translate="GS_0_0_2c">Call our Hong Kong Team on</span><span class="navbar-telephone-number">9854 4345</span></div>
         
         <div data-ng-controller="helpCtrl" class="help">
@@ -246,10 +253,7 @@
               <tr>
                 <td class="centred">Market Value</td>
                 <td class="centred">
-                  <label for="checkbox10" class="label-checkbox">
-                    <input id="checkbox10" type="checkbox" data-ng-model="checkbox1">
-                    <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
-                  </label>
+                  <button type="button" data-ng-click="checkbox1 = !checkbox1" data-ng-class="{'active':checkbox1}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
                 </td>
               </tr>
               <tr>
@@ -267,10 +271,7 @@
               <tr>
                 <td class="centred">S$500/person</td>
                 <td class="centred">
-                  <label for="checkbox11" class="label-checkbox">
-                    <input id="checkbox11" type="checkbox" data-ng-model="checkbox2">
-                    <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
-                  </label>
+                  <button type="button" data-ng-click="checkbox2 = !checkbox2" data-ng-class="{'active':checkbox2}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
                 </td>
               </tr>
               <tr>
@@ -292,10 +293,7 @@
                   </select><span data-ng-show="!checkbox3">option</span>
                 </td>
                 <td class="centred">
-                  <label for="checkbox12" class="label-checkbox">
-                    <input id="checkbox12" type="checkbox" data-ng-model="checkbox3">
-                    <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
-                  </label>
+                  <button type="button" data-ng-click="checkbox3 = !checkbox3" data-ng-class="{'active':checkbox3}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
                 </td>
               </tr>
               <tr>
@@ -313,10 +311,7 @@
               <tr>
                 <td class="centred">S$50/day</td>
                 <td class="centred">
-                  <label for="checkbox13" class="label-checkbox">
-                    <input id="checkbox13" type="checkbox" data-ng-model="checkbox4">
-                    <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
-                  </label>
+                  <button type="button" data-ng-click="checkbox4 = !checkbox4" data-ng-class="{'active':checkbox4}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
                 </td>
               </tr>
               <tr>
@@ -334,10 +329,7 @@
               <tr>
                 <td class="centred">S$3,500 towing<br>S$200/person</td>
                 <td class="centred">
-                  <label for="checkbox14" class="label-checkbox">
-                    <input id="checkbox14" type="checkbox" data-ng-model="checkbox5">
-                    <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
-                  </label>
+                  <button type="button" data-ng-click="checkbox5 = !checkbox5" data-ng-class="{'active':checkbox5}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
                 </td>
               </tr>
               <tr>
@@ -355,10 +347,7 @@
               <tr>
                 <td class="centred">Labour and towing costs</td>
                 <td class="centred">
-                  <label for="checkbox15" class="label-checkbox">
-                    <input id="checkbox15" type="checkbox" data-ng-model="checkbox6">
-                    <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
-                  </label>
+                  <button type="button" data-ng-click="checkbox6 = !checkbox6" data-ng-class="{'active':checkbox6}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
                 </td>
               </tr>
               <tr>
@@ -394,10 +383,7 @@
                   <input type="text" name="text1" placeholder="1000" value="1000" data-ng-show="checkbox7" class="form-control"><span data-ng-show="!checkbox7">1000</span>
                 </td>
                 <td class="centred">
-                  <label for="checkbox16" class="label-checkbox">
-                    <input id="checkbox16" type="checkbox" data-ng-model="checkbox7">
-                    <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
-                  </label>
+                  <button type="button" data-ng-click="checkbox7 = !checkbox7" data-ng-class="{'active':checkbox7}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
                 </td>
               </tr>
               <tr>
@@ -417,10 +403,7 @@
                   <input type="text" name="text2" placeholder="1000" value="1000" data-ng-show="checkbox8" class="form-control"><span data-ng-show="!checkbox8">1000</span>
                 </td>
                 <td class="centred">
-                  <label for="checkbox17" class="label-checkbox">
-                    <input id="checkbox17" type="checkbox" data-ng-model="checkbox8">
-                    <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
-                  </label>
+                  <button type="button" data-ng-click="checkbox8 = !checkbox8" data-ng-class="{'active':checkbox8}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
                 </td>
               </tr>
               <tr>
@@ -440,10 +423,7 @@
                   <input type="text" name="text3" placeholder="1000" value="1000" data-ng-show="checkbox9" class="form-control"><span data-ng-show="!checkbox9">1000</span>
                 </td>
                 <td class="centred">
-                  <label for="checkbox18" class="label-checkbox">
-                    <input id="checkbox18" type="checkbox" data-ng-model="checkbox9">
-                    <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
-                  </label>
+                  <button type="button" data-ng-click="checkbox9 = !checkbox9" data-ng-class="{'active':checkbox9}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
                 </td>
               </tr>
               <tr>

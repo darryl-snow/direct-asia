@@ -1,5 +1,61 @@
 // Breadcrumb navigation styles
 
+.navbar .breadcrumb-container {
+	float:							left;
+	margin-bottom:					30px;
+	margin-top:						0px;
+	width:							100%;
+
+	@media (min-width: 1000px) {
+		margin-top:					90px !important;
+		width:						50% !important;
+	}
+
+	@media (min-width: 1200px) {
+		margin-bottom:				30px;
+		margin-top:					30px !important;
+		width:						50% !important;
+	}
+
+	.breadcrumb {
+		border-radius:				none;
+		border-top:					1px solid $light-grey-1;
+		display:					table;
+		float:						none !important;
+		margin-top:					0 !important;
+		overflow:					hidden;
+		position:					relative !important;
+		table-layout: 				fixed;
+		width:						100% !important;
+
+		a,
+		span {
+			display:				block;
+		}
+
+		&:first-child {
+			border-radius:			4px 4px 0 0 !important;
+			border-top:				none;
+		}
+
+		&:last-child {
+			border-radius:			0 0 4px 4px;
+		}
+
+		li {
+			border-radius:			0 !important;
+			display:				table-cell;
+			position:				relative;
+			text-align:				left;
+		}
+
+		li:first-child a {
+			border-radius:			0 !important;
+		}
+	}
+
+}
+
 .breadcrumb-arrow {
 	background-color:				$white;
 	box-shadow:						0 2px 0 $light-grey-1;

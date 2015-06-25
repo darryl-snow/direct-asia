@@ -116,13 +116,23 @@ html(lang="en", ng-app="DirectAsia")
 
 				.navbar-title(translate="GS_0_0_1") Car Insurance
 
-				ol.breadcrumb.breadcrumb-arrow
-					li.active
-						a(href="#", translate="GC_0_1_1") Your Car &amp; Drivers
-					li
-						span(translate="GC_0_1_2") Your Quote
-					li
-						span(translate="GC_0_1_3") Purchase
+				.breadcrumb-container
+
+					ol.breadcrumb.breadcrumb-arrow
+						li.active
+							a(href="#", translate="GC_0_1_1") Your Car &amp; Drivers
+						li
+							span(translate="GC_0_1_2") Your Quote
+						li
+							span(translate="GC_0_1_3") Purchase
+
+					ol.breadcrumb.breadcrumb-arrow
+						li
+							a(href="#", translate="GC_0_1_1") Your Car &amp; Drivers
+						li
+							span(translate="GC_0_1_2") Your Quote
+						li
+							span(translate="GC_0_1_3") Purchase
 
 				.navbar-telephone.pull-right
 					span(translate="GS_0_0_2c") Call our Hong Kong Team on
