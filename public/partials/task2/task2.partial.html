@@ -129,6 +129,7 @@
       </tbody>
     </table>
     <div class="hidden-md hidden-lg margin--top">
+      <p>Choose comprehensive cover on the following:</p>
       <table style="table-layout:fixed;" class="compare-plans table table-striped">
         <thead>
           <tr>
@@ -137,13 +138,21 @@
         </thead>
         <tbody>
           <tr>
-            <td class="centred">Market Value</td>
+            <td class="align-right">Select this cover?</td>
             <td class="centred">
-              <button type="button" data-ng-click="checkbox1 = !checkbox1" data-ng-class="{'active':checkbox1}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
+              <label for="checkbox1" class="label-checkbox">
+                <input id="checkbox1" type="checkbox" data-ng-model="checkbox1"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
+              </label>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="centred">S$125.17</td>
+            <td class="align-right">Sum insured up to:</td>
+            <td class="centred">S$125.17</td>
+          </tr>
+          <tr>
+            <td class="align-right">Additional Premium per year:</td>
+            <td class="centred">HK$103.00</td>
           </tr>
         </tbody>
       </table>
@@ -155,13 +164,21 @@
         </thead>
         <tbody>
           <tr>
-            <td class="centred">S$500/person</td>
+            <td class="align-right">Select this cover?</td>
             <td class="centred">
-              <button type="button" data-ng-click="checkbox2 = !checkbox2" data-ng-class="{'active':checkbox2}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
+              <label for="checkbox2" class="label-checkbox">
+                <input id="checkbox2" type="checkbox" data-ng-model="checkbox2"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
+              </label>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="centred">S$16.05</td>
+            <td class="align-right">Sum insured up to:</td>
+            <td class="centred">HK$500/person</td>
+          </tr>
+          <tr>
+            <td class="align-right">Additional Premium per year:</td>
+            <td class="centred">HK$16.05</td>
           </tr>
         </tbody>
       </table>
@@ -173,17 +190,25 @@
         </thead>
         <tbody>
           <tr>
+            <td class="align-right">Select this cover?</td>
+            <td class="centred">
+              <label for="checkbox3" class="label-checkbox">
+                <input id="checkbox3" type="checkbox" data-ng-model="checkbox3"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td class="align-right">Sum insured up to:</td>
             <td class="centred">
               <select data-ng-show="checkbox3" class="form-control">
                 <option value="">Please select...</option>
               </select><span data-ng-show="!checkbox3">option</span>
             </td>
-            <td class="centred">
-              <button type="button" data-ng-click="checkbox3 = !checkbox3" data-ng-class="{'active':checkbox3}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
-            </td>
           </tr>
           <tr>
-            <td colspan="2" class="centred">S$53.50</td>
+            <td class="align-right">Additional Premium per year:</td>
+            <td class="centred">HK$53.50</td>
           </tr>
         </tbody>
       </table>
@@ -195,13 +220,21 @@
         </thead>
         <tbody>
           <tr>
-            <td class="centred">S$50/day</td>
+            <td class="align-right">Select this cover?</td>
             <td class="centred">
-              <button type="button" data-ng-click="checkbox4 = !checkbox4" data-ng-class="{'active':checkbox4}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
+              <label for="checkbox4" class="label-checkbox">
+                <input id="checkbox4" type="checkbox" data-ng-model="checkbox4"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
+              </label>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="centred">S$53.50</td>
+            <td class="align-right">Sum insured up to:</td>
+            <td class="centred">HK$50/day</td>
+          </tr>
+          <tr>
+            <td class="align-right">Additional Premium per year:</td>
+            <td class="centred">HK$53.50</td>
           </tr>
         </tbody>
       </table>
@@ -213,13 +246,21 @@
         </thead>
         <tbody>
           <tr>
-            <td class="centred">S$3,500 towing<br/>S$200/person</td>
+            <td class="align-right">Select this cover?</td>
             <td class="centred">
-              <button type="button" data-ng-click="checkbox5 = !checkbox5" data-ng-class="{'active':checkbox5}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
+              <label for="checkbox5" class="label-checkbox">
+                <input id="checkbox5" type="checkbox" data-ng-model="checkbox5"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
+              </label>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="centred">S$10.70</td>
+            <td class="align-right">Sum insured up to:</td>
+            <td class="centred">HK$3,500 towing</td>
+          </tr>
+          <tr>
+            <td class="align-right">Additional Premium per year:</td>
+            <td class="centred">HK$10.70</td>
           </tr>
         </tbody>
       </table>
@@ -231,13 +272,21 @@
         </thead>
         <tbody>
           <tr>
-            <td class="centred">Labour and towing costs</td>
+            <td class="align-right">Select this cover?</td>
             <td class="centred">
-              <button type="button" data-ng-click="checkbox6 = !checkbox6" data-ng-class="{'active':checkbox6}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
+              <label for="checkbox6" class="label-checkbox">
+                <input id="checkbox6" type="checkbox" data-ng-model="checkbox6"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
+              </label>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="centred">S$26.75</td>
+            <td class="align-right">Sum insured up to:</td>
+            <td class="centred">Labour and towing costs</td>
+          </tr>
+          <tr>
+            <td class="align-right">Additional Premium per year:</td>
+            <td class="centred">HK$26.75</td>
           </tr>
         </tbody>
       </table>
@@ -249,11 +298,16 @@
         </thead>
         <tbody>
           <tr>
-            <td class="centred"></td>
+            <td class="align-right">Select this cover?</td>
             <td class="centred"></td>
           </tr>
           <tr>
-            <td colspan="2" class="centred"></td>
+            <td class="align-right"></td>
+            <td class="centred"></td>
+          </tr>
+          <tr>
+            <td class="align-right"></td>
+            <td class="centred"></td>
           </tr>
         </tbody>
       </table>
@@ -265,15 +319,23 @@
         </thead>
         <tbody>
           <tr>
+            <td class="align-right">Select this cover?</td>
             <td class="centred">
-              <input type="text" name="text1" placeholder="1000" value="1000" data-ng-show="checkbox7" class="form-control"/><span data-ng-show="!checkbox7">1000</span>
-            </td>
-            <td class="centred">
-              <button type="button" data-ng-click="checkbox7 = !checkbox7" data-ng-class="{'active':checkbox7}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
+              <label for="checkbox7" class="label-checkbox">
+                <input id="checkbox7" type="checkbox" data-ng-model="checkbox7"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
+              </label>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="centred">S$125.17</td>
+            <td class="align-right">Sum insured up to:</td>
+            <td class="centred">
+              <input type="text" name="text1" placeholder="1000" value="1000" data-ng-show="checkbox7" class="form-control"/><span data-ng-show="!checkbox7">1000</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="align-right">Additional Premium per year:</td>
+            <td class="centred">HK$125.17</td>
           </tr>
         </tbody>
       </table>
@@ -285,15 +347,23 @@
         </thead>
         <tbody>
           <tr>
+            <td class="align-right">Select this cover?</td>
             <td class="centred">
-              <input type="text" name="text2" placeholder="1000" value="1000" data-ng-show="checkbox8" class="form-control"/><span data-ng-show="!checkbox8">1000</span>
-            </td>
-            <td class="centred">
-              <button type="button" data-ng-click="checkbox8 = !checkbox8" data-ng-class="{'active':checkbox8}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
+              <label for="checkbox8" class="label-checkbox">
+                <input id="checkbox8" type="checkbox" data-ng-model="checkbox8"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
+              </label>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="centred">S$10.70</td>
+            <td class="align-right">Sum insured up to:</td>
+            <td class="centred">
+              <input type="text" name="text2" placeholder="1000" value="1000" data-ng-show="checkbox8" class="form-control"/><span data-ng-show="!checkbox8">1000</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="align-right">Additional Premium per year:</td>
+            <td class="centred">HK$10.70</td>
           </tr>
         </tbody>
       </table>
@@ -305,15 +375,23 @@
         </thead>
         <tbody>
           <tr>
+            <td class="align-right">Select this cover?</td>
             <td class="centred">
-              <input type="text" name="text3" placeholder="1000" value="1000" data-ng-show="checkbox9" class="form-control"/><span data-ng-show="!checkbox9">1000</span>
-            </td>
-            <td class="centred">
-              <button type="button" data-ng-click="checkbox9 = !checkbox9" data-ng-class="{'active':checkbox9}" translate="PC_4_5c" class="btn btn-default">Select<span class="glyphicon glyphicon-ok"></span></button>
+              <label for="checkbox9" class="label-checkbox">
+                <input id="checkbox9" type="checkbox" data-ng-model="checkbox9"/>
+                <div class="fake-checkbox"><span class="glyphicon glyphicon-ok"></span></div>
+              </label>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="centred">S$10.70</td>
+            <td class="align-right">Sum insured up to:</td>
+            <td class="centred">
+              <input type="text" name="text3" placeholder="1000" value="1000" data-ng-show="checkbox9" class="form-control"/><span data-ng-show="!checkbox9">1000</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="align-right">Additional Premium per year:</td>
+            <td class="centred">HK$10.70</td>
           </tr>
         </tbody>
       </table>

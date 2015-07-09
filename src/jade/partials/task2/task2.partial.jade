@@ -138,6 +138,8 @@
 
 		.hidden-md.hidden-lg.margin--top
 
+			p Choose comprehensive cover on the following:
+
 			table.compare-plans.table.table-striped(style="table-layout:fixed;")
 				thead
 					tr
@@ -147,12 +149,18 @@
 								img(src="../../images/question-icon.png")
 				tbody
 					tr
-						td.centred Market Value
+						td.align-right Select this cover?
 						td.centred
-							button.btn.btn-default(type="button", data-ng-click="checkbox1 = !checkbox1", data-ng-class="{'active':checkbox1}", translate="PC_4_5c") Select
-								span.glyphicon.glyphicon-ok
+							label.label-checkbox(for="checkbox1")
+								input#checkbox1(type="checkbox", data-ng-model="checkbox1")
+								.fake-checkbox
+									span.glyphicon.glyphicon-ok
 					tr
-						td.centred(colspan="2") S$125.17
+						td.align-right Sum insured up to:
+						td.centred S$125.17
+					tr
+						td.align-right Additional Premium per year:
+						td.centred HK$103.00
 
 			table.compare-plans.table.table-striped(style="table-layout:fixed;")
 				thead
@@ -163,12 +171,18 @@
 								img(src="../../images/question-icon.png")
 				tbody
 					tr
-						td.centred S$500/person
+						td.align-right Select this cover?
 						td.centred
-							button.btn.btn-default(type="button", data-ng-click="checkbox2 = !checkbox2", data-ng-class="{'active':checkbox2}", translate="PC_4_5c") Select
-								span.glyphicon.glyphicon-ok
+							label.label-checkbox(for="checkbox2")
+								input#checkbox2(type="checkbox", data-ng-model="checkbox2")
+								.fake-checkbox
+									span.glyphicon.glyphicon-ok
 					tr
-						td.centred(colspan="2") S$16.05
+						td.align-right Sum insured up to:
+						td.centred HK$500/person
+					tr
+						td.align-right Additional Premium per year:
+						td.centred HK$16.05
 
 			table.compare-plans.table.table-striped(style="table-layout:fixed;")
 				thead
@@ -179,15 +193,21 @@
 								img(src="../../images/question-icon.png")
 				tbody
 					tr
+						td.align-right Select this cover?
+						td.centred
+							label.label-checkbox(for="checkbox3")
+								input#checkbox3(type="checkbox", data-ng-model="checkbox3")
+								.fake-checkbox
+									span.glyphicon.glyphicon-ok
+					tr
+						td.align-right Sum insured up to:
 						td.centred
 							select.form-control(data-ng-show="checkbox3")
 								option(value="") Please select...
 							span(data-ng-show="!checkbox3") option
-						td.centred
-							button.btn.btn-default(type="button", data-ng-click="checkbox3 = !checkbox3", data-ng-class="{'active':checkbox3}", translate="PC_4_5c") Select
-								span.glyphicon.glyphicon-ok
 					tr
-						td.centred(colspan="2") S$53.50
+						td.align-right Additional Premium per year:
+						td.centred HK$53.50
 
 			table.compare-plans.table.table-striped(style="table-layout:fixed;")
 				thead
@@ -198,12 +218,18 @@
 								img(src="../../images/question-icon.png")
 				tbody
 					tr
-						td.centred S$50/day
+						td.align-right Select this cover?
 						td.centred
-							button.btn.btn-default(type="button", data-ng-click="checkbox4 = !checkbox4", data-ng-class="{'active':checkbox4}", translate="PC_4_5c") Select
-								span.glyphicon.glyphicon-ok
+							label.label-checkbox(for="checkbox4")
+								input#checkbox4(type="checkbox", data-ng-model="checkbox4")
+								.fake-checkbox
+									span.glyphicon.glyphicon-ok
 					tr
-						td.centred(colspan="2") S$53.50
+						td.align-right Sum insured up to:
+						td.centred HK$50/day
+					tr
+						td.align-right Additional Premium per year:
+						td.centred HK$53.50
 
 			table.compare-plans.table.table-striped(style="table-layout:fixed;")
 				thead
@@ -214,14 +240,18 @@
 								img(src="../../images/question-icon.png")
 				tbody
 					tr
-						td.centred S$3,500 towing
-							br
-							| S$200/person
+						td.align-right Select this cover?
 						td.centred
-							button.btn.btn-default(type="button", data-ng-click="checkbox5 = !checkbox5", data-ng-class="{'active':checkbox5}", translate="PC_4_5c") Select
-								span.glyphicon.glyphicon-ok
+							label.label-checkbox(for="checkbox5")
+								input#checkbox5(type="checkbox", data-ng-model="checkbox5")
+								.fake-checkbox
+									span.glyphicon.glyphicon-ok
 					tr
-						td.centred(colspan="2") S$10.70
+						td.align-right Sum insured up to:
+						td.centred HK$3,500 towing
+					tr
+						td.align-right Additional Premium per year:
+						td.centred HK$10.70
 
 			table.compare-plans.table.table-striped(style="table-layout:fixed;")
 				thead
@@ -232,12 +262,18 @@
 								img(src="../../images/question-icon.png")
 				tbody
 					tr
-						td.centred Labour and towing costs
+						td.align-right Select this cover?
 						td.centred
-							button.btn.btn-default(type="button", data-ng-click="checkbox6 = !checkbox6", data-ng-class="{'active':checkbox6}", translate="PC_4_5c") Select
-								span.glyphicon.glyphicon-ok
+							label.label-checkbox(for="checkbox6")
+								input#checkbox6(type="checkbox", data-ng-model="checkbox6")
+								.fake-checkbox
+									span.glyphicon.glyphicon-ok
 					tr
-						td.centred(colspan="2") S$26.75
+						td.align-right Sum insured up to:
+						td.centred Labour and towing costs
+					tr
+						td.align-right Additional Premium per year:
+						td.centred HK$26.75
 
 			table.compare-plans.table.table-striped(style="table-layout:fixed;")
 				thead
@@ -248,10 +284,14 @@
 								img(src="../../images/question-icon.png")
 				tbody
 					tr
-						td.centred
+						td.align-right Select this cover?
 						td.centred
 					tr
-						td.centred(colspan="2")
+						td.align-right
+						td.centred
+					tr
+						td.align-right
+						td.centred
 
 			table.compare-plans.table.table-striped(style="table-layout:fixed;")
 				thead
@@ -260,14 +300,20 @@
 							strong.name Solar Film
 				tbody
 					tr
+						td.align-right Select this cover?
+						td.centred
+							label.label-checkbox(for="checkbox7")
+								input#checkbox7(type="checkbox", data-ng-model="checkbox7")
+								.fake-checkbox
+									span.glyphicon.glyphicon-ok
+					tr
+						td.align-right Sum insured up to:
 						td.centred
 							input.form-control(type="text", name="text1", placeholder="1000", value="1000", data-ng-show="checkbox7")
 							span(data-ng-show="!checkbox7") 1000
-						td.centred
-							button.btn.btn-default(type="button", data-ng-click="checkbox7 = !checkbox7", data-ng-class="{'active':checkbox7}", translate="PC_4_5c") Select
-								span.glyphicon.glyphicon-ok
 					tr
-						td.centred(colspan="2") S$125.17
+						td.align-right Additional Premium per year:
+						td.centred HK$125.17
 
 			table.compare-plans.table.table-striped(style="table-layout:fixed;")
 				thead
@@ -276,14 +322,20 @@
 							strong.name Car Camera
 				tbody
 					tr
+						td.align-right Select this cover?
+						td.centred
+							label.label-checkbox(for="checkbox8")
+								input#checkbox8(type="checkbox", data-ng-model="checkbox8")
+								.fake-checkbox
+									span.glyphicon.glyphicon-ok
+					tr
+						td.align-right Sum insured up to:
 						td.centred
 							input.form-control(type="text", name="text2", placeholder="1000", value="1000", data-ng-show="checkbox8")
 							span(data-ng-show="!checkbox8") 1000
-						td.centred
-							button.btn.btn-default(type="button", data-ng-click="checkbox8 = !checkbox8", data-ng-class="{'active':checkbox8}", translate="PC_4_5c") Select
-								span.glyphicon.glyphicon-ok
 					tr
-						td.centred(colspan="2") S$10.70
+						td.align-right Additional Premium per year:
+						td.centred HK$10.70
 
 			table.compare-plans.table.table-striped(style="table-layout:fixed;")
 				thead
@@ -292,11 +344,17 @@
 							strong.name In-Vehicle Entertainment System 
 				tbody
 					tr
+						td.align-right Select this cover?
+						td.centred
+							label.label-checkbox(for="checkbox9")
+								input#checkbox9(type="checkbox", data-ng-model="checkbox9")
+								.fake-checkbox
+									span.glyphicon.glyphicon-ok
+					tr
+						td.align-right Sum insured up to:
 						td.centred
 							input.form-control(type="text", name="text3", placeholder="1000", value="1000", data-ng-show="checkbox9")
 							span(data-ng-show="!checkbox9") 1000
-						td.centred
-							button.btn.btn-default(type="button", data-ng-click="checkbox9 = !checkbox9", data-ng-class="{'active':checkbox9}", translate="PC_4_5c") Select
-								span.glyphicon.glyphicon-ok
 					tr
-						td.centred(colspan="2") S$10.70
+						td.align-right Additional Premium per year:
+						td.centred HK$10.70

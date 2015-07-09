@@ -18,7 +18,7 @@ getMockData = ->
 				name: "Comprehensive"
 				tagline: ""
 				price: "S$884.73"
-				policyExcess: ["S$700", "S$600"]
+				policyExcess: ["HK$99,999", "S$600"]
 				covers: [
 					"Third Party - Death or Bodily injury"
 					"Third Party - Property Damage"

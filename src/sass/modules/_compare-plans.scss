@@ -64,11 +64,14 @@
 			display: inline-block;
 		}
 		.name {
-			width: 50%;
+			width: 70%;
 		}
 		.tip {
 			text-align: right;
 			width: 30%;
 		}
+	}
+	td:first-child {
+		width: 50%;
 	}
 }

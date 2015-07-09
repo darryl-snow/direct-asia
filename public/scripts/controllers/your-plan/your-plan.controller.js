@@ -1,4 +1,4 @@
-/* direct-asia : 0.0.0 : Thu Jun 25 2015 11:45:08 GMT+0800 (CST) */
+/* direct-asia : 0.0.0 : Thu Jul 09 2015 15:47:23 GMT+0800 (CST) */
 
 /*
 
@@ -21,7 +21,7 @@ getMockData = function() {
         name: "Comprehensive",
         tagline: "",
         price: "S$884.73",
-        policyExcess: ["S$700", "S$600"],
+        policyExcess: ["HK$99,999", "S$600"],
         covers: ["Third Party - Death or Bodily injury", "Third Party - Property Damage", "Third Party - Collision Damage", "24 hour accident towing", "Own damage - No Other Vehicle Involved", "Windscreen/Window Breakage"]
       }, {
         image: "../../images/third-party-plus.png",
